@@ -14,7 +14,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 
-// mongodb connect
+// mongodb connect MONGO ATLAS DEPLOY
 (async () => {
   try {
     const connection = await mongoose.connect(`${process.env.MONGODB_URI}`, { useNewUrlParser: true });
