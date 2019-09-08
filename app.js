@@ -5,10 +5,35 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+// Full Driver Example
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://xavigallardo:<password>@oktoplay-0rvjt.mongodb.net/test?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+
+// mongodb connect
+(async () => {
+  try {
+    const connection = await mongoose.connect(`${process.env.MONGODB_URI}`, { useNewUrlParser: true });
+    console.log(`Connected to Mongo! Database name: "${connection.connections[0].db.s.databaseName}"`);
+  } catch (err) {
+    console.log('Error connecting to Mongo database.', err);
+  }
+})();
 
 const app = express();
 
