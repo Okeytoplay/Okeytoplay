@@ -46,16 +46,40 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
+app.use(
+  session({
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+    secret: process.env.SESSION_SECRET || 'ironplay',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
+);
 
 app.use(flash());
+
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
   next();
 });
-// app.use(notifications(app));
+
+app.use(notifications(app));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+
+
+// app.use((req, res, next) => {
+//   // app.locals.currentUser = req.session.currentUser;
+//   res.locals.currentUser = req.session.currentUser;
+//   next();
+// });
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
