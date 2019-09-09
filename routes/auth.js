@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt'); // Bcrypt to encrypt passwords
 const User = require('../models/User'); // User Model
-const checkFields = require('../middlewares/auth');
+const { checkFields } = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.post('/signup', checkFields, async (req, res, next) => {
     const userFound = await User.findOne({ email });
     if (userFound) {
       req.flash('error', `Sorry, this ${email} has an account on the site!!`);
-      res.redirect('auth/signup');
+      res.redirect('/signup');
     }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);

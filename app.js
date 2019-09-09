@@ -55,7 +55,7 @@ app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
   next();
 });
-app.use(notifications(app));
+// app.use(notifications(app));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
