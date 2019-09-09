@@ -10,7 +10,7 @@ const sassMiddleware = require("node-sass-middleware");
 // Routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const authRouter = require("./routes/auth");
+const authRouter = require("./routes/auth").default;
 const eventsRouter = require("./routes/events");
 const establishmentsRouter = require("./routes/establishments");
 const bandsRouter = require("./routes/bands");
