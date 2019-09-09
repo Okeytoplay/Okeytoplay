@@ -10,6 +10,10 @@ const sassMiddleware = require("node-sass-middleware");
 // Routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
+const eventsRouter = require("./routes/events");
+const establishmentsRouter = require("./routes/establishments");
+const bandsRouter = require("./routes/bands");
 
 // mongodb connect (Xavi:Añadir)
 
@@ -35,6 +39,10 @@ app.use(
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/auth", authRouter);
+app.use("/establishments", establishmentsRouter);
+app.use("/bands", bandsRouter);
+app.use("/events", eventsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -49,7 +57,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error", { error: err });
+  res.render("error");
 });
 
 module.exports = app;
