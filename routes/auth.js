@@ -65,6 +65,6 @@ router.post('/login', checkEmailAndPasswordNotEmpty, async (req, res, next) => {
     req.flash('error', 'try again');
     res.redirect('/signup'); // Revisar ruta a donde redirigir
   }
-})
+});
 
 module.exports = router;
