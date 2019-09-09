@@ -22,6 +22,18 @@ const notifications = () => (req, res, next) => {
   next();
 };
 
+const checkEmailAndPasswordNotEmpty = (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email !== '' && password !== '') {
+    res.locals.auth = req.body;
+    next();
+  } else {
+    req.flash('error', 'campos no pueden estar vacios');
+    res.redirect('auth/signup');
+  }
+};
+
 module.exports = {
-  checkFields, notifications,
+  checkFields, notifications, checkEmailAndPasswordNotEmpty,
 };

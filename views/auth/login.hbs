@@ -1,0 +1,12 @@
+<form id="form" action="/auth/login" method="POST">
+  <label for="email">Your Sign In email:</label><br>
+  <input type="email" name="email" placeholder="Your email" required><br>
+
+  <label for="password">Password</label><br>
+  <input type="password" name="password" placeholder="********" required><br>
+
+  <button type="submit">log in</button>
+  {{#if error }}
+  {{ error }}
+  {{/if }}
+</form>
