@@ -5,11 +5,13 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var sassMiddleware = require("node-sass-middleware");
 
+// notifications handle (Xavi:Añadir)
+
 // Routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
-// mongodb connect
+// mongodb connect (Xavi:Añadir)
 
 const app = express();
 
@@ -26,7 +28,7 @@ app.use(
   sassMiddleware({
     src: path.join(__dirname, "public"),
     dest: path.join(__dirname, "public"),
-    indentedSyntax: true, // true = .sass and false = .scss
+    indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true
   })
 );
