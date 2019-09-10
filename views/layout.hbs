@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  {{#if infoMessages}}
+  <p class="info">{{infoMessages}}</p>
+  {{/if}}
+  {{#if errorMessages }}
+  <p class="error">{{ errorMessages }}</p>
+  {{/if }}
+  {{#if currentUser }}
+  <p>The user logged In is: {{ currentUser.username }}</p>
+  <a href="/logout">Logout</a>
+  {{else}}
+  <a href="/auth/login">Login</a>
+  <a href="/auth/signup">Signup</a>
+  {{/if}}
+  {{{body}}}
+</body>
+
 </html>
