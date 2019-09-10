@@ -7,21 +7,25 @@
   <h3>Select Your ROLE:</h3>
   <form>
     <input type="checkbox" name="role1" value="Groupie"> I'm a crazy groupie!!<br>
-    <input type="checkbox" name="role2" value="Band"> I'm in a Awesome Band!!<br>
-    <input type="checkbox" name="role3" value="Establishment"> I have a nice Music Club!!<br>
+    <input type="checkbox" onclick='return bandForm();' name="role2" value="Band"> I'm in a Awesome Band!!<br>
+    <input type="checkbox" onclick='return establishmentForm();' name="role3" value="Establishment"> I have a nice
+    Music Club!!<br>
   </form>
 </div>
 <form id='profile-form' action='/user/profile' method='POST'>
   <label for='telephone'>Phone Number:</label><br>
   <input type='tel' name='telephone' placeholder='Phone Number'><br>
 
-  <div id='Band-form-profile'>
-    <input type='checkbox' onclick='return go();' id='chk' accesskey=c />
+  <div id='Band-form-profile' class="not-shown">
+    <label for='band'>Band Name:</label><br>
+    <input type='text' name='band' placeholder='Band Name'><br>
+    {{!-- <input type='checkbox' onclick='return go();' id='chk' accesskey=c />
     <label for='chk'><u>C</u>heckbox</label>
-    <div id='clicks'></div>
+    <div id='clicks'></div> --}}
   </div>
-  <div id='Establishment-form-profile'>
-
+  <div id='Establishment-form-profile' class="not-shown">
+    <label for='establishment'>Music Club:</label><br>
+    <input type='text' name='establishment' placeholder='Music Club Name'><br>
   </div>
   {{!-- <label for='email'>Email:</label><br>
   <input type='email' name='email' id='email_id' placeholder='E-mail' required><br>
@@ -35,11 +39,21 @@
 <div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
 
+{{!-- document.getElementById("clicks").addEventListener("click", go); --}}
 <script>
-  document.getElementById("clicks").addEventListener("click", go);
-  function go() {
+
+  function bandForm() {
+    document.getElementById('Band-form-profile').classList.toggle('not-shown');
+    return true;
+  }
+  function establishmentForm() {
+    document.getElementById('Establishment-form-profile').classList.toggle('not-shown');
+    return true;
+  }
+
+</script>
+{{!-- function go() {
 
     document.getElementById("clicks").append('<p>Clicked.</p>');
     return true;
-  }
-</script>
+  } --}}
