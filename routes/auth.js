@@ -30,8 +30,8 @@ router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, r
     const newUser = await User.create({ username, email, hashedPassword });
     req.session.currentUser = newUser;
     req.flash('success', `${username}, your account has been created.`);
-    // res.redirect('/user/profile');  //Aquí tenemos que redirigir cuando tengamos la routa y la vista
-    res.redirect('/');
+    res.redirect('/user/profile-create'); // Aquí tenemos que redirigir cuando tengamos la ruta
+    // res.redirect('/');
   } catch (error) {
     next(error);
   }
