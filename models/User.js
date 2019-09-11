@@ -20,7 +20,7 @@ const userSchema = new Schema(
     zip: { type: Number, required: true },
     capacity: { type: Number, required: true },
 
-    //Band
+    //Band no entenc com puc fer el seed i demanar els camps obligatoris
     bandName: { type: String, required: true },
     bandMembers: { type: Number, required: true }
   },

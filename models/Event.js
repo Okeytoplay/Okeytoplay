@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const { ObjectId } = Schema.Types;
 
-const eventsSchema = new Schema(
+const eventSchema = new Schema(
   {
-    title: String,
     establishmentName: {
       type: ObjectId,
       ref: "User"
@@ -32,7 +31,7 @@ const eventsSchema = new Schema(
     },
     price: {
       type: Number,
-      min: 1
+      default: "Free",//Puc posar un string com a default?
     },
     duration: {
       type: Number,
@@ -45,4 +44,4 @@ const eventsSchema = new Schema(
 }
 );
 
-module.exports = mongoose.model("Event", eventsSchema);
+module.exports = mongoose.model("Event", eventSchema);

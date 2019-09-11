@@ -1,9 +1,9 @@
 const express = require("express");
-const Events = require("../models/events");
+const Event = require("../models/Event");
 
 const router = express.Router();
 
-/* GET home page. */
+// Renders homepage
 router.get("/", (req, res, next) => {
   res.render("index", { title: "Express" });
 });
