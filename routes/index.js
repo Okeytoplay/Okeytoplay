@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Renders homepage
 router.get("/", (req, res, next) => {
-  res.render("index", { title: "Express" });
+  res.render("index", { title: "OkeyToPlay" });
 });
 
 /* GET Log Out and redirect to HomePage */
