@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt"); // Bcrypt to encrypt passwords
 const User = require("../models/User"); // User Model
 const {
   checkFields,
-  checkEmailAndPasswordNotEmpty
+  checkEmailAndPasswordNotEmpty,
 } = require("../middlewares/auth");
 
 const router = express.Router();
