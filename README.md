@@ -72,7 +72,7 @@ Homepage: - …
 | :----: | :-------------------------------: | :--------------------------------: |
 |  GET   |                 /                 |        Renders the homepage        |
 |  GET   |           /auth/signup            |       Renders sign up screen       |
-|  POST  |           /auth/signup            |     Redirects to \_auth_login      |
+|  POST  |           /auth/signup            |     Redirects to /user/profile     |
 |  GET   |            /auth/login            |       Renders log in screen        |
 |  POST  |            /auth/login            |           Redirects to /           |
 |  GET   |               /user               |       Renders user homepage        |

@@ -34,6 +34,14 @@ const checkEmailAndPasswordNotEmpty = (req, res, next) => {
   }
 };
 
+const checkIfLoggedIn = (req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    res.redirect('/auth/login');
+  }
+};
+
 module.exports = {
-  checkFields, notifications, checkEmailAndPasswordNotEmpty,
+  checkFields, notifications, checkEmailAndPasswordNotEmpty, checkIfLoggedIn,
 };

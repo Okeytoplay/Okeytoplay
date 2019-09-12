@@ -13,10 +13,11 @@ const flash = require('connect-flash');
 const { notifications } = require('./middlewares/auth');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users');
 
 // Routes
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 // mongodb connect MONGO ATLAS DEPLOY
 (async () => {
@@ -71,8 +72,9 @@ app.use((req, res, next) => {
 app.use(notifications(app));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 
 // app.use((req, res, next) => {
