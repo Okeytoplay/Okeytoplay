@@ -1,14 +1,11 @@
 body {
   padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-}
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff;
-}
+  color: #00B7FF; }
 
 .not-shown {
-  display: none;
-}
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */
