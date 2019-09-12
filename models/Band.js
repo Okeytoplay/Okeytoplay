@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
-const { ObjectId } = Schema.Types;
 
 const BandSchema = new Schema({
   name: { type: String, required: true },

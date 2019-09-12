@@ -5,10 +5,10 @@ const { ObjectId } = Schema.Types;
 
 const userSchema = new Schema(
   {
-    name: { type: String, required: true },
+    username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    hashedPassword: { type: String, required: true }
-    bookedEvents: [{type:ObjectId,ref:"Event"}]
+    hashedPassword: { type: String, required: true },
+    bookedEvents: [{ type: ObjectId, ref: "Event" }]
   },
   {
     timestamps: {
