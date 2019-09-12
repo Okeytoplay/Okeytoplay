@@ -1,4 +1,4 @@
-<h1>EventCard</h1>
+{{!-- <h1>EventCard</h1> --}}
 
 {grupo, local, event}
 
@@ -9,17 +9,25 @@
     {{!-- aqui debo traer la imagen de la banda que toca --}}
   </div>
   <div class="event-card-description">
-    
-    {{grupo.name}}
-    {{local.name}}
+    <h1>
+      {{user.bandName}}
+    </h1>
+    <h3>
+      {{user.establishmentName}}
+    </h3>
     <p>
-      Fecha del evento: {{event.date}}
+      Fecha del evento: {{event.schedule}}
     </p>
-    {{!-- aqui debo traer la informacion del evento que es cerrado por el local, los datos que imprimo
-    son nombre del local, fecha precio y duracion estos datos los obtengo de ... --}}
+    <p>
+      Precio de la taquilla: {{event.price}}
+    </p>
+    <p>
+      Duracion dell concierto:{{event.durationMins}}
+    </p>
+
   </div>
   <div class="bttn-join">
     <a href:>
-    {{!-- al dar click al boton: si eres groupie sin login ten envia a home, si eres banda/local  ten envia a profile --}}
+      {{!-- al dar click al boton: si eres groupie sin login ten envia a home, si eres banda/local  ten envia a profile --}}
   </div>
 </div>
