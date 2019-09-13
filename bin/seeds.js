@@ -24,21 +24,18 @@ const events = [
   {
     schedule: 2019 - 12 - 11,
     description: 'El mejor bar en el barrio del Poblenou',
-    bandName: 'Metallica',
     price: 10,
     durationMins: 120,
   },
   {
     schedule: 2019 - 12 - 10,
     description: 'El mediocre bar en el barrio del Poblenou',
-    bandName: 'Ozzy the Busy',
     price: 1,
     durationMins: 20,
   },
   {
     schedule: 2019 - 12 - 12,
     description: 'El mejor bar en el barrio de la Mina',
-    bandName: 'Yustin Vieva',
     price: 10,
     durationMins: 20,
   },
@@ -49,6 +46,19 @@ const users = [
     username: 'joeDoe',
     email: 'joeDoe@gmail.com',
     hashedPassword: 'abcd',
+    roles: 'establishment',
+    establishmentName: 'La Ovella Negra',
+  },
+  {
+    username: 'Yustin',
+    email: 'yustin@gmail.com',
+    hashedPassword: '1234',
+    bandName: 'Yonas Bros',
+  },
+  {
+    username: 'maricarmen',
+    email: 'maricarmen@gmail.com',
+    hashedPassword: 'jerezana',
   },
 ];
 
@@ -111,41 +121,41 @@ const bands = [
 //   });
 
 Event.create(events)
-  .then(event => {
+  .then((event) => {
     console.log('inserted event ', event);
     mongoose.connection.close();
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });
 
 User.create(users)
-  .then(user => {
+  .then((user) => {
     console.log('inserted user ', user);
     mongoose.connection.close();
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });
 
 Establishment.create(establishments)
-  .then(establishment => {
+  .then((establishment) => {
     console.log('inserted establishment ', establishment);
     mongoose.connection.close();
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });
 
 Band.create(bands)
-  .then(band => {
+  .then((band) => {
     console.log('inserted band ', band);
     mongoose.connection.close();
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });

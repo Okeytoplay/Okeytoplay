@@ -1,7 +1,6 @@
 const express = require('express');
 const Event = require('../models/Event');
-const User = require('../models/User'); 
-
+const User = require('../models/User');
 
 const mongoose = require('mongoose');
 
@@ -15,6 +14,30 @@ router.get('/', (req, res, next) => {
       res.render('events', { events });
     })
     .catch(next);
+});
+
+/* GET Renders event information */
+router.get('/:eventId', (req, res, next) => {
+  const { eventId } = req.params;
+
+  Event.findById(eventId)
+    .then((events) => {
+      res.render('events/show', { events });
+    })
+    .catch(next);
+});
+
+/* POST Renders event information */
+router.post('/:eventId', (req, res, next) => {
+  const { eventId } = req.params;
+  Event.find(
+    { _id: eventId }
+      .then(events => {
+        console.log('events ', events);
+        res.redirect(`/events/${eventId}`);
+      })
+      .catch(next),
+  );
 });
 
 module.exports = router;

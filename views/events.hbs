@@ -1,6 +1,6 @@
 <h2>Here's a list with all our events:</h2>
 <ul>
     {{#each events}}
-    <li>{{ this.description }}</li>
+    <li><a href="events/{{_id}}">{{description}}</a></li>
     {{/each}}
 </ul>
