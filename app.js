@@ -18,12 +18,17 @@ const indexRouter = require('./routes/index');
 // Routes
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const eventsRouter = require('./routes/events');
 
 // mongodb connect MONGO ATLAS DEPLOY
 (async () => {
   try {
-    const connection = await mongoose.connect(`${process.env.MONGODB_URI}`, { useNewUrlParser: true });
-    console.log(`Connected to Mongo! Database name: "${connection.connections[0].db.s.databaseName}"`);
+    const connection = await mongoose.connect(`${process.env.MONGODB_URI}`, {
+      useNewUrlParser: true,
+    });
+    console.log(
+      `Connected to Mongo! Database name: "${connection.connections[0].db.s.databaseName}"`,
+    );
   } catch (err) {
     console.log('Error connecting to Mongo database.', err);
   }
@@ -39,12 +44,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true,
-}));
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    indentedSyntax: false, // true = .sass and false = .scss
+    sourceMap: true,
+  }),
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
@@ -75,7 +82,7 @@ app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-
+app.use('/events', eventsRouter);
 
 // app.use((req, res, next) => {
 //   // app.locals.currentUser = req.session.currentUser;
