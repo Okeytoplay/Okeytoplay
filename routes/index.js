@@ -4,12 +4,20 @@ const Event = require('../models/Event');
 const router = express.Router();
 
 /* GET home page. */
+// router.get('/', (req, res, next) => {
+
+//   //Events.find().populate().populate()
+//   // res.render('index, {events, })
+//   res.render('index', { title: 'Express Xavi' });
+
+// });
 router.get('/', (req, res, next) => {
-
-  //Events.find().populate().populate()
-  // res.render('index, {events, })
-  res.render('index', { title: 'Express Xavi' });
-
+  Event.find()
+    .then(events => {
+      console.log('events ', events);
+      res.render('index', { events });
+    })
+    .catch(next);
 });
 
 /* GET Log Out and redirect to HomePage */

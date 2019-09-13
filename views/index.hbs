@@ -3,10 +3,9 @@
 <!-- Event Cards -->
 {{#each events}}
 <div class="event-card">
-    <img class="event-card-img" src="" alt="default Event Image">
+    <img class="event-card-img" src="/images/default-img-events.png" alt="default Event Image">
     <div class="event-card-details">
-        <h3 class="card-title">{{this.name}}</h3>
-        <p clas="card-event-description">{{this.description}}</p>
+        <p clas="card-event-description"><a href="events/{{_id}}">{{this.description}}</a></p>
     </div>
 </div>
 {{/each}}

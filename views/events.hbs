@@ -2,10 +2,7 @@
 <ul>
     {{#each events}}
     <div class="event-card">
-        <h1><a href="events/{{_id}}">{{description}}</a></h1>
-        <li>Duración del evento: {{durationMins}}min</li>
-        <li>Precio: {{price}}€</li>
-        <li>Fecha: {{schedule}}</li>
+        <p><a href="events/{{_id}}">{{description}}</a></p>
     </div>
     {{/each}}
 </ul>
