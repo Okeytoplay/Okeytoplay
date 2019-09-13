@@ -1,8 +1,6 @@
-
-// RUTA PENDIENTE DE HACER
-
 const express = require('express');
 const Establishment = require('../models/Establishment');
+
 
 const mongoose = require('mongoose');
 

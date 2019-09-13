@@ -6,6 +6,11 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
+/* GET Renders event information */
+router.get('/new', (req, res, next) => {
+  res.render('events/new');
+});
+
 /* GET Renders available events */
 router.get('/', (req, res, next) => {
   Event.find()
@@ -21,7 +26,7 @@ router.get('/:eventId', (req, res, next) => {
   const { eventId } = req.params;
 
   Event.findById(eventId)
-    .then((events) => {
+    .then(events => {
       res.render('events/show', { events });
     })
     .catch(next);
