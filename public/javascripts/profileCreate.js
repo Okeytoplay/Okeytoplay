@@ -20,6 +20,6 @@ const establishmentForm = () => {
   return true;
 };
 
-module.exports = {
-  bandForm, establishmentForm,
-};
+// module.exports = {
+//   bandForm, establishmentForm,
+// };

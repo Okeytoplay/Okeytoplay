@@ -1,4 +1,3 @@
-{{!-- const { checkFields, checkEmailAndPasswordNotEmpty } = require('../middlewares/auth'); --}}
 <div>
   {{#if currentUser }}
   <p>{{ currentUser.username }}, Complete your PROFILE:</p>
@@ -52,7 +51,8 @@
 {{/if}}
 
 {{!-- document.getElementById("clicks").addEventListener("click", go); --}}
-<script>
+<script src="/javascripts/profileCreate.js"></script>
+{{!-- <script>
 
   function bandForm() {
     let bandFormClass = document.getElementById('Band-form-profile');
@@ -77,4 +77,4 @@
     }
   }
 
-</script>
+</script> --}}
