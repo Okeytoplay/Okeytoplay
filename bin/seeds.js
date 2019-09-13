@@ -111,41 +111,41 @@ const bands = [
 //   });
 
 Event.create(events)
-  .then((event) => {
+  .then(event => {
     console.log('inserted event ', event);
     mongoose.connection.close();
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     mongoose.connection.close();
   });
 
 User.create(users)
-  .then((user) => {
+  .then(user => {
     console.log('inserted user ', user);
     mongoose.connection.close();
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     mongoose.connection.close();
   });
 
 Establishment.create(establishments)
-  .then((establishment) => {
+  .then(establishment => {
     console.log('inserted establishment ', establishment);
     mongoose.connection.close();
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     mongoose.connection.close();
   });
 
 Band.create(bands)
-  .then((band) => {
+  .then(band => {
     console.log('inserted band ', band);
     mongoose.connection.close();
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     mongoose.connection.close();
   });
