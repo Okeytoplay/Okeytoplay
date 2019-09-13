@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const { ObjectId } = Schema.Types;
 
 const userSchema = new Schema(
   {
@@ -9,13 +10,15 @@ const userSchema = new Schema(
     hashedPassword: { type: String, required: true },
     role: {
       grupie: { type: Boolean, default: true },
-      band: { type: Boolean },
-      establishment: { type: Boolean },
+      band: { type: Boolean, default: false },
+      establishment: { type: Boolean, default: false },
     },
     // roles: [{ type: String }],
     telephone: { type: Number },
-    bandName: { type: String },
+    // bandName: { type: String },
+    band: { type: ObjectId, ref: 'Band' },
     establishmentName: { type: String },
+    establishment: { type: ObjectId, ref: 'Establishment' },
   },
   {
     timestamps: {

@@ -32,7 +32,7 @@ router.post('/:eventId', (req, res, next) => {
   const { eventId } = req.params;
   Event.find(
     { _id: eventId }
-      .then(events => {
+      .then((events) => {
         console.log('events ', events);
         res.redirect(`/events/${eventId}`);
       })
