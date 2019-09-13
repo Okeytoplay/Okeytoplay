@@ -1,0 +1,8 @@
+<h2>Here's a list with all our events:</h2>
+<ul>
+    {{#each events}}
+    <div class="event-card">
+        <p><a href="events/{{_id}}">{{description}}</a></p>
+    </div>
+    {{/each}}
+</ul>

@@ -2,28 +2,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const bandSchema = new Schema(
-  {
-    // username:{ type: String, required: true },
-    // email: { type: String, required: true, unique: true },
-    // hashedPassword: { type: String, required: true },
-    // bandName: { type: String },
-    // establishmentName: { type: String },
-    image: String,
-    genre: { type: String, required: true },
-    bandMembers: [{ artistName: String, artistInstrument: String }],
-    web: { type: String },
-    instagramProfile: String,
-    facebookProfile: String,
-  },
-  {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  },
-);
+const BandSchema = new Schema({
+  description: String,
+  website: String,
+  instagramProfile: String,
+  facebookProfile: String,
+  bandMembers: [{ artistName: String, artistInstrument: String }],
+});
 
-const Band = mongoose.model('Band', bandSchema);
+const Band = mongoose.model('Band', BandSchema);
 
 module.exports = Band;
