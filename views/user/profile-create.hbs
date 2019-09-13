@@ -8,11 +8,13 @@
 </div>
 <div>
   <form id='profile-form' action='/user/profile' method='POST'>
-    <input type="checkbox" name="role1" value="Groupie"> I'm a crazy groupie!!<br>
-    <input type="checkbox" onclick='return bandForm();' name="role2" value="Band"> I'm in a Awesome Band!!<br>
-    <input type="checkbox" onclick='return establishmentForm();' name="role3" value="Establishment"> I have a nice
+    <input type="checkbox" id='profile-form-role1' name="role1" value="Groupie"> I'm a crazy groupie!!<br>
+    <input type="checkbox" id='profile-form-role2' onclick='return bandForm();' name="role2" value="Band"> I'm in a
+    Awesome Band!!<br>
+    <input type="checkbox" id='profile-form-role3' onclick='return establishmentForm();' name="role3"
+      value="Establishment"> I have a nice
     Music Club!!<br>
-    <label for='telephone'>Phone Number:</label><br>
+    <label for='telephone'>Phone Number <span>If you want to receive WhatsApp notifications!</span></label><br>
     <input type='tel' name='telephone' placeholder='Phone Number'><br>
 
     <div id='Band-form-profile' class="not-shown">
@@ -43,15 +45,31 @@
 <script>
 
   function bandForm() {
-    document.getElementById('Band-form-profile').classList.toggle('not-shown');
-    return true;
+    let bandFormClass = document.getElementById('Band-form-profile');
+    let bandRoleCheck = document.getElementById('profile-form-role2');
+    if (bandRoleCheck.checked) {
+      bandFormClass.classList.remove('not-shown');
+      return true;
+    } else {
+      bandFormClass.classList.add('not-shown');
+      return true;
+    }
   }
   function establishmentForm() {
-    document.getElementById('Establishment-form-profile').classList.toggle('not-shown');
-    return true;
+    let EstablishmentFormClass = document.getElementById('Establishment-form-profile');
+    let EstablishmentRoleCheck = document.getElementById('profile-form-role3');
+    if (EstablishmentRoleCheck.checked) {
+      EstablishmentFormClass.classList.remove('not-shown');
+      return true;
+    } else {
+      EstablishmentFormClass.classList.add('not-shown');
+      return true;
+    }
   }
 
 </script>
+{{!-- document.getElementById('Establishment-form-profile').classList.toggle('not-shown'); --}}
+{{!-- ocument.getElementById('Band-form-profile').classList.toggle('not-shown');  --}}
 {{!-- function go() {
 
     document.getElementById("clicks").append('<p>Clicked.</p>');
