@@ -14,7 +14,7 @@ const Band = require('../models/Band');
     console.log(
       `Connected to Mongo! Database name: "${connection.connections[0].db.s.databaseName}"`,
     );
-    connection.connections[0].db.dropDatabase();
+    // connection.connections[0].db.dropDatabase();
   } catch (err) {
     console.log('Error connecting to Mongo database.', err);
   }

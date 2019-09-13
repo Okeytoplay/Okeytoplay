@@ -1,20 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}} OK to PLAY!!</p>
 <!-- Event Cards -->
-{{#each Event}}
+{{#each events}}
 <div class="event-card">
-    <img class="event-card-img" src="" alt="Beer image">
-    <div class="random-body">
+    <img class="event-card-img" src="" alt="default Event Image">
+    <div class="event-card-details">
         <h3 class="card-title">{{this.name}}</h3>
-        <h5 clas="card-tagname">{{this.tagline}}</h5>
-        <p class="card-text">{{this.description}}</p>
-        <h4>Food pairing:</h4>
-        <ul class="food">
-            {{#each this.food_pairing}}
-            <li>{{this}}</li>
-            {{/each}}
-        </ul>
-        <p class="tips">{{this.brewers_tips}}</p>
+        <p clas="card-event-description">{{this.description}}</p>
     </div>
 </div>
 {{/each}}

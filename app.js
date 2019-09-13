@@ -18,6 +18,7 @@ const indexRouter = require('./routes/index');
 // Routes
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const eventsRouter = require('./routes/events');
 
 // mongodb connect MONGO ATLAS DEPLOY
 (async () => {
@@ -81,6 +82,7 @@ app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/events', eventsRouter);
 
 // app.use((req, res, next) => {
 //   // app.locals.currentUser = req.session.currentUser;
