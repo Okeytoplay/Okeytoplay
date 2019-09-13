@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -10,9 +10,9 @@ const EstablishmentSchema = new Schema({
   street: { type: String, required: true },
   city: { type: String, required: true },
   zip: { type: Number, required: true },
-  capacity: Number
+  capacity: Number,
 });
 
-const Establishment = mongoose.model("Establishment", EstablishmentSchema);
+const Establishment = mongoose.model('Establishment', EstablishmentSchema);
 
 module.exports = Establishment;
