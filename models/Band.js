@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -13,16 +13,16 @@ const bandSchema = new Schema(
     web: { type: String },
     instagramProfile: String,
     facebookProfile: String,
-    bandMembers: [{ artistName: String, artistInstrument: String }]
+    bandMembers: [{ artistName: String, artistInstrument: String }],
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
-    }
-  }
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
-const Band = mongoose.model("Band", bandSchema);
+const Band = mongoose.model('Band', bandSchema);
 
 module.exports = Band;
