@@ -14,6 +14,7 @@ const Band = require("../models/Band");
     console.log(
       `Connected to Mongo! Database name: "${connection.connections[0].db.s.databaseName}"`
     );
+    connection.connections[0].db.dropDatabase();
   } catch (err) {
     console.log("Error connecting to Mongo database.", err);
   }
@@ -39,7 +40,7 @@ const events = [
     description: "El mejor bar en el barrio de la Mina",
     bandName: "Yustin Vieva",
     price: 10,
-    durationMins: 10
+    durationMins: 20
   }
 ];
 
@@ -73,6 +74,41 @@ const bands = [
     bandMembers: [{ artistName: "pepe" }, { artistInstrument: "juan" }]
   }
 ];
+// db.bands
+//   .drop()
+//   .then(() => {
+//     console.log("deleted DB bands");
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+// events
+//   .drop()
+//   .then(() => {
+//     console.log("deleted DB events");
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+// establishments.collection
+//   .drop()
+//   .then(() => {
+//     console.log("deleted DB establishments");
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+// users.collection
+//   .drop()
+//   .then(() => {
+//     console.log("deleted DB users");
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 Event.create(events)
   .then(event => {
