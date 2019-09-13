@@ -1,13 +1,14 @@
 const express = require('express');
 const Event = require('../models/Event');
 const User = require('../models/User');
+const { checkIfLoggedIn } = require('../middlewares/auth');
 
 const mongoose = require('mongoose');
 
 const router = express.Router();
 
 /* GET Renders event information */
-router.get('/new', (req, res, next) => {
+router.get('/new', checkIfLoggedIn, (req, res, next) => {
   res.render('events/new');
 });
 
