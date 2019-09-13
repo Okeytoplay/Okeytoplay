@@ -7,7 +7,12 @@ const userSchema = new Schema(
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     hashedPassword: { type: String, required: true },
-    roles: [{ type: String }],
+    role: {
+      grupie: { type: Boolean, default: true },
+      band: { type: Boolean },
+      establishment: { type: Boolean },
+    },
+    // roles: [{ type: String }],
     telephone: { type: Number },
     bandName: { type: String },
     establishmentName: { type: String },

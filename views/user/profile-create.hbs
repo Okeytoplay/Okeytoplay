@@ -5,39 +5,35 @@
 </div>
 <div>
   <h3>Select Your ROLE:</h3>
-  {{!-- <form>
+</div>
+<div>
+  <form id='profile-form' action='/user/profile' method='POST'>
     <input type="checkbox" name="role1" value="Groupie"> I'm a crazy groupie!!<br>
     <input type="checkbox" onclick='return bandForm();' name="role2" value="Band"> I'm in a Awesome Band!!<br>
     <input type="checkbox" onclick='return establishmentForm();' name="role3" value="Establishment"> I have a nice
     Music Club!!<br>
-  </form> --}}
-</div>
-<form id='profile-form' action='/user/profile' method='POST'>
-  <input type="checkbox" name="role1" value="Groupie"> I'm a crazy groupie!!<br>
-  <input type="checkbox" onclick='return bandForm();' name="role2" value="Band"> I'm in a Awesome Band!!<br>
-  <input type="checkbox" onclick='return establishmentForm();' name="role3" value="Establishment"> I have a nice
-  Music Club!!<br>
-  <label for='telephone'>Phone Number:</label><br>
-  <input type='tel' name='telephone' placeholder='Phone Number'><br>
+    <label for='telephone'>Phone Number:</label><br>
+    <input type='tel' name='telephone' placeholder='Phone Number'><br>
 
-  <div id='Band-form-profile' class="not-shown">
-    <label for='band'>Band Name:</label><br>
-    <input type='text' name='bandName' placeholder='Band Name'><br>
-    {{!-- <input type='checkbox' onclick='return go();' id='chk' accesskey=c />
+    <div id='Band-form-profile' class="not-shown">
+      <label for='band'>Band Name:</label><br>
+      <input type='text' name='bandName' placeholder='Band Name'><br>
+      {{!-- <input type='checkbox' onclick='return go();' id='chk' accesskey=c />
     <label for='chk'><u>C</u>heckbox</label>
     <div id='clicks'></div> --}}
-  </div>
-  <div id='Establishment-form-profile' class="not-shown">
-    <label for='establishment'>Music Club:</label><br>
-    <input type='text' name='establishmentName' placeholder='Music Club Name'><br>
-  </div>
-  {{!-- <label for='email'>Email:</label><br>
+    </div>
+    <div id='Establishment-form-profile' class="not-shown">
+      <label for='establishment'>Music Club:</label><br>
+      <input type='text' name='establishmentName' placeholder='Music Club Name'><br>
+    </div>
+    {{!-- <label for='email'>Email:</label><br>
   <input type='email' name='email' id='email_id' placeholder='E-mail' required><br>
   <label for='password'>Password:</label><br>
   <input type='password' name='password' placeholder='********' required><br> --}}
 
-  <button type='submit'>UPDATE</button>
-</form>
+    <button type='submit'>UPDATE</button>
+  </form>
+</div>
 
 {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
