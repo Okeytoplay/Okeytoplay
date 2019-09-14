@@ -1,5 +1,8 @@
 <div class="info-event-card">
+  <a href="events/{{_id}}">
   <div class="event-card-image">
+    {{!-- <p clas="card-event-description"><a href="events/{{_id}}">{{this.description}}</a></p> --}}
+
     <img class="event-card-img" src="/images/default-img-events.png" alt="default Event Image">
     {{!-- aqui debo traer la imagen de la banda que toca --}}
   </div>
@@ -11,12 +14,12 @@
       Precio de la taquilla: {{this.price}}
     </p>
     <p>
-      Duracion dell concierto:{{this.durationMins}}
-    </p>
+      Duración del concierto:{{this.durationMins}}
 
+    </p>
   </div>
   <div class="bttn-join">
-    <a href:>
-      {{!-- al dar click al boton: si eres groupie sin login ten envia a home, si eres banda/local  ten envia a profile --}}
+    {{!-- al dar click al boton: si eres groupie sin login ten envia a home, si eres banda/local  ten envia a profile --}}
   </div>
+  </a>
 </div>
