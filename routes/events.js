@@ -7,9 +7,16 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-/* GET Renders event information */
+/* GET Renders new event */
 router.get('/new', checkIfLoggedIn, (req, res, next) => {
   res.render('events/new');
+  // falta comprobacion para q grupie/banda
+  // no puedan crear un evento
+});
+
+router.post('/new', checkIfLoggedIn, (req, res, next) => {
+  const { name, date } = req.body;
+  res.redirect('/', { events });
 });
 
 /* GET Renders available events */

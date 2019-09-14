@@ -1,6 +1,6 @@
 <h1>hola formulario crear evento</h1>
 
-<form action="/" method="post">
+<form action="events/new" method="post">
   <label for="name">bandName:</label><br>
   <input type="text" placeholder="bandName"><br>
   <label for="date">Fecha:</label><br>
@@ -8,6 +8,9 @@
 
   <button type="submit"> create event</button>
 </form>
+<div>
+</div>
+
 {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
