@@ -8,11 +8,14 @@
         <p clas="card-event-description"><a href="events/{{_id}}">{{this.description}}</a></p>
     </div>
 </div>
-{{/each}}  --}}
+{{/each}} --}}
 
 
 <section class="events-section">
-    {{#each events}}
-    {{> eventcard this}}
-    {{/each}}
+    <div>
+        {{#each events}}
+        {{> eventcard this}}
+        {{/each}}
+    </div>
+
 </section>
