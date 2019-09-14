@@ -1,0 +1,9 @@
+<h2>Create new Band:</h2>
+<button><a href="/bands/new">Create band</a></button>
+<ul>
+    {{#each bands}}
+    <div class="event-card">
+        <p><a href="bands/{{_id}}">{{name}}</a></p>
+    </div>
+    {{/each}}
+</ul>
