@@ -1,9 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Event = require('../models/Event');
 const User = require('../models/User');
 const { checkIfLoggedIn } = require('../middlewares/auth');
 
-const mongoose = require('mongoose');
 
 const router = express.Router();
 
@@ -29,7 +29,7 @@ router.get('/new', checkIfLoggedIn, (req, res, next) => {
 /* GET Renders available events */
 router.get('/', (req, res, next) => {
   Event.find()
-    .then(events => {
+    .then((events) => {
       console.log('events ', events);
       res.render('events', { events });
     })
@@ -52,7 +52,7 @@ router.post('/:eventId', (req, res, next) => {
   const { eventId } = req.params;
   Event.find(
     { _id: eventId }
-      .then(events => {
+      .then((events) => {
         console.log('events ', events);
         res.redirect(`/events/${eventId}`);
       })

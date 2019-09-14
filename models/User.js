@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
+const { ObjectId } = Schema.Types;
 
 const userSchema = new Schema(
   {
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     hashedPassword: { type: String, required: true },
-    roles: [{ type: String }],
+    role: {
+      grupie: { type: Boolean, default: true },
+      band: { type: Boolean, default: false },
+      establishment: { type: Boolean, default: false },
+    },
     telephone: { type: Number },
-    bandName: { type: String },
-    establishmentName: { type: String },
+    band: { type: ObjectId, ref: 'Band' },
+    establishment: { type: ObjectId, ref: 'Establishment' },
   },
   {
     timestamps: {

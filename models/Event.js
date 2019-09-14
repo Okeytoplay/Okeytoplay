@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const { ObjectId } = Schema.Types;
 
 const eventSchema = new Schema({
+  name: String,
   establishmentId: {
     type: ObjectId,
     ref: 'Establishment',
