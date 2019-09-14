@@ -14,10 +14,17 @@ router.get('/new', checkIfLoggedIn, (req, res, next) => {
   // no puedan crear un evento
 });
 
-router.post('/new', checkIfLoggedIn, (req, res, next) => {
-  const { name, date } = req.body;
-  res.redirect('/', { events });
-});
+// router.post('/new', checkIfLoggedIn, (req, res, next) => {
+//   const { name, date } = req.body;
+//   Event.create({
+//     name,
+//     date,
+//   })
+//     .then((event) => {
+//       res.redirect('/');
+//     })
+//     .catch(next);
+// });
 
 /* GET Renders available events */
 router.get('/', (req, res, next) => {
