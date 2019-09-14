@@ -115,15 +115,8 @@ router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
   try {
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
-    const role = ['Groupie'];
-    if (userFound.role.band) {
-      role.push('Band');
-    }
-    if (userFound.role.establisment) {
-      role.push('Establishment');
-    }
     // res.render('user/profile', userFound, role);
-    res.render('user/profile', { userFound, role });
+    res.render('user/profile', { userFound });
   } catch (error) {
     next(error);
   }

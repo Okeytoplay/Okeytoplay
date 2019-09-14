@@ -1,8 +1,8 @@
 <h2>{{userFound.username}}</h2>
 <p>{{userFound.email}}</p>
 <p>{{userFound.telephone}}</p>
-<p>{{userFoun.dband}}</p>
-<p>{{userFoun.destablishment}}</p>
+<p>{{userFound.band}}</p>
+<p>{{userFound.establishment}}</p>
 {{!-- <p>{{role}}</p> --}}
 {{!-- Fase Info --}}
 <h2>You are:</h2>
@@ -10,7 +10,7 @@
 <button><a href="/establishments">Establishments</a></button>
 
 
-{{!-- <ul>
+<ul>
   {{#each role}}
   <li>{{this}}</li>
   {{/each}}
@@ -19,7 +19,7 @@
 <p>{{userFound.band.name}}</p>
 <p>{{userFound.band.genre}}</p>
 <p>{{userFound.band.description}}</p>
-<p>MEMBERS:</p>
+{{!-- <p>MEMBERS:</p>
 <ul>
   {{#each userFound.band.bandMembers1}}
   <li>{{this}}</li>
