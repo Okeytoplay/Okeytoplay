@@ -13,11 +13,8 @@ const userSchema = new Schema(
       band: { type: Boolean, default: false },
       establishment: { type: Boolean, default: false },
     },
-    // roles: [{ type: String }],
     telephone: { type: Number },
-    // bandName: { type: String },
     band: { type: ObjectId, ref: 'Band' },
-    establishmentName: { type: String },
     establishment: { type: ObjectId, ref: 'Establishment' },
   },
   {
