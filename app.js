@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
+const hbs = require('hbs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -54,6 +55,7 @@ app.use(
   }),
 );
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
 app.use(
   session({
