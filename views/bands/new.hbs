@@ -1,0 +1,28 @@
+<div id='Band-form-profile'>
+    <label for='band'>Band Name:</label><br>
+    <input type='text' name='name' placeholder='Band Name'><br>
+    <label for='band'>Musical Genre:</label><br>
+    <input type='text' name='genre' placeholder='Genre'><br>
+    <label for='band'>Description:</label><br>
+    <input type='text' name='description' placeholder='Description'><br>
+    <label for='band'>Website</label><br>
+    <input type='text' name='website' placeholder='Website'><br>
+    <label for='band'>Instagram:</label><br>
+    <input type='text' name='instagramProfile' placeholder='Instagram'><br>
+    <label for='Instagram'>Facebook:</label><br>
+    <input type='text' name='facebookProfile' placeholder='facebook'><br>
+    <label for='band'>Avatar:</label><br>
+    <input type='text' name='avatar' placeholder='Avatar Image'><br>
+</div>
+</div>
+{{!-- <label for='email'>Email:</label><br>
+      <input type='email' name='email' id='email_id' placeholder='E-mail' required><br>
+      <label for='password'>Password:</label><br>
+      <input type='password' name='password' placeholder='********' required><br> --}}
+
+<button type='submit'>UPDATE</button>
+</form>
+</div>
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
