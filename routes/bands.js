@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Band = require('../models/Band');
+const User = require('../models/User');
 
 const router = express.Router();
 
@@ -14,13 +15,13 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-/* GET Renders new Band*/
+/* GET Renders new Band */
 router.get('/new', (req, res, next) => {
   res.render('bands/new');
 });
 
-/* POST for the new Band*/
-router.post('/new', (req, res, next) => {
+/* POST for the new Band */
+router.post('/new', async (req, res, next) => {
   const {
     name,
     genre,
@@ -30,20 +31,38 @@ router.post('/new', (req, res, next) => {
     facebookProfile,
     avatar,
   } = req.body;
-  Band.create({
-    name,
-    genre,
-    description,
-    website,
-    instagramProfile,
-    facebookProfile,
-    avatar,
-  })
-    .then(band => {
-      console.log('band ', band);
-      res.redirect('user/profile');
-    })
-    .catch(next);
+  const actualUserEmail = req.session.currentUser.email;
+  console.log('email: ', actualUserEmail);
+  try {
+    let newBand;
+    let updatedUser;
+    newBand = await Band.create({
+      name,
+      genre,
+      description,
+      website,
+      instagramProfile,
+      facebookProfile,
+      avatar,
+    });
+    const userFound = await User.findOne({ email: actualUserEmail });
+    updatedUser = await User.updateOne(
+      { _id: userFound._id },
+      {
+        $set: {
+          'role.band': true,
+          band: newBand,
+        },
+      },
+      {
+        new: true,
+      },
+    );
+
+    res.redirect('user/profile');
+  } catch (error) {
+    next(error);
+  }
 });
 
 // /* GET Renders band information */
