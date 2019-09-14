@@ -12,8 +12,10 @@
 
 
 <section class="events-section">
+    <div>
+        {{#each events}}
+        {{> eventcard this}}
+        {{/each}}
+    </div>
 
-    {{#each events}}
-    {{> eventcard this}}
-    {{/each}}
 </section>
