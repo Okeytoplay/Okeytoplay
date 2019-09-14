@@ -19,6 +19,33 @@ router.get('/new', (req, res, next) => {
   res.render('bands/new');
 });
 
+/* POST for the new Band*/
+router.post('/new', (req, res, next) => {
+  const {
+    name,
+    genre,
+    description,
+    website,
+    instagramProfile,
+    facebookProfile,
+    avatar,
+  } = req.body;
+  Band.create({
+    name,
+    genre,
+    description,
+    website,
+    instagramProfile,
+    facebookProfile,
+    avatar,
+  })
+    .then(band => {
+      console.log('band ', band);
+      res.redirect('user/profile');
+    })
+    .catch(next);
+});
+
 // /* GET Renders band information */
 // router.get('/:bandId', (req, res, next) => {
 //   const { bandId } = req.params;
