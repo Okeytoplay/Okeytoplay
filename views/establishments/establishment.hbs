@@ -1,0 +1,18 @@
+{{!-- <h1>Vista Band  PENDIENTE DE ACTUALIIZARRR </h1> --}}
+<div class="info-perfil-band">
+    <div class="image-perfil-band">
+        <img src="{{band.image}}" alt="imagen de{{user.bandName}}">
+    </div>
+    <div class="perfil-band-description">
+        <h2>{{user.bandName}}</h2>
+        <p>{{band.genre}}</p>
+        <ul>
+            {{#each band.bandMembers}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <p>{{band.web}}</p>
+        <p>{{band.instagramProfile}}</p>
+        <p>{{band.facebookProfile}}</p>
+    </div>
+</div>
