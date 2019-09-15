@@ -5,12 +5,13 @@ const { ObjectId } = Schema.Types;
 
 const eventSchema = new Schema({
   name: String,
+  description: String,
+  schedule: Date,
+  startTime: String,
   establishmentId: {
     type: ObjectId,
     ref: 'Establishment',
   },
-  schedule: Date,
-  description: String,
   bandId: {
     type: ObjectId,
     ref: 'Band',
@@ -21,7 +22,7 @@ const eventSchema = new Schema({
   },
   durationMins: {
     type: Number,
-    min: 15,
+    min: 60,
   },
   registeredUsers: [{ type: ObjectId, ref: 'User' }],
 });
