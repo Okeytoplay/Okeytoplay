@@ -30,45 +30,22 @@
     {{/if}}
   </div>
   <div class="mobile-container">
-    <div class="jumbotron">
-      <div class="textarea-jumbotron">
-        <div class="headline">
-          <h1>OkeyToPlay</h1>
-          <h3>The App Made for Music Lovers</h3>
-        </div>
-        <div class="personal-info">
-          <ul>
-            <li>Age: 24</li>
-            <li>Phone: +34 687 099 485</li>
-            <li>Email: guillem.moreso@gmail.com</li>
-            <li>City: Barcelona</li>
-          </ul>
-        </div>
-        <div class="sm-icons">
-          <a href="https://github.com/guillemmoreso" class="sm-img">
-            <img src="../public/images/default-img-events.png" alt="Github" id="github" />
-          </a>
-          <a href="https://www.linkedin.com/in/guillemmoresovinals/" class="sm-img">
-            <img src="../public/images/default-img-events.png" alt="Linkedin" id="linkedin" />
-          </a>
-        </div>
-      </div>
-    </div>
-    <a href="/">HOMEPAGE</a>
+    
+    {{!-- <a href="/">HOMEPAGE</a>
     {{#if currentUser }}
     <p>The user logged In is: {{ currentUser.username }}</p>
     <a href="/logout">Logout</a>
     {{else}}
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
-    {{/if}}
+    {{/if}} --}}
+
     {{{body}}}
     {{!-- Footer --}}
     <div class="footer">
       <p>&copy;Footer OkeyToPlay</p>
     </div>
   </div>
-
 </body>
 
 </html>

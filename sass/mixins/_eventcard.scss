@@ -1,0 +1,28 @@
+.events-section {
+  margin: 10px;
+}
+.cards-container {
+  //   display: flex;
+  //   justify-content: space-around;
+}
+.card {
+  margin: 5px;
+  padding: 15px;
+  border: solid;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.card-Band-img-top {
+  height: 100px;
+  padding-right: 10px;
+}
+
+.card-title {
+  float: left;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+}
