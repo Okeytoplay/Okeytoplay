@@ -1,25 +1,11 @@
-<div class="info-event-card" style="background-color:#FFE3D9">
-  <a href="events/{{_id}}">
-    <div class="event-card-image">
-      {{!-- <p clas="card-event-description"><a href="events/{{_id}}">{{this.description}}</a></p> --}}
-
-      <img class="event-card-img" src="/images/default-img-events.png" alt="default Event Image">
-      {{!-- aqui debo traer la imagen de la banda que toca --}}
+<div class="cards-container">
+  <div class="card">
+    <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Event: <br />{{this.name}}</h5>
+      <p class="card-text">Band: {{establishments.name}}</p>
+      <p class="card-text">Establishment: {{bands.name}}</p>
+      <p class="card-text">Tickets for: {{this.price}}€</p>
+      <a href="events/{{_id}}" class="btn-more-details">More Details</a>
     </div>
-    <div class="event-card-description">
-      <p>
-        Fecha del evento: {{this.schedule}}
-      </p>
-      <p>
-        Precio de la taquilla: {{this.price}}
-      </p>
-      <p>
-        Duración del concierto:{{this.durationMins}}
-
-      </p>
-    </div>
-    <div class="bttn-join">
-      {{!-- al dar click al boton: si eres groupie sin login ten envia a home, si eres banda/local  ten envia a profile --}}
-    </div>
-  </a>
-</div>
+  </div>
