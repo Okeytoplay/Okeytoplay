@@ -1,16 +1,15 @@
 <div class="cards-container">
   <a href="events/{{_id}}" class="btn-more-details">
 
-    <div>
-      <div class="card">
-        <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Event: <br />{{this.name}}</h5>
-          <p class="card-text">Band: {{establishments.name}}</p>
-          <p class="card-text">Establishment: {{bands.name}}</p>
-          <p class="card-text">Tickets for: {{this.price}}€</p>
 
-        </div>
-      </div>
-  </a>
+</div>
+<div class="card">
+  <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Event: <br />{{this.name}}</h5>
+    <p class="card-text">Band: {{band.name}}</p>
+    <p class="card-text">Establishment: {{establishment.name}}</p>
+    <p class="card-text">Tickets for: {{this.price}}€</p>
+    <a href="events/{{_id}}" class="btn-more-details">More Details</a>
+  </div>
 </div>
