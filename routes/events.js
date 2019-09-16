@@ -9,7 +9,9 @@ const router = express.Router();
 
 /* GET Renders available events -> Show all the events */
 router.get('/', async (req, res, next) => {
-  const events = await Event.find();
+  const fechaActual = await fechaDeHoy();
+  const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule');
+  console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
   try {
     const fechaActual = fechaDeHoy();
     console.log('FECHA ', fechaActual);
