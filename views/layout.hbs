@@ -9,21 +9,43 @@
 </head>
 
 <body>
+  <!-- Simulate a smartphone / tablet look -->
+  {{!-- flash notifications --}}
   {{#if successMessages}}
   <p class="success">{{successMessages}}</p>
   {{/if}}
   {{#if errorMessages }}
   <p class="error">{{ errorMessages }}</p>
   {{/if }}
-  <a href="/">HOMEPAGE</a>
-  {{#if currentUser }}
-  <p>The user logged In is: {{ currentUser.username }}</p>
-  <a href="/logout">Logout</a>
-  {{else}}
-  <a href="/auth/login">Login</a>
-  <a href="/auth/signup">Signup</a>
-  {{/if}}
-  {{{body}}}
+
+  {{!-- Navbar --}}
+  <div class="navbar">
+    <a id="navbar-logo" href="/">OkeyToPlay</a>
+    {{#if currentUser }}
+    <a href="/user"> Profile</a>
+    <a href="/logout"> Logout</a>
+    {{else}}
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Signup</a>
+    {{/if}}
+  </div>
+  <div class="mobile-container">
+    
+    {{!-- <a href="/">HOMEPAGE</a>
+    {{#if currentUser }}
+    <p>The user logged In is: {{ currentUser.username }}</p>
+    <a href="/logout">Logout</a>
+    {{else}}
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Signup</a>
+    {{/if}} --}}
+
+    {{{body}}}
+    {{!-- Footer --}}
+    <div class="footer">
+      <p>&copy;Footer OkeyToPlay</p>
+    </div>
+  </div>
 </body>
 
 </html>

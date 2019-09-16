@@ -3,15 +3,62 @@ const mongoose = require('mongoose');
 const Event = require('../models/Event');
 const User = require('../models/User');
 const { checkIfLoggedIn } = require('../middlewares/auth');
-
+const { fechaDeHoy } = require('../public/javascripts/fecha');
 
 const router = express.Router();
 
-/* GET Renders new event */
-router.get('/new', checkIfLoggedIn, (req, res, next) => {
-  res.render('events/new');
+/* GET Renders available events -> Show all the events */
+router.get('/', async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule');
+  console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
+  try {
+    const fechaActual = fechaDeHoy();
+    console.log('FECHA ', fechaActual);
+    console.log('events ', events);
+    res.render('events', { events, fechaActual });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/* GET Renders new event -> Show the page to create a new event */
+// Falta comprobación MIDDLEWARE de ser ESTABLISHMENT para poder crear EVENTOS
+router.get('/new', checkIfLoggedIn, async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  try {
+    res.render('events/new', { fechaActual });
+  } catch (error) {
+    next(error);
+  }
   // falta comprobacion para q grupie/banda
   // no puedan crear un evento
+});
+
+/* POST Create NEW EVENT */
+
+router.post('/new', checkIfLoggedIn, async (req, res, next) => {
+  const {
+    name, description, price, durationMins, schedule,
+  } = req.body;
+  const actualUserEmail = req.session.currentUser.email;
+  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
+  //   'establishment',
+  // ); // THIS IS THE CORRECT!!!
+  // ONLY FOR TEST
+  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+  const userFound = await User.findOne({ email: actualUserEmail });
+
+  try {
+    const eventNew = await Event.create({
+      name, description, price, durationMins, schedule, establishmentId: userFound.establishment,
+    });
+    // Poner FLASH notification
+    req.flash('success', ` El evento ${name} ha sido creado con exito`);
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
 });
 
 // router.post('/new', checkIfLoggedIn, (req, res, next) => {
@@ -26,22 +73,13 @@ router.get('/new', checkIfLoggedIn, (req, res, next) => {
 //     .catch(next);
 // });
 
-/* GET Renders available events */
-router.get('/', (req, res, next) => {
-  Event.find()
-    .then((events) => {
-      console.log('events ', events);
-      res.render('events', { events });
-    })
-    .catch(next);
-});
 
 /* GET Renders event information */
 router.get('/:eventId', (req, res, next) => {
   const { eventId } = req.params;
 
   Event.findById(eventId)
-    .then(events => {
+    .then((events) => {
       res.render('events/show', { events });
     })
     .catch(next);

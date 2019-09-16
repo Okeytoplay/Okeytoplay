@@ -1,5 +1,23 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}} OK to PLAY!!</p>
+<div class="jumbotron">
+    <div class="textarea-jumbotron">
+        <div class="logo-picture">
+            <img class="logo-img" src="../images/default-img-events.png" alt="Logo Picture" />
+        </div>
+        <div class="headline">
+            <h1>OkeyToPlay</h1>
+            <h5>The App Made for Music Lovers</h3>
+        </div>
+        <div class="brand-info">
+            <p> Get to know all the events in Town</p>
+            <p>Signup as a Band and you will be the next on stage</p>
+            <p>Create Events as an establishment and get ready for live music</p>
+        </div>
+    </div>
+</div>
+<section class="register">
+    <a class="register-button" href="/auth/login">Login</a>
+    <a class="register-button" href="/auth/signup">Signup</a>
+</section>
 <!-- Event Cards -->
 {{!-- {{#each events}}
 <div class="event-card">
@@ -10,12 +28,12 @@
 </div>
 {{/each}} --}}
 
-
 <section class="events-section">
-    <div>
-        {{#each events}}
-        {{> eventcard this}}
-        {{/each}}
-    </div>
+    <h3>Upcoming Events:</h5>
+        <div class="event-cards">
+            {{#each events}}
+            {{> eventcard this}}
+            {{/each}}
+        </div>
 
 </section>

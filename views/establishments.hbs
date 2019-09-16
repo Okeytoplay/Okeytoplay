@@ -6,3 +6,19 @@
     </div>
     {{/each}}
 </ul>
+<h2>Create new Establishment:</h2>
+<button><a href="/establishments/new">Create establishment</a></button>
+{{!-- <ul>
+    {{#each bands}}
+    <div class="event-card">
+        <p><a href="bands/{{_id}}">{{name}}</a></p>
+    </div>
+    {{/each}}
+</ul> --}}
+<section class="bandJoin-section">
+    <div>
+        {{#each establishment}}
+        {{> bandJoin this}}
+        {{/each}}
+    </div>
+</section>

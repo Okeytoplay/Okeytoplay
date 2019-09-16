@@ -1,0 +1,30 @@
+/* Style the navigation bar */
+.navbar {
+  width: 100%;
+  background-color: black;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: right;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+#navbar-logo {
+  background-color: purple;
+  padding-right: 60px;
+  margin-right: 60px;
+}
