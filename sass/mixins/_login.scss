@@ -1,5 +1,4 @@
 #form {
-  // margin: 30px auto;
   width: 380px;
 }
 
@@ -14,18 +13,15 @@
 #form input,
 #form button {
   box-sizing: border-box;
-  // background-color: red;
   font-size: 14px;
   outline: 0;
   margin-left: 15px;
   padding: 10px;
   width: 90%;
-  // margin-bottom: 20px;
 }
 
 #form button {
   width: 80%;
-  // height: fit-content;
   margin: 15px 10px 20px 30px;
   background-color: rgb(235, 155, 36);
   border: none;
@@ -36,7 +32,6 @@
   text-align: center;
   text-decoration: none;
   font-size: 14px;
-  // margin-bottom: 315px;
 }
 
 #form button:hover {
@@ -50,18 +45,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.register-button {
-  width: 90%;
-  margin: 10px;
-  background-color: rgb(235, 155, 36);
-  border: none;
-  text-transform: uppercase;
-  color: white;
-  padding: 10px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  margin-bottom: 0;
 }
