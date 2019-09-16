@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/User');
-
 const Establishment = require('../models/Establishment');
 
 const router = express.Router();
@@ -15,6 +14,16 @@ router.get('/', (req, res, next) => {
     })
     .catch(next);
 });
+// /* GET Renders available establishments */
+// router.get('/', async (req, res, next) => {
+//   const searchAllEstablishments = await Establishment.find();
+//   console.log('establishments ', establishments);
+//   try {
+//     res.render('establishments', { searchAllEstablishments });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 /* GET Renders new establishment */
 router.get('/new', (req, res, next) => {
