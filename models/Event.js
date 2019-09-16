@@ -8,11 +8,11 @@ const eventSchema = new Schema({
   description: String,
   schedule: Date,
   startTime: String,
-  establishmentId: {
+  establishment: {
     type: ObjectId,
     ref: 'Establishment',
   },
-  bandId: {
+  band: {
     type: ObjectId,
     ref: 'Band',
   },

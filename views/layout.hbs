@@ -39,8 +39,14 @@
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
     {{/if}} --}}
-
     {{{body}}}
+    <button class="backbutton" onclick="goBack()">Go Back</button>
+
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
     {{!-- Footer --}}
     <div class="footer">
       <p>&copy;Footer OkeyToPlay</p>

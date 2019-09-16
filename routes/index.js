@@ -1,23 +1,29 @@
 const express = require('express');
 const Event = require('../models/Event');
+const Establishment = require('../models/Establishment');
+const Band = require('../models/Band');
 
 const router = express.Router();
 
-/* GET home page. */
 // router.get('/', (req, res, next) => {
-
-//   //Events.find().populate().populate()
-//   // res.render('index, {events, })
-//   res.render('index', { title: 'Express Xavi' });
-
+//   Event.find()
+//     .populate('establishment band registeredUsers')
+//     .then(events => {
+//       console.log('events ', events);
+//       res.render('index', { events });
+//     })
+//     .catch(next);
 // });
-router.get('/', (req, res, next) => {
-  Event.find()
-    .then(events => {
-      console.log('events ', events);
-      res.render('index', { events });
-    })
-    .catch(next);
+
+router.get('/', async (req, res, next) => {
+  // const actualUserEmail = req.session.currentUser.email;
+  try {
+    const events = await Event.find().populate('establishment band');
+    console.log(events);
+    res.render('index', { events });
+  } catch (error) {
+    next(error);
+  }
 });
 
 /* GET Log Out and redirect to HomePage */
