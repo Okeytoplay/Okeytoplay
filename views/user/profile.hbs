@@ -1,16 +1,28 @@
-<h2>{{userFound.username}}</h2>
-<p>{{userFound.email}}</p>
-<p>{{userFound.telephone}}</p>
-<p>{{userFound.band}}</p>
-<p>{{userFound.establishment}}</p>
-{{!-- <p>{{role}}</p> --}}
-{{!-- Fase Info --}}
-<h2>You are:</h2>
-<button><a href="/bands">Bands</a></button>
-<button><a href="/establishments">Establishments</a></button>
+<h3>Welcome: {{userFound.username}}, {{userFound.email}}</h3>
+{{#if userFound.band.name}}
+<h3>Your Band is: {{userFound.band.name}}</h3>
+<p>Update/delete my band profile </p><button><a href="#">Update Band</a></button>
+{{else}}
+<h3>Create or search your band here: </h3><button><a href="/bands">Your Band</a></button>
+{{/if}}
+
+{{#if userFound.establishment.name}}
+<h3>Your Establishment is: {{userFound.establishment.name}}</h3>
+<p>Update/delete my establishment profile </p><button><a href="#">Update Establishment</a></button>
+
+{{else}}
+<h3>Create your establishment here: </h3><button><a href="/establishments/new">Create Establishment</a></button>
+{{/if}}
 
 
-<ul>
+
+
+
+
+
+
+
+{{!-- <ul>
   {{#each role}}
   <li>{{this}}</li>
   {{/each}}
@@ -18,10 +30,18 @@
 <h3>YOUR BAND IS:</h3>
 <p>{{userFound.band.name}}</p>
 <p>{{userFound.band.genre}}</p>
-<p>{{userFound.band.description}}</p>
+<p>{{userFound.band.description}}</p> --}}
 {{!-- <p>MEMBERS:</p>
 <ul>
   {{#each userFound.band.bandMembers1}}
   <li>{{this}}</li>
   {{/each}}
 </ul> --}}
+
+{{!-- <h2>{{userFound.username}}</h2>
+<p>{{userFound.email}}</p> --}}
+{{!-- <p>{{userFound.telephone}}</p>
+<p>{{userFound.band}}</p>
+<p>{{userFound.establishment}}</p> --}}
+{{!-- <p>{{role}}</p> --}}
+{{!-- Fase Info --}}
