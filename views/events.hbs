@@ -1,10 +1,12 @@
-<h2>Here's a list with all our events:</h2>
-<p>primera vista a organizar</p>
-<p>{{fechaActual}}</p>
+<p>Today is:{{fecha}}</p>
+<h2>Upcoming events:</h2>
 <ul>
     {{#each events}}
     <div class="event-card">
-        <p><a href="events/{{_id}}">{{description}}</a></p>
+        <p>Date: {{schedule}}</p>
+        <p>Event name: {{name}}</p>
+        <p>Event description: {{description}}</p>
+        <p><a href="events/{{_id}}">Detail</a></p>
     </div>
     {{/each}}
 </ul>
