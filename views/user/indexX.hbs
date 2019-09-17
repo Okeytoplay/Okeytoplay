@@ -1,0 +1,28 @@
+<p>Hoy es : {{fecha}}</p>
+<h2>Hola, {{userFound.username}}</h2>
+
+{{#if userFound.role.grupie}}
+<p>Como buen GROUPIE que eres puedes apuntarte y asistir a eventos:</p>
+<div>
+  <a href="/events">EVENTOS DISPONIBLES</a>
+</div>
+{{/if}}
+
+{{#if userFound.role.band}}
+<p>Como tienes una BANDA puedes pedir tocar en los eventos Abiertos:</p>
+{{!-- <a href="/events/open">EVENTOS ABIERTOS</a> --}}
+<div>
+  <a href="/events">EVENTOS ABIERTOS</a>
+</div>
+{{/if}}
+
+{{#if userFound.role.establishment}}
+<p>Como tienes un GARITO/LOCAL puedes CREAR eventos:</p>
+{{!-- <a href="/events/open">EVENTOS ABIERTOS</a> --}}
+<div>
+  <a href="user/events/new">CREAR EVENTO</a>
+</div>
+<div>
+  <a href="user/events">MIS EVENTOS CREADOS</a>
+</div>
+{{/if}}

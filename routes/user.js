@@ -124,7 +124,7 @@ router.post(
         price,
         durationMins,
         schedule,
-        establishmentId: userFound.establishment,
+        establishment: userFound.establishment,
       });
       // Poner FLASH notification
       req.flash('success', ` El evento ${name} ha sido creado con exito`);
