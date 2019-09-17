@@ -126,6 +126,7 @@ router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, re
     next(error);
   }
 });
+
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
 //   res.render('user/profile-create');
