@@ -75,7 +75,8 @@ router.post('/new', async (req, res, next) => {
       },
     );
 
-    res.redirect('/user/profile');
+    // res.redirect('/user/profile');
+    res.redirect('/user');
   } catch (error) {
     next(error);
   }

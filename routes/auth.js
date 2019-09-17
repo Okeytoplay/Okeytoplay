@@ -16,30 +16,37 @@ router.get('/signup', (req, res, next) => {
 });
 
 /* POST from SignUp */
-router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, res, next) => {
-  // const { username, email, password } = req.body;
-  const { username, email, password } = res.locals.auth; // info viene del Middleware
+router.post(
+  '/signup',
+  checkFields,
+  checkEmailAndPasswordNotEmpty,
+  async (req, res, next) => {
+    // const { username, email, password } = req.body;
+    const { username, email, password } = res.locals.auth; // info viene del Middleware
 
-  try {
-    const userFound = await User.findOne({ email });
-    if (userFound) {
-      req.flash('error', `Sorry, this ${email} has an account on the site!!`);
-      console.log('USUARIO EXISTE');
-      res.redirect('/auth/signup');
+    try {
+      const userFound = await User.findOne({ email });
+      if (userFound) {
+        req.flash('error', `Sorry, this ${email} has an account on the site!!`);
+        console.log('USUARIO EXISTE');
+        res.redirect('/auth/signup');
+      }
+
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+      const newUser = await User.create({ username, email, hashedPassword });
+      req.session.currentUser = newUser;
+      req.flash('success', `${username}, your account has been created.`);
+      // res.redirect('/user/profile-create'); // Aquí tenemos que redirigir cuando tengamos la ruta
+      // res.redirect('/user/profile');
+      res.redirect('/user');
+
+      // res.redirect('/');
+    } catch (error) {
+      next(error);
     }
-
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashedPassword = bcrypt.hashSync(password, salt);
-    const newUser = await User.create({ username, email, hashedPassword });
-    req.session.currentUser = newUser;
-    req.flash('success', `${username}, your account has been created.`);
-    // res.redirect('/user/profile-create'); // Aquí tenemos que redirigir cuando tengamos la ruta
-    res.redirect('/user/profile');
-    // res.redirect('/');
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
 /* GET Log In page. */
 router.get('/login', (req, res, next) => {
