@@ -10,13 +10,14 @@ const router = express.Router();
 /* GET Renders available events -> Show all the events */
 router.get('/', async (req, res, next) => {
   const fechaActual = await fechaDeHoy();
-  const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule');
+  const fecha = fechaActual.split('/').reverse().join('/');
+  const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule').populate('establishment band');
   console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
   try {
-    const fechaActual = fechaDeHoy();
+    // const fechaActual = fechaDeHoy();
     console.log('FECHA ', fechaActual);
     console.log('events ', events);
-    res.render('events', { events, fechaActual });
+    res.render('events', { events, fechaActual, fecha });
   } catch (error) {
     next(error);
   }
@@ -75,14 +76,16 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
 
 
 /* GET Renders event information */
-router.get('/:eventId', (req, res, next) => {
+router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
 
-  Event.findById(eventId)
-    .then((events) => {
-      res.render('events/show', { events });
-    })
-    .catch(next);
+  try {
+    const event = await Event.findById(eventId).populate('establishment band');
+    console.log('el evento encontrado', event);
+    res.render('events/show', event);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /* POST Renders event information */

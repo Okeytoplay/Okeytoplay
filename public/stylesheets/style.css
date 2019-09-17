@@ -20,7 +20,8 @@
 
 .brand-info {
   color: white;
-  margin-top: 10px; }
+  margin-top: 10px;
+  text-align: center; }
 
 h1 {
   margin: 0;
@@ -109,9 +110,15 @@ h4 {
   margin-left: 10px;
   font-size: 14px; }
 
+.event-card {
+  border: 1px solid blue;
+  margin: 5px; }
+
+ul {
+  padding: 0; }
+
 .footer {
   background: linear-gradient(54deg, rgba(184, 35, 35, 0.938) 34%, rgba(228, 156, 63, 0.95));
-  position: relative;
   bottom: 0;
   width: 100%;
   color: white;
@@ -167,6 +174,7 @@ h4 {
 
 * body {
   margin: 0;
+  height: 100%;
   background-color: #f9f9f9;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
@@ -180,11 +188,12 @@ img {
   box-sizing: border-box; }
 
 .backbutton {
-  bottom: 0;
+  bottom: 0px;
   position: sticky;
   background-color: rgb(31, 85, 129);
   border-radius: 20%;
   padding: 5px;
-  color: white; }
+  color: white;
+  float: left; }
 
 /*# sourceMappingURL=style.css.map */
