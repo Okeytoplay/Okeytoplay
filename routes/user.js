@@ -15,9 +15,9 @@ const { fechaDeHoy } = require('../public/javascripts/fecha');
 
 const router = express.Router();
 
-router.post('/profile', checkIfLoggedIn, async (req, res, next) => {
+router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
+  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
@@ -33,16 +33,16 @@ router.post('/profile', checkIfLoggedIn, async (req, res, next) => {
       role.push('Establishment');
     }
     // res.render('user/profile', userFound, role);
-    res.render('user/profile', { userFound, role });
+    res.render('user', { userFound, role });
   } catch (error) {
     next(error);
   }
   // res.render('user/profile');
 });
 
-router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
+router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
+  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
@@ -51,11 +51,51 @@ router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
     // res.render('user/profile', userFound, role);
-    res.render('user/profile', { userFound });
+    // res.render('user/profile', { userFound });
+    res.render('user', { userFound });
   } catch (error) {
     next(error);
   }
   // res.render('user/profile');
+});
+
+// GETS the user profile landing page, where he can edit his information
+router.get('/profile', async (req, res, next) => {
+  // const actualUserEmail = req.session.currentUser.email;
+  const userID = res.locals.currentUser;
+
+  try {
+    // const userFound = await User.findOne({ email: actualUserEmail });
+    const user = await User.findById(userID);
+    res.render('user/profile', { user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST submits profile edit form
+router.post('/profile', async (req, res, next) => {
+  const { username } = req.body;
+  // const actualUserEmail = req.session.currentUser.email;
+  const userID = req.session.currentUser._id;
+  console.log('userId:', userID);
+  if (username === '') {
+    req.flash('error', 'No empty fields allowed.');
+    res.redirect('/profile');
+  }
+
+  try {
+    const userModifiedData = await User.findByIdAndUpdate(
+      userID,
+      { username },
+      { new: true },
+    );
+    req.session.currentUser = userModifiedData;
+    req.flash('success', `User ${username} succesfully updated.`);
+    res.redirect('/user');
+  } catch (error) {
+    next(error);
+  }
 });
 
 /* GET Renders available events of the user-> Show all the events of the user */
@@ -68,7 +108,8 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   console.log('UserFound', userFound);
   if (userFound.role.establishment === false) {
     req.flash('error', 'No se ha encontrado que tengas ningún Local');
-    res.redirect('/profile');
+    // res.redirect('/profile');
+    res.redirect('/');
   } else {
     const userEstablishmentID = userFound.establishment._id;
     const fechaActual = await fechaDeHoy();
@@ -87,46 +128,53 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
 });
 
 /* GET Renders new event -> Show the page to create a new event */
-router.get('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = await fechaDeHoy();
-  try {
-    res.render('user/events/new', { fechaActual });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/events/new',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = await fechaDeHoy();
+    try {
+      res.render('user/events/new', { fechaActual });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 /* POST Create NEW EVENT */
 
-router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const {
-    name, description, price, durationMins, schedule,
-  } = req.body;
-  const actualUserEmail = req.session.currentUser.email;
-  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
-  //   'establishment',
-  // ); // THIS IS THE CORRECT!!!
-  // ONLY FOR TEST
-  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-  const userFound = await User.findOne({ email: actualUserEmail });
+router.post(
+  '/events/new',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const { name, description, price, durationMins, schedule } = req.body;
+    const actualUserEmail = req.session.currentUser.email;
+    // const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    //   'establishment',
+    // ); // THIS IS THE CORRECT!!!
+    // ONLY FOR TEST
+    // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+    const userFound = await User.findOne({ email: actualUserEmail });
 
-  try {
-    const eventNew = await Event.create({
-      name,
-      description,
-      price,
-      durationMins,
-      schedule,
-      establishment: userFound.establishment,
-    });
-    // Poner FLASH notification
-    req.flash('success', ` El evento ${name} ha sido creado con exito`);
-    res.redirect('/user/events'); // A donde vamos?
-  } catch (error) {
-    next(error);
-  }
-});
-
+    try {
+      const eventNew = await Event.create({
+        name,
+        description,
+        price,
+        durationMins,
+        schedule,
+        establishment: userFound.establishment,
+      });
+      // Poner FLASH notification
+      req.flash('success', ` El evento ${name} ha sido creado con exito`);
+      res.redirect('/user/events'); // A donde vamos?
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
 //   res.render('user/profile-create');
