@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule');
   console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
   try {
-    const fechaActual = fechaDeHoy();
+    // const fechaActual = fechaDeHoy();
     console.log('FECHA ', fechaActual);
     console.log('events ', events);
     res.render('events', { events, fechaActual });
