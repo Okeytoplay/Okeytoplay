@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
+  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
@@ -42,7 +42,7 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
+  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
@@ -59,6 +59,45 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   // res.render('user/profile');
 });
 
+// GETS the user profile landing page, where he can edit his information
+router.get('/profile', async (req, res, next) => {
+  // const actualUserEmail = req.session.currentUser.email;
+  const userID = res.locals.currentUser;
+
+  try {
+    // const userFound = await User.findOne({ email: actualUserEmail });
+    const user = await User.findById(userID);
+    res.render('user/profile', { user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST submits profile edit form
+router.post('/profile', async (req, res, next) => {
+  const { username } = req.body;
+  // const actualUserEmail = req.session.currentUser.email;
+  const userID = req.session.currentUser._id;
+  console.log('userId:', userID);
+  if (username === '') {
+    req.flash('error', 'No empty fields allowed.');
+    res.redirect('/profile');
+  }
+
+  try {
+    const userModifiedData = await User.findByIdAndUpdate(
+      userID,
+      { username },
+      { new: true },
+    );
+    req.session.currentUser = userModifiedData;
+    req.flash('success', `User ${username} succesfully updated.`);
+    res.redirect('/user');
+  } catch (error) {
+    next(error);
+  }
+});
+
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
@@ -71,7 +110,6 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
     req.flash('error', 'No se ha encontrado que tengas ningún Local');
     // res.redirect('/profile');
     res.redirect('/');
-
   } else {
     const userEstablishmentID = userFound.establishment._id;
     const fechaActual = await fechaDeHoy();

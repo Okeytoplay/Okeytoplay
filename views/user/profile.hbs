@@ -1,61 +1,9 @@
-<h3>Welcome: {{userFound.username}}, {{userFound.email}}</h3>
-{{#if userFound.band.name}}
-<h3>Your Band is: {{userFound.band.name}}</h3>
-<p>Update/delete my band profile </p><button><a href="#">Update Band</a></button>
-{{else}}
-<h3>Create or search your band here: </h3><button><a href="/bands">Your Band</a></button>
+<form id='form' action='/user/profile' method='POST'>
+    <label for='username'>Username:</label><br>
+    <input type='text' name='username' placeholder='Your username' required><br>
+    <button type='submit'>Update account</button>
+</form>
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
-
-{{#if userFound.establishment.name}}
-<h3>Your Establishment is: {{userFound.establishment.name}}</h3>
-<p>Update/delete my establishment profile </p><button><a href="#">Update Establishment</a></button>
-
-{{else}}
-<h3>Create your establishment here: </h3><button><a href="/establishments/new">Create Establishment</a></button>
-{{/if}}
-<h3>Edit my profile here: </h3><button><a href="#">Edit profile</a></button>
-<h3>Basic User options:</h3>
-<p>Show upcoming events:<a href="/user/events">Join to Events</a></p>
-<p>Booked events:<a href="/user/events/bookedevents">Show</a></p>
-<p>Show Bands Profiles:<a href="/bands">Show</a></p>
-<p>Show Establishment Profiles:<a href="/establishments">Show</a></p>
-
-{{#if userFound.establishment.name}}
-<h3>Establishment options:</h3>
-<p>Create an event:<a href="/user/events/new">Create Event</a></p>
-{{/if}}
-
-{{#if userFound.band.name}}
-<h3>Band options:</h3>
-<p>Show available event:s<a href="/user/events/bookings">Bookings</a></p>
-{{/if}}
-
-
-
-
-
-
-
-{{!-- <ul>
-  {{#each role}}
-  <li>{{this}}</li>
-  {{/each}}
-</ul>
-<h3>YOUR BAND IS:</h3>
-<p>{{userFound.band.name}}</p>
-<p>{{userFound.band.genre}}</p>
-<p>{{userFound.band.description}}</p> --}}
-{{!-- <p>MEMBERS:</p>
-<ul>
-  {{#each userFound.band.bandMembers1}}
-  <li>{{this}}</li>
-  {{/each}}
-</ul> --}}
-
-{{!-- <h2>{{userFound.username}}</h2>
-<p>{{userFound.email}}</p> --}}
-{{!-- <p>{{userFound.telephone}}</p>
-<p>{{userFound.band}}</p>
-<p>{{userFound.establishment}}</p> --}}
-{{!-- <p>{{role}}</p> --}}
-{{!-- Fase Info --}}
