@@ -100,30 +100,24 @@ router.post('/profile', async (req, res, next) => {
 
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
-  const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'establishment',
-  );
-  console.log('UserFound', userFound);
-  if (userFound.role.establishment === false) {
-    req.flash('error', 'No se ha encontrado que tengas ningún Local');
-    // res.redirect('/profile');
-    res.redirect('/');
-  } else {
-    const userEstablishmentID = userFound.establishment._id;
-    const fechaActual = await fechaDeHoy();
-    const events = await Event.find({
-      establishment: userEstablishmentID,
-    }).sort('schedule');
-    console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-    try {
-      console.log('FECHA ', fechaActual);
-      console.log('events ', events);
-      res.render('user/events', { events, fechaActual, userFound });
-    } catch (error) {
-      next(error);
+  try {
+    if (req.session.currentUser.role.establishment === false ) {
+      req.flash('error', 'No se ha encontrado que tengas ningún Local');
+      // res.redirect('/profile');
+      res.redirect('/');
+    } else {
+      const userFound = await User.findById(req.session.currentUser._id).populate('establishment');
+      const fechaActual = fechaDeHoy();
+      const events = await Event.find({ establishment: userFound.establishment._id }).sort('schedule').populate('registeredUsers');
+      if (events.length > 0) {
+        res.render('user/events', { events, fechaActual, userFound });
+      } else {
+        req.flash('info', 'Aun no tienes eventos en tu local.');
+        res.redirect('/');
+      }
     }
+  } catch (error) {
+    next(error);
   }
 });
 

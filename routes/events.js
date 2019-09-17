@@ -10,8 +10,13 @@ const router = express.Router();
 /* GET Renders available events -> Show all the events */
 router.get('/', async (req, res, next) => {
   const fechaActual = await fechaDeHoy();
-  const fecha = fechaActual.split('/').reverse().join('/');
-  const events = await Event.find({ schedule: { $gte: fechaActual } }).sort('schedule').populate('establishment band');
+  const fecha = fechaActual
+    .split('/')
+    .reverse()
+    .join('/');
+  const events = await Event.find({ schedule: { $gte: fechaActual } })
+    .sort('schedule')
+    .populate('establishment band');
   console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
   try {
     // const fechaActual = fechaDeHoy();
@@ -39,9 +44,7 @@ router.get('/new', checkIfLoggedIn, async (req, res, next) => {
 /* POST Create NEW EVENT */
 
 router.post('/new', checkIfLoggedIn, async (req, res, next) => {
-  const {
-    name, description, price, durationMins, schedule,
-  } = req.body;
+  const { name, description, price, durationMins, schedule } = req.body;
   const actualUserEmail = req.session.currentUser.email;
   // const userFound = await User.findOne({ email: actualUserEmail }).populate(
   //   'establishment',
@@ -52,7 +55,12 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
 
   try {
     const eventNew = await Event.create({
-      name, description, price, durationMins, schedule, establishmentId: userFound.establishment,
+      name,
+      description,
+      price,
+      durationMins,
+      schedule,
+      establishmentId: userFound.establishment,
     });
     // Poner FLASH notification
     req.flash('success', ` El evento ${name} ha sido creado con exito`);
@@ -74,7 +82,6 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
 //     .catch(next);
 // });
 
-
 /* GET Renders event information */
 router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
@@ -93,7 +100,7 @@ router.post('/:eventId', (req, res, next) => {
   const { eventId } = req.params;
   Event.find(
     { _id: eventId }
-      .then((events) => {
+      .then(events => {
         console.log('events ', events);
         res.redirect(`/events/${eventId}`);
       })
