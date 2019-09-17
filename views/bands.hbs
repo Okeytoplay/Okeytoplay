@@ -1,16 +1,26 @@
-<h2>Create new Band:</h2>
-<button><a href="/bands/new">Create band</a></button>
-{{!-- <ul>
+{{!-- <h2>Create new Band:</h2> --}}
+<div class="cards-container">
+    <button class="register-button"><a href="/bands/new">Create new band</a></button>
+    <h4>BAND LIST</h4>
+
+    {{!-- <ul>
     {{#each bands}}
     <div class="event-card">
         <p><a href="bands/{{_id}}">{{name}}</a></p>
     </div>
     {{/each}}
 </ul> --}}
-<section class="bandJoin-section">
-    <div>
-        {{#each bands}}
-        {{> bandJoin this}}
-        {{/each}}
+
+    <div class="card">
+        <section class="events-section">
+            <div class="event-cards">
+                {{#each bands}}
+                {{> bandJoin this}}
+                {{/each}}
+            </div>
+        </section>
+
     </div>
-</section>
+
+
+</div>
