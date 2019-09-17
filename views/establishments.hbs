@@ -1,13 +1,22 @@
-<h2>Here's a list with all our Establishment:</h2>
-<ul>
-    {{#each establishments}}
-    <div class="establishment-card">
-        <p><a href="establishments/{{_id}}">Establishment description: {{description}}</a></p>
+<div class="cards-container">
+    <h2>Here's a list with all our Establishment:</h2>
+    <div class="events-section">
+        <ul class="event-cards">
+            {{#each establishments}}
+            <div class="establishment-card">
+                <p><a href="establishments/{{_id}}">Establishment description: {{description}}</a></p>
+            </div>
+            {{/each}}
+        </ul>
+
     </div>
-    {{/each}}
-</ul>
-<h2>Create new Establishment:</h2>
-<button><a href="/establishments/new">Create establishment</a></button>
+
+
+</div>
+
+
+{{!-- <h2>Create new Establishment:</h2> --}}
+<button class="register-button"><a href="/establishments/new">Create new establishment</a></button>
 {{!-- <ul>
     {{#each bands}}
     <div class="event-card">
@@ -15,6 +24,8 @@
     </div>
     {{/each}}
 </ul> --}}
+
+
 <section class="bandJoin-section">
     <div>
         {{#each establishment}}
@@ -22,3 +33,4 @@
         {{/each}}
     </div>
 </section>
+<p>eiii</p>
