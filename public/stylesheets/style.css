@@ -185,6 +185,7 @@ img {
   background-color: purple;
   border-radius: 20%;
   padding: 5px;
-  color: white; }
+  color: white;
+  float: left; }
 
 /*# sourceMappingURL=style.css.map */
