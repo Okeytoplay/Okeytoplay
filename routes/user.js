@@ -87,53 +87,45 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
 });
 
 /* GET Renders new event -> Show the page to create a new event */
-router.get(
-  '/events/new',
-  checkIfLoggedIn,
-  checkIfEstablishment,
-  async (req, res, next) => {
-    const fechaActual = await fechaDeHoy();
-    try {
-      res.render('user/events/new', { fechaActual });
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+router.get('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  try {
+    res.render('user/events/new', { fechaActual });
+  } catch (error) {
+    next(error);
+  }
+});
 
 /* POST Create NEW EVENT */
 
-router.post(
-  '/events/new',
-  checkIfLoggedIn,
-  checkIfEstablishment,
-  async (req, res, next) => {
-    const { name, description, price, durationMins, schedule } = req.body;
-    const actualUserEmail = req.session.currentUser.email;
-    // const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    //   'establishment',
-    // ); // THIS IS THE CORRECT!!!
-    // ONLY FOR TEST
-    // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-    const userFound = await User.findOne({ email: actualUserEmail });
+router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const {
+    name, description, price, durationMins, schedule,
+  } = req.body;
+  const actualUserEmail = req.session.currentUser.email;
+  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
+  //   'establishment',
+  // ); // THIS IS THE CORRECT!!!
+  // ONLY FOR TEST
+  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+  const userFound = await User.findOne({ email: actualUserEmail });
 
-    try {
-      const eventNew = await Event.create({
-        name,
-        description,
-        price,
-        durationMins,
-        schedule,
-        establishment: userFound.establishment,
-      });
-      // Poner FLASH notification
-      req.flash('success', ` El evento ${name} ha sido creado con exito`);
-      res.redirect('/user/events'); // A donde vamos?
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+  try {
+    const eventNew = await Event.create({
+      name,
+      description,
+      price,
+      durationMins,
+      schedule,
+      establishment: userFound.establishment,
+    });
+    // Poner FLASH notification
+    req.flash('success', ` El evento ${name} ha sido creado con exito`);
+    res.redirect('/user/events'); // A donde vamos?
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
 //   res.render('user/profile-create');
