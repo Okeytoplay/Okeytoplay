@@ -13,6 +13,29 @@ const { fechaDeHoy } = require('../public/javascripts/fecha');
 
 const router = express.Router();
 
+/* GET to RENDER the USER HOMEPAGE */
+router.get('/', checkIfLoggedIn, async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  console.log(fechaActual);
+  const fecha = fechaActual.split('/').reverse().join('/');
+  console.log(fechaActual);
+  const actualUserEmail = req.session.currentUser.email;
+  console.log(actualUserEmail);
+  const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    'band', 'establishment',
+  );
+  // const userID = userFound._id;
+  try {
+    // const user = await User.findById(userID);
+    // res.render('user/profile', { userFound, title: 'Profile' });
+    // res.render('user/profile', userFound, role);
+    res.render('user/index', { userFound, fecha });
+  } catch (error) {
+    next(error);
+  }
+  // res.render('user/index');
+});
+
 router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
   res.render('user/profile-create');
 });
@@ -176,7 +199,7 @@ router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, re
 
   try {
     const eventNew = await Event.create({
-      name, description, price, durationMins, schedule, establishmentId: userFound.establishment,
+      name, description, price, durationMins, schedule, establishment: userFound.establishment,
     });
     // Poner FLASH notification
     req.flash('success', ` El evento ${name} ha sido creado con exito`);
