@@ -176,7 +176,7 @@ router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, re
 
   try {
     const eventNew = await Event.create({
-      name, description, price, durationMins, schedule, establishmentId: userFound.establishment,
+      name, description, price, durationMins, schedule, establishment: userFound.establishment,
     });
     // Poner FLASH notification
     req.flash('success', ` El evento ${name} ha sido creado con exito`);
