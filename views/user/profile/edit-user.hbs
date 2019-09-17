@@ -1,0 +1,10 @@
+<h3>Edit my profile here: </h3><button><a href="/user/profile">Edit profile</a></button>
+<form id='form' action='/user/profile' method='POST'>
+    <label for='username'>Username:</label><br>
+    <input type='text' name='username' placeholder='Your username' required><br>
+    <button type='submit'>Update account</button>
+</form>
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
