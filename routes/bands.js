@@ -53,15 +53,6 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   }
   // res.render('user/profile');
 });
-// /* GET Renders available bands */
-// router.get('/', (req, res, next) => {
-//   Band.find()
-//     .then(bands => {
-//       console.log('bands ', bands);
-//       res.render('bands', { bands });
-//     })
-//     .catch(next);
-// });
 
 /* GET Renders new Band */
 router.get('/new', (req, res, next) => {
@@ -113,29 +104,75 @@ router.post('/new', async (req, res, next) => {
     next(error);
   }
 });
+/* POST Renders band information */
+router.post('/', async (req, res, next) => {
+  const {
+    name,
+    genre,
+    description,
+    website,
+    instagramProfile,
+    facebookProfile,
+    avatar,
+  } = req.body;
+  try {
+    res.redirect(`/bands/${bandId}`);
+  } catch (error) {
+    next(error);
+  }
+});
+// View one band detail
+router.get('/:bandID', async (req, res, next) => {
+  const { bandID } = req.params;
+  try {
+    const bands = await Band.findById(bandID);
+    res.render('bands/show', { bands });
+  } catch (error) {
+    next(error);
+  }
+});
 
-// /* GET Renders band information */
-// router.get('/:bandId', (req, res, next) => {
-//   const { bandId } = req.params;
+/* POST Renders band information */
+router.post('/:bandID', async (req, res, next) => {
+  const { bandID } = req.params;
+  try {
+    const bands = await Band.findById(bandID);
+    res.redirect(`/bands/${bandId}`);
+  } catch (error) {
+    next(error);
+  }
+});
 
-//   Band.findById(bandId)
-//     .then(bands => {
-//       res.render('bands/show', { bands });
-//     })
-//     .catch(next);
-// });
+// Join one band
+router.get('/:bandID/join', async (req, res, next) => {
+  const { bandID } = req.params;
+  console.log('BandIdJoin:', bandID);
+  const userID = req.session.currentUser._id;
+  console.log('UserIdJoin:', userID);
 
-// /* POST Renders band information */
-// router.post('/:bandId', (req, res, next) => {
-//   const { bandId } = req.params;
-//   Band.find(
-//     { _id: bandId }
-//       .then(bands => {
-//         console.log('bands ', bands);
-//         res.redirect(`/bands/${bandId}`);
-//       })
-//       .catch(next),
-//   );
-// });
+  try {
+    // // const user = await User.findById(userID).populate('band');
+    // // let band = await Band.findById(bandID);
+    // const userAssignedToBand = await User.findByIdAndUpdate(
+    //   actualUserId,
+    // ).populate('band');
 
+    // band = await Class.findByIdAndUpdate(
+    //   userID,
+    //   { $push: { band: bandID } },
+    //   { new: true },
+    // );
+    const bandAddData = await User.findByIdAndUpdate(
+      userID,
+      {
+        band: bandID,
+      },
+      { new: true },
+    );
+    console.log('bandAddData:', bandAddData);
+    res.redirect('/user');
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
