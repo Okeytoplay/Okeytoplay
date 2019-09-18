@@ -59,150 +59,35 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   // res.render('user/profile');
 });
 
-router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
-  const actualUserEmail = req.session.currentUser.email;
-  // console.log(actualUserEmail);
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'band establishment',
-  );
-  // const userID = userFound._id;
-  try {
-    // const user = await User.findById(userID);
-    // res.render('user/profile', { userFound, title: 'Profile' });
-    // res.render('user/profile', userFound, role);
-    // res.render('user/profile', { userFound });
-    res.render('user/profile', { userFound });
-  } catch (error) {
-    next(error);
-  }
-  // res.render('user/profile');
-});
-
 // GETS the user profile landing page, where he can edit his information
-router.get('/profile/edit-user', async (req, res, next) => {
+router.get('/profile', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   const userID = res.locals.currentUser;
 
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     const user = await User.findById(userID);
-    res.render('user/profile/edit-user', { user });
+    res.render('user/profile', { user });
   } catch (error) {
     next(error);
   }
 });
 
 // POST submits profile edit form
-router.post('/profile/edit-user', async (req, res, next) => {
-  const { username, email } = req.body;
+router.post('/profile', async (req, res, next) => {
+  const { username } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
   console.log('userId:', userID);
-  if (username === '' || email === '') {
+  if (username === '') {
     req.flash('error', 'No empty fields allowed.');
-    res.redirect('/profile/edit-user');
+    res.redirect('/profile');
   }
 
   try {
     const userModifiedData = await User.findByIdAndUpdate(
       userID,
-      { username, email },
-      { new: true },
-    );
-    req.session.currentUser = userModifiedData;
-    req.flash('success', `User ${username} succesfully updated.`);
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
-
-// GETS the band profile landing page, where he can edit his information
-router.get('/profile/edit-band', async (req, res, next) => {
-  // const actualUserEmail = req.session.currentUser.email;
-  const user = req.session.currentUser._id;
-  console.log('user: ', user);
-  try {
-    // const userFound = await User.findOne({ email: actualUserEmail });
-    // const band = await Band.findById(userID);
-    const band = await Band.findById();
-    console.log(band);
-    res.render('user/profile/edit-band', { band });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// POST submits profile band edit form
-router.post('/profile/edit-band', async (req, res, next) => {
-  const {
-    name,
-    genre,
-    description,
-    website,
-    instagramProfile,
-    facebookProfile,
-    avatar,
-  } = req.body;
-  // const actualUserEmail = req.session.currentUser.email;
-  const userID = req.session.currentUser;
-  console.log('userId:', userID);
-  if (name === '') {
-    req.flash('error', 'No empty fields allowed.');
-    res.redirect('/profile/edit-band');
-  }
-
-  try {
-    const bandModifiedData = await Band.findByIdAndUpdate(
-      userID.band,
-      {
-        name,
-        genre,
-        description,
-        website,
-        instagramProfile,
-        facebookProfile,
-        avatar,
-      },
-      { new: true },
-    );
-    console.log(bandModifiedData);
-    req.flash('success', 'Band succesfully updated.');
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
-
-// GETS the establishment profile landing page, where he can edit his information
-router.get('/profile/edit-user', async (req, res, next) => {
-  // const actualUserEmail = req.session.currentUser.email;
-  const userID = res.locals.currentUser;
-
-  try {
-    // const userFound = await User.findOne({ email: actualUserEmail });
-    const user = await User.findById(userID);
-    res.render('user/profile/edit-user', { user });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// POST submits establishment profile edit form
-router.post('/profile/edit-user', async (req, res, next) => {
-  const { username, email } = req.body;
-  // const actualUserEmail = req.session.currentUser.email;
-  const userID = req.session.currentUser._id;
-  console.log('userId:', userID);
-  if (username === '' || email === '') {
-    req.flash('error', 'No empty fields allowed.');
-    res.redirect('/profile/edit-user');
-  }
-
-  try {
-    const userModifiedData = await User.findByIdAndUpdate(
-      userID,
-      { username, email },
+      { username },
       { new: true },
     );
     req.session.currentUser = userModifiedData;
