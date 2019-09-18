@@ -1,8 +1,5 @@
-{{!-- events, fecha, userFound --}}
-<div class="fecha">{{fecha}}</div>
-<div class="user-name">{{userFound.username}}, Your events without BAND:</div>
-<ul class="event-list-bookings">
-  {{#each events}}
-  <li>{{this.name}}</li>
-  {{/each}}
-</ul>
+<div>
+  {{> booking }}
+</div>
+
+<p>booking vista</p>
