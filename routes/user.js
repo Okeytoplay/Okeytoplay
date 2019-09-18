@@ -59,15 +59,34 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   // res.render('user/profile');
 });
 
+router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
+  const actualUserEmail = req.session.currentUser.email;
+  // console.log(actualUserEmail);
+  const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    'band establishment',
+  );
+  // const userID = userFound._id;
+  try {
+    // const user = await User.findById(userID);
+    // res.render('user/profile', { userFound, title: 'Profile' });
+    // res.render('user/profile', userFound, role);
+    // res.render('user/profile', { userFound });
+    res.render('user/profile', { userFound });
+  } catch (error) {
+    next(error);
+  }
+  // res.render('user/profile');
+});
+
 // GETS the user profile landing page, where he can edit his information
-router.get('/profile', async (req, res, next) => {
+router.get('/profile/edit-user', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
 
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     const user = await User.findById(userID);
-    res.render('user/profile', { user });
+    res.render('user/profile/edit-user', { user });
   } catch (error) {
     next(error);
   }
@@ -266,14 +285,20 @@ router.get('/profile/delete-establishment', async (req, res, next) => {
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   try {
-    if (req.session.currentUser.role.establishment === false ) {
+    if (req.session.currentUser.role.establishment === false) {
       req.flash('error', 'No se ha encontrado que tengas ningún Local');
       // res.redirect('/profile');
       res.redirect('/');
     } else {
-      const userFound = await User.findById(req.session.currentUser._id).populate('establishment');
+      const userFound = await User.findById(
+        req.session.currentUser._id,
+      ).populate('establishment');
       const fechaActual = fechaDeHoy();
-      const events = await Event.find({ establishment: userFound.establishment._id }).sort('schedule').populate('registeredUsers');
+      const events = await Event.find({
+        establishment: userFound.establishment._id,
+      })
+        .sort('schedule')
+        .populate('registeredUsers');
       if (events.length > 0) {
         res.render('user/events', { events, fechaActual, userFound });
       } else {
@@ -335,61 +360,79 @@ router.post(
   },
 );
 
-router.get('/events/bookings', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = await fechaDeHoy();
-  const fecha = fechaActual.split('/').reverse().join('/');
-  const actualUserId = req.session.currentUser._id;
-  const userFound = await User.findById(actualUserId).populate(
-    'establishment',
-  );
-  console.log('UserFound', userFound);
-  if (userFound.role.establishment === false) {
-    req.flash('error', 'No se ha encontrado que tengas ningún Local');
-    // res.redirect('/profile');
-    res.redirect('/user/events');
-  } else {
-    const userEstablishmentID = userFound.establishment._id;
-    const events = await Event.find({
-      establishment: userEstablishmentID, band: { $exists: false },
-    }).sort('schedule');
-    console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-    try {
-      console.log('FECHA ', fechaActual);
-      console.log('events ', events);
-      res.render('user/events/bookings', { events, fecha, userFound });
-    } catch (error) {
-      next(error);
+router.get(
+  '/events/bookings',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = await fechaDeHoy();
+    const fecha = fechaActual
+      .split('/')
+      .reverse()
+      .join('/');
+    const actualUserId = req.session.currentUser._id;
+    const userFound = await User.findById(actualUserId).populate(
+      'establishment',
+    );
+    console.log('UserFound', userFound);
+    if (userFound.role.establishment === false) {
+      req.flash('error', 'No se ha encontrado que tengas ningún Local');
+      // res.redirect('/profile');
+      res.redirect('/user/events');
+    } else {
+      const userEstablishmentID = userFound.establishment._id;
+      const events = await Event.find({
+        establishment: userEstablishmentID,
+        band: { $exists: false },
+      }).sort('schedule');
+      console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+      try {
+        console.log('FECHA ', fechaActual);
+        console.log('events ', events);
+        res.render('user/events/bookings', { events, fecha, userFound });
+      } catch (error) {
+        next(error);
+      }
     }
-  }
-});
+  },
+);
 
-router.get('/events/bookedevents', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = await fechaDeHoy();
-  const fecha = fechaActual.split('/').reverse().join('/');
-  const actualUserId = req.session.currentUser._id;
-  const userFound = await User.findById(actualUserId).populate(
-    'establishment',
-  );
-  console.log('UserFound', userFound);
-  if (userFound.role.establishment === false) {
-    req.flash('error', 'No se ha encontrado que tengas ningún Local');
-    // res.redirect('/profile');
-    res.redirect('/user/events');
-  } else {
-    const userEstablishmentID = userFound.establishment._id;
-    const events = await Event.find({
-      establishment: userEstablishmentID, band: { $exists: true },
-    }).sort('schedule');
-    console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-    try {
-      console.log('FECHA ', fechaActual);
-      console.log('events ', events);
-      res.render('user/events/bookedevents', { events, fecha, userFound });
-    } catch (error) {
-      next(error);
+router.get(
+  '/events/bookedevents',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = await fechaDeHoy();
+    const fecha = fechaActual
+      .split('/')
+      .reverse()
+      .join('/');
+    const actualUserId = req.session.currentUser._id;
+    const userFound = await User.findById(actualUserId).populate(
+      'establishment',
+    );
+    console.log('UserFound', userFound);
+    if (userFound.role.establishment === false) {
+      req.flash('error', 'No se ha encontrado que tengas ningún Local');
+      // res.redirect('/profile');
+      res.redirect('/user/events');
+    } else {
+      const userEstablishmentID = userFound.establishment._id;
+      const events = await Event.find({
+        establishment: userEstablishmentID,
+        band: { $exists: true },
+      }).sort('schedule');
+      console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+      try {
+        console.log('FECHA ', fechaActual);
+        console.log('events ', events);
+        res.render('user/events/bookedevents', { events, fecha, userFound });
+      } catch (error) {
+        next(error);
+      }
     }
-  }
-});
+  },
+);
 
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
