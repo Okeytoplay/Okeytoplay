@@ -181,38 +181,72 @@ router.post('/profile/edit-band', async (req, res, next) => {
 });
 
 // GETS the establishment profile landing page, where he can edit his information
-router.get('/profile/edit-user', async (req, res, next) => {
+router.get('/profile/edit-establishment', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
-  const userID = res.locals.currentUser;
-
+  const user = req.session.currentUser._id;
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
-    const user = await User.findById(userID);
-    res.render('user/profile/edit-user', { user });
+    // const band = await Band.findById(userID);
+    const userEstablishmentId = await User.findById(user);
+    console.log(
+      'kepasauserEstablishmentId: ',
+      userEstablishmentId.establishment,
+    );
+    const userEstablishment = await Establishment.findById(
+      userEstablishmentId.establishment,
+    );
+    console.log('kepasauserEstablishment: ', userEstablishment);
+
+    res.render('user/profile/edit-establishment', { userEstablishment });
   } catch (error) {
     next(error);
   }
 });
 
-// POST submits establishment profile edit form
-router.post('/profile/edit-user', async (req, res, next) => {
-  const { username, email } = req.body;
+// POST submits profile establishment edit form
+router.post('/profile/edit-establishment', async (req, res, next) => {
+  const {
+    name,
+    description,
+    website,
+    instagramProfile,
+    facebookProfile,
+    street,
+    city,
+    zip,
+    capacity,
+    avatar,
+  } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
-  // console.log('userId:', userID);
-  if (username === '' || email === '') {
+  console.log('userIdPost:', userID);
+  const userEstablishment = await User.findById(userID);
+  console.log('userEstablishmentPost:', userEstablishment);
+
+  if (name === '') {
     req.flash('error', 'No empty fields allowed.');
-    res.redirect('/profile/edit-user');
+    res.redirect('/profile/edit-band');
   }
 
   try {
-    const userModifiedData = await User.findByIdAndUpdate(
-      userID,
-      { username, email },
+    const establishmentModifiedData = await Establishment.findByIdAndUpdate(
+      userEstablishment.establishment,
+      {
+        name,
+        description,
+        website,
+        instagramProfile,
+        facebookProfile,
+        street,
+        city,
+        zip,
+        capacity,
+        avatar,
+      },
       { new: true },
     );
-    req.session.currentUser = userModifiedData;
-    req.flash('success', `User ${username} succesfully updated.`);
+    console.log('establishmentModifiedData:', establishmentModifiedData);
+    req.flash('success', 'Establishment succesfully updated.');
     res.redirect('/user');
   } catch (error) {
     next(error);
