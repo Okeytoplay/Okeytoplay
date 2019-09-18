@@ -97,7 +97,7 @@ router.post('/profile/edit-user', async (req, res, next) => {
   const { username, email } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
-  console.log('userId:', userID);
+  // console.log('userId:', userID);
   if (username === '' || email === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/profile/edit-user');
@@ -125,9 +125,9 @@ router.get('/profile/edit-band', async (req, res, next) => {
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     // const band = await Band.findById(userID);
-    const band = await Band.findById();
-    console.log(band);
-    res.render('user/profile/edit-band', { band });
+    const userBand = await User.findById(user);
+    console.log('userBand: ', userBand.band);
+    res.render('user/profile/edit-band', { userBand });
   } catch (error) {
     next(error);
   }
@@ -145,8 +145,11 @@ router.post('/profile/edit-band', async (req, res, next) => {
     avatar,
   } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
-  const userID = req.session.currentUser;
-  console.log('userId:', userID);
+  const userID = req.session.currentUser._id;
+  console.log('userIdPost:', userID);
+  const userBand = await User.findById(userID);
+  console.log('userBandPost:', userBand);
+
   if (name === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/profile/edit-band');
@@ -154,7 +157,7 @@ router.post('/profile/edit-band', async (req, res, next) => {
 
   try {
     const bandModifiedData = await Band.findByIdAndUpdate(
-      userID.band,
+      userBand.band,
       {
         name,
         genre,
@@ -166,7 +169,7 @@ router.post('/profile/edit-band', async (req, res, next) => {
       },
       { new: true },
     );
-    console.log(bandModifiedData);
+    console.log('bandModifiedData:', bandModifiedData);
     req.flash('success', 'Band succesfully updated.');
     res.redirect('/user');
   } catch (error) {
@@ -193,7 +196,7 @@ router.post('/profile/edit-user', async (req, res, next) => {
   const { username, email } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
-  console.log('userId:', userID);
+  // console.log('userId:', userID);
   if (username === '' || email === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/profile/edit-user');
@@ -216,7 +219,7 @@ router.post('/profile/edit-user', async (req, res, next) => {
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  console.log(actualUserEmail);
+  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'establishment',
   );
