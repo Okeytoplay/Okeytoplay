@@ -1,0 +1,25 @@
+<form id='form' action='/user/profile/edit-band' method='POST'>
+    <div id='Band-form-profile'>
+        <label for='band'>Band Name:</label><br>
+        <input type='text' name='name' value="{{band.name}}"><br>
+        <label for='band'>Musical Genre:</label><br>
+        <input type='text' name='genre' placeholder='Genre'><br>
+        <label for='band'>Description:</label><br>
+        <input type='text' name='description' placeholder='Description'><br>
+        <label for='band'>Website</label><br>
+        <input type='text' name='website' placeholder='Website'><br>
+        <label for='band'>Instagram:</label><br>
+        <input type='text' name='instagramProfile' placeholder='Instagram'><br>
+        <label for='Instagram'>Facebook:</label><br>
+        <input type='text' name='facebookProfile' placeholder='facebook'><br>
+        <label for='band'>Avatar:</label><br>
+        <input type='text' name='avatar' placeholder='Avatar Image'><br>
+    </div>
+    </div>
+    <button type='submit'>Update Band</button>
+</form>
+
+</div>
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}

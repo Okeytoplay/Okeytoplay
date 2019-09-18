@@ -1,0 +1,31 @@
+<form id='form' action='/user/profile/edit-establishment' method='POST'>
+    <div id='Establishment-form-profile'>
+        <label for='establishment'>Establishment Name:</label><br>
+        <input type='text' name='name' placeholder='Establishment Name'><br>
+        <label for='establishment'>Description:</label><br>
+        <input type='text' name='description' placeholder='Description'><br>
+        <label for='establishment'>Street:</label><br>
+        <input type='text' name='street' placeholder='Street'><br>
+        <label for='establishment'>City:</label><br>
+        <input type='text' name='city' placeholder='City'><br>
+        <label for='establishment'>ZIP Code:</label><br>
+        <input type='text' name='zip' placeholder='ZIP'><br>
+        <label for='establishment'>Capacity:</label><br>
+        <input type='text' name='capacity' placeholder='capacity'><br>
+        <label for='establishment'>Website</label><br>
+        <input type='text' name='website' placeholder='Website'><br>
+        <label for='establishment'>Instagram:</label><br>
+        <input type='text' name='instagramProfile' placeholder='Instagram'><br>
+        <label for='Instagram'>Facebook:</label><br>
+        <input type='text' name='facebookProfile' placeholder='facebook'><br>
+        <label for='establishment'>Avatar:</label><br>
+        <input type='text' name='avatar' placeholder='Avatar Image'><br>
+    </div>
+    </div>
+    <button type='submit'>Update Establishment</button>
+</form>
+
+</div>
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
