@@ -1,15 +1,13 @@
-{{!-- <h2>Create new Band:</h2> --}}
 <div class="cards-container">
-    <button class="register-button"><a href="/bands/new">Create new band</a></button>
+    {{#if userFound.band.name}}
+    <h3>If you want to join another band before you should leave the current one</h3>
+    <a href="/user/profile">Profile</a>
+    {{else}}
+    <h3>If you haven't created your band, click below</h3>
+    <a href="/bands/new">Create Band</a>
+    {{/if}}
+    <h3>Basic View</h3>
     <h4>BAND LIST</h4>
-
-    {{!-- <ul>
-    {{#each bands}}
-    <div class="event-card">
-        <p><a href="bands/{{_id}}">{{name}}</a></p>
-    </div>
-    {{/each}}
-</ul> --}}
 
     <div class="card">
         <section class="events-section">

@@ -2,18 +2,66 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Band = require('../models/Band');
 const User = require('../models/User');
-
+const {
+  checkFields,
+  checkEmailAndPasswordNotEmpty,
+  checkIfLoggedIn,
+} = require('../middlewares/auth');
 const router = express.Router();
 
-/* GET Renders available bands */
-router.get('/', (req, res, next) => {
-  Band.find()
-    .then(bands => {
-      console.log('bands ', bands);
-      res.render('bands', { bands });
-    })
-    .catch(next);
+router.post('/', checkIfLoggedIn, async (req, res, next) => {
+  const actualUserEmail = req.session.currentUser.email;
+  // console.log(actualUserEmail);
+  const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    'band establishment',
+  );
+  // const userID = userFound._id;
+  try {
+    // const user = await User.findById(userID);
+    // res.render('user/profile', { userFound, title: 'Profile' });
+    const role = ['Groupie'];
+    if (userFound.role.band) {
+      role.push('Band');
+    }
+    if (userFound.role.establisment) {
+      role.push('Establishment');
+    }
+    // res.render('user/profile', userFound, role);
+    res.render('bands', { userFound, role });
+  } catch (error) {
+    next(error);
+  }
+  // res.render('user/profile');
 });
+
+router.get('/', checkIfLoggedIn, async (req, res, next) => {
+  const actualUserEmail = req.session.currentUser.email;
+  // console.log(actualUserEmail);
+  const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    'band establishment',
+  );
+  const bands = await Band.find();
+  // const userID = userFound._id;
+  try {
+    // const user = await User.findById(userID);
+    // res.render('user/profile', { userFound, title: 'Profile' });
+    // res.render('user/profile', userFound, role);
+    // res.render('user/profile', { userFound });
+    res.render('bands', { userFound, bands });
+  } catch (error) {
+    next(error);
+  }
+  // res.render('user/profile');
+});
+// /* GET Renders available bands */
+// router.get('/', (req, res, next) => {
+//   Band.find()
+//     .then(bands => {
+//       console.log('bands ', bands);
+//       res.render('bands', { bands });
+//     })
+//     .catch(next);
+// });
 
 /* GET Renders new Band */
 router.get('/new', (req, res, next) => {
