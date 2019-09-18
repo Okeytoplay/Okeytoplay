@@ -169,6 +169,63 @@ router.post(
     }
   },
 );
+
+router.get('/events/bookings', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  const fecha = fechaActual.split('/').reverse().join('/');
+  const actualUserId = req.session.currentUser._id;
+  const userFound = await User.findById(actualUserId).populate(
+    'establishment',
+  );
+  console.log('UserFound', userFound);
+  if (userFound.role.establishment === false) {
+    req.flash('error', 'No se ha encontrado que tengas ningún Local');
+    // res.redirect('/profile');
+    res.redirect('/user/events');
+  } else {
+    const userEstablishmentID = userFound.establishment._id;
+    const events = await Event.find({
+      establishment: userEstablishmentID, band: { $exists: false },
+    }).sort('schedule');
+    console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+    try {
+      console.log('FECHA ', fechaActual);
+      console.log('events ', events);
+      res.render('user/events/bookings', { events, fecha, userFound });
+    } catch (error) {
+      next(error);
+    }
+  }
+});
+
+router.get('/events/bookedevents', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const fechaActual = await fechaDeHoy();
+  const fecha = fechaActual.split('/').reverse().join('/');
+  const actualUserId = req.session.currentUser._id;
+  const userFound = await User.findById(actualUserId).populate(
+    'establishment',
+  );
+  console.log('UserFound', userFound);
+  if (userFound.role.establishment === false) {
+    req.flash('error', 'No se ha encontrado que tengas ningún Local');
+    // res.redirect('/profile');
+    res.redirect('/user/events');
+  } else {
+    const userEstablishmentID = userFound.establishment._id;
+    const events = await Event.find({
+      establishment: userEstablishmentID, band: { $exists: true },
+    }).sort('schedule');
+    console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+    try {
+      console.log('FECHA ', fechaActual);
+      console.log('events ', events);
+      res.render('user/events/bookedevents', { events, fecha, userFound });
+    } catch (error) {
+      next(error);
+    }
+  }
+});
+
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
 //   res.render('user/profile-create');
