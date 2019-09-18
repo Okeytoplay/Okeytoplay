@@ -86,7 +86,6 @@ router.get('/profile/edit-user', async (req, res, next) => {
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     const user = await User.findById(userID);
-    console.log('queesuser: ', user);
     res.render('user/profile/edit-user', { user });
   } catch (error) {
     next(error);
@@ -126,9 +125,7 @@ router.get('/profile/edit-band', async (req, res, next) => {
     // const userFound = await User.findOne({ email: actualUserEmail });
     // const band = await Band.findById(userID);
     const userBandId = await User.findById(user);
-    console.log('kepasauserBandID: ', userBandId.band);
     const userBand = await Band.findById(userBandId.band);
-    console.log('kepasauserBand: ', userBand);
 
     res.render('user/profile/edit-band', { userBand });
   } catch (error) {
@@ -149,9 +146,9 @@ router.post('/profile/edit-band', async (req, res, next) => {
   } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
-  console.log('userIdPost:', userID);
+  // console.log('userIdPost:', userID);
   const userBand = await User.findById(userID);
-  console.log('userBandPost:', userBand);
+  // console.log('userBandPost:', userBand);
 
   if (name === '') {
     req.flash('error', 'No empty fields allowed.');
@@ -174,6 +171,21 @@ router.post('/profile/edit-band', async (req, res, next) => {
     );
     console.log('bandModifiedData:', bandModifiedData);
     req.flash('success', 'Band succesfully updated.');
+    res.redirect('/user');
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Delete user band
+router.get('/profile/delete-band', async (req, res, next) => {
+  const user = req.session.currentUser;
+  const userBandId = await User.findById(user);
+  const bandId = userBandId.band;
+
+  try {
+    const bandDelete = await Band.findByIdAndDelete(bandId);
+    req.flash('info', 'Banda eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
     next(error);
@@ -247,6 +259,23 @@ router.post('/profile/edit-establishment', async (req, res, next) => {
     );
     console.log('establishmentModifiedData:', establishmentModifiedData);
     req.flash('success', 'Establishment succesfully updated.');
+    res.redirect('/user');
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Delete user establishment
+router.get('/profile/delete-establishment', async (req, res, next) => {
+  const user = req.session.currentUser;
+  const userId = await User.findById(user);
+  const establishmentId = userId.establishment;
+
+  try {
+    const establishmentDelete = await Establishment.findByIdAndDelete(
+      establishmentId,
+    );
+    req.flash('info', 'Establishment eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
     next(error);

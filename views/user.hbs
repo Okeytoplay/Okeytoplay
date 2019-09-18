@@ -1,15 +1,12 @@
 <h3>Welcome: {{userFound.username}}, {{userFound.email}}</h3>
 {{#if userFound.band.name}}
 <h3>Your Band is: {{userFound.band.name}}</h3>
-<p>Update/delete my band profile </p><button><a href="#">Update Band</a></button>
 {{else}}
 <h3>Create or search your band here: </h3><button><a href="/bands">Your Band</a></button>
 {{/if}}
 
 {{#if userFound.establishment.name}}
 <h3>Your Establishment is: {{userFound.establishment.name}}</h3>
-<p>Update/delete my establishment profile </p><button><a href="#">Update Establishment</a></button>
-
 {{else}}
 <h3>Create your establishment here: </h3><button><a href="/establishments/new">Create Establishment</a></button>
 {{/if}}
