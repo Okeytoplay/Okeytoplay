@@ -81,11 +81,12 @@ router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
 // GETS the user profile landing page, where he can edit his information
 router.get('/profile/edit-user', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
-  const userID = res.locals.currentUser;
+  const userID = req.session.currentUser._id;
 
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     const user = await User.findById(userID);
+    console.log('queesuser: ', user);
     res.render('user/profile/edit-user', { user });
   } catch (error) {
     next(error);
@@ -121,12 +122,14 @@ router.post('/profile/edit-user', async (req, res, next) => {
 router.get('/profile/edit-band', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   const user = req.session.currentUser._id;
-  console.log('user: ', user);
   try {
     // const userFound = await User.findOne({ email: actualUserEmail });
     // const band = await Band.findById(userID);
-    const userBand = await User.findById(user);
-    console.log('userBand: ', userBand.band);
+    const userBandId = await User.findById(user);
+    console.log('kepasauserBandID: ', userBandId.band);
+    const userBand = await Band.findById(userBandId.band);
+    console.log('kepasauserBand: ', userBand);
+
     res.render('user/profile/edit-band', { userBand });
   } catch (error) {
     next(error);

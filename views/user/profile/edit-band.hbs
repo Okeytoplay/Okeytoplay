@@ -1,19 +1,19 @@
 <form id='form' action='/user/profile/edit-band' method='POST'>
     <div id='Band-form-profile'>
         <label for='band'>Band Name:</label><br>
-        <input type='text' name='name' value="{{band.name}}"><br>
+        <input type='text' name='name' value="{{userBand.name}}"><br>
         <label for='band'>Musical Genre:</label><br>
-        <input type='text' name='genre' placeholder='Genre'><br>
+        <input type='text' name='genre' value='{{genre}}'><br>
         <label for='band'>Description:</label><br>
-        <input type='text' name='description' placeholder='Description'><br>
+        <input type='text' name='description' value='{{description}}'><br>
         <label for='band'>Website</label><br>
-        <input type='text' name='website' placeholder='Website'><br>
+        <input type='text' name='website' value='{{website}}'><br>
         <label for='band'>Instagram:</label><br>
-        <input type='text' name='instagramProfile' placeholder='Instagram'><br>
+        <input type='text' name='instagramProfile' value='{{instagramProfile}}'><br>
         <label for='Instagram'>Facebook:</label><br>
-        <input type='text' name='facebookProfile' placeholder='facebook'><br>
+        <input type='text' name='facebookProfile' value='{{facebookProfile}}'><br>
         <label for='band'>Avatar:</label><br>
-        <input type='text' name='avatar' placeholder='Avatar Image'><br>
+        <input type='text' name='avatar' value='{{avatar}}'><br>
     </div>
     </div>
     <button type='submit'>Update Band</button>
