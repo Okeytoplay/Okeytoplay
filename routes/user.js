@@ -175,6 +175,7 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
     const bandId = userBandId.band;
 
     const bandDelete = await Band.findByIdAndDelete(bandId);
+    await User.updateOne({ _id: user }, { $unset: { band: 1 }, 'role.band': false });
     req.flash('info', 'Banda eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
@@ -267,7 +268,7 @@ router.get('/profile/delete-establishment', checkIfLoggedIn, async (req, res, ne
     const establishmentDelete = await Establishment.findByIdAndDelete(
       establishmentId,
     );
-    console.log('El user antes de actualizar:', userId);
+    // console.log('El user antes de actualizar:', userId);
     // Update the User info
     await User.updateOne({ _id: userId }, { $unset: { establishment: 1 }, 'role.establishment': false });
     // If the user delete the ESTABLISHMENT, The EVENTS OF THIS ESTABLISHMENTS HAS TO BE DELETED
