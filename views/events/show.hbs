@@ -35,4 +35,8 @@
 <p>Avatar: {{band.avatar}}</p>
 {{/if}}
 
-<button onclick="location.href='/auth/login'" type="button" class="register-button">join</button>
+{{#if currentUser }}
+<button onclick="location.href='/user/events'" type="button" class="register-button">Join *</button>
+{{else}}
+<button onclick="location.href='/auth/login'" type="button" class="register-button">Join</button>
+{{/if}}
