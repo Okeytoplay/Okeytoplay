@@ -1,18 +1,40 @@
-<h3>Welcome: {{userFound.username}}, {{userFound.email}}</h3>
+<div class="cards-container">
+  <h3>Hi!!: {{userFound.username}}</h3>
+  {{#if userFound.band.name}}
+  <h3><img src="../images/band.png" alt="" style="height: 25px"> {{userFound.band.name}}</h3>
+  {{else}}
+  <button class="card"><a href="/bands/new">Create Your Band</a></button>
+  {{/if}}
+
+  {{#if userFound.establishment.name}}
+  <h3>Your Establishment is: {{userFound.establishment.name}}</h3>
+  {{else}}
+  <button class="card"><a href="/establishments/new">Create Your Establishment</a></button>
+  {{/if}}
+
+</div>
+{{!-- <h3>Hi!!: {{userFound.username}}</h3>
 {{#if userFound.band.name}}
-<h3>Your Band is: {{userFound.band.name}}</h3>
+<h3><img src="../images/band.png" alt="" style="height: 25px"> {{userFound.band.name}}</h3>
 {{else}}
-<h3>Create or search your band here: </h3><button><a href="/bands/new">Your Band</a></button>
+<button class="cards-container"><a href="/bands/new">Create Your Band</a></button>
 {{/if}}
 
 {{#if userFound.establishment.name}}
 <h3>Your Establishment is: {{userFound.establishment.name}}</h3>
 {{else}}
-<h3>Create your establishment here: </h3><button><a href="/establishments/new">Create Establishment</a></button>
-{{/if}}
+<button class="cards-container"><a href="/establishments/new">Create Your Establishment</a></button>
+{{/if}} --}}
 
 <h3>Basic User options:</h3>
-<p>Show upcoming events:<a href="/user/events">Join to Events</a></p>
+<div class="cards-container">
+  <div class="card">
+    <p><a href="/user/events">My events</a></p>
+  </div>
+  <div class="card">
+    <p><a href="/events">Events calendar</a></p>
+  </div>
+</div>
 <p>Booked events:<a href="/user/events/bookedevents">Show</a></p>
 <p>Show Bands Profiles:<a href="/bands">Show</a></p>
 <p>Show Establishment Profiles:<a href="/establishments">Show</a></p>

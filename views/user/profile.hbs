@@ -5,12 +5,12 @@
 <p>Delete my band profile </p><button><a href="/user/profile/delete-band">Delete {{user.band.name}}</a></button>
 {{/if}}
 
-{{#if userFound.establishment.name}}
+{{#if user.establishment.name}}
 <h3>Your Establishment is: {{user.establishment.name}}</h3>
 <p>Update my establishment profile </p><button><a href="/user/profile/edit-establishment">Update
-    Establishment</a></button>
+        Establishment</a></button>
 <p>Delete my establishment profile </p><button><a href="/user/profile/delete-establishment">Delete
-    {{user.establishment.name}}</a></button>
+        {{user.establishment.name}}</a></button>
 
 {{/if}}
 
