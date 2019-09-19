@@ -267,7 +267,14 @@ router.get('/profile/delete-establishment', checkIfLoggedIn, async (req, res, ne
     const establishmentDelete = await Establishment.findByIdAndDelete(
       establishmentId,
     );
-    req.flash('info', 'Establishment succesfully deleted.');
+    console.log('El user antes de actualizar:', userId);
+    // Update the User info
+    await User.updateOne({ _id: userId }, { $unset: { establishment: 1 }, 'role.establishment': false });
+    // If the user delete the ESTABLISHMENT, The EVENTS OF THIS ESTABLISHMENTS HAS TO BE DELETED
+    const responseDeletedEvents = await Event.deleteMany({ establishment: establishmentId });
+    // const userIdAct = await User.findById(user);
+    // console.log('El user antes de actualizar:', userIdAct);
+    req.flash('info', 'Establishment and his Events succesfully deleted.');
     res.redirect('/user');
   } catch (error) {
     next(error);
