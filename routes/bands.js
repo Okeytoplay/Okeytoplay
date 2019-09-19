@@ -11,14 +11,10 @@ const router = express.Router();
 
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
-  // const userID = userFound._id;
   try {
-    // const user = await User.findById(userID);
-    // res.render('user/profile', { userFound, title: 'Profile' });
     const role = ['Groupie'];
     if (userFound.role.band) {
       role.push('Band');
@@ -26,32 +22,23 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
     if (userFound.role.establisment) {
       role.push('Establishment');
     }
-    // res.render('user/profile', userFound, role);
     res.render('bands', { userFound, role });
   } catch (error) {
     next(error);
   }
-  // res.render('user/profile');
 });
 
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  // console.log(actualUserEmail);
   const userFound = await User.findOne({ email: actualUserEmail }).populate(
     'band establishment',
   );
   const bands = await Band.find();
-  // const userID = userFound._id;
   try {
-    // const user = await User.findById(userID);
-    // res.render('user/profile', { userFound, title: 'Profile' });
-    // res.render('user/profile', userFound, role);
-    // res.render('user/profile', { userFound });
     res.render('bands', { userFound, bands });
   } catch (error) {
     next(error);
   }
-  // res.render('user/profile');
 });
 
 /* GET Renders new Band */
@@ -71,7 +58,6 @@ router.post('/new', async (req, res, next) => {
     avatar,
   } = req.body;
   const actualUserEmail = req.session.currentUser.email;
-  console.log('email: ', actualUserEmail);
   try {
     let newBand;
     let updatedUser;
@@ -97,13 +83,12 @@ router.post('/new', async (req, res, next) => {
         new: true,
       },
     );
-
-    // res.redirect('/user/profile');
     res.redirect('/user');
   } catch (error) {
     next(error);
   }
 });
+
 /* POST Renders band information */
 router.post('/', async (req, res, next) => {
   const {
@@ -142,26 +127,11 @@ router.post('/:bandID', async (req, res, next) => {
     next(error);
   }
 });
-
 // Join one band
 router.get('/:bandID/join', async (req, res, next) => {
   const { bandID } = req.params;
-  console.log('BandIdJoin:', bandID);
   const userID = req.session.currentUser._id;
-  console.log('UserIdJoin:', userID);
-
   try {
-    // // const user = await User.findById(userID).populate('band');
-    // // let band = await Band.findById(bandID);
-    // const userAssignedToBand = await User.findByIdAndUpdate(
-    //   actualUserId,
-    // ).populate('band');
-
-    // band = await Class.findByIdAndUpdate(
-    //   userID,
-    //   { $push: { band: bandID } },
-    //   { new: true },
-    // );
     const bandAddData = await User.findByIdAndUpdate(
       userID,
       {
@@ -169,7 +139,6 @@ router.get('/:bandID/join', async (req, res, next) => {
       },
       { new: true },
     );
-    console.log('bandAddData:', bandAddData);
     res.redirect('/user');
   } catch (error) {
     next(error);
