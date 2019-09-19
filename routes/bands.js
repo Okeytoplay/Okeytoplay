@@ -175,4 +175,21 @@ router.get('/:bandID/join', async (req, res, next) => {
     next(error);
   }
 });
+
+// View for any word search
+router.get('/query', async (req, res, next) => {
+  const { query } = req.query;
+  console.log('query: ', query);
+
+  try {
+    console.log('query: ', query);
+    const bandName = await Band.find(
+      { name: req.params.query },
+      res.render(':query', bandName),
+    );
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

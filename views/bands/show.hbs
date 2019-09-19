@@ -1,3 +1,6 @@
 <h3>Detalles de la Banda</h3>
 <h1>{{ bands.name }}</h1>
+{{#if userFound.band.name}}
+{{else}}
 <a href="/bands/{{bands._id}}/join">join</a>
+{{/if}}

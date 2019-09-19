@@ -6,6 +6,11 @@
     <h3>If you haven't created your band, click below</h3>
     <a href="/bands/new">Create Band</a>
     {{/if}}
+    <form action="/bands/query" method="get" class="form-inline">
+        <label for="bandName">Band Name</label>
+        <input type="text" class="form-control" name="bandName" placeholder=" Name of Band...">
+        <button type="submit" class="btn">Search</button>
+    </form>
     <h3>Basic View</h3>
     <h4>BAND LIST</h4>
 
