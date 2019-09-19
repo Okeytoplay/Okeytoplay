@@ -23,9 +23,12 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
       role.push('Establishment');
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     // res.render('user/profile', userFound, role);
     res.redirect('bands', { userFound, role });
 =======
+=======
+>>>>>>> d02750b404daf26feb76f0b0122f8059081faae3
     res.render('bands', { userFound, role });
 >>>>>>> devel-johan
   } catch (error) {
