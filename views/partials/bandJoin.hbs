@@ -10,4 +10,9 @@
   </div>
 </div> --}}
 
-<h3>{{this.name}}<a href="/bands/{{this._id}}">Join</a></h3>
+<h3>{{this.name}}</h3>
+{{#if userFound.band.name}}
+<a href="/bands/{{this._id}}">Join</a>
+{{else}}
+<a href="/bands/{{this._id}}">See band details</a>
+{{/if}}
