@@ -176,20 +176,20 @@ router.get('/:bandID/join', async (req, res, next) => {
   }
 });
 
-// View for any word search
-router.get('/query', async (req, res, next) => {
-  const { query } = req.query;
-  console.log('query: ', query);
+// // View for any word search
+// router.get('/', async (req, res, next) => {
+//   const { query } = req.params;
+//   console.log('query: ', query);
 
-  try {
-    console.log('query: ', query);
-    const bandName = await Band.find(
-      { name: req.params.query },
-      res.render(':query', bandName),
-    );
-  } catch (error) {
-    next(error);
-  }
-});
+//   try {
+//     console.log('query: ', query);
+//     const bandName = await Band.find(
+//       { name: req.params.query },
+//       res.render(':query', bandName),
+//     );
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;
