@@ -13,19 +13,17 @@
         </div>
     </div>
 </div>
-<section class="register">
-    <a class="register-button" href="/auth/login">Login</a>
-    <a class="register-button" href="/auth/signup">Signup</a>
-</section>
-<!-- Event Cards -->
-{{!-- {{#each events}}
-<div class="event-card">
-    <img class="event-card-img" src="/images/default-img-events.png" alt="default Event Image">
-    <div class="event-card-details">
-        <p clas="card-event-description"><a href="events/{{_id}}">{{this.description}}</a></p>
-    </div>
+<div>
+    {{#if currentUser }}
+    {{else}}
+    <section class="register">
+        <a class="register-button" href="/auth/login">Login</a>
+        <a class="register-button" href="/auth/signup">Signup</a>
+    </section>
+    {{/if}}
+
 </div>
-{{/each}} --}}
+
 
 <section class="events-section">
     <h3>Upcoming Events:</h3>
