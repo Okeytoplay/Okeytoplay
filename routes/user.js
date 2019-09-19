@@ -175,7 +175,10 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
     const bandId = userBandId.band;
 
     const bandDelete = await Band.findByIdAndDelete(bandId);
+    // After Deleting the Band, update USER INFO
     await User.updateOne({ _id: user }, { $unset: { band: 1 }, 'role.band': false });
+    // After deleting Band, Update EVENTS with the BAND JOINED to the EVENT
+    const responseDeletedEvents = await Event.updateMany({ band: bandId }, { $unset: { band: 1 } }, { multi: true });
     req.flash('info', 'Banda eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
