@@ -326,7 +326,9 @@ router.get('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res
 /* POST Create NEW EVENT */
 
 router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const { name, description, price, durationMins, schedule } = req.body;
+  const {
+    name, description, price, durationMins, schedule
+  } = req.body;
   const actualUserId = req.session.currentUser._id;
   // const userFound = await User.findOne({ email: actualUserEmail }).populate(
   //   'establishment',
@@ -403,10 +405,35 @@ router.get('/events/bookedevents', checkIfLoggedIn, checkIfEstablishment, async 
   }
 });
 
-router.get('/events/edit', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const user = req.session.currentUser;
-
+// GET to render the form to update de event.
+router.get('/events/:eventId/edit', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const fechaActual = fechaDeHoy();
+  const userId = req.session.currentUser;
+  const { eventId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    const event = await Event.findById(eventId).populate('establishment band');
+    res.render('user/events/update', { event, user, fechaActual });
+  } catch (error) {
+    next(error);
+  }
 });
+
+// POST to update de event.
+router.post('/events/:eventId/edit', async (req, res, next) => {
+  const { eventId } = req.params;
+  const {
+    name, description, schedule, startTime, price, durationMins,
+  } = req.body;
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, { name, description, schedule, startTime, price, durationMins }, { new: true });
+    req.flash('success', `Event ${updatedEvent} succesfully updated.`);
+    res.redirect('/user/events');
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {

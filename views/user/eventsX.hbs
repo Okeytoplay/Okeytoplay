@@ -2,7 +2,8 @@
   <ul>
     {{#each events}}
     {{!-- {{>eventcard this}} --}}
-    <button><a href="/">EDIT EVENT</a></button>
+    <button><a href="/user/events/{{this._id}}/edit">EDIT EVENT</a></button><br>
+    <button><a href="/user/events/{{this._id}}/delete">DELETE EVENT</a></button><br>
     <p>Event Name: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
     <p>Starting Time: {{this.startTime}}</p>
