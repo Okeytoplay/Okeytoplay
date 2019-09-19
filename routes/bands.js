@@ -27,7 +27,7 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
       role.push('Establishment');
     }
     // res.render('user/profile', userFound, role);
-    res.render('bands', { userFound, role });
+    res.redirect('bands', { userFound, role });
   } catch (error) {
     next(error);
   }

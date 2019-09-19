@@ -24,6 +24,7 @@
   <div class="navbar">
     <a id="navbar-logo" href="/"></a>
     {{#if currentUser }}
+    <a href="/user">{{currentUser.username}}</a> 
     <a href="/user/profile"> Profile</a>
     <a href="/logout"> Logout</a>
     {{else}}
