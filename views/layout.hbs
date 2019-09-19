@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
   {{#if successMessages}}
@@ -29,25 +30,17 @@
     <a href="/logout"> Logout</a>
     {{/if}}
   </div>
-  <div class="mobile-container">
 
-    {{!-- <a href="/">HOMEPAGE</a>
-    {{#if currentUser }}
-    <p>The user logged In is: {{ currentUser.username }}</p>
-    <a href="/logout">Logout</a>
-    {{else}}
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Signup</a>
-    {{/if}} --}}
+  <div class="mobile-container">
     {{{body}}}
     <button class="backbutton" onclick="goBack()">Go Back</button>
-
 
     {{!-- Footer --}}
     <div class="footer">
       <p>&copy;Footer OkeyToPlay</p>
     </div>
   </div>
+
 </body>
 
 </html>
