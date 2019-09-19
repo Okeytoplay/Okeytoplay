@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Band = require('../models/Band');
 const User = require('../models/User');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 const {
   checkFields,
   checkEmailAndPasswordNotEmpty,
@@ -47,7 +49,7 @@ router.get('/new', (req, res, next) => {
 });
 
 /* POST for the new Band */
-router.post('/new', async (req, res, next) => {
+router.post('/new', upload.single('avatar'), async (req, res, next) => {
   const {
     name,
     genre,
@@ -55,13 +57,11 @@ router.post('/new', async (req, res, next) => {
     website,
     instagramProfile,
     facebookProfile,
-    avatar,
   } = req.body;
+  const avatar = `./public/uploads/${req.file.filename}`;
   const actualUserEmail = req.session.currentUser.email;
   try {
-    let newBand;
-    let updatedUser;
-    newBand = await Band.create({
+    const newBand = await Band.create({
       name,
       genre,
       description,
@@ -71,7 +71,7 @@ router.post('/new', async (req, res, next) => {
       avatar,
     });
     const userFound = await User.findOne({ email: actualUserEmail });
-    updatedUser = await User.updateOne(
+    await User.updateOne(
       { _id: userFound._id },
       {
         $set: {
@@ -145,20 +145,28 @@ router.get('/:bandID/join', async (req, res, next) => {
   }
 });
 
-// // View for any word search
+// View for any word search
 // router.get('/', async (req, res, next) => {
-//   const { query } = req.params;
-//   console.log('query: ', query);
-
+//   const { query } = req.query;
 //   try {
 //     console.log('query: ', query);
 //     const bandName = await Band.find(
-//       { name: req.params.query },
+//       { name: req.query },
 //       res.render(':query', bandName),
 //     );
 //   } catch (error) {
 //     next(error);
 //   }
+// });
+
+// router.get('/', (req, res, next) => {
+//   Band.find({ name: req.query.bandName }, (error, band) => {
+//     if (error) {
+//       next(error);
+//     } else {
+//       res.render('/', { name: band });
+//     }
+//   });
 // });
 
 module.exports = router;

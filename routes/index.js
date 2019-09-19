@@ -2,6 +2,8 @@ const express = require('express');
 const Event = require('../models/Event');
 const Establishment = require('../models/Establishment');
 const Band = require('../models/Band');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 const router = express.Router();
 
