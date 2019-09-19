@@ -1,36 +1,29 @@
 <div class="cards-container">
-    <h2>Here's a list with all our Establishment:</h2>
-    <div class="events-section">
-        <ul class="event-cards">
-            {{#each establishments}}
-            <div class="establishment-card">
-                <p><a href="establishments/{{_id}}">Establishment description: {{description}}</a></p>
+    {{#if userFound.establishment.name}}
+    <h3>If you want to modify your establishment before you should leave the current one</h3>
+    <a href="/user/profile">Profile</a>
+    {{else}}
+    <h3>If you haven't created your establishment, click below</h3>
+    <a href="/establishments/new">Create establishment</a>
+    {{/if}}
+    <form action="/establishments/:id" method="get" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="search" placeholder="Establishments search..." class="form-control">
+            <input type="submit" value="Search" class="btn btn-default">
+        </div>
+    </form>
+    <h3>Basic View</h3>
+    <h4>Establishments LIST</h4>
+
+    <div class="card">
+        <section class="events-section">
+            <div class="event-cards">
+                {{#each establishments}}
+                <p>{{this.name}}</p>
+                <a href="/establishments/{{this._id}}">See establishment details</a>
+                {{/each}}
             </div>
-            {{/each}}
-        </ul>
+        </section>
 
     </div>
-
-
 </div>
-
-
-{{!-- <h2>Create new Establishment:</h2> --}}
-<button class="register-button"><a href="/establishments/new">Create new establishment</a></button>
-{{!-- <ul>
-    {{#each bands}}
-    <div class="event-card">
-        <p><a href="bands/{{_id}}">{{name}}</a></p>
-    </div>
-    {{/each}}
-</ul> --}}
-
-
-<section class="bandJoin-section">
-    <div>
-        {{#each establishment}}
-        {{> bandJoin this}}
-        {{/each}}
-    </div>
-</section>
-<p>pendiente de refacto</p>
