@@ -287,19 +287,22 @@ router.get('/profile/delete-establishment', checkIfLoggedIn, async (req, res, ne
 
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
+  const user = req.session.currentUser;
+  console.log('El usuario de USER EVENTS: ', user);
   try {
     if (req.session.currentUser.role.establishment === false) {
       req.flash('error', 'Seems you don`t have any Establishment, First, Create one!!');
       // res.redirect('/profile');
       res.redirect('/');
     } else {
-      const userFound = await User.findById(req.session.currentUser._id).populate('establishment');
+      const userFound = await User.findById(user).populate('establishment');
       const fechaActual = fechaDeHoy();
-      const events = await Event.find({ establishment: userFound.establishment._id })
+      const events = await Event.find({ establishment: userFound.establishment })
         .sort('schedule')
         .populate('registeredUsers');
       if (events.length > 0) {
-        res.render('user/events', { events, fechaActual, userFound });
+        // res.render('user/events', { events, fechaActual, userFound });
+        res.render('user/eventsX', { events, fechaActual, userFound });
       } else {
         req.flash('info', 'You don`t have events in your establishment yet.');
         res.redirect('/');
@@ -398,6 +401,11 @@ router.get('/events/bookedevents', checkIfLoggedIn, checkIfEstablishment, async 
   } catch (error) {
     next(error);
   }
+});
+
+router.get('/events/edit', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const user = req.session.currentUser;
+
 });
 
 module.exports = router;

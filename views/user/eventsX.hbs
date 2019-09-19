@@ -1,0 +1,17 @@
+<div>
+  <ul>
+    {{#each events}}
+    {{!-- {{>eventcard this}} --}}
+    <button><a href="/">EDIT EVENT</a></button>
+    <p>Event Name: {{this.name}}</p>
+    <p>Description: {{this.description}}</p>
+    <p>Starting Time: {{this.startTime}}</p>
+    <p>Establishment: {{this.establishment}}</p>
+    <p>Band: {{this.band}}</p>
+    <p>Price: {{this.price}}€</p>
+    <p>Duration: {{this.durationMins}}</p>
+    <p>GrupiesOKtoPlay: {{this.registeredUsers}}</p>
+    {{/each}}
+  </ul>
+
+</div>
