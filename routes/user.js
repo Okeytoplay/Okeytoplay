@@ -79,7 +79,7 @@ router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
 });
 
 // GETS the user profile landing page, where he can edit his information
-router.get('/profile/edit-user', async (req, res, next) => {
+router.get('/profile/edit-user', checkIfLoggedIn, async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
 
@@ -93,7 +93,7 @@ router.get('/profile/edit-user', async (req, res, next) => {
 });
 
 // POST submits profile edit form
-router.post('/profile/edit-user', async (req, res, next) => {
+router.post('/profile/edit-user', checkIfLoggedIn, async (req, res, next) => {
   const { username, email } = req.body;
   // const actualUserEmail = req.session.currentUser.email;
   const userID = req.session.currentUser._id;
@@ -118,7 +118,7 @@ router.post('/profile/edit-user', async (req, res, next) => {
 });
 
 // GETS the band profile landing page, where he can edit his information
-router.get('/profile/edit-band', async (req, res, next) => {
+router.get('/profile/edit-band', checkIfLoggedIn, async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   const user = req.session.currentUser._id;
   try {
@@ -134,7 +134,7 @@ router.get('/profile/edit-band', async (req, res, next) => {
 });
 
 // POST submits profile band edit form
-router.post('/profile/edit-band', async (req, res, next) => {
+router.post('/profile/edit-band', checkIfLoggedIn, async (req, res, next) => {
   const {
     name,
     genre,
@@ -178,7 +178,7 @@ router.post('/profile/edit-band', async (req, res, next) => {
 });
 
 //Delete user band
-router.get('/profile/delete-band', async (req, res, next) => {
+router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const userBandId = await User.findById(user);
   const bandId = userBandId.band;
@@ -193,94 +193,106 @@ router.get('/profile/delete-band', async (req, res, next) => {
 });
 
 // GETS the establishment profile landing page, where he can edit his information
-router.get('/profile/edit-establishment', async (req, res, next) => {
-  // const actualUserEmail = req.session.currentUser.email;
-  const user = req.session.currentUser._id;
-  try {
-    // const userFound = await User.findOne({ email: actualUserEmail });
-    // const band = await Band.findById(userID);
-    const userEstablishmentId = await User.findById(user);
-    console.log(
-      'kepasauserEstablishmentId: ',
-      userEstablishmentId.establishment,
-    );
-    const userEstablishment = await Establishment.findById(
-      userEstablishmentId.establishment,
-    );
-    console.log('kepasauserEstablishment: ', userEstablishment);
+router.get(
+  '/profile/edit-establishment',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    // const actualUserEmail = req.session.currentUser.email;
+    const user = req.session.currentUser._id;
+    try {
+      // const userFound = await User.findOne({ email: actualUserEmail });
+      // const band = await Band.findById(userID);
+      const userEstablishmentId = await User.findById(user);
+      console.log(
+        'kepasauserEstablishmentId: ',
+        userEstablishmentId.establishment,
+      );
+      const userEstablishment = await Establishment.findById(
+        userEstablishmentId.establishment,
+      );
+      console.log('kepasauserEstablishment: ', userEstablishment);
 
-    res.render('user/profile/edit-establishment', { userEstablishment });
-  } catch (error) {
-    next(error);
-  }
-});
+      res.render('user/profile/edit-establishment', { userEstablishment });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // POST submits profile establishment edit form
-router.post('/profile/edit-establishment', async (req, res, next) => {
-  const {
-    name,
-    description,
-    website,
-    instagramProfile,
-    facebookProfile,
-    street,
-    city,
-    zip,
-    capacity,
-    avatar,
-  } = req.body;
-  // const actualUserEmail = req.session.currentUser.email;
-  const userID = req.session.currentUser._id;
-  console.log('userIdPost:', userID);
-  const userEstablishment = await User.findById(userID);
-  console.log('userEstablishmentPost:', userEstablishment);
+router.post(
+  '/profile/edit-establishment',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const {
+      name,
+      description,
+      website,
+      instagramProfile,
+      facebookProfile,
+      street,
+      city,
+      zip,
+      capacity,
+      avatar,
+    } = req.body;
+    // const actualUserEmail = req.session.currentUser.email;
+    const userID = req.session.currentUser._id;
+    console.log('userIdPost:', userID);
+    const userEstablishment = await User.findById(userID);
+    console.log('userEstablishmentPost:', userEstablishment);
 
-  if (name === '') {
-    req.flash('error', 'No empty fields allowed.');
-    res.redirect('/profile/edit-band');
-  }
+    if (name === '') {
+      req.flash('error', 'No empty fields allowed.');
+      res.redirect('/profile/edit-band');
+    }
 
-  try {
-    const establishmentModifiedData = await Establishment.findByIdAndUpdate(
-      userEstablishment.establishment,
-      {
-        name,
-        description,
-        website,
-        instagramProfile,
-        facebookProfile,
-        street,
-        city,
-        zip,
-        capacity,
-        avatar,
-      },
-      { new: true },
-    );
-    console.log('establishmentModifiedData:', establishmentModifiedData);
-    req.flash('success', 'Establishment succesfully updated.');
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
+    try {
+      const establishmentModifiedData = await Establishment.findByIdAndUpdate(
+        userEstablishment.establishment,
+        {
+          name,
+          description,
+          website,
+          instagramProfile,
+          facebookProfile,
+          street,
+          city,
+          zip,
+          capacity,
+          avatar,
+        },
+        { new: true },
+      );
+      console.log('establishmentModifiedData:', establishmentModifiedData);
+      req.flash('success', 'Establishment succesfully updated.');
+      res.redirect('/user');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 //Delete user establishment
-router.get('/profile/delete-establishment', async (req, res, next) => {
-  const user = req.session.currentUser;
-  const userId = await User.findById(user);
-  const establishmentId = userId.establishment;
+router.get(
+  '/profile/delete-establishment',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const user = req.session.currentUser;
+    const userId = await User.findById(user);
+    const establishmentId = userId.establishment;
 
-  try {
-    const establishmentDelete = await Establishment.findByIdAndDelete(
-      establishmentId,
-    );
-    req.flash('info', 'Establishment eliminada correctamente');
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
+    try {
+      const establishmentDelete = await Establishment.findByIdAndDelete(
+        establishmentId,
+      );
+      req.flash('info', 'Establishment eliminada correctamente');
+      res.redirect('/user');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
