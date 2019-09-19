@@ -1,0 +1,31 @@
+@import '../mixins/home';
+@import '../mixins/navbar';
+@import '../mixins/eventcard';
+@import '../mixins/footer';
+@import '../mixins/login';
+@import '../mixins/signup';
+// General Attributes
+* body {
+  margin: 0;
+  height: 100%;
+  background-color: #f9f9f9;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+.not-shown {
+  display: none;
+}
+img {
+  height: 250px;
+}
+.mobile-container {
+  box-sizing: border-box;
+}
+.backbutton {
+  bottom: 0px;
+  position: sticky;
+  background-color: purple;
+  border-radius: 20%;
+  padding: 5px;
+  color: white;
+  float: left;
+}

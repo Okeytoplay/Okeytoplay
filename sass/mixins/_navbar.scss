@@ -1,0 +1,36 @@
+/* Style the navigation bar */
+.navbar {
+  overflow: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: right;
+  padding: 20px;
+  text-transform: uppercase;
+  color: gray;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(234, 155, 35);
+}
+
+#navbar-logo {
+  padding-right: 60px;
+  margin-right: 60px;
+}
+
+#navbar-logo {
+  background-image: url('../images/logo.png');
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;
+  margin: 15px;
+}

@@ -1,0 +1,16 @@
+.footer {
+  background: linear-gradient(
+    54deg,
+    rgba(184, 35, 35, 0.938) 34%,
+    hsla(34, 75%, 57%, 0.95)
+  );
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: left;
+  // display: contents;
+}
+.footer p {
+  margin: 0;
+  padding: 10px;
+}

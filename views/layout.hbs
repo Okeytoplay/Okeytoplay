@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="/javascripts/backbutton.js"></script>
+
+</head>
+
+<body>
+  <!-- Simulate a smartphone / tablet look -->
+  {{!-- flash notifications --}}
+  {{#if successMessages}}
+  <p class="success">{{successMessages}}</p>
+  {{/if}}
+  {{#if errorMessages }}
+  <p class="error">{{ errorMessages }}</p>
+  {{/if }}
+
+  {{!-- Navbar --}}
+  <div class="navbar">
+    <a id="navbar-logo" href="/"></a>
+    {{#if currentUser }}
+    <a href="/user/profile"> Profile</a>
+    <a href="/logout"> Logout</a>
+    {{else}}
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Signup</a>
+    {{/if}}
+  </div>
+  <div class="mobile-container">
+
+    {{!-- <a href="/">HOMEPAGE</a>
+    {{#if currentUser }}
+    <p>The user logged In is: {{ currentUser.username }}</p>
+    <a href="/logout">Logout</a>
+    {{else}}
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Signup</a>
+    {{/if}} --}}
+    {{{body}}}
+    <button class="backbutton" onclick="goBack()">Go Back</button>
+
+
+    {{!-- Footer --}}
+    <div class="footer">
+      <p>&copy;Footer OkeyToPlay</p>
+    </div>
+  </div>
+</body>
+
+</html>

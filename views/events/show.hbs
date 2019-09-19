@@ -1,0 +1,34 @@
+<h2>EVENT DETAIL:</h2>
+<p>Name: {{name}}</p>
+<p>Description: {{description}}</p>
+<p>Date: {{schedule}}</p>
+<p>Price: {{price}} €</p>
+<p>Starting Time: {{startTime}}</p>
+<p>Duration: {{duration}}</p>
+
+{{#if establishment}}
+<h2>ESTABLISHMENT DETAIL:</h2>
+<p>Name: {{establishment.name}}</p>
+<p>Description: {{establishment.description}}</p>
+<p>Website: <a href="{{establishment.website}}"></a>Website {{website}}</p>
+<p>Instagram: {{establishment.instagramProfile}}</p>
+<p>Facebook: {{establishment.facebookProfile}}</p>
+<ul>Adress
+    <p>Street: {{establishment.street}}</p>
+    <p>City: {{establishment.city}}</p>
+    <p>Zip: {{establishment.zip}}</p>
+</ul>
+<p>Capacity: {{establishment.capacity}}</p>
+<p>Avatar: {{establishment.avatar}}</p>
+{{/if}}
+
+{{#if band}}
+<h2>BAND DETAIL:</h2>
+<p>Name: {{band.name}}</p>
+<p>Musical Genre: {{band.genre}}</p>
+<p>Description: {{band.description}}</p>
+<p>Website: <a href="{{band.website}}"></a>Website {{website}}</p>
+<p>Instagram: {{band.instagramProfile}}</p>
+<p>Facebook: {{band.facebookProfile}}</p>
+<p>Avatar: {{band.avatar}}</p>
+{{/if}}

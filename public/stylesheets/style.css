@@ -1,0 +1,202 @@
+/*JUMBOTRON*/
+.jumbotron {
+  background: linear-gradient(54deg, rgba(184, 35, 35, 0.938) 34%, rgba(228, 156, 63, 0.95));
+  padding: 15px 15px; }
+
+.logo-picture {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px; }
+
+.textarea-jumbotron {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%; }
+
+.headline {
+  display: inline;
+  margin-top: 50px;
+  color: white; }
+
+.brand-info {
+  color: white;
+  margin-top: 10px;
+  text-align: center; }
+
+h1 {
+  margin: 0;
+  text-align: center; }
+
+h4 {
+  margin: 0;
+  text-align: center;
+  margin-top: 5px; }
+
+/*Login/Signup Buttons 1*/
+.register {
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.register-button {
+  width: 90%;
+  margin: 10px;
+  background-color: #ea9b23;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 0; }
+
+.register-button a {
+  color: white; }
+
+/* Style the navigation bar */
+.navbar {
+  overflow: auto;
+  display: flex;
+  justify-content: space-around; }
+
+/* Navbar links */
+.navbar a {
+  float: left;
+  text-align: right;
+  padding: 20px;
+  text-transform: uppercase;
+  color: gray;
+  text-decoration: none;
+  font-size: 15px; }
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: white;
+  color: #ea9b23; }
+
+#navbar-logo {
+  padding-right: 60px;
+  margin-right: 60px; }
+
+#navbar-logo {
+  background-image: url("../images/logo.png");
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;
+  margin: 15px; }
+
+.events-section {
+  margin: 10px; }
+
+.cards-container a {
+  text-decoration-line: none; }
+
+.card {
+  margin: 5px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.055);
+  display: flex;
+  align-items: center; }
+
+.card-Band-img-top {
+  height: 100px;
+  padding-right: 10px; }
+
+.card-title {
+  float: left;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 14px; }
+
+.event-card {
+  border: 1px solid blue;
+  margin: 5px; }
+
+ul {
+  padding: 0; }
+
+.footer {
+  background: linear-gradient(54deg, rgba(184, 35, 35, 0.938) 34%, rgba(228, 156, 63, 0.95));
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: left; }
+
+.footer p {
+  margin: 0;
+  padding: 10px; }
+
+#form {
+  width: 380px; }
+
+#form label {
+  color: gray;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%; }
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  margin-left: 15px;
+  padding: 10px;
+  width: 90%; }
+
+#form button {
+  width: 80%;
+  margin: 15px 10px 20px 30px;
+  background-color: #eb9b24;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; }
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: 0.3s ease background; }
+
+.register {
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+* body {
+  margin: 0;
+  height: 100%;
+  background-color: #f9f9f9;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
+
+.not-shown {
+  display: none; }
+
+img {
+  height: 250px; }
+
+.mobile-container {
+  box-sizing: border-box; }
+
+.backbutton {
+  bottom: 0px;
+  position: sticky;
+  background-color: purple;
+  border-radius: 20%;
+  padding: 5px;
+  color: white;
+  float: left; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,23 @@
+<h1>Crea tu nuevo evento</h1>
+
+<div>
+  <form id='form-event-new' action="/user/events/new" method="POST">
+    <label for="name">Nombre del evento:</label><br>
+    <input type="text" name='name' placeholder="Nombre del Evento" required><br>
+    <label for="description">Descripción del evento:</label><br>
+    <input type="text" name='description' placeholder="Descripción del Evento" required><br>
+    <label for="price">Precio de la entrada:</label><br>
+    <input type="text" name='price' placeholder="Precio de la entrada">€<br>
+    <label for="durationMins">Duración del evento (en minutos):</label><br>
+    <input type="text" name='durationMins' placeholder="Dureación en minutos"><br>
+    <label for="schedule">Fecha (Hoy por defecto):</label><br>
+    <input type="datetime-local" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
+
+
+    <button type="submit">Crear EVENTO</button>
+  </form>
+</div>
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}

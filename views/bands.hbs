@@ -1,0 +1,24 @@
+<div class="cards-container">
+    {{#if userFound.band.name}}
+    <h3>If you want to join another band before you should leave the current one</h3>
+    <a href="/user/profile">Profile</a>
+    {{else}}
+    <h3>If you haven't created your band, click below</h3>
+    <a href="/bands/new">Create Band</a>
+    {{/if}}
+    <h3>Basic View</h3>
+    <h4>BAND LIST</h4>
+
+    <div class="card">
+        <section class="events-section">
+            <div class="event-cards">
+                {{#each bands}}
+                {{> bandJoin this}}
+                {{/each}}
+            </div>
+        </section>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,11 @@
+<form id='form' action='/user/profile/edit-user' method='POST'>
+    <label for='username'>Username:</label><br>
+    <input type='text' name='username' value='{{user.username}}' required><br>
+    <label for='email'>Email:</label><br>
+    <input type='email' name='email' id='email_id' value='{{user.email}}' required><br>
+    <button type='submit'>Update account</button>
+</form>
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}

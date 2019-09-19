@@ -1,0 +1,65 @@
+/*JUMBOTRON*/
+.jumbotron {
+  background: linear-gradient(
+    54deg,
+    rgba(184, 35, 35, 0.938) 34%,
+    hsla(34, 75%, 57%, 0.95)
+  );
+  padding: 15px 15px;
+}
+.logo-picture {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+.textarea-jumbotron {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.headline {
+  display: inline;
+  margin-top: 50px;
+  color: white;
+}
+.brand-info {
+  color: white;
+  margin-top: 10px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+h4 {
+  margin: 0;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/*Login/Signup Buttons 1*/
+.register {
+  height: 110px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-button {
+  width: 90%;
+  margin: 10px;
+  background-color: rgb(234, 155, 35);
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.register-button a {
+  color: white;
+}
