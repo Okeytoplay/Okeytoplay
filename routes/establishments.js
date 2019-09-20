@@ -12,10 +12,10 @@ const router = express.Router();
 
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'band establishment',
-  );
   try {
+    const userFound = await User.findOne({ email: actualUserEmail }).populate(
+      'band establishment',
+    );
     const role = ['Groupie'];
     if (userFound.role.band) {
       role.push('Band');
@@ -31,11 +31,11 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'band establishment',
-  );
-  const establishments = await Establishment.find();
   try {
+    const userFound = await User.findOne({ email: actualUserEmail }).populate(
+      'band establishment',
+    );
+    const establishments = await Establishment.find();
     res.render('establishments', { userFound, establishments });
   } catch (error) {
     next(error);
@@ -44,14 +44,25 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
 
 /* GET Renders available establishments */
 router.get('/', async (req, res, next) => {
-  const searchAllEstablishments = await Establishment.find();
-  console.log('establishments ', establishments);
   try {
-    res.render('establishments', { searchAllEstablishments });
+    const establishments = await Establishment.find()
+    console.log('establishments ', establishments);
+    res.render('establishments', { establishments });
   } catch (error) {
     next(error);
   }
 });
+
+// /* GET Renders available establishments */
+// router.get('/', async (req, res, next) => {
+//   const searchAllEstablishments = await Establishment.find();
+//   console.log('establishments ', establishments);
+//   try {
+//     res.render('establishments', { searchAllEstablishments });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 /* GET Renders new establishment */
 router.get('/new', (req, res, next) => {
