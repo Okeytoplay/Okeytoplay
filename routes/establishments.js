@@ -6,14 +6,16 @@ const Establishment = require('../models/Establishment');
 const router = express.Router();
 
 /* GET Renders available establishments */
-router.get('/', (req, res, next) => {
-  Establishment.find()
-    .then(establishments => {
-      console.log('establishments ', establishments);
-      res.render('establishments', { establishments });
-    })
-    .catch(next);
+router.get('/', async (req, res, next) => {
+  try {
+    const establishments = await Establishment.find()
+    console.log('establishments ', establishments);
+    res.render('establishments', { establishments });
+  } catch (error) {
+    next(error);
+  }
 });
+
 // /* GET Renders available establishments */
 // router.get('/', async (req, res, next) => {
 //   const searchAllEstablishments = await Establishment.find();
