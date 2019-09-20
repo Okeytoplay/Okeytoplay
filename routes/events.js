@@ -9,16 +9,16 @@ const router = express.Router();
 
 /* GET Renders available events -> Show all the events */
 router.get('/', async (req, res, next) => {
-  const fechaActual = await fechaDeHoy();
-  const fecha = fechaActual
-    .split('/')
-    .reverse()
-    .join('/');
-  const events = await Event.find({ schedule: { $gte: fechaActual } })
-    .sort('schedule')
-    .populate('establishment band');
-  console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
   try {
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual
+      .split('/')
+      .reverse()
+      .join('/');
+    const events = await Event.find({ schedule: { $gte: fechaActual } })
+      .sort('schedule')
+      .populate('establishment band');
+    console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
     // const fechaActual = fechaDeHoy();
     console.log('FECHA ', fechaActual);
     console.log('events ', events);
@@ -31,8 +31,8 @@ router.get('/', async (req, res, next) => {
 /* GET Renders new event -> Show the page to create a new event */
 // Falta comprobación MIDDLEWARE de ser ESTABLISHMENT para poder crear EVENTOS
 router.get('/new', checkIfLoggedIn, async (req, res, next) => {
-  const fechaActual = await fechaDeHoy();
   try {
+    const fechaActual = fechaDeHoy();
     res.render('events/new', { fechaActual });
   } catch (error) {
     next(error);
@@ -51,9 +51,8 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
   // ); // THIS IS THE CORRECT!!!
   // ONLY FOR TEST
   // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-  const userFound = await User.findOne({ email: actualUserEmail });
-
   try {
+    const userFound = await User.findOne({ email: actualUserEmail });
     const eventNew = await Event.create({
       name,
       description,
@@ -96,16 +95,15 @@ router.get('/:eventId', async (req, res, next) => {
 });
 
 /* POST Renders event information */
-router.post('/:eventId', (req, res, next) => {
+router.post('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
-  Event.find(
-    { _id: eventId }
-      .then(events => {
-        console.log('events ', events);
-        res.redirect(`/events/${eventId}`);
-      })
-      .catch(next),
-  );
+  try {
+    const events = await Event.find({ _id: eventId });
+    console.log('events ', events);
+    res.redirect(`/events/${eventId}`);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
