@@ -10,6 +10,19 @@ const BandSchema = new Schema({
   instagramProfile: String,
   facebookProfile: String,
   avatar: String,
+  bandmembers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  petitions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  requests: { type: String, default: 'Abiertas' },
 });
 
 const Band = mongoose.model('Band', BandSchema);

@@ -474,4 +474,17 @@ router.get(
   },
 );
 
+// GETS the band petitions landing page
+router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
+  const user = req.session.currentUser._id;
+  try {
+    const userBandId = await User.findById(user);
+    const userBand = await Band.findById(userBandId.band);
+
+    res.render('user/profile/petitions', { user, userBand });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

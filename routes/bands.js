@@ -86,6 +86,9 @@ router.post('/new', async (req, res, next) => {
         new: true,
       },
     );
+    const push = await Band.findByIdAndUpdate(newBand._id, {
+      $push: { bandmembers: userFound._id },
+    });
     res.redirect('/user');
   } catch (error) {
     next(error);
@@ -129,23 +132,23 @@ router.post('/:bandID', async (req, res, next) => {
     next(error);
   }
 });
-// Join one band
-router.get('/:bandID/join', async (req, res, next) => {
-  const { bandID } = req.params;
-  const userID = req.session.currentUser._id;
-  try {
-    const bandAddData = await User.findByIdAndUpdate(
-      userID,
-      {
-        band: bandID,
-      },
-      { new: true },
-    );
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
+// // Join one band
+// router.get('/:bandID/join', async (req, res, next) => {
+//   const { bandID } = req.params;
+//   const userID = req.session.currentUser._id;
+//   try {
+//     const bandAddData = await User.findByIdAndUpdate(
+//       userID,
+//       {
+//         band: bandID,
+//       },
+//       { new: true },
+//     );
+//     res.redirect('/user');
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // UPLOAD IMAGES AVATAR
 router.post('/avatar/avatar-upload', async (req, res) => {
@@ -199,20 +202,65 @@ router.get('/avatar/avatar-upload', async (req, res) => {
     bandId,
   });
 });
-// // View for any word search
-// router.get('/', async (req, res, next) => {
-//   const { query } = req.params;
-//   console.log('query: ', query);
 
-//   try {
-//     console.log('query: ', query);
-//     const bandName = await Band.find(
-//       { name: req.params.query },
-//       res.render(':query', bandName),
-//     );
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+// Join one band
+router.get('/:bandID/join', async (req, res, next) => {
+  const { bandID } = req.params;
+  const userID = req.session.currentUser._id;
+  try {
+    const band = await Band.findByIdAndUpdate(bandID, {
+      $push: { petitions: userID },
+    });
+    console.log('bandID: ', band);
+    req.flash('info', 'La peticion ha sido enviada a la banda');
+    res.render('user/profile/petitions');
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:bandID/check', async (req, res, next) => {
+  const { bandID } = req.params;
+
+  try {
+    const petitions = await Band.findById(bandID).populate('petitions');
+    res.render('user/profile/petitions', { petitions, bandID });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:bandID/decline', async (req, res, next) => {
+  const { bandID } = req.params;
+  const userID = req.session.currentUser._id;
+
+  try {
+    const band = await Band.findByIdAndUpdate(bandID, {
+      $pull: { petitions: userID },
+    });
+    req.flash('info', 'Usuario rechazado');
+    res.render('user/profile/petitions');
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/:bandID/accept', async (req, res, next) => {
+  const { bandID } = req.params;
+  const userID = req.session.currentUser._id;
+  try {
+    const band = await Band.findByIdAndUpdate(bandID, {
+      $push: { members: userID },
+    });
+    const pull = await Band.findByIdAndUpdate(bandID, {
+      $pull: { petitions: userID },
+    });
+
+    req.flash('info', 'Usuario Aceptado');
+    res.render('user/profile/petitions');
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
