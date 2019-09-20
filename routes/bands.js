@@ -12,11 +12,11 @@ const router = express.Router();
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
   // console.log(actualUserEmail);
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'band establishment',
-  );
-  // const userID = userFound._id;
   try {
+    const userFound = await User.findOne({ email: actualUserEmail }).populate(
+      'band establishment',
+    );
+    // const userID = userFound._id;
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
     const role = ['Groupie'];
@@ -37,12 +37,12 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
   // console.log(actualUserEmail);
-  const userFound = await User.findOne({ email: actualUserEmail }).populate(
-    'band establishment',
-  );
-  const bands = await Band.find();
-  // const userID = userFound._id;
   try {
+    const userFound = await User.findOne({ email: actualUserEmail }).populate(
+      'band establishment',
+    );
+    const bands = await Band.find();
+    // const userID = userFound._id;
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
     // res.render('user/profile', userFound, role);

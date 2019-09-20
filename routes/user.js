@@ -479,9 +479,9 @@ router.post('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, as
       }
       // Aquí tenemos que borrar el evento!!
       const deletedEvent = await Event.findByIdAndDelete(event);
-      console.log('Deleted Event:', deletedEvent);
-      const event2 = await Event.findById(eventId);
-      console.log('Event2', event2);
+      // console.log('Deleted Event:', deletedEvent);
+      // const event2 = await Event.findById(eventId);
+      // console.log('Event2', event2);
       req.flash('success', `The ${deletedEvent.name} has been deleted succesfully!!`);
       res.redirect('/user/events');
     } else {
