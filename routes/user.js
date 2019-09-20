@@ -482,8 +482,11 @@ router.post('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, as
       console.log('Deleted Event:', deletedEvent);
       const event2 = await Event.findById(eventId);
       console.log('Event2', event2);
+      req.flash('success', `The ${deletedEvent.name} has been deleted succesfully!!`);
+      res.redirect('/user/events');
     } else {
       req.flash('warning', ' You are trying to delete an Event that you are not the owner');
+      res.redirect('/users/events');
     }
   } catch (error) {
     next(error);
