@@ -100,6 +100,27 @@ h4 {
   display: flex;
   align-items: center; }
 
+.card2 {
+  margin: 5px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.055);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.bttn a {
+  width: 80%;
+  margin: 15px 10px 20px 30px;
+  background-color: #24a2eb;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; }
+
 .card-Band-img-top {
   height: 100px;
   padding-right: 10px; }
