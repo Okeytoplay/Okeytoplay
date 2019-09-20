@@ -455,6 +455,41 @@ router.get('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, asy
   }
 });
 
+// POST PROCESS EVENT delete, we should NOTIFICATE TO THE REGISTERED USERS THAT THE EVENT HAS BEEN DELETED
+router.post('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const userId = req.session.currentUser;
+  const { eventId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    const event = await Event.findById(eventId);
+    const registeredUsers = await Event.findById(eventId).populate('registeredUsers');
+    console.log('El evento que quiero borrar:', event);
+    if (event.establishment._id.equals(user.establishment)) {
+      // Si tiene banda hay que avisar a la banda que se ha eliminado el evento
+      if (event.band != null) {
+        console.log('Tiene banda, tenemos que avisar a la banda...');
+      } else {
+        console.log('NO tiene banda,');
+      }
+      // Si tiene Usuarios Registrados, se les tiene que avisar
+      if (registeredUsers.length > 0) {
+        console.log('Tenemos que avisar a los users:');
+      } else {
+        console.log('NO tienes users Registrados');
+      }
+      // Aquí tenemos que borrar el evento!!
+      const deletedEvent = await Event.findByIdAndDelete(event);
+      console.log('Deleted Event:', deletedEvent);
+      const event2 = await Event.findById(eventId);
+      console.log('Event2', event2);
+    } else {
+      req.flash('warning', ' You are trying to delete an Event that you are not the owner');
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
