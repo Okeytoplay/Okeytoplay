@@ -434,6 +434,27 @@ router.post('/events/:eventId/edit', async (req, res, next) => {
   }
 });
 
+// GET to render the CONFIRM to proceed to DELETE de event.
+router.get('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
+  const fechaActual = fechaDeHoy();
+  const userId = req.session.currentUser;
+  const { eventId } = req.params;
+  try {
+    const user = await User.findById(userId);
+    console.log('El usuario para borrar:', user);
+    // const event = await Event.findById(eventId).populate('establishment band');
+    const event = await Event.findById(eventId);
+    if (event.establishment._id.equals(user.establishment)) {
+      res.render('user/events/delete', { user, event, fechaActual });
+    } else {
+      req.flash('warniing', `${user.name}, you are not the owner of the Event.`);
+      res.redirect('/user/events');
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;
 // router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
