@@ -9,7 +9,7 @@ const BandSchema = new Schema({
   website: String,
   instagramProfile: String,
   facebookProfile: String,
-  avatar: { type: String },
+  avatar: String,
 });
 
 const Band = mongoose.model('Band', BandSchema);
