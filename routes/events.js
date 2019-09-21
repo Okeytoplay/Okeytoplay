@@ -28,46 +28,49 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+/**     ELIMINAR RUTA EVENTS/NEW */
+
 /* GET Renders new event -> Show the page to create a new event */
 // Falta comprobación MIDDLEWARE de ser ESTABLISHMENT para poder crear EVENTOS
-router.get('/new', checkIfLoggedIn, async (req, res, next) => {
-  try {
-    const fechaActual = fechaDeHoy();
-    res.render('events/new', { fechaActual });
-  } catch (error) {
-    next(error);
-  }
-  // falta comprobacion para q grupie/banda
-  // no puedan crear un evento
-});
+
+// router.get('/new', checkIfLoggedIn, async (req, res, next) => {
+//   try {
+//     const fechaActual = fechaDeHoy();
+//     res.render('events/new', { fechaActual });
+//   } catch (error) {
+//     next(error);
+//   }
+//   // falta comprobacion para q grupie/banda
+//   // no puedan crear un evento
+// });
 
 /* POST Create NEW EVENT */
 
-router.post('/new', checkIfLoggedIn, async (req, res, next) => {
-  const { name, description, price, durationMins, schedule } = req.body;
-  const actualUserEmail = req.session.currentUser.email;
-  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
-  //   'establishment',
-  // ); // THIS IS THE CORRECT!!!
-  // ONLY FOR TEST
-  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-  try {
-    const userFound = await User.findOne({ email: actualUserEmail });
-    const eventNew = await Event.create({
-      name,
-      description,
-      price,
-      durationMins,
-      schedule,
-      establishmentId: userFound.establishment,
-    });
-    // Poner FLASH notification
-    req.flash('success', ` El evento ${name} ha sido creado con exito`);
-    res.redirect('/');
-  } catch (error) {
-    next(error);
-  }
-});
+// router.post('/new', checkIfLoggedIn, async (req, res, next) => {
+//   const { name, description, price, durationMins, schedule } = req.body;
+//   const actualUserEmail = req.session.currentUser.email;
+//   // const userFound = await User.findOne({ email: actualUserEmail }).populate(
+//   //   'establishment',
+//   // ); // THIS IS THE CORRECT!!!
+//   // ONLY FOR TEST
+//   // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+//   try {
+//     const userFound = await User.findOne({ email: actualUserEmail });
+//     const eventNew = await Event.create({
+//       name,
+//       description,
+//       price,
+//       durationMins,
+//       schedule,
+//       establishmentId: userFound.establishment,
+//     });
+//     // Poner FLASH notification
+//     req.flash('success', ` El evento ${name} ha sido creado con exito`);
+//     res.redirect('/');
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // router.post('/new', checkIfLoggedIn, (req, res, next) => {
 //   const { name, date } = req.body;
