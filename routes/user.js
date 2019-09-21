@@ -478,16 +478,76 @@ router.get(
 router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   try {
-    
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    console.log('userband ', userBand);
+    const userBand2 = await Band.findById(user.band);
+    // console.log('userBand2 ', userBand2);
 
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
     next(error);
   }
 });
+
+router.get(
+  '/profile/petitions/:bandId/:petitionUserId/decline',
+  async (req, res, next) => {
+    const { bandId, petitionUserId } = req.params;
+
+    // - find con toda la informacion de la banda
+    // - busco el id de peticion en el array petitions
+    // - borro el id del array
+    // - actualizo el campo petitions de la collection banda
+
+    try {
+      const band = await Band.findByIdAndUpdate(
+        bandId,
+        {
+          $pull: { petitions: petitionUserId },
+        },
+        { new: true },
+      );
+
+      req.flash('info', 'Usuario rechazado');
+      res.redirect('/user/profile/petitions');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.get(
+  '/profile/petitions/:bandId/:petitionUserId/accept',
+  async (req, res, next) => {
+    const { bandId, petitionUserId } = req.params;
+    try {
+      const band = await Band.findByIdAndUpdate(
+        bandId,
+        {
+          $pull: { petitions: petitionUserId },
+          $push: { bandmembers: petitionUserId },
+        },
+        { new: true },
+      );
+      const updateRole = await User.findByIdAndUpdate(
+        petitionUserId,
+        {
+          band: bandId,
+          $set: {
+            'role.band': true,
+          },
+        },
+        { new: true },
+      );
+
+      console.log('baaaand: ', updateRole);
+      req.flash('info', 'Usuario Aceptado');
+      res.redirect('/user/profile/petitions');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 module.exports = router;

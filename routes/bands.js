@@ -230,37 +230,37 @@ router.get('/:bandID/check', async (req, res, next) => {
   }
 });
 
-router.get('/:bandID/decline', async (req, res, next) => {
-  const { bandID } = req.params;
-  const userID = req.session.currentUser._id;
+// router.get('/:bandID/decline', async (req, res, next) => {
+//   const { bandID } = req.params;
+//   const userID = req.session.currentUser._id;
 
-  try {
-    const band = await Band.findByIdAndUpdate(bandID, {
-      $pull: { petitions: userID },
-    });
-    req.flash('info', 'Usuario rechazado');
-    res.render('user/profile/petitions');
-  } catch (error) {
-    next(error);
-  }
-});
+//   try {
+//     const band = await Band.findByIdAndUpdate(bandID, {
+//       $pull: { petitions: userID },
+//     });
+//     req.flash('info', 'Usuario rechazado');
+//     res.render('user/profile/petitions');
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-router.get('/:bandID/accept', async (req, res, next) => {
-  const { bandID } = req.params;
-  const userID = req.session.currentUser._id;
-  try {
-    const band = await Band.findByIdAndUpdate(bandID, {
-      $push: { members: userID },
-    });
-    const pull = await Band.findByIdAndUpdate(bandID, {
-      $pull: { petitions: userID },
-    });
+// router.get('/:bandID/accept', async (req, res, next) => {
+//   const { bandID } = req.params;
+//   const userID = req.session.currentUser._id;
+//   try {
+//     const band = await Band.findByIdAndUpdate(bandID, {
+//       $push: { members: userID },
+//     });
+//     const pull = await Band.findByIdAndUpdate(bandID, {
+//       $pull: { petitions: userID },
+//     });
 
-    req.flash('info', 'Usuario Aceptado');
-    res.render('user/profile/petitions');
-  } catch (error) {
-    next(error);
-  }
-});
+//     req.flash('info', 'Usuario Aceptado');
+//     res.render('user/profile/petitions');
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;

@@ -1,8 +1,18 @@
 <h3>My petitions Area: {{user.username}}</h3>
 {{!-- Poner condicional si tiene banda --}}
 <p>My Band:{{userBand.name}} </p>
-<p>Current band members of {{userBand.name}}:{{userBand.bandmembers}}</p>
+<p>Current band members of {{userBand.name}}:</p>
+<ul>
+    {{#each userBand.bandmembers}}
+    <li>{{this.username}}</li>
+    {{/each}}
+</ul>
 <p>My Band Petitions:</p>
-{{#each userBand.petitions.user}}
-<li>{{this}}</li>
-{{/each}}
+<ul>
+    {{#each userBand.petitions}}
+    <li>{{this.username}}:
+        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/decline">decline</a>
+        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/accept">accept</a>
+    </li>
+    {{/each}}
+</ul>
