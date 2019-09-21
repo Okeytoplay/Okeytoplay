@@ -193,6 +193,21 @@ ul {
   flex-direction: column;
   align-items: center; }
 
+.cards-container ul {
+  text-decoration-line: none; }
+
+.fecha {
+  color: #007e71; }
+
+.event-list-bookings {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.055);
+  color: #007e71; }
+
+.event-list-bookings li {
+  text-decoration: none; }
+
 * body {
   margin: 0;
   height: 100%;

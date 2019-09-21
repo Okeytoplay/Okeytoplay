@@ -1,18 +1,15 @@
 <div class="cards-container">
-  <div class="card2">
+  <div class="user-name">{{userFound.username}}, Your events with BAND:</div>
+  <div class="fecha">{{fecha}}</div>
+  <ul class="event-list-bookings">
+    {{#each events}}
     <div>
+      <li>{{name}}</li>
+      <li>{{description }}</li>
+      <li>{{establishment.name}}</li>
+    </div>
 
-    </div>
-    <div>
-      <ul class="event-list-bookings">
-        {{#each events}}
-        <li>{{this.name}}</li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
+    {{/each}}
+  </ul>
+  <p>partial</p>
 </div>
-<div class="fecha">{{fecha}}</div>
-<div class="user-name">{{userFound.username}}, Your events with BAND:</div>
-
-<p>booking partial</p>
