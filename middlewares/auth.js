@@ -35,9 +35,12 @@ const checkEmailAndPasswordNotEmpty = (req, res, next) => {
 };
 
 const checkIfLoggedIn = (req, res, next) => {
+  delete req.session.returnTo;
   if (req.session.currentUser) {
     next();
   } else {
+    req.session.returnTo = req.originalUrl;
+    console.log('Direccion original: ', req.session.returnTo);
     res.redirect('/auth/login');
   }
 };

@@ -293,7 +293,7 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
     if (req.session.currentUser.role.establishment === false) {
       req.flash('error', 'Seems you don`t have any Establishment, First, Create one!!');
       // res.redirect('/profile');
-      res.redirect('/');
+      res.redirect('/user');
     } else {
       const userFound = await User.findById(user).populate('establishment');
       const fechaActual = fechaDeHoy();
@@ -305,7 +305,7 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
         res.render('user/eventsX', { events, fechaActual, userFound });
       } else {
         req.flash('info', 'You don`t have events in your establishment yet.');
-        res.redirect('/');
+        res.redirect('/user');
       }
     }
   } catch (error) {
