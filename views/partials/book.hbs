@@ -2,14 +2,14 @@
   <div class="user-name">{{userFound.username}}, Your events with BAND:</div>
   <div class="fecha">{{fecha}}</div>
   <ul class="event-list-bookings">
-    {{#each events}}
+    {{!-- {{#each events}} --}}
     <div>
-      <li>{{name}}</li>
+      <li>{{this.name}}</li>
       <li>{{description }}</li>
       <li>{{establishment.name}}</li>
     </div>
 
-    {{/each}}
+    {{!-- {{/each}} --}}
   </ul>
   <p>partial</p>
 </div>
