@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <p>{{fechaActual}}</p>
+    <p>You are going to delete the following EVENT</p>
+    <p>{{user.username}}, Are you sure?</p>
+  </div>
+  <form action="/user/events/{{event._id}}/delete" method="post">
+    <label for='name'>Event Name:</label><br>
+    <input type='text' name='name' value="{{event.name}}" readonly><br>
+    <button type='submit'>DELETE</button>
+  </form>
+</div>
