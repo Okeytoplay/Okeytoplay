@@ -1,0 +1,14 @@
+<div>
+  <p>{{user.username}}</p>
+  <p>Please, dont leave us!!!</p>
+  <p>You are going to erase all your data:</p>
+  {{#if user.role.band}}
+  <p>The data of your BAND {{user.band.name}} will be erased.</p>
+  {{/if}}
+  {{#if user.role.establishment}}
+  <p>The data of your ESTABLISHMENT {{user.establishment.name}} will be erased.</p>
+  {{/if}}
+  <form action="/user/profile/edit-user/{{user._id}}/delete" method="post">
+    <button class='btn-delete-account' type="submit">DELETE ACCOUNT</button>
+  </form>
+</div>

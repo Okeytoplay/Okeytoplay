@@ -43,7 +43,9 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
   // console.log(actualUserEmail);
   try {
-    const userFound = await User.findById(actualUserId).populate('band establishment');
+    const userFound = await User.findById(actualUserId).populate(
+      'band establishment',
+    );
     // const userID = userFound._id;
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
@@ -60,7 +62,9 @@ router.get('/profile', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
   // console.log(actualUserEmail);
   try {
-    const user = await User.findById(actualUserId).populate('band establishment');
+    const user = await User.findById(actualUserId).populate(
+      'band establishment',
+    );
     // const userID = userFound._id;
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
@@ -176,9 +180,16 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
 
     const bandDelete = await Band.findByIdAndDelete(bandId);
     // After Deleting the Band, update USER INFO
-    await User.updateOne({ _id: user }, { $unset: { band: 1 }, 'role.band': false });
+    await User.updateOne(
+      { _id: user },
+      { $unset: { band: 1 }, 'role.band': false },
+    );
     // After deleting Band, Update EVENTS with the BAND JOINED to the EVENT
-    const responseDeletedEvents = await Event.updateMany({ band: bandId }, { $unset: { band: 1 } }, { multi: true });
+    const responseDeletedEvents = await Event.updateMany(
+      { band: bandId },
+      { $unset: { band: 1 } },
+      { multi: true },
+    );
     req.flash('info', 'Banda eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
@@ -187,25 +198,29 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
 });
 
 // GETS the establishment profile landing page, where he can edit his information
-router.get('/profile/edit-establishment', checkIfLoggedIn, async (req, res, next) => {
-  const user = req.session.currentUser._id;
-  try {
-    // const band = await Band.findById(userID);
-    const userEstablishmentId = await User.findById(user);
-    console.log(
-      'kepasauserEstablishmentId: ',
-      userEstablishmentId.establishment,
-    );
-    const userEstablishment = await Establishment.findById(
-      userEstablishmentId.establishment,
-    );
-    console.log('kepasauserEstablishment: ', userEstablishment);
+router.get(
+  '/profile/edit-establishment',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const user = req.session.currentUser._id;
+    try {
+      // const band = await Band.findById(userID);
+      const userEstablishmentId = await User.findById(user);
+      console.log(
+        'kepasauserEstablishmentId: ',
+        userEstablishmentId.establishment,
+      );
+      const userEstablishment = await Establishment.findById(
+        userEstablishmentId.establishment,
+      );
+      console.log('kepasauserEstablishment: ', userEstablishment);
 
-    res.render('user/profile/edit-establishment', { userEstablishment });
-  } catch (error) {
-    next(error);
-  }
-});
+      res.render('user/profile/edit-establishment', { userEstablishment });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // POST submits profile establishment edit form
 router.post(
@@ -262,28 +277,84 @@ router.post(
 );
 
 // Delete user establishment
-router.get('/profile/delete-establishment', checkIfLoggedIn, async (req, res, next) => {
-  const user = req.session.currentUser;
-  try {
-    const userId = await User.findById(user);
-    const establishmentId = userId.establishment;
+router.get(
+  '/profile/delete-establishment',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const user = req.session.currentUser;
+    try {
+      const userId = await User.findById(user);
+      const establishmentId = userId.establishment;
 
-    const establishmentDelete = await Establishment.findByIdAndDelete(
-      establishmentId,
-    );
-    // console.log('El user antes de actualizar:', userId);
-    // Update the User info
-    await User.updateOne({ _id: userId }, { $unset: { establishment: 1 }, 'role.establishment': false });
-    // If the user delete the ESTABLISHMENT, The EVENTS OF THIS ESTABLISHMENTS HAS TO BE DELETED
-    const responseDeletedEvents = await Event.deleteMany({ establishment: establishmentId });
-    // const userIdAct = await User.findById(user);
-    // console.log('El user antes de actualizar:', userIdAct);
-    req.flash('info', 'Establishment and his Events succesfully deleted.');
-    res.redirect('/user');
-  } catch (error) {
-    next(error);
-  }
-});
+      const establishmentDelete = await Establishment.findByIdAndDelete(
+        establishmentId,
+      );
+      // console.log('El user antes de actualizar:', userId);
+      // Update the User info
+      await User.updateOne(
+        { _id: userId },
+        { $unset: { establishment: 1 }, 'role.establishment': false },
+      );
+      // If the user delete the ESTABLISHMENT, The EVENTS OF THIS ESTABLISHMENTS HAS TO BE DELETED
+      const responseDeletedEvents = await Event.deleteMany({
+        establishment: establishmentId,
+      });
+      // const userIdAct = await User.findById(user);
+      // console.log('El user antes de actualizar:', userIdAct);
+      req.flash('info', 'Establishment and his Events succesfully deleted.');
+      res.redirect('/user');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+// DELETE ACCOUNT
+router.get(
+  '/profile/edit-user/:userId/delete',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const user1 = req.session.currentUser;
+    const { userId } = req.params;
+    try {
+      const user = await User.findById(userId).populate('band establishment');
+      // const establishmentId = userId.establishment;
+      res.render('user/profile/delete-user', { user });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.post(
+  '/profile/edit-user/:userId/delete',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const { userId } = req.params;
+    const user1 = req.session.currentUser;
+    console.log('The User antes de borrar:', user1);
+    try {
+      const user2 = await User.findById(userId);
+      console.log('The User antes de borrar:', user2);
+      if (user2.role.band) {
+        const deletedBand = await Band.findByIdAndDelete(user2.band);
+        console.log('Deleted Band: ', deletedBand);
+      }
+      if (user2.role.establishment) {
+        const deletedEstablishment = await Establishment.findByIdAndDelete(
+          user2.establishment,
+        );
+        console.log('Deleted Establishment: ', deletedEstablishment);
+      }
+      const deletedUser = await User.findByIdAndDelete(user2._id);
+      console.log('Deleted User: ', deletedUser);
+      // delete req.session;
+      res.redirect('/logout');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
@@ -291,13 +362,20 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   console.log('El usuario de USER EVENTS: ', user);
   try {
     if (req.session.currentUser.role.establishment === false) {
-      req.flash('error', 'Seems you don`t have any Establishment, First, Create one!!');
+      req.flash(
+        'error',
+        'Seems you don`t have any Establishment, First, Create one!!',
+      );
       // res.redirect('/profile');
       res.redirect('/user');
     } else {
-      const userFound = await User.findById(user).populate('establishment');
+      const userFound = await User.findById(
+        req.session.currentUser._id,
+      ).populate('establishment');
       const fechaActual = fechaDeHoy();
-      const events = await Event.find({ establishment: userFound.establishment })
+      const events = await Event.find({
+        establishment: userFound.establishment._id,
+      })
         .sort('schedule')
         .populate('registeredUsers');
       if (events.length > 0) {
@@ -314,119 +392,252 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
 });
 
 /* GET Renders new event -> Show the page to create a new event */
-router.get('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  try {
-    const fechaActual = fechaDeHoy();
-    res.render('user/events/new', { fechaActual });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/events/new',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    try {
+      const fechaActual = fechaDeHoy();
+      res.render('user/events/new', { fechaActual });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 /* POST Create NEW EVENT */
 
-router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const {
-    name, description, price, durationMins, schedule
-  } = req.body;
-  const actualUserId = req.session.currentUser._id;
-  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
-  //   'establishment',
-  // ); // THIS IS THE CORRECT!!!
-  // ONLY FOR TEST
-  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-  try {
-    const userFound = await User.findById(actualUserId);
-
-    const eventNew = await Event.create({
-      name,
-      description,
-      price,
-      durationMins,
-      schedule,
-      establishment: userFound.establishment,
-    });
-    // Poner FLASH notification
-    req.flash('success', ` The event ${name} has been created successfully!!`);
-    res.redirect('/user/events'); // A donde vamos?
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get('/events/bookings', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  try {
-    const fechaActual = fechaDeHoy();
-    const fecha = fechaActual.split('/').reverse().join('/');
+router.post(
+  '/events/new',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const { name, description, price, durationMins, schedule } = req.body;
     const actualUserId = req.session.currentUser._id;
-    const userFound = await User.findById(actualUserId).populate(
-      'establishment',
-    );
-    console.log('UserFound', userFound);
-    if (userFound.role.establishment === false) {
-      req.flash('error', 'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!');
-      // res.redirect('/profile');
-      res.redirect('/user/events');
-    } else {
-      const userEstablishmentID = userFound.establishment._id;
-      const events = await Event.find({ establishment: userEstablishmentID, band: { $exists: false } }).sort('schedule');
-      console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-      console.log('FECHA ', fechaActual);
-      console.log('events ', events);
-      res.render('user/events/bookings', { events, fecha, userFound });
+    // const userFound = await User.findOne({ email: actualUserEmail }).populate(
+    //   'establishment',
+    // ); // THIS IS THE CORRECT!!!
+    // ONLY FOR TEST
+    // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+    try {
+      const userFound = await User.findById(actualUserId);
+
+      const eventNew = await Event.create({
+        name,
+        description,
+        price,
+        durationMins,
+        schedule,
+        establishment: userFound.establishment,
+      });
+      // Poner FLASH notification
+      req.flash(
+        'success',
+        ` The event ${name} has been created successfully!!`,
+      );
+      res.redirect('/user/events'); // A donde vamos?
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
-router.get('/events/bookedevents', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = fechaDeHoy();
-  const fecha = fechaActual.split('/').reverse().join('/');
-  const actualUserId = req.session.currentUser._id;
+router.get(
+  '/events/bookings',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    try {
+      const fechaActual = fechaDeHoy();
+      const fecha = fechaActual
+        .split('/')
+        .reverse()
+        .join('/');
+      const actualUserId = req.session.currentUser._id;
+      const userFound = await User.findById(actualUserId).populate(
+        'establishment',
+      );
+      console.log('UserFound', userFound);
+      if (userFound.role.establishment === false) {
+        req.flash(
+          'error',
+          'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
+        );
+        // res.redirect('/profile');
+        res.redirect('/user/events');
+      } else {
+        const userEstablishmentID = userFound.establishment._id;
+        const events = await Event.find({
+          establishment: userEstablishmentID,
+          band: { $exists: false },
+        }).sort('schedule');
+        console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+        console.log('FECHA ', fechaActual);
+        console.log('events ', events);
+        res.render('user/events/bookings', { events, fecha, userFound });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
+router.get(
+  '/events/bookedevents',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual
+      .split('/')
+      .reverse()
+      .join('/');
+    const actualUserId = req.session.currentUser._id;
+
+    try {
+      const userFound = await User.findById(actualUserId).populate(
+        'establishment',
+      );
+      console.log('UserFound', userFound);
+      if (userFound.role.establishment === false) {
+        req.flash(
+          'error',
+          'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
+        );
+        // res.redirect('/profile');
+        res.redirect('/user/events');
+      } else {
+        const userEstablishmentID = userFound.establishment._id;
+        const events = await Event.find({
+          establishment: userEstablishmentID,
+          band: { $exists: true },
+        }).sort('schedule');
+        console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+        console.log('FECHA ', fechaActual);
+        console.log('events ', events);
+        res.render('user/events/bookedevents', { events, fecha, userFound });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+// GETS the band petitions landing page
+router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
+  const user = req.session.currentUser;
   try {
-    const userFound = await User.findById(actualUserId).populate('establishment');
-    console.log('UserFound', userFound);
-    if (userFound.role.establishment === false) {
-      req.flash('error', 'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!');
-      // res.redirect('/profile');
-      res.redirect('/user/events');
-    } else {
-      const userEstablishmentID = userFound.establishment._id;
-      const events = await Event.find({ establishment: userEstablishmentID, band: { $exists: true } }).sort('schedule');
-      console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-      console.log('FECHA ', fechaActual);
-      console.log('events ', events);
-      res.render('user/events/bookedevents', { events, fecha, userFound });
-    }
+    const userBand = await Band.findById(user.band).populate(
+      'bandmembers petitions',
+    );
+    const userBand2 = await Band.findById(user.band);
+    // console.log('userBand2 ', userBand2);
+
+    res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
     next(error);
   }
 });
+
+router.get(
+  '/profile/petitions/:bandId/:petitionUserId/decline',
+  async (req, res, next) => {
+    const { bandId, petitionUserId } = req.params;
+
+    // - find con toda la informacion de la banda
+    // - busco el id de peticion en el array petitions
+    // - borro el id del array
+    // - actualizo el campo petitions de la collection banda
+
+    try {
+      const band = await Band.findByIdAndUpdate(
+        bandId,
+        {
+          $pull: { petitions: petitionUserId },
+        },
+        { new: true },
+      );
+
+      req.flash('info', 'Usuario rechazado');
+      res.redirect('/user/profile/petitions');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.get(
+  '/profile/petitions/:bandId/:petitionUserId/accept',
+  async (req, res, next) => {
+    const { bandId, petitionUserId } = req.params;
+    try {
+      const band = await Band.findByIdAndUpdate(
+        bandId,
+        {
+          $pull: { petitions: petitionUserId },
+          $push: { bandmembers: petitionUserId },
+        },
+        { new: true },
+      );
+      const updateRole = await User.findByIdAndUpdate(
+        petitionUserId,
+        {
+          band: bandId,
+          $set: {
+            'role.band': true,
+          },
+        },
+        { new: true },
+      );
+
+      console.log('baaaand: ', updateRole);
+      req.flash('info', 'Usuario Aceptado');
+      res.redirect('/user/profile/petitions');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // GET to render the form to update de event.
-router.get('/events/:eventId/edit', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = fechaDeHoy();
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    const event = await Event.findById(eventId).populate('establishment band');
-    res.render('user/events/update', { event, user, fechaActual });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/events/:eventId/edit',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = fechaDeHoy();
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      const event = await Event.findById(eventId).populate(
+        'establishment band',
+      );
+      res.render('user/events/update', { event, user, fechaActual });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // POST to update de event.
 router.post('/events/:eventId/edit', async (req, res, next) => {
   const { eventId } = req.params;
   const {
-    name, description, schedule, startTime, price, durationMins,
+    name,
+    description,
+    schedule,
+    startTime,
+    price,
+    durationMins,
   } = req.body;
   try {
-    const updatedEvent = await Event.findByIdAndUpdate(eventId, { name, description, schedule, startTime, price, durationMins }, { new: true });
+    const updatedEvent = await Event.findByIdAndUpdate(
+      eventId,
+      { name, description, schedule, startTime, price, durationMins },
+      { new: true },
+    );
     req.flash('success', `Event ${updatedEvent} succesfully updated.`);
     res.redirect('/user/events');
   } catch (error) {
@@ -435,132 +646,83 @@ router.post('/events/:eventId/edit', async (req, res, next) => {
 });
 
 // GET to render the CONFIRM to proceed to DELETE de event.
-router.get('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = fechaDeHoy();
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    console.log('El usuario para borrar:', user);
-    // const event = await Event.findById(eventId).populate('establishment band');
-    const event = await Event.findById(eventId);
-    if (event.establishment._id.equals(user.establishment)) {
-      res.render('user/events/delete', { user, event, fechaActual });
-    } else {
-      req.flash('warniing', `${user.name}, you are not the owner of the Event.`);
-      res.redirect('/user/events');
+router.get(
+  '/events/:eventId/delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = fechaDeHoy();
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      console.log('El usuario para borrar:', user);
+      // const event = await Event.findById(eventId).populate('establishment band');
+      const event = await Event.findById(eventId);
+      if (event.establishment._id.equals(user.establishment)) {
+        res.render('user/events/delete', { user, event, fechaActual });
+      } else {
+        req.flash(
+          'warniing',
+          `${user.name}, you are not the owner of the Event.`,
+        );
+        res.redirect('/user/events');
+      }
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
 // POST PROCESS EVENT delete, we should NOTIFICATE TO THE REGISTERED USERS THAT THE EVENT HAS BEEN DELETED
-router.post('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    const event = await Event.findById(eventId);
-    const registeredUsers = await Event.findById(eventId).populate('registeredUsers');
-    console.log('El evento que quiero borrar:', event);
-    if (event.establishment._id.equals(user.establishment)) {
-      // Si tiene banda hay que avisar a la banda que se ha eliminado el evento
-      if (event.band != null) {
-        console.log('Tiene banda, tenemos que avisar a la banda...');
+router.post(
+  '/events/:eventId/delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      const event = await Event.findById(eventId);
+      const registeredUsers = await Event.findById(eventId).populate(
+        'registeredUsers',
+      );
+      console.log('El evento que quiero borrar:', event);
+      if (event.establishment._id.equals(user.establishment)) {
+        // Si tiene banda hay que avisar a la banda que se ha eliminado el evento
+        if (event.band != null) {
+          console.log('Tiene banda, tenemos que avisar a la banda...');
+        } else {
+          console.log('NO tiene banda,');
+        }
+        // Si tiene Usuarios Registrados, se les tiene que avisar
+        if (registeredUsers.length > 0) {
+          console.log('Tenemos que avisar a los users:');
+        } else {
+          console.log('NO tienes users Registrados');
+        }
+        // Aquí tenemos que borrar el evento!!
+        const deletedEvent = await Event.findByIdAndDelete(event);
+        // console.log('Deleted Event:', deletedEvent);
+        // const event2 = await Event.findById(eventId);
+        // console.log('Event2', event2);
+        req.flash(
+          'success',
+          `The ${deletedEvent.name} has been deleted succesfully!!`,
+        );
+        res.redirect('/user/events');
       } else {
-        console.log('NO tiene banda,');
+        req.flash(
+          'warning',
+          ' You are trying to delete an Event that you are not the owner',
+        );
+        res.redirect('/users/events');
       }
-      // Si tiene Usuarios Registrados, se les tiene que avisar
-      if (registeredUsers.length > 0) {
-        console.log('Tenemos que avisar a los users:');
-      } else {
-        console.log('NO tienes users Registrados');
-      }
-      // Aquí tenemos que borrar el evento!!
-      const deletedEvent = await Event.findByIdAndDelete(event);
-      // console.log('Deleted Event:', deletedEvent);
-      // const event2 = await Event.findById(eventId);
-      // console.log('Event2', event2);
-      req.flash('success', `The ${deletedEvent.name} has been deleted succesfully!!`);
-      res.redirect('/user/events');
-    } else {
-      req.flash('warning', ' You are trying to delete an Event that you are not the owner');
-      res.redirect('/users/events');
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
-  }
-});
-
+  },
+);
 
 module.exports = router;
-// router.get('/profile-create', checkIfLoggedIn, (req, res, next) => {
-//   res.render('user/profile-create');
-// });
-
-// router.post('/profile', checkIfLoggedIn, async (req, res, next) => {
-//   let role = ['Groupie'];
-//   const {
-//     role1,
-//     role2, // True si tiene Banda
-//     role3,
-//     telephone,
-//     bandName,
-//     genre,
-//     description,
-//     website,
-//     instagram,
-//     facebook,
-//     member,
-//     establishmentName,
-//   } = req.body;
-//   // const userID = res.locals.currentUser._id;
-//   try {
-//     let newBand;
-//     let updatedUser;
-//     const actualUserEmail = req.session.currentUser.email;
-//     const userFound = await User.findOne({ email: actualUserEmail });
-//     // if (userFound) {
-//     //   req.flash('error', `Sorry, this ${email} has an account on the site!!`);
-//     //   console.log('USUARIO EXISTE');
-//     //   res.redirect('/auth/signup');
-//     // }
-//     console.log(actualUserEmail, userFound);
-//     console.log('Role 2:', role2);
-//     if (role2 === 'Band') {
-//       role.push('Band');
-//       newBand = await Band.create({
-//         name: bandName,
-//         genre,
-//         description,
-//         website,
-//         instagramProfile: instagram,
-//         facebookProfile: facebook,
-//         bandMembers1: member,
-//       });
-//       req.flash('success', `${bandName} has been created.`);
-//       console.log('Banda Creada;', newBand);
-//       updatedUser = await User.updateOne({ _id: userFound._id },
-//         {
-//           $set: {
-//             telephone, bandName, establishmentName, 'role.band': true, band: newBand,
-//           },
-//         }, { new: true });
-//     }
-//     // Ahora solo Actualiza si se introcuen datos de BANDA
-//     // const updatedUser = await User.updateOne({ _id: userFound._id },
-//     //   {
-//     //     $set: {
-//     //       telephone, bandName, establishmentName, 'role.band': true,
-//     //     },
-//     //   }, { new: true });
-//     // req.session.currentUser = newUser;
-//     // req.flash('success', `${updatedUser.username}, your account has been updated.`);
-//     res.redirect('/user/profile');
-//     // res.redirect('/user/profile', { updatedUser }); // Aquí tenemos que redirigir cuando tengamos la ruta
-//     // res.redirect('/');
-//   } catch (error) {
-//     next(error);
-//   }
-// });

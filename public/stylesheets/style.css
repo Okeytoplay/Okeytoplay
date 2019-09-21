@@ -193,20 +193,19 @@ ul {
   flex-direction: column;
   align-items: center; }
 
-.cards-container ul {
-  text-decoration-line: none; }
-
-.fecha {
-  color: #007e71; }
-
-.event-list-bookings {
-  margin: 15px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.055);
-  color: #007e71; }
-
-.event-list-bookings li {
-  text-decoration: none; }
+button.btn-delete-account {
+  width: 100%;
+  margin: 15px 30px 20px 30px;
+  background-color: red;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold; }
 
 * body {
   margin: 0;
