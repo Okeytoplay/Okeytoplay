@@ -310,41 +310,51 @@ router.get(
 );
 
 // DELETE ACCOUNT
-router.get('/profile/edit-user/:userId/delete', checkIfLoggedIn, async (req, res, next) => {
-  const user1 = req.session.currentUser;
-  const { userId } = req.params;
-  try {
-    const user = await User.findById(userId).populate('band establishment');
-    // const establishmentId = userId.establishment;
-    res.render('user/profile/delete-user', { user });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/profile/edit-user/:userId/delete',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const user1 = req.session.currentUser;
+    const { userId } = req.params;
+    try {
+      const user = await User.findById(userId).populate('band establishment');
+      // const establishmentId = userId.establishment;
+      res.render('user/profile/delete-user', { user });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
-router.post('/profile/edit-user/:userId/delete', checkIfLoggedIn, async (req, res, next) => {
-  const { userId } = req.params;
-  const user1 = req.session.currentUser;
-  console.log('The User antes de borrar:', user1);
-  try {
-    const user2 = await User.findById(userId);
-    console.log('The User antes de borrar:', user2);
-    if (user2.role.band) {
-      const deletedBand = await Band.findByIdAndDelete(user2.band);
-      console.log('Deleted Band: ', deletedBand);
+router.post(
+  '/profile/edit-user/:userId/delete',
+  checkIfLoggedIn,
+  async (req, res, next) => {
+    const { userId } = req.params;
+    const user1 = req.session.currentUser;
+    console.log('The User antes de borrar:', user1);
+    try {
+      const user2 = await User.findById(userId);
+      console.log('The User antes de borrar:', user2);
+      if (user2.role.band) {
+        const deletedBand = await Band.findByIdAndDelete(user2.band);
+        console.log('Deleted Band: ', deletedBand);
+      }
+      if (user2.role.establishment) {
+        const deletedEstablishment = await Establishment.findByIdAndDelete(
+          user2.establishment,
+        );
+        console.log('Deleted Establishment: ', deletedEstablishment);
+      }
+      const deletedUser = await User.findByIdAndDelete(user2._id);
+      console.log('Deleted User: ', deletedUser);
+      // delete req.session;
+      res.redirect('/logout');
+    } catch (error) {
+      next(error);
     }
-    if (user2.role.establishment) {
-      const deletedEstablishment = await Establishment.findByIdAndDelete(user2.establishment);
-      console.log('Deleted Establishment: ', deletedEstablishment);
-    }
-    const deletedUser = await User.findByIdAndDelete(user2._id);
-    console.log('Deleted User: ', deletedUser);
-    // delete req.session;
-    res.redirect('/logout');
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
@@ -359,11 +369,6 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
       // res.redirect('/profile');
       res.redirect('/user');
     } else {
-<<<<<<< HEAD
-      const userFound = await User.findById(user).populate('establishment');
-      const fechaActual = fechaDeHoy();
-      const events = await Event.find({ establishment: userFound.establishment })
-=======
       const userFound = await User.findById(
         req.session.currentUser._id,
       ).populate('establishment');
@@ -371,7 +376,6 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
       const events = await Event.find({
         establishment: userFound.establishment._id,
       })
->>>>>>> devel-guille-new
         .sort('schedule')
         .populate('registeredUsers');
       if (events.length > 0) {
@@ -404,20 +408,6 @@ router.get(
 
 /* POST Create NEW EVENT */
 
-<<<<<<< HEAD
-router.post('/events/new', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const {
-    name, description, price, durationMins, schedule
-  } = req.body;
-  const actualUserId = req.session.currentUser._id;
-  // const userFound = await User.findOne({ email: actualUserEmail }).populate(
-  //   'establishment',
-  // ); // THIS IS THE CORRECT!!!
-  // ONLY FOR TEST
-  // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
-  try {
-    const userFound = await User.findById(actualUserId);
-=======
 router.post(
   '/events/new',
   checkIfLoggedIn,
@@ -432,7 +422,6 @@ router.post(
     // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
     try {
       const userFound = await User.findById(actualUserId);
->>>>>>> devel-guille-new
 
       const eventNew = await Event.create({
         name,
@@ -612,27 +601,43 @@ router.get(
 );
 
 // GET to render the form to update de event.
-router.get('/events/:eventId/edit', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = fechaDeHoy();
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    const event = await Event.findById(eventId).populate('establishment band');
-    res.render('user/events/update', { event, user, fechaActual });
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/events/:eventId/edit',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = fechaDeHoy();
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      const event = await Event.findById(eventId).populate(
+        'establishment band',
+      );
+      res.render('user/events/update', { event, user, fechaActual });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 // POST to update de event.
 router.post('/events/:eventId/edit', async (req, res, next) => {
   const { eventId } = req.params;
   const {
-    name, description, schedule, startTime, price, durationMins,
+    name,
+    description,
+    schedule,
+    startTime,
+    price,
+    durationMins,
   } = req.body;
   try {
-    const updatedEvent = await Event.findByIdAndUpdate(eventId, { name, description, schedule, startTime, price, durationMins }, { new: true });
+    const updatedEvent = await Event.findByIdAndUpdate(
+      eventId,
+      { name, description, schedule, startTime, price, durationMins },
+      { new: true },
+    );
     req.flash('success', `Event ${updatedEvent} succesfully updated.`);
     res.redirect('/user/events');
   } catch (error) {
@@ -641,63 +646,83 @@ router.post('/events/:eventId/edit', async (req, res, next) => {
 });
 
 // GET to render the CONFIRM to proceed to DELETE de event.
-router.get('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const fechaActual = fechaDeHoy();
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    console.log('El usuario para borrar:', user);
-    // const event = await Event.findById(eventId).populate('establishment band');
-    const event = await Event.findById(eventId);
-    if (event.establishment._id.equals(user.establishment)) {
-      res.render('user/events/delete', { user, event, fechaActual });
-    } else {
-      req.flash('warniing', `${user.name}, you are not the owner of the Event.`);
-      res.redirect('/user/events');
+router.get(
+  '/events/:eventId/delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const fechaActual = fechaDeHoy();
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      console.log('El usuario para borrar:', user);
+      // const event = await Event.findById(eventId).populate('establishment band');
+      const event = await Event.findById(eventId);
+      if (event.establishment._id.equals(user.establishment)) {
+        res.render('user/events/delete', { user, event, fechaActual });
+      } else {
+        req.flash(
+          'warniing',
+          `${user.name}, you are not the owner of the Event.`,
+        );
+        res.redirect('/user/events');
+      }
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
-  }
-});
+  },
+);
 
 // POST PROCESS EVENT delete, we should NOTIFICATE TO THE REGISTERED USERS THAT THE EVENT HAS BEEN DELETED
-router.post('/events/:eventId/delete', checkIfLoggedIn, checkIfEstablishment, async (req, res, next) => {
-  const userId = req.session.currentUser;
-  const { eventId } = req.params;
-  try {
-    const user = await User.findById(userId);
-    const event = await Event.findById(eventId);
-    const registeredUsers = await Event.findById(eventId).populate('registeredUsers');
-    console.log('El evento que quiero borrar:', event);
-    if (event.establishment._id.equals(user.establishment)) {
-      // Si tiene banda hay que avisar a la banda que se ha eliminado el evento
-      if (event.band != null) {
-        console.log('Tiene banda, tenemos que avisar a la banda...');
+router.post(
+  '/events/:eventId/delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const userId = req.session.currentUser;
+    const { eventId } = req.params;
+    try {
+      const user = await User.findById(userId);
+      const event = await Event.findById(eventId);
+      const registeredUsers = await Event.findById(eventId).populate(
+        'registeredUsers',
+      );
+      console.log('El evento que quiero borrar:', event);
+      if (event.establishment._id.equals(user.establishment)) {
+        // Si tiene banda hay que avisar a la banda que se ha eliminado el evento
+        if (event.band != null) {
+          console.log('Tiene banda, tenemos que avisar a la banda...');
+        } else {
+          console.log('NO tiene banda,');
+        }
+        // Si tiene Usuarios Registrados, se les tiene que avisar
+        if (registeredUsers.length > 0) {
+          console.log('Tenemos que avisar a los users:');
+        } else {
+          console.log('NO tienes users Registrados');
+        }
+        // Aquí tenemos que borrar el evento!!
+        const deletedEvent = await Event.findByIdAndDelete(event);
+        // console.log('Deleted Event:', deletedEvent);
+        // const event2 = await Event.findById(eventId);
+        // console.log('Event2', event2);
+        req.flash(
+          'success',
+          `The ${deletedEvent.name} has been deleted succesfully!!`,
+        );
+        res.redirect('/user/events');
       } else {
-        console.log('NO tiene banda,');
+        req.flash(
+          'warning',
+          ' You are trying to delete an Event that you are not the owner',
+        );
+        res.redirect('/users/events');
       }
-      // Si tiene Usuarios Registrados, se les tiene que avisar
-      if (registeredUsers.length > 0) {
-        console.log('Tenemos que avisar a los users:');
-      } else {
-        console.log('NO tienes users Registrados');
-      }
-      // Aquí tenemos que borrar el evento!!
-      const deletedEvent = await Event.findByIdAndDelete(event);
-      // console.log('Deleted Event:', deletedEvent);
-      // const event2 = await Event.findById(eventId);
-      // console.log('Event2', event2);
-      req.flash('success', `The ${deletedEvent.name} has been deleted succesfully!!`);
-      res.redirect('/user/events');
-    } else {
-      req.flash('warning', ' You are trying to delete an Event that you are not the owner');
-      res.redirect('/users/events');
+    } catch (error) {
+      next(error);
     }
-  } catch (error) {
-    next(error);
-  }
-});
-
+  },
+);
 
 module.exports = router;
