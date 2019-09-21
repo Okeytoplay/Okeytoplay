@@ -121,7 +121,7 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
       const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
     } else {
       // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
-      console.log('El usuario metido en el array del evento: ', updatedEvent);
+      // console.log('El usuario metido en el array del evento: ', updatedEvent);
     }
     const events = await Event.find({ registeredUsers: userFound });
     console.log('Los eventos a los que me he unido: ', events);
