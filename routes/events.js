@@ -117,10 +117,26 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
     const event = await Event.findById(eventId).populate('registeredUsers');
     if (event.registeredUsers) {
       // Comprobar que él no esté ya registrado
-      console.log('Entro aquí');
-      const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
+      let booked = false;
+      event.registeredUsers.forEach((user) => {
+        if (user.email === userFound.email) {
+          booked = true;
+        }
+      });
+      if (!booked) {
+        const updatedEvent = await Event.findByIdAndUpdate(eventId, { $push: { registeredUsers: userFound } }, { new: true });
+        console.log('El evento despues de hacer update: ', updatedEvent);
+        req.flash('success', 'Registered ok!');
+      } else {
+        req.flash('warning', 'You were already registered to this event');
+      }
+      // const alreadyRegistered = event.registeredUsers.includes(userFound);
+
+      // console.log('YA registrado?: ', alreadyRegistered);
+      // console.log('Entro aquí');
+      // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $push: { registeredUsers: userFound } }, { new: true });
     } else {
-      // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
+      // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $push: { registeredUsers: userFound._id } });
       // console.log('El usuario metido en el array del evento: ', updatedEvent);
     }
     const events = await Event.find({ registeredUsers: userFound });
