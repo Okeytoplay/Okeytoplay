@@ -1,8 +1,10 @@
 <h2>Bookings </h2>
 <div>
-  {{> book }}
+  {{#each events}}
+  {{> book}}
+  {{/each}}
 </div>
 
-{{#if errorMessage}}
+{{!-- {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
-{{/if}}
+{{/if}} --}}
