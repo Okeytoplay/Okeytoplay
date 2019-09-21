@@ -285,6 +285,43 @@ router.get('/profile/delete-establishment', checkIfLoggedIn, async (req, res, ne
   }
 });
 
+// DELETE ACCOUNT
+router.get('/profile/edit-user/:userId/delete', checkIfLoggedIn, async (req, res, next) => {
+  const user1 = req.session.currentUser;
+  const { userId } = req.params;
+  try {
+    const user = await User.findById(userId).populate('band establishment');
+    // const establishmentId = userId.establishment;
+    res.render('user/profile/delete-user', { user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/profile/edit-user/:userId/delete', checkIfLoggedIn, async (req, res, next) => {
+  const { userId } = req.params;
+  const user1 = req.session.currentUser;
+  console.log('The User antes de borrar:', user1);
+  try {
+    const user2 = await User.findById(userId);
+    console.log('The User antes de borrar:', user2);
+    if (user2.role.band) {
+      const deletedBand = await Band.findByIdAndDelete(user2.band);
+      console.log('Deleted Band: ', deletedBand);
+    }
+    if (user2.role.establishment) {
+      const deletedEstablishment = await Establishment.findByIdAndDelete(user2.establishment);
+      console.log('Deleted Establishment: ', deletedEstablishment);
+    }
+    const deletedUser = await User.findByIdAndDelete(user2._id);
+    console.log('Deleted User: ', deletedUser);
+    // delete req.session;
+    res.redirect('/logout');
+  } catch (error) {
+    next(error);
+  }
+});
+
 /* GET Renders available events of the user-> Show all the events of the user */
 router.get('/events', checkIfLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;

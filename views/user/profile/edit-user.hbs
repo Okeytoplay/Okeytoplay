@@ -6,6 +6,9 @@
     <button type='submit'>Update account</button>
 </form>
 
+<button class='btn-delete-account' onclick="location.href='/user/profile/edit-user/{{user._id}}/delete'" type="button">
+    DELETE ACCOUNT</button>
+
 {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
