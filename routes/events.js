@@ -106,4 +106,29 @@ router.post('/:eventId', async (req, res, next) => {
   }
 });
 
+/* Join al event */
+router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
+  const fechaActual = fechaDeHoy();
+  const fecha = fechaActual.split('/').reverse().join('/');
+  const { eventId } = req.params;
+  const userFound = req.session.currentUser;
+
+  try {
+    const event = await Event.findById(eventId).populate('registeredUsers');
+    if (event.registeredUsers) {
+      // Comprobar que él no esté ya registrado
+      console.log('Entro aquí');
+      const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
+    } else {
+      // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $pull: { registeredUsers: userFound._id } });
+      console.log('El usuario metido en el array del evento: ', updatedEvent);
+    }
+    const events = await Event.find({ registeredUsers: userFound });
+    console.log('Los eventos a los que me he unido: ', events);
+    res.render('user/events/bookedevents', { events, fecha, userFound });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
