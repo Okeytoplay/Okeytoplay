@@ -476,10 +476,13 @@ router.get(
 
 // GETS the band petitions landing page
 router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
-  const user = req.session.currentUser._id;
+  const user = req.session.currentUser;
   try {
-    const userBandId = await User.findById(user);
-    const userBand = await Band.findById(userBandId.band);
+    
+    const userBand = await Band.findById(user.band).populate(
+      'bandmembers petitions',
+    );
+    console.log('userband ', userBand);
 
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {

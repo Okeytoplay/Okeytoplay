@@ -213,7 +213,7 @@ router.get('/:bandID/join', async (req, res, next) => {
     });
     console.log('bandID: ', band);
     req.flash('info', 'La peticion ha sido enviada a la banda');
-    res.render('user/profile/petitions');
+    res.redirect('/user/profile/petitions');
   } catch (error) {
     next(error);
   }

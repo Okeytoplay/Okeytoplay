@@ -1,1 +1,8 @@
-<h1>Hola</h1>
+<h3>My petitions Area: {{user.username}}</h3>
+{{!-- Poner condicional si tiene banda --}}
+<p>My Band:{{userBand.name}} </p>
+<p>Current band members of {{userBand.name}}:{{userBand.bandmembers}}</p>
+<p>My Band Petitions:</p>
+{{#each userBand.petitions.user}}
+<li>{{this}}</li>
+{{/each}}
