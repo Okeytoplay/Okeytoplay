@@ -1,3 +1,17 @@
 <h3>Detalles de la Banda</h3>
-<h1>{{ bands.name }}</h1>
+<h3>Name of the band: {{ bands.name }}</h3>
+<h3>Genre of the band: {{ bands.genre }}</h3>
+<h3>Description of the band: {{ bands.description }}</h3>
+<h3>Website of the band: <a href="{{bands.website}}">{{bands.website}}</a></h3>
+<h3>InstagramProfile of the band: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></h3>
+<h3>FacebookProfile of the band:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></h3>
+<h3>Avatar of the band: {{ bands.avatar }}</h3>
+
+{{#if userFound.band.name}}
+{{else}}
+Esta dins:
 <a href="/bands/{{bands._id}}/join">join</a>
+{{/if}}
+Aixo no:
+<a href="/bands/{{bands._id}}/join">join</a>
+<a href="/bands/{{bands._id}}/check">check</a>

@@ -16,37 +16,32 @@ router.get('/signup', (req, res, next) => {
 });
 
 /* POST from SignUp */
-router.post(
-  '/signup',
-  checkFields,
-  checkEmailAndPasswordNotEmpty,
-  async (req, res, next) => {
-    // const { username, email, password } = req.body;
-    const { username, email, password } = res.locals.auth; // info viene del Middleware
+router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, res, next) => {
+  // const { username, email, password } = req.body;
+  const { username, email, password } = res.locals.auth; // info viene del Middleware
 
-    try {
-      const userFound = await User.findOne({ email });
-      if (userFound) {
-        req.flash('error', `Sorry, this ${email} has an account on the site!!`);
-        console.log('USUARIO EXISTE');
-        res.redirect('/auth/signup');
-      }
-
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashedPassword = bcrypt.hashSync(password, salt);
-      const newUser = await User.create({ username, email, hashedPassword });
-      req.session.currentUser = newUser;
-      req.flash('success', `${username}, your account has been created.`);
-      // res.redirect('/user/profile-create'); // Aquí tenemos que redirigir cuando tengamos la ruta
-      // res.redirect('/user/profile');
-      res.redirect('/user');
-
-      // res.redirect('/');
-    } catch (error) {
-      next(error);
+  try {
+    const userFound = await User.findOne({ email });
+    if (userFound) {
+      req.flash('error', `Sorry, this ${email} has an account on the site!!`);
+      console.log('USUARIO EXISTE');
+      res.redirect('/auth/signup');
     }
-  },
-);
+
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    const newUser = await User.create({ username, email, hashedPassword });
+    req.session.currentUser = newUser;
+    req.flash('success', `${username}, your account has been created.`);
+    // res.redirect('/user/profile-create'); // Aquí tenemos que redirigir cuando tengamos la ruta
+    // res.redirect('/user/profile');
+    res.redirect('/user');
+
+    // res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
+});
 
 /* GET Log In page. */
 router.get('/login', (req, res, next) => {
@@ -63,7 +58,13 @@ router.post('/login', checkEmailAndPasswordNotEmpty, async (req, res, next) => {
         req.session.currentUser = user;
         console.log('Estoy Logueado OK'); // Se tendrá que quitar, es para ver donde redirigimos una vez logueados
         req.flash('success', `${user.username}, nos encanta que vuelvas!!!`);
-        res.redirect('/user'); // Revisar ruta a donde redirigir
+        console.log('Req SESSION REDIRECT:', req.session.returnTo);
+        if (req.session.returnTo !== undefined) {
+          console.log('Req SESSION REDIRECT DENTRO IF:', req.session.returnTo);
+          res.redirect(req.session.returnTo);
+        } else {
+          res.redirect('/user'); // Revisar ruta a donde redirigir
+        }
       } else {
         console.log('Aqui 2');
         req.flash('error', 'Lo sentimos, el User o pswd no son correctos!!');

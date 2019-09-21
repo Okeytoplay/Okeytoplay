@@ -6,6 +6,13 @@
     <h3>If you haven't created your band, click below</h3>
     <a href="/bands/new">Create Band</a>
     {{/if}}
+    <form action="/bands/:id" method="get" class="form-inline">
+        <div class="form-group">
+            <input type="text" name="search" placeholder="Band search..." class="form-control">
+            <input type="submit" value="Search" class="btn btn-default">
+        </div>
+    </form>
+    <a href="/bands/avatar/avatar-upload">Avatar Upload</a>
     <h3>Basic View</h3>
     <h4>BAND LIST</h4>
 
@@ -19,6 +26,4 @@
         </section>
 
     </div>
-
-
 </div>

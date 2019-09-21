@@ -1,0 +1,18 @@
+.cards-container ul {
+  text-decoration-line: none;
+}
+.fecha {
+  color: rgb(0, 126, 113);
+}
+.event-list-bookings {
+  margin: 15px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.055);
+  color: rgb(0, 126, 113);
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+}
+.event-list-bookings li {
+  text-decoration: none;
+}

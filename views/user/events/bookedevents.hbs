@@ -1,4 +1,13 @@
-<div>
-  {{> booking }}
+<h2>Bookedevents</h2>
+<p> eventos a los que estoy inscrito</p>
+
+<div class="">
+  {{#each events}}
+  {{> book }}
+  {{/each}}
 </div>
-<p> vista bookedevents</p>
+
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
