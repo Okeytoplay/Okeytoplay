@@ -1,5 +1,8 @@
+<h2>Bookings</h2>
 <div>
   {{> booking }}
 </div>
 
-<p>booking vista</p>
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
