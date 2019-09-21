@@ -5,7 +5,8 @@
     rgba(184, 35, 35, 0.938) 34%,
     hsla(34, 75%, 57%, 0.95)
   );
-  padding: 15px 15px;
+  padding-bottom: 10%;
+  padding-top: 25%;
 }
 .logo-picture {
   display: flex;
@@ -41,24 +42,25 @@ h4 {
 /*Login/Signup Buttons 1*/
 .register {
   margin-top: 20px;
-  width: 100%;
+  // width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .register-button {
-  width: 90%;
+  box-shadow: 3px 3px 3px gray;
+  width: 60%;
   margin: 10px;
-  background-color: rgb(234, 155, 35);
   border: none;
   text-transform: uppercase;
-  color: white;
+  color: rgb(0, 126, 113);
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 10px;
   text-align: center;
   text-decoration: none;
   font-size: 14px;
 }
-.register-button a {
-  color: white;
-}
+// .register-button a {
+//   color: rgb(175, 5, 5);
+// }
+// rgb(0, 126, 113)verde;(0, 86, 126)azul;
