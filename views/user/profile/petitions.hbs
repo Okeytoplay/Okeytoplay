@@ -1,0 +1,11 @@
+<h2> user-petitions </h2>
+<div class="card-petition">
+  <div class="info-petition">
+    {{#each userBand.bandmembers}}
+    {{> userpetition}}
+    {{/each}}
+  </div>
+  <div class="bttn-petition">
+    {{> petitionbutton}}
+  </div>
+</div>
