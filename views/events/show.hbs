@@ -65,8 +65,4 @@
 
 {{/if}}
 
-{{#if currentUser }}
-<button onclick="location.href='/user/events'" type="button" class="register-button">Join *</button>
-{{else}}
-<button onclick="location.href='/auth/login'" type="button" class="register-button">Join</button>
-{{/if}}
+<button onclick="location.href='/events/{{id}}/join'" type="button" class="register-button">Join *</button>
