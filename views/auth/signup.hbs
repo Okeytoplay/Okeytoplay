@@ -1,17 +1,20 @@
-<form id='form' action='/auth/signup' method='POST'>
-  <label for='username'>Username:</label><br>
-  <input type='text' name='username' placeholder='Your username' required><br>
+<div class="container">
+  <div class="form-style">
+    <form id='profile-form' action='/auth/signup' method='POST'>
+      <label for='username'></label><br>
+      <input type='text' name='username' placeholder='Your username' required><br>
 
-  <label for='email'>Email:</label><br>
-  <input type='email' name='email' id='email_id' placeholder='E-mail' required><br>
-  <label for='password'>Password:</label><br>
-  <input type='password' name='password' placeholder='********' required><br>
+      <label for='email'></label><br>
+      <input type='email' name='email' id='email_id' placeholder='E-mail' required><br>
+      <label for='password'></label><br>
+      <input type='password' name='password' placeholder='********' required><br>
 
-  <button type='submit'>Create account</button>
-</form>
+      <button type='submit'>Create account</button>
+    </form>
 
-{{#if errorMessage}}
-<div class='error-message'>{{ errorMessage }}</div>
-{{/if}}
+    {{#if errorMessage}}
+    <div class='error-message'>{{ errorMessage }}</div>
+    {{/if}}
 
-
+  </div>
+</div>
