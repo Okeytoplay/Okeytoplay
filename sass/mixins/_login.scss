@@ -123,6 +123,14 @@
     outline: none;
     border-color: #53cace;
   }
+  [type='email']:focus {
+    outline: none;
+    border-color: #53cace;
+  }
+  [type='password']:focus {
+    outline: none;
+    border-color: #53cace;
+  }
   p {
     color: rgba(15, 255, 175, 0.6);
     font-size: 1.2em;

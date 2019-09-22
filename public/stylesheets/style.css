@@ -267,6 +267,14 @@ ul {
   outline: none;
   border-color: #53cace; }
 
+.form-style [type='email']:focus {
+  outline: none;
+  border-color: #53cace; }
+
+.form-style [type='password']:focus {
+  outline: none;
+  border-color: #53cace; }
+
 .form-style p {
   color: rgba(15, 255, 175, 0.6);
   font-size: 1.2em;
