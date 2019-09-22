@@ -27,14 +27,19 @@
 
 </div>
 
+<div class="container">
 
-<section class="events-section">
-    <h3>Upcoming Events:</h3>
-    <div class="event-cards">
-        {{#each events}}
-        {{> eventcard this}}
-        {{/each}}
+    <div class="cont-title">
+        <h2>Upcoming Events</h2>
+        {{fecha}}
     </div>
 
-</section>
+    <div class="cards-container">
+        {{#each events}}
+        <div class="card2">
+            {{> eventcard this}}
+        </div>
 
+        {{/each}}
+    </div>
+</div>

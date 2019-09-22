@@ -13,6 +13,9 @@
   // background-color: #f9f9f9;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
+.container {
+  padding: 20px;
+}
 .not-shown {
   display: none;
 }
@@ -31,9 +34,16 @@ img {
   color: white;
   float: left;
 }
+.bbtn {
+  margin: 10%;
+  width: 80%;
+  border: 0;
+  background-color: #53cace;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white;
+}
 footer {
-  // height: 50px;
-  // line-height: 50px;
   background: black;
   color: white;
   text-align: center;
@@ -41,5 +51,4 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  // margin-top: 90px;
 }
