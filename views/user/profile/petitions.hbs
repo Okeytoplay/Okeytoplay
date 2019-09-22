@@ -1,11 +1,18 @@
-<h2> user-petitions </h2>
-<div class="card-petition">
-  <div class="info-petition">
+<h3>My petitions Area: {{user.username}}</h3>
+{{!-- Poner condicional si tiene banda --}}
+<p>My Band:{{userBand.name}} </p>
+<p>Current band members of {{userBand.name}}:</p>
+<ul>
     {{#each userBand.bandmembers}}
-    {{> userpetition}}
+    <li>{{this.username}}</li>
     {{/each}}
-  </div>
-  <div class="bttn-petition">
-    {{> petitionbutton}}
-  </div>
-</div>
+</ul>
+<p>My Band Petitions:</p>
+<ul>
+    {{#each userBand.petitions}}
+    <li>{{this.username}}:
+        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/decline">decline</a>
+        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/accept">accept</a>
+    </li>
+    {{/each}}
+</ul>
