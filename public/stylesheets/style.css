@@ -153,7 +153,7 @@ ul {
   width: 380px; }
 
 #form label {
-  color: gray;
+  color: grey;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
@@ -193,17 +193,17 @@ ul {
   flex-direction: column;
   align-items: center; }
 
-.prueba .signup {
+.form-style .signup {
   float: left;
   width: 300px;
   padding: 30px 20px;
-  background-color: white;
   text-align: center;
   border-radius: 5px 0 0 5px; }
 
-.prueba [type=text] {
+.form-style [type='text'] {
   display: block;
   margin: 0 auto;
+  padding-left: 20px;
   width: 80%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -211,30 +211,30 @@ ul {
   line-height: 45px;
   margin-bottom: 10px;
   font-size: 1em;
-  color: rgba(0, 0, 0, 0.4); }
+  color: #15242e; }
 
-.prueba [type=submit] {
-  margin-top: 25px;
+.form-style [type='submit'] {
+  margin: 10%;
   width: 80%;
   border: 0;
-  background-color: #53CACE;
+  background-color: #53cace;
   border-radius: 5px;
-  height: 50px;
+  padding: 20px;
   color: white;
   font-weight: 400;
   font-size: 1em; }
 
-.prueba [type='text']:focus {
+.form-style [type='text']:focus {
   outline: none;
-  border-color: #53CACE; }
+  border-color: #53cace; }
 
-.prueba p {
-  color: rgba(0, 0, 0, 0.6);
+.form-style p {
+  color: rgba(15, 255, 175, 0.6);
   font-size: 1.2em;
   margin: 50px 0 50px 0; }
 
-.prueba span:hover {
-  color: #53CACE; }
+.form-style span:hover {
+  color: #53cace; }
 
 button.btn-delete-account {
   width: 100%;
@@ -253,7 +253,6 @@ button.btn-delete-account {
 * body {
   margin: 0;
   height: 100%;
-  background-color: #f9f9f9;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 .not-shown {
