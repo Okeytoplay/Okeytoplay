@@ -1,12 +1,23 @@
 <p>Today is:{{fecha}}</p>
 <h2>Upcoming events:</h2>
-<ul>
-    {{#each events}}
-    <div class="event-card">
-        <p>Date: {{schedule}}</p>
-        <p>Event name: {{name}}</p>
-        <p>Event description: {{description}}</p>
-        <p><a href="events/{{_id}}">Detail</a></p>
-    </div>
-    {{/each}}
-</ul>
+<div class="cards-container">
+    <ul>
+        {{#each events}}
+        <div class="card2">
+            <div>
+
+                <h3>Name: {{name}}</h3>
+                <p>Description: {{description}}</p>
+                {{!-- <p>Date: {{schedule}}</p> --}}
+            </div>
+            <div>
+                <button onclick="location.href='events/{{_id}}'" type="button" class="bttn">Detail</button>
+
+                {{!-- <p class="bttn"><a href="events/{{_id}}">Detail</a></p> --}}
+
+            </div>
+        </div>
+        {{/each}}
+    </ul>
+
+</div>

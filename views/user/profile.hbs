@@ -1,17 +1,22 @@
-<h3>Welcome: {{user.username}}, {{user.email}}</h3>
-{{#if user.band.name}}
-<h3>Your Band is: {{user.band.name}}</h3>
-<p>Update my band profile </p><button><a href="/user/profile/edit-band">Update Band</a></button>
-<p>Delete my band profile </p><button><a href="/user/profile/delete-band">Delete {{user.band.name}}</a></button>
-{{/if}}
+<h3>Welcome {{user.username}}</h3>
+<button onclick="location.href='/user/profile/edit-user'">Edit Profile</button>
 
 {{#if user.establishment.name}}
 <h3>Your Establishment is: {{user.establishment.name}}</h3>
 <p>Update my establishment profile </p><button><a href="/user/profile/edit-establishment">Update
-        Establishment</a></button>
+    Establishment</a></button>
 <p>Delete my establishment profile </p><button><a href="/user/profile/delete-establishment">Delete
-        {{user.establishment.name}}</a></button>
-
+    {{user.establishment.name}}</a></button>
 {{/if}}
 
-<h3>Edit my profile here: </h3><button><a href="/user/profile/edit-user">Edit profile</a></button>
+{{#if user.establishment.name}}
+<div>
+  <h3><img src="../images/local.png" alt="" style="height: 25px"> {{user.establishment.name}} is your establishment
+  </h3>
+  <button onclick="location.href='/user/profile/edit-establishment'">Update</button>
+  <button onclick="location.href='/user/profile/delete-establishment'">Delete</button>
+</div>
+{{/if}}
+
+<h3>Edit my profile here: </h3><a href="/user/profile/edit-user">Edit profile</a>
+<h3>Manage my petitions here: </h3><a href="/user/profile/petitions">Edit petitions</a>

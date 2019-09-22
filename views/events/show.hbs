@@ -1,38 +1,68 @@
 <h2>EVENT DETAIL:</h2>
-<img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
+<div class="cards-container">
+    <div class="card2">
+        <div>
+            <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
 
-<h1>{{name}}</h1> {{!--nombre del evento --}}
-<p>Description: {{description}}</p>
-<p>Date: {{schedule}}</p>
-<p>Price: {{price}} €</p>
-<p>Starting Time: {{startTime}}</p>
-<p>Duration: {{duration}}</p>
+        </div>
+        <div>
+            <h3>{{name}}</h3> {{!--nombre del evento --}}
+            <p>Description: {{description}}</p>
+            <p>Date: {{schedule}}</p>
+            <p>Price: {{price}} €</p>
+            <p>Starting Time: {{startTime}}</p>
+            <p>Duration: {{duration}}</p>
+        </div>
+    </div>
 
+</div>
+
+{{!-- establecimiento detalle --}}
 {{#if establishment}}
 <h2>ESTABLISHMENT DETAIL:</h2>
-<p>Name: {{establishment.name}}</p>
-<p>Description: {{establishment.description}}</p>
-<p>Website: <a href="{{establishment.website}}"></a>Website {{website}}</p>
-<p>Instagram: {{establishment.instagramProfile}}</p>
-<p>Facebook: {{establishment.facebookProfile}}</p>
-<ul>Adress
-    <p>Street: {{establishment.street}}</p>
-    <p>City: {{establishment.city}}</p>
-    <p>Zip: {{establishment.zip}}</p>
-</ul>
-<p>Capacity: {{establishment.capacity}}</p>
-<p>Avatar: {{establishment.avatar}}</p>
+<div class="cards-container">
+    <div class="card2">
+        <div>
+            <img class="card-Band-img-top" src="../images/local.png" alt="Card image cap">
+        </div>
+        <div>
+            <p>Name: {{establishment.name}}</p>
+            <p>Description: {{establishment.description}}</p>
+            <p>Website: <a href="{{establishment.website}}"></a>Website {{website}}</p>
+            <p>Instagram: {{establishment.instagramProfile}}</p>
+            <p>Facebook: {{establishment.facebookProfile}}</p>
+            <ul>Adress
+                <p>Street: {{establishment.street}}</p>
+                <p>City: {{establishment.city}}</p>
+                <p>Zip: {{establishment.zip}}</p>
+            </ul>
+            <p>Capacity: {{establishment.capacity}}</p>
+            <p>Avatar: {{establishment.avatar}}</p>
+        </div>
+    </div>
+</div>
 {{/if}}
 
+{{!-- banda detalle --}}
 {{#if band}}
 <h2>BAND DETAIL:</h2>
-<p>Name: {{band.name}}</p>
-<p>Musical Genre: {{band.genre}}</p>
-<p>Description: {{band.description}}</p>
-<p>Website: <a href="{{band.website}}"></a>Website {{website}}</p>
-<p>Instagram: {{band.instagramProfile}}</p>
-<p>Facebook: {{band.facebookProfile}}</p>
-<p>Avatar: {{band.avatar}}</p>
+<div class="cards-container">
+    <div class="card2">
+        <div>
+            <img class="card-Band-img-top" src="../images/band.png" alt="Card image cap">
+        </div>
+        <div>
+            <p>Name: {{band.name}}</p>
+            <p>Musical Genre: {{band.genre}}</p>
+            <p>Description: {{band.description}}</p>
+            <p>Website: <a href="{{band.website}}"></a>Website {{website}}</p>
+            <p>Instagram: {{band.instagramProfile}}</p>
+            <p>Facebook: {{band.facebookProfile}}</p>
+            <p>Avatar: {{band.avatar}}</p>
+        </div>
+    </div>
+</div>
+
 {{/if}}
 
 <button onclick="location.href='/events/{{id}}/join'" type="button" class="register-button">Join *</button>
