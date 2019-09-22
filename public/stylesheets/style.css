@@ -108,7 +108,7 @@ h4 {
 .bttn {
   width: 80%;
   margin: 15px 10px 20px 30px;
-  background-color: #24a2eb;
+  background-color: #53cace;
   border: none;
   text-transform: uppercase;
   color: white;
@@ -136,6 +136,10 @@ h4 {
 
 ul {
   padding: 0; }
+
+.cont-block {
+  display: flex;
+  justify-content: space-between; }
 
 .footer {
   background-color: #412e2a;
@@ -183,7 +187,7 @@ ul {
 
 #form button:hover {
   background: #fff;
-  color: #43a3e6;
+  color: #53cace;
   transition: 0.3s ease background; }
 
 .register {
@@ -229,7 +233,7 @@ ul {
   margin: 10%;
   border: 0;
   border-radius: 5px;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 40px 0px 40px;
   color: #6d6d6d; }
 
 .form-style [type='text']:focus {
@@ -264,6 +268,9 @@ button.btn-delete-account {
   color: #412e2a;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
+.container {
+  padding: 20px; }
+
 .not-shown {
   display: none; }
 
@@ -281,6 +288,15 @@ img {
   padding: 5px;
   color: white;
   float: left; }
+
+.bbtn {
+  margin: 10%;
+  width: 80%;
+  border: 0;
+  background-color: #53cace;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white; }
 
 footer {
   background: black;
