@@ -193,6 +193,49 @@ ul {
   flex-direction: column;
   align-items: center; }
 
+.prueba .signup {
+  float: left;
+  width: 300px;
+  padding: 30px 20px;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px 0 0 5px; }
+
+.prueba [type=text] {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.4); }
+
+.prueba [type=submit] {
+  margin-top: 25px;
+  width: 80%;
+  border: 0;
+  background-color: #53CACE;
+  border-radius: 5px;
+  height: 50px;
+  color: white;
+  font-weight: 400;
+  font-size: 1em; }
+
+.prueba [type='text']:focus {
+  outline: none;
+  border-color: #53CACE; }
+
+.prueba p {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2em;
+  margin: 50px 0 50px 0; }
+
+.prueba span:hover {
+  color: #53CACE; }
+
 button.btn-delete-account {
   width: 100%;
   margin: 15px 30px 20px 30px;
