@@ -15,11 +15,22 @@
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
   {{#if successMessages}}
-  <p class="success">{{successMessages}}</p>
+  <p class="msg-success">{{successMessages}}</p>
   {{/if}}
   {{#if errorMessages }}
-  <p class="error">{{ errorMessages }}</p>
+  <p class="msg-error">{{ errorMessages }}</p>
   {{/if }}
+  {{#if infoMessages }}
+  <p class="msg-info">{{ infoMessages }}</p>
+  {{/if }}
+  {{#if dangerMessages }}
+  <p class="msg-danger">{{ dangerMessages }}</p>
+  {{/if }}
+  {{#if warningMessages }}
+  <p class="msg-warning">{{ warningMessages }}</p>
+  {{/if }}
+
+  {{!-- {{> messages }} --}}
 
   {{!-- Navbar --}}
   <div class="navbar">
