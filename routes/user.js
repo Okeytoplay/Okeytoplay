@@ -753,9 +753,11 @@ router.post('/profile/edit-band-avatar', async (req, res) => {
   // save the file path into de date base
   form.on('file', async (name, file) => {
     req.flash('info', 'upload ');
-    const bandAvatar = `/images/avatar/bands/${bandId}_avatar`;
-    await Band.findByIdAndUpdate(bandId);
-    res.redirect('user/profile/edit-band-avatar');
+    const avatar = `/images/avatar/bands/${bandId}_avatar`;
+    await Band.findByIdAndUpdate(bandId, {
+      avatar,
+    });
+    res.redirect('/user/profile/edit-band-avatar');
   });
   // error control
   form.on('error', err => {
