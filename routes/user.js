@@ -531,8 +531,7 @@ router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    const userBand2 = await Band.findById(user.band);
-    // console.log('userBand2 ', userBand2);
+    console.log('userBand ', user);
 
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
@@ -549,6 +548,14 @@ router.get(
     // - busco el id de peticion en el array petitions
     // - borro el id del array
     // - actualizo el campo petitions de la collection banda
+    const { username, email } = req.body;
+    // const actualUserEmail = req.session.currentUser.email;
+    const userID = req.session.currentUser._id;
+    // console.log('userId:', userID);
+    if (username === '' || email === '') {
+      req.flash('error', 'No empty fields allowed.');
+      res.redirect('/profile/edit-user');
+    }
 
     try {
       const band = await Band.findByIdAndUpdate(
