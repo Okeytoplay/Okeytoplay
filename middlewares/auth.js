@@ -35,7 +35,10 @@ const checkEmailAndPasswordNotEmpty = (req, res, next) => {
 };
 
 const checkIfLoggedIn = (req, res, next) => {
+  console.log('Req Session antes borrar: ', req.session);
   delete req.session.returnTo;
+  console.log('Req Session despues borrar: ', req.session);
+  console.log('Session Current User: ', req.session.currentUser);
   if (req.session.currentUser) {
     next();
   } else {

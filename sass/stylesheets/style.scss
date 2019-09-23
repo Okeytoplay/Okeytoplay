@@ -5,6 +5,7 @@
 @import '../mixins/login';
 // @import '../mixins/signup';
 @import '../mixins/editProfile';
+@import '../mixins/newevent';
 // General Attributes
 * body {
   margin: 0;
@@ -14,7 +15,7 @@
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 .container {
-  padding: 20px;
+  padding: 0 20px;
 }
 .not-shown {
   display: none;
