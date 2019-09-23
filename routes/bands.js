@@ -14,14 +14,10 @@ const router = express.Router();
 
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  // console.log(actualUserEmail);
   try {
     const userFound = await User.findOne({ email: actualUserEmail }).populate(
       'band establishment',
     );
-    // const userID = userFound._id;
-    // const user = await User.findById(userID);
-    // res.render('user/profile', { userFound, title: 'Profile' });
     const role = ['Groupie'];
     if (userFound.role.band) {
       role.push('Band');
@@ -29,8 +25,6 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
     if (userFound.role.establisment) {
       role.push('Establishment');
     }
-
-    // res.render('user/profile', userFound, role);
     res.redirect('bands', { userFound, role });
   } catch (error) {
     next(error);
@@ -39,17 +33,11 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
-  // console.log(actualUserEmail);
   try {
     const userFound = await User.findOne({ email: actualUserEmail }).populate(
       'band establishment',
     );
     const bands = await Band.find();
-    // const userID = userFound._id;
-    // const user = await User.findById(userID);
-    // res.render('user/profile', { userFound, title: 'Profile' });
-    // res.render('user/profile', userFound, role);
-    // res.render('user/profile', { userFound });
     res.render('bands', { userFound, bands });
   } catch (error) {
     next(error);
@@ -121,6 +109,7 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
 // View one band detail
 router.get('/:bandID', async (req, res, next) => {
   const { bandID } = req.params;
@@ -136,21 +125,7 @@ router.get('/:bandID', async (req, res, next) => {
     next(error);
   }
 });
-// // Join one band
-// router.get('/:bandID/join', async (req, res, next) => {
-//   const { bandID } = req.params;
-//   const userID = req.session.currentUser._id;
-//   try {
-//     const band = await Band.findByIdAndUpdate(bandID, {
-//       $push: { petitions: userID },
-//     });
-//     console.log('bandTry....: ', band);
-//     req.flash('info', 'La peticion ha sido enviada a la banda');
-//     res.redirect('/user/profile/petitions');
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+
 /* POST Renders band information */
 router.post('/:bandID', async (req, res, next) => {
   const { bandID } = req.params;
@@ -161,76 +136,6 @@ router.post('/:bandID', async (req, res, next) => {
     next(error);
   }
 });
-// // Join one band
-// router.get('/:bandID/join', async (req, res, next) => {
-//   const { bandID } = req.params;
-//   const userID = req.session.currentUser._id;
-//   try {
-//     const bandAddData = await User.findByIdAndUpdate(
-//       userID,
-//       {
-//         band: bandID,
-//       },
-//       { new: true },
-//     );
-//     res.redirect('/user');
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-// UPLOAD IMAGES AVATAR
-router.post('/avatar/avatar-upload', async (req, res) => {
-  const user = await User.findById(req.session.currentUser._id);
-  const userBandId = await User.findById(user);
-  const bandId = userBandId.band;
-  console.log('User ID: ', user);
-  console.log('band ID: ', bandId);
-
-  // formidable is a npm package
-  const form = new formidable.IncomingForm();
-
-  form.parse(req);
-  // you need control where you put the file
-  form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/avatar/${user.id}_avatar`; // __dirname now is the router path
-  });
-
-  // save the file path into de date base
-  form.on('file', async (name, file) => {
-    req.flash('info', 'upload ');
-    const avatar = `/images/avatar/${user.id}_avatar`; // the path estart inside of public/
-    await Band.findByIdAndUpdate(bandId, {
-      avatar,
-    });
-    res.redirect('/bands/avatar/avatar-upload');
-  });
-  // error control
-  form.on('error', err => {
-    req.resume();
-    req.flash('error', `Some error happen ${err}`);
-  });
-  // aborted control
-  form.on('aborted', () => {
-    console.log('user aborted upload');
-  });
-});
-
-router.get('/avatar/avatar-upload', async (req, res) => {
-  const user = await User.findById(req.session.currentUser._id).populate(
-    'band establishment',
-  );
-  const userBandId = await User.findById(user);
-  const bandId = userBandId.band;
-  console.log('WhatIsUser:', user);
-  console.log('WhatIsBandId:', bandId);
-
-  req.flash('info', 'photo uploaded');
-  res.render('bands/avatar/avatar-upload', {
-    user,
-    bandId,
-  });
-});
 
 // Join one band
 router.get('/:bandID/join', async (req, res, next) => {
@@ -240,7 +145,6 @@ router.get('/:bandID/join', async (req, res, next) => {
     const band = await Band.findByIdAndUpdate(bandID, {
       $push: { petitions: userID },
     });
-    console.log('bandTry....: ', band);
     req.flash('info', 'La peticion ha sido enviada a la banda');
     res.redirect('/user/profile/petitions');
   } catch (error) {
