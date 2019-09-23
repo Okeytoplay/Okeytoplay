@@ -179,58 +179,58 @@ router.post('/:bandID', async (req, res, next) => {
 //   }
 // });
 
-// UPLOAD IMAGES AVATAR
-router.post('/avatar/avatar-upload', async (req, res) => {
-  const user = await User.findById(req.session.currentUser._id);
-  const userBandId = await User.findById(user);
-  const bandId = userBandId.band;
-  console.log('User ID: ', user);
-  console.log('band ID: ', bandId);
+// // UPLOAD IMAGES AVATAR
+// router.post('/avatar/avatar-upload', async (req, res) => {
+//   const user = await User.findById(req.session.currentUser._id);
+//   const userBandId = await User.findById(user);
+//   const bandId = userBandId.band;
+//   console.log('User ID: ', user);
+//   console.log('band ID: ', bandId);
 
-  // formidable is a npm package
-  const form = new formidable.IncomingForm();
+//   // formidable is a npm package
+//   const form = new formidable.IncomingForm();
 
-  form.parse(req);
-  // you need control where you put the file
-  form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/avatar/${user.id}_avatar`; // __dirname now is the router path
-  });
+//   form.parse(req);
+//   // you need control where you put the file
+//   form.on('fileBegin', (name, file) => {
+//     file.path = `${__dirname}/../public/images/avatar/${user.id}_avatar`; // __dirname now is the router path
+//   });
 
-  // save the file path into de date base
-  form.on('file', async (name, file) => {
-    req.flash('info', 'upload ');
-    const avatar = `/images/avatar/${user.id}_avatar`; // the path estart inside of public/
-    await Band.findByIdAndUpdate(bandId, {
-      avatar,
-    });
-    res.redirect('/bands/avatar/avatar-upload');
-  });
-  // error control
-  form.on('error', err => {
-    req.resume();
-    req.flash('error', `Some error happen ${err}`);
-  });
-  // aborted control
-  form.on('aborted', () => {
-    console.log('user aborted upload');
-  });
-});
+//   // save the file path into de date base
+//   form.on('file', async (name, file) => {
+//     req.flash('info', 'upload ');
+//     const avatar = `/images/avatar/${user.id}_avatar`; // the path estart inside of public/
+//     await Band.findByIdAndUpdate(bandId, {
+//       avatar,
+//     });
+//     res.redirect('/bands/avatar/avatar-upload');
+//   });
+//   // error control
+//   form.on('error', err => {
+//     req.resume();
+//     req.flash('error', `Some error happen ${err}`);
+//   });
+//   // aborted control
+//   form.on('aborted', () => {
+//     console.log('user aborted upload');
+//   });
+// });
 
-router.get('/avatar/avatar-upload', async (req, res) => {
-  const user = await User.findById(req.session.currentUser._id).populate(
-    'band establishment',
-  );
-  const userBandId = await User.findById(user);
-  const bandId = userBandId.band;
-  console.log('WhatIsUser:', user);
-  console.log('WhatIsBandId:', bandId);
+// router.get('/avatar/avatar-upload', async (req, res) => {
+//   const user = await User.findById(req.session.currentUser._id).populate(
+//     'band establishment',
+//   );
+//   const userBandId = await User.findById(user);
+//   const bandId = userBandId.band;
+//   console.log('WhatIsUser:', user);
+//   console.log('WhatIsBandId:', bandId);
 
-  req.flash('info', 'photo uploaded');
-  res.render('bands/avatar/avatar-upload', {
-    user,
-    bandId,
-  });
-});
+//   req.flash('info', 'photo uploaded');
+//   res.render('bands/avatar/avatar-upload', {
+//     user,
+//     bandId,
+//   });
+// });
 
 // Join one band
 router.get('/:bandID/join', async (req, res, next) => {

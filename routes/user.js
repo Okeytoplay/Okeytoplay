@@ -4,6 +4,8 @@ const User = require('../models/User'); // User Model
 const Band = require('../models/Band'); // Band Model
 const Event = require('../models/Event'); // Event Model
 const Establishment = require('../models/Establishment'); // Band Model
+const formidable = require('formidable');
+
 const { checkIfEstablishment } = require('../middlewares/user.js');
 const { fechaDeHoy } = require('../public/javascripts/fecha');
 const {
@@ -731,5 +733,57 @@ router.post(
     }
   },
 );
+// UPLOAD IMAGES AVATAR
+router.post('/profile/edit-band-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id);
+  const userBandId = await User.findById(user);
+  const bandId = userBandId.band;
+  console.log('User ID: ', user);
+  console.log('band ID: ', bandId);
+
+  // formidable is a npm package
+  const form = new formidable.IncomingForm();
+
+  form.parse(req);
+  // you need control where you put the file
+  form.on('fileBegin', (name, file) => {
+    file.path = `${__dirname}/../public/images/avatar/bands/${bandId}_avatar`; // __dirname now is the router path
+  });
+
+  // save the file path into de date base
+  form.on('file', async (name, file) => {
+    req.flash('info', 'upload ');
+    const bandAvatar = `/images/avatar/bands/${bandId}_avatar`;
+    await Band.findByIdAndUpdate(bandId, {
+      avatar,
+    });
+    res.redirect('user/profile/edit-band-avatar');
+  });
+  // error control
+  form.on('error', err => {
+    req.resume();
+    req.flash('error', `Some error happen ${err}`);
+  });
+  // aborted control
+  form.on('aborted', () => {
+    console.log('user aborted upload');
+  });
+});
+
+router.get('/profile/edit-band-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id).populate(
+    'band establishment',
+  );
+  const userBandId = await User.findById(user);
+  const bandId = userBandId.band;
+  console.log('WhatIsUser:', user);
+  console.log('WhatIsBandId:', bandId);
+
+  req.flash('info', 'photo uploaded');
+  res.render('user/profile/edit-band-avatar', {
+    user,
+    bandId,
+  });
+});
 
 module.exports = router;

@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   try {
     const events = await Event.find().populate('establishment band');
-    console.log(events);
+    // console.log(events);
     res.render('index', { events });
   } catch (error) {
     next(error);
