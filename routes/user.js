@@ -733,7 +733,7 @@ router.post(
     }
   },
 );
-// UPLOAD IMAGES AVATAR
+// UPLOAD BAND AVATAR
 router.post('/profile/edit-band-avatar', async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
   const userBandId = await User.findById(user);
@@ -786,4 +786,56 @@ router.get('/profile/edit-band-avatar', async (req, res) => {
   });
 });
 
+// UPLOAD ESTABLISHMENT AVATAR
+router.post('/profile/edit-establishment-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id);
+  const userEstablishmentId = await User.findById(user);
+  const establishmentId = userEstablishmentId.establishment;
+  console.log('User ID: ', user);
+  console.log('establishmentId ID: ', establishmentId);
+
+  // formidable is a npm package
+  const form = new formidable.IncomingForm();
+
+  form.parse(req);
+  // you need control where you put the file
+  form.on('fileBegin', (name, file) => {
+    file.path = `${__dirname}/../public/images/avatar/establishments/${establishmentId}_avatar`; // __dirname now is the router path
+  });
+
+  // save the file path into de date base
+  form.on('file', async (name, file) => {
+    req.flash('info', 'upload ');
+    const avatar = `/images/avatar/establishments/${establishmentId}_avatar`;
+    await Establishment.findByIdAndUpdate(establishmentId, {
+      avatar,
+    });
+    res.redirect('/user/profile/edit-establishment-avatar');
+  });
+  // error control
+  form.on('error', err => {
+    req.resume();
+    req.flash('error', `Some error happen ${err}`);
+  });
+  // aborted control
+  form.on('aborted', () => {
+    console.log('user aborted upload');
+  });
+});
+
+router.get('/profile/edit-establishment-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id).populate(
+    'band establishment',
+  );
+  const userEstablishmentId = await User.findById(user);
+  const establishmentId = userEstablishmentId.establishment;
+  console.log('WhatIsUser:', user);
+  console.log('WhatIsEstablishmentId:', establishmentId);
+
+  req.flash('info', 'photo uploaded');
+  res.render('user/profile/edit-establishment-avatar', {
+    user,
+    establishmentId,
+  });
+});
 module.exports = router;

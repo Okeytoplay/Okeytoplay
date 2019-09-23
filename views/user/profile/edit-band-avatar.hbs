@@ -19,3 +19,6 @@ avatar: {{user.band.avatar}}
     </div>
 
 </form>
+{{#if user.band.avatar}}
+<a href="/bands/{{user.band.id}}">Whatch band card</a>
+{{/if}}
