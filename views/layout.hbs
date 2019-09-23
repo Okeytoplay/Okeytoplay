@@ -33,14 +33,14 @@
   {{!-- {{> messages }} --}}
 
   {{!-- Navbar --}}
+  {{#if currentUser }}
   <div class="navbar">
-    {{#if currentUser }}
     <a id="navbar-logo" href="/"></a>
     <a href="/user"><img src="/images/perfil.png" alt="" style="height: 29px"></a>
     <a href="/user/profile"><img src="/images/edit.png" alt="" style="height: 29px"></a>
-    <a href="/logout"> Logout</a>
-    {{/if}}
+    <a href="/logout" class="logout"> Logout</a>
   </div>
+  {{/if}}
 
   <div class="mobile-container">
     {{{body}}}

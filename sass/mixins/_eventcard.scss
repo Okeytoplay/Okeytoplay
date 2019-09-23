@@ -35,11 +35,11 @@
   box-shadow: 3px 3px 3px gray;
 }
 
-.card-Band-img-top {
-  height: 100px;
-  padding-right: 10px;
-  // background-color: aqua;
-}
+// .card-Band-img-top {
+//   height: 100px;
+//   padding-right: 10px;
+//   // background-color: aqua;
+// }
 
 .card-title {
   float: left;
@@ -56,7 +56,15 @@
 ul {
   padding: 0;
 }
-.cont-block{
+.cont-block {
   display: flex;
   justify-content: space-between;
+}
+
+.cont-block-img {
+  width: 25%;
+}
+
+img.card-Band-img-top {
+  max-width: 100%;
 }
