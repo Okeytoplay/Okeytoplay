@@ -326,7 +326,7 @@ input[type='date'] {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 .container {
-  padding: 0 5px; }
+  padding: 5%; }
 
 .not-shown {
   display: none; }
