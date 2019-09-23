@@ -3,12 +3,17 @@
     <img class="card-Band-img-top" src="/images/default-img-events.png" alt="Card image cap">
   </div>
   <div class="cont-block-data">
-    <h5 class="card-title">Event:
-      <p class="card-title-span">{{this.name}}</p>
-    </h5>
-    <p class="card-text">Band: {{band.name}}</p>
-    <p class="card-text">Establishment: {{establishment.name}}</p>
-    <p class="card-text">Tickets for: {{this.price}}€</p>
-    <a href="events/{{_id}}" class="bttn">More Details</a>
+    <p class="card-title">Event:</p>
+    <p class="card-title-data">{{this.name}}</p>
+    <p class="card-title">Band: </p>
+    {{!-- <p class="card-text">Band: {{band.name}}</p> --}}
+    <p class="card-title-data">{{band.name}}</p>
+    <p class="card-title">Establishment:</p>
+    <p class="card-title-data">{{establishment.name}}</p>
+    {{!-- <p class="card-text">Establishment: {{establishment.name}}</p> --}}
+    <p class="card-title">Tickets for:</p>
+    <p class="card-title-data">{{this.price}}</p>
+    {{!-- <p class="card-text">Tickets for: {{this.price}}€</p> --}}
   </div>
+  <a href="events/{{_id}}" class="bttn">More Details</a>
 </div>
