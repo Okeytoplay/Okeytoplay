@@ -4,13 +4,16 @@
     <h2>Details of Band</h2>
   </div>
 
-  <h3>Name: {{ bands.name }}</h3>
-  <h3>Genre: {{ bands.genre }}</h3>
-  <h3>Description: {{ bands.description }}</h3>
-  <h3>Website: <a href="{{bands.website}}">{{bands.website}}</a></h3>
-  <h3>Instagram: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></h3>
-  <h3>Facebook:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></h3>
-  <h3>Avatar: {{ bands.avatar }}</h3>
+  <div class="details-info">
+    <p>Name: {{ bands.name }}</p>
+    <p>Genre: {{ bands.genre }}</p>
+    <p>Description: {{ bands.description }}</p>
+    <p>Website: <a href="{{bands.website}}">{{bands.website}}</a></p>
+    <p>Instagram: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></p>
+    <p>Facebook:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></p>
+    <p>Avatar: {{ bands.avatar }}</>
+
+  </div>
 
   {{#if userFound.band.name}}
   {{else}}
