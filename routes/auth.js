@@ -59,7 +59,7 @@ router.post('/login', checkEmailAndPasswordNotEmpty, async (req, res, next) => {
         console.log('Estoy Logueado OK'); // Se tendrá que quitar, es para ver donde redirigimos una vez logueados
         req.flash('success', `${user.username}, nos encanta que vuelvas!!!`);
         console.log('Req SESSION REDIRECT:', req.session.returnTo);
-        if (req.session.returnTo) {
+        if (req.session.returnTo !== undefined) {
           console.log('Req SESSION REDIRECT DENTRO IF:', req.session.returnTo);
           res.redirect(req.session.returnTo);
         } else {
