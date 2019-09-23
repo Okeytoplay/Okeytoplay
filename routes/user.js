@@ -754,9 +754,7 @@ router.post('/profile/edit-band-avatar', async (req, res) => {
   form.on('file', async (name, file) => {
     req.flash('info', 'upload ');
     const bandAvatar = `/images/avatar/bands/${bandId}_avatar`;
-    await Band.findByIdAndUpdate(bandId, {
-      avatar,
-    });
+    await Band.findByIdAndUpdate(bandId);
     res.redirect('user/profile/edit-band-avatar');
   });
   // error control
