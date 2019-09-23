@@ -1,11 +1,20 @@
-<h2>Bookedevents</h2>
-<p> eventos a los que estoy inscrito</p>
+<div class="container">
 
-<div class="">
-  {{#each events}}
-  {{> book }}
-  {{/each}}
+  <div class="cont-title">
+    <h2>Booked Events</h2>
+    {{fecha}}
+  </div>
+
+  <div class="cards-container">
+    {{#each events}}
+    <div class="card2">
+      {{> book }}
+    </div>
+
+    {{/each}}
+  </div>
 </div>
+
 
 
 {{#if errorMessage}}

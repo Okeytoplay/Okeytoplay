@@ -1,9 +1,29 @@
-<h2>Bookings </h2>
-<div>
-  {{#each events}}
-  {{> book}}
-  {{/each}}
+<div class="container">
+
+  <div class="cont-title">
+    <h2>Bookings</h2>
+    {{fecha}}
+  </div>
+
+  <div class="cards-container">
+    {{#each events}}
+    <div class="card2">
+      {{> book }}
+    </div>
+
+    {{/each}}
+  </div>
 </div>
+
+
+
+{{#if errorMessage}}
+<div class='error-message'>{{ errorMessage }}</div>
+{{/if}}
+
+
+
+
 
 {{!-- {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>

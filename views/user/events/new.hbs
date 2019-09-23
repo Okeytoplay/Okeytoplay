@@ -1,21 +1,29 @@
-<h1>Crea tu nuevo evento eiiii</h1>
+<div class="container">
+  <div class="cont-title">
+    <h2>Create Event</h2>
+  </div>
 
-<div>
-  <form id='form' action="/user/events/new" method="POST">
-    <label for="name">Nombre del evento:</label><br>
-    <input type="text" name='name' placeholder="Nombre del Evento" required><br>
-    <label for="description">Descripción del evento:</label><br>
-    <input type="text" name='description' placeholder="Descripción del Evento" required><br>
-    <label for="price">Precio de la entrada:</label><br>
-    <input type="text" name='price' placeholder="Precio de la entrada €"><br>
-    <label for="durationMins">Duración del evento (en minutos):</label><br>
-    <input type="text" name='durationMins' placeholder="Duración en minutos"><br>
-    <label for="schedule">Fecha (Hoy por defecto):</label><br>
-    <input type="datetime-local" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
+  <div class="form-style">
+    <form id='profile-form' action="/user/events/new" method="POST">
 
+      <label for="schedule"></label>
+      <input type="date" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
+      <label for="name"></label>
+      <input type="text" name='name' placeholder="Name" required>
+      <label for="description"></label>
+      <input type="text" name='description' placeholder="Description" required>
+      <label for="price"></label>
+      <input type="text" name='price' placeholder="Price €€€">
+      <label for="startTime"></label>
+      <input type="text" name='startTime' placeholder="Start Time">
+      <label for="durationMins"></label>
+      <input type="text" name='durationMins' placeholder="Duration">
 
-    <button type="submit">Crear EVENTO</button>
-  </form>
+      <button type="submit">Create event</button>
+    </form>
+
+  </div>
+
 </div>
 
 

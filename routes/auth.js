@@ -57,6 +57,7 @@ router.post('/login', checkEmailAndPasswordNotEmpty, async (req, res, next) => {
       if (bcrypt.compareSync(password, user.hashedPassword)) {
         req.session.currentUser = user;
         console.log('Estoy Logueado OK'); // Se tendrá que quitar, es para ver donde redirigimos una vez logueados
+        console.log('Dentro del loguin Session Current USer: ', req.session);
         req.flash('success', `${user.username}, nos encanta que vuelvas!!!`);
         console.log('Req SESSION REDIRECT:', req.session.returnTo);
         if (req.session.returnTo !== undefined) {

@@ -19,10 +19,11 @@
   justify-content: space-between;
   align-items: center;
 }
+// rgb(36, 162, 235); boton color azul
 .bttn {
   width: 80%;
   margin: 15px 10px 20px 30px;
-  background-color: rgb(36, 162, 235);
+  background-color: #53cace;
   border: none;
   text-transform: uppercase;
   color: white;
@@ -34,11 +35,11 @@
   box-shadow: 3px 3px 3px gray;
 }
 
-.card-Band-img-top {
-  height: 100px;
-  padding-right: 10px;
-  // background-color: aqua;
-}
+// .card-Band-img-top {
+//   height: 100px;
+//   padding-right: 10px;
+//   // background-color: aqua;
+// }
 
 .card-title {
   float: left;
@@ -54,4 +55,16 @@
 }
 ul {
   padding: 0;
+}
+.cont-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cont-block-img {
+  width: 25%;
+}
+
+img.card-Band-img-top {
+  max-width: 100%;
 }

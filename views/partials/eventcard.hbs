@@ -1,21 +1,14 @@
-{{!-- <div class="cards-container">
-  <div class="card2">
-    <div>
-      <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
-    </div>
-    <div class="">
-      <h2 class="">{{this.name}}</h2>
-      <p class="">Band: {{band.name}}</p>
-      <button onclick="location.href='events/{{_id}}'" type="button" class="bttn">See More</button>
-    </div>
-  </div> --}}
-  <div class="card">
-    <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Event: {{this.name}}</h5>
-      <p class="card-text">Band: {{band.name}}</p>
-      <p class="card-text">Establishment: {{establishment.name}}</p>
-      <p class="card-text">Tickets for: {{this.price}}€</p>
-      <a href="events/{{_id}}" class="btn-more-details">More Details</a>
-    </div>
+<div class="cont-block">
+  <div class="cont-block-img">
+    <img class="card-Band-img-top" src="/images/default-img-events.png" alt="Card image cap">
   </div>
+  <div class="cont-block-data">
+    <h5 class="card-title">Event:
+      <p class="card-title-span">{{this.name}}</p>
+    </h5>
+    <p class="card-text">Band: {{band.name}}</p>
+    <p class="card-text">Establishment: {{establishment.name}}</p>
+    <p class="card-text">Tickets for: {{this.price}}€</p>
+    <a href="events/{{_id}}" class="bttn">More Details</a>
+  </div>
+</div>
