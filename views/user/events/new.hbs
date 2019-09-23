@@ -5,22 +5,24 @@
 
   <div class="form-style">
     <form id='profile-form' action="/user/events/new" method="POST">
-      <div>
-        <label for="name"></label><br>
-        <input type="text" name='name' placeholder="Name" required><br>
-        <label for="description"></label><br>
-        <input type="text" name='description' placeholder="Description" required><br>
-        <label for="price"></label><br>
-        <input type="text" name='price' placeholder="Price €€€"><br>
-        <label for="durationMins"></label><br>
-        <input type="text" name='durationMins' placeholder="Duration"><br>
-        <label for="schedule"></label><br>
-        <input type="datetime-local" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
-      </div>
+
+      <label for="schedule"></label>
+      <input type="date" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
+      <label for="name"></label>
+      <input type="text" name='name' placeholder="Name" required>
+      <label for="description"></label>
+      <input type="text" name='description' placeholder="Description" required>
+      <label for="price"></label>
+      <input type="text" name='price' placeholder="Price €€€">
+      <label for="startTime"></label>
+      <input type="text" name='startTime' placeholder="Start Time">
+      <label for="durationMins"></label>
+      <input type="text" name='durationMins' placeholder="Duration">
+
       <button type="submit">Create event</button>
     </form>
+
   </div>
-</div>
 
 </div>
 

@@ -15,21 +15,32 @@
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
   {{#if successMessages}}
-  <p class="success">{{successMessages}}</p>
+  <p class="msg-success">{{successMessages}}</p>
   {{/if}}
   {{#if errorMessages }}
-  <p class="error">{{ errorMessages }}</p>
+  <p class="msg-error">{{ errorMessages }}</p>
+  {{/if }}
+  {{#if infoMessages }}
+  <p class="msg-info">{{ infoMessages }}</p>
+  {{/if }}
+  {{#if dangerMessages }}
+  <p class="msg-danger">{{ dangerMessages }}</p>
+  {{/if }}
+  {{#if warningMessages }}
+  <p class="msg-warning">{{ warningMessages }}</p>
   {{/if }}
 
+  {{!-- {{> messages }} --}}
+
   {{!-- Navbar --}}
+  {{#if currentUser }}
   <div class="navbar">
-    {{#if currentUser }}
     <a id="navbar-logo" href="/"></a>
-    <a href="/user"><img src="../images/perfil.png" alt="" style="height: 29px"></a>
-    <a href="/user/profile"><img src="../images/edit.png" alt="" style="height: 29px"></a>
-    <a href="/logout"> Logout</a>
-    {{/if}}
+    <a href="/user"><img src="/images/perfil.png" alt="" style="height: 29px"></a>
+    <a href="/user/profile"><img src="/images/edit.png" alt="" style="height: 29px"></a>
+    <a href="/logout" class="logout"> Logout</a>
   </div>
+  {{/if}}
 
   <div class="mobile-container">
     {{{body}}}

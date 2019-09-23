@@ -17,7 +17,7 @@ const fechaDeHoy = () => {
   mm = addZero(mm);
 
   // return `${dd}/${mm}/${yyyy}`;
-  return `${yyyy}/${mm}/${dd}`;
+  return `${yyyy}-${mm}-${dd}`;
 };
 
 module.exports = { fechaDeHoy };
