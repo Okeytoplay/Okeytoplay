@@ -812,6 +812,8 @@ router.get('/profile/edit-establishment-avatar', async (req, res) => {
   );
   const userEstablishmentId = await User.findById(user);
   const establishmentId = userEstablishmentId.establishment;
+  console.log('userEstablishmentId ', userEstablishmentId);
+  console.log('establishmentId ', establishmentId);
 
   req.flash('info', 'photo uploaded');
   res.render('user/profile/edit-establishment-avatar', {
@@ -819,5 +821,47 @@ router.get('/profile/edit-establishment-avatar', async (req, res) => {
     establishmentId,
   });
 });
-
+// GET to delete picture.
+router.get(
+  '/profile/edit-establishment-avatar-delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const user = await User.findById(req.session.currentUser._id).populate(
+      'band establishment',
+    );
+    const userEstablishmentId = await User.findById(user);
+    const establishmentId = userEstablishmentId.establishment;
+    try {
+      // const deletedAvatar = await Establishment.findByIdAndDelete(
+      //   establishmentId,
+      //   { avatar },
+      // );
+      res.redirect('/user/profile/edit-establishment-avatar');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+router.post(
+  '/profile/edit-establishment-avatar-delete',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const user = await User.findById(req.session.currentUser._id).populate(
+      'band establishment',
+    );
+    const userEstablishmentId = await User.findById(user);
+    const establishmentId = userEstablishmentId.establishment;
+    try {
+      const deletedAvatar = await Establishment.findByIdAndDelete(
+        establishmentId,
+        { avatar },
+      );
+      res.redirect('/user/profile/edit-establishment-avatar');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 module.exports = router;
