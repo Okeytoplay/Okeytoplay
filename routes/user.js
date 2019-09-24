@@ -819,4 +819,5 @@ router.get('/profile/edit-establishment-avatar', async (req, res) => {
     establishmentId,
   });
 });
+
 module.exports = router;
