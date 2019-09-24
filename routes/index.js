@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   try {
     const events = await Event.find().populate('establishment band');
-    // console.log(events);
+    console.log('eveeeents: ', events);
     res.render('index', { events });
   } catch (error) {
     next(error);
@@ -28,7 +28,7 @@ router.get('/', async (req, res, next) => {
 
 /* GET Log Out and redirect to HomePage */
 router.get('/logout', (req, res, next) => {
-  req.session.destroy((err) => {
+  req.session.destroy(err => {
     if (err) {
       next(err);
     }

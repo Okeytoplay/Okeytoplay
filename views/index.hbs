@@ -33,13 +33,27 @@
         <h2>Upcoming Events</h2>
         {{!-- {{fecha}}   Si no se pasa a la vista no se puede utilizar --}}
     </div>
-
+    {{!-- <div class="eventcard">
+        <div class="places">
+            <div class="boxplaces">
+                <div class="placeinfo">
+                    <div class="boxdate">
+                        <div class="dateevent"></div>
+                        <div class="datetime"></div>
+                    </div>
+                </div>
+                <div class="placedetails">
+                    <span class="adress"></span>
+                    <span class="telephone"></span>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <div class="cards-container">
         {{#each events}}
         <div class="card2">
             {{> eventcard this}}
         </div>
-
         {{/each}}
     </div>
 </div>
