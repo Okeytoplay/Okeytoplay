@@ -200,8 +200,8 @@ img.card-Band-img-top {
   width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  line-height: 20px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
   color: #15242e; }
 
@@ -212,8 +212,8 @@ img.card-Band-img-top {
   width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  line-height: 20px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
   color: #15242e; }
 
@@ -224,21 +224,21 @@ img.card-Band-img-top {
   width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  line-height: 20px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
   color: #15242e; }
 
 .form-style [type='submit'] {
   margin: 0 auto;
+  margin-bottom: 20%;
   display: block;
   border: 0;
   background-color: #28b8dc;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 10px 25px;
   text-transform: uppercase;
   color: white;
-  font-weight: 400;
   font-size: 1em; }
 
 .form-style [type='datetime-local'] {
