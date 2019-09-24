@@ -72,7 +72,7 @@ router.post('/new', async (req, res, next) => {
     capacity,
     avatar,
   } = req.body;
-  const actualUserEmail = req.session.currentUser.email;
+  const actualUser = req.session.currentUser;
   if (name === '' || street === '' || city === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/establishments/new');
@@ -92,9 +92,10 @@ router.post('/new', async (req, res, next) => {
       capacity,
       avatar,
     });
-    const userFound = await User.findOne({ email: actualUserEmail });
-    updatedUser = await User.updateOne(
-      { _id: userFound._id },
+    // const userFound = await User.findOne({ email: actualUserEmail });
+    console.log('Actuaal User: ', actualUser);
+    updatedUser = await User.findByIdAndUpdate(
+      { _id: actualUser._id },
       {
         $set: {
           'role.establishment': true,
@@ -105,6 +106,10 @@ router.post('/new', async (req, res, next) => {
         new: true,
       },
     );
+    console.log('updated useeer: ', updatedUser);
+    req.session.currentUser = updatedUser;
+    console.log('req sesion curent useeer: ', req.session.currentUser);
+
     res.redirect('/user');
   } catch (error) {
     next(error);
