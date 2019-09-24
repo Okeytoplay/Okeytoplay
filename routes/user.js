@@ -812,8 +812,8 @@ router.get('/profile/edit-establishment-avatar', async (req, res) => {
   );
   const userEstablishmentId = await User.findById(user);
   const establishmentId = userEstablishmentId.establishment;
-  console.log('userEstablishmentId ', userEstablishmentId);
-  console.log('establishmentId ', establishmentId);
+  // console.log('userEstablishmentId ', userEstablishmentId);
+  // console.log('establishmentId ', establishmentId);
 
   req.flash('info', 'photo uploaded');
   res.render('user/profile/edit-establishment-avatar', {
@@ -823,7 +823,7 @@ router.get('/profile/edit-establishment-avatar', async (req, res) => {
 });
 // GET to delete picture.
 router.get(
-  '/profile/edit-establishment-avatar-delete',
+  '/profile/delete/establishment-avatar',
   checkIfLoggedIn,
   checkIfEstablishment,
   async (req, res, next) => {
@@ -837,14 +837,14 @@ router.get(
       //   establishmentId,
       //   { avatar },
       // );
-      res.redirect('/user/profile/edit-establishment-avatar');
+      res.render('/profile/delete/establishment-avatar');
     } catch (error) {
       next(error);
     }
   },
 );
 router.post(
-  '/profile/edit-establishment-avatar-delete',
+  '/profile/delete/establishment-avatar',
   checkIfLoggedIn,
   checkIfEstablishment,
   async (req, res, next) => {
@@ -855,10 +855,11 @@ router.post(
     const establishmentId = userEstablishmentId.establishment;
     try {
       const deletedAvatar = await Establishment.findByIdAndDelete(
-        establishmentId,
-        { avatar },
+        establishmentId.avatar,
       );
-      res.redirect('/user/profile/edit-establishment-avatar');
+      console.log('deletedAvatar:', deletedAvatar);
+
+      res.redirect('/profile/delete/establishment-avatar');
     } catch (error) {
       next(error);
     }
