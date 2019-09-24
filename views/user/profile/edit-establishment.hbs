@@ -1,30 +1,38 @@
-<form id='form' action='/user/profile/edit-establishment' method='POST'>
-    <div id='Establishment-form-profile'>
-        <label for='establishment'>Establishment Name:</label><br>
-        <input type='text' name='name' value='{{userEstablishment.name}}'><br>
-        <label for='establishment'>Description:</label><br>
-        <input type='text' name='description' value='{{userEstablishment.description}}'><br>
-        <label for='establishment'>Street:</label><br>
-        <input type='text' name='street' value='{{userEstablishment.street}}'><br>
-        <label for='establishment'>City:</label><br>
-        <input type='text' name='city' value='{{userEstablishment.city}}'><br>
-        <label for='establishment'>ZIP Code:</label><br>
-        <input type='text' name='zip' value='{{userEstablishment.zip}}'><br>
-        <label for='establishment'>Capacity:</label><br>
-        <input type='text' name='capacity' value='{{userEstablishment.capacity}}'><br>
-        <label for='establishment'>Website</label><br>
-        <input type='text' name='website' value='{{userEstablishment.website}}'><br>
-        <label for='establishment'>Instagram:</label><br>
-        <input type='text' name='instagramProfile' value='{{userEstablishment.instagramProfile}}'><br>
-        <label for='Instagram'>Facebook:</label><br>
-        <input type='text' name='facebookProfile' value='{{userEstablishment.facebookProfile}}'><br>
+<div class="container">
+    <div class="cont-title">
+        <h2>Edit Establishment</h2>
+    </div>
 
+    <div class="form-style">
+
+        <form id='form' action='/user/profile/edit-establishment' method='POST'>
+            <label for='establishment'>Establishment Name:</label>
+            <input type='text' name='name' value='{{userEstablishment.name}}'>
+            <label for='establishment'>Description:</label>
+            <input type='text' name='description' value='{{userEstablishment.description}}'>
+            <label for='establishment'>Street:</label>
+            <input type='text' name='street' value='{{userEstablishment.street}}'>
+            <label for='establishment'>City:</label>
+            <input type='text' name='city' value='{{userEstablishment.city}}'>
+            <label for='establishment'>ZIP Code:</label>
+            <input type='text' name='zip' value='{{userEstablishment.zip}}'>
+            <label for='establishment'>Capacity:</label>
+            <input type='text' name='capacity' value='{{userEstablishment.capacity}}'>
+            <label for='establishment'>Website</label>
+            <input type='text' name='website' value='{{userEstablishment.website}}'>
+            <label for='establishment'>Instagram:</label>
+            <input type='text' name='instagramProfile' value='{{userEstablishment.instagramProfile}}'>
+            <label for='Instagram'>Facebook:</label>
+            <input type='text' name='facebookProfile' value='{{userEstablishment.facebookProfile}}'>
+           
+            <button type='submit'>Update Establishment</button>
+        </form>
     </div>
-    </div>
-    <button type='submit'>Update Establishment</button>
-</form>
+
 
 </div>
+
+
 {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
