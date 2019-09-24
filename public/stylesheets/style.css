@@ -127,25 +127,18 @@ h4 {
   align-items: center; }
 
 .bttn {
-  width: 80%;
-  margin: 15px 10px 20px 30px;
+  width: 50%;
+  margin: 0 auto;
   background-color: #53cace;
   border: none;
   text-transform: uppercase;
   color: white;
-  padding: 10px;
+  padding: 5px 15px;
   border-radius: 12px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
   box-shadow: 3px 3px 3px gray; }
-
-.card-title {
-  float: left;
-  margin-top: 0;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  font-size: 14px; }
 
 .event-card {
   border: 1px solid blue;
@@ -156,6 +149,7 @@ ul {
 
 .cont-block {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between; }
 
 .cont-block-img {
@@ -163,6 +157,27 @@ ul {
 
 img.card-Band-img-top {
   max-width: 100%; }
+
+.cont-block-data {
+  width: 70%;
+  padding-left: 5px;
+  box-sizing: border-box; }
+
+.card-title {
+  margin: 0;
+  display: inline;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: coral; }
+
+.card-title-data {
+  font-size: 14px;
+  font-weight: bold;
+  /* width: 198px; */
+  box-sizing: border-box;
+  /* width: 200px; */
+  display: inline; }
 
 .footer {
   background-color: #412e2a;
@@ -379,7 +394,6 @@ footer {
   background: black;
   color: white;
   text-align: center;
-  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%; }

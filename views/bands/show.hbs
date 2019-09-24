@@ -1,26 +1,20 @@
-<div class="container">
+<h3>Detalles de la Banda</h3>
+<h3>Name of the band: {{ bands.name }}</h3>
+<h3>Genre of the band: {{ bands.genre }}</h3>
+<h3>Description of the band: {{ bands.description }}</h3>
+<h3>Website of the band: <a href="{{bands.website}}">{{bands.website}}</a></h3>
+<h3>InstagramProfile of the band: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></h3>
+<h3>FacebookProfile of the band:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></h3>
+<img src="{{bands.avatar}}" alt="" width="300px" height="150px" class="circle center-align">
 
-  <div class="cont-title">
-    <h2>Details of Band</h2>
-  </div>
-
-  <div class="details-info">
-    <p>Name: {{ bands.name }}</p>
-    <p>Genre: {{ bands.genre }}</p>
-    <p>Description: {{ bands.description }}</p>
-    <p>Website: <a href="{{bands.website}}">{{bands.website}}</a></p>
-    <p>Instagram: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></p>
-    <p>Facebook:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></p>
-    <p>Avatar: {{ bands.avatar }}</>
-
-  </div>
-
-  {{#if userFound.band.name}}
-  {{else}}
-  Esta dins:
-  <a href="/bands/{{bands._id}}/join">join</a>
-  {{/if}}
-  Aixo no:
-  <a href="/bands/{{bands._id}}/join">join</a>
-  <a href="/bands/{{bands._id}}/check">check</a>
-</div>
+{{#if user.band}}
+Manage Your band petitions here:
+<a href="/user/profile/petitions">Petitions</a>
+{{else}}
+{{#if checkIfpetition.petitions}}
+You already sent a petition.
+{{else}}
+Send a petition to join {{ ../bands.name }}
+<a href="/bands/{{bands._id}}/join">Send</a>
+{{/if}}
+{{/if}}

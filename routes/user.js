@@ -4,6 +4,8 @@ const User = require('../models/User'); // User Model
 const Band = require('../models/Band'); // Band Model
 const Event = require('../models/Event'); // Event Model
 const Establishment = require('../models/Establishment'); // Band Model
+const formidable = require('formidable');
+
 const { checkIfEstablishment } = require('../middlewares/user.js');
 const { fechaDeHoy } = require('../public/javascripts/fecha');
 const {
@@ -531,8 +533,7 @@ router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    const userBand2 = await Band.findById(user.band);
-    // console.log('userBand2 ', userBand2);
+    console.log('userBand ', user);
 
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
@@ -544,11 +545,14 @@ router.get(
   '/profile/petitions/:bandId/:petitionUserId/decline',
   async (req, res, next) => {
     const { bandId, petitionUserId } = req.params;
-
-    // - find con toda la informacion de la banda
-    // - busco el id de peticion en el array petitions
-    // - borro el id del array
-    // - actualizo el campo petitions de la collection banda
+    const { username, email } = req.body;
+    // const actualUserEmail = req.session.currentUser.email;
+    const userID = req.session.currentUser._id;
+    // console.log('userId:', userID);
+    if (username === '' || email === '') {
+      req.flash('error', 'No empty fields allowed.');
+      res.redirect('/profile/edit-user');
+    }
 
     try {
       const band = await Band.findByIdAndUpdate(
@@ -725,4 +729,140 @@ router.post(
   },
 );
 
+// UPLOAD BAND AVATAR
+router.post('/profile/edit-band-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id);
+  const userBandId = await User.findById(user);
+  const bandId = userBandId.band;
+  const form = new formidable.IncomingForm();
+
+  form.parse(req);
+  form.on('fileBegin', (name, file) => {
+    file.path = `${__dirname}/../public/images/avatar/bands/${bandId}_avatar`; // __dirname now is the router path
+  });
+
+  // save in database
+  form.on('file', async (name, file) => {
+    req.flash('info', 'upload ');
+    const avatar = `/images/avatar/bands/${bandId}_avatar`;
+    await Band.findByIdAndUpdate(bandId, {
+      avatar,
+    });
+    res.redirect('/user/profile/edit-band-avatar');
+  });
+  // error control
+  form.on('error', err => {
+    req.resume();
+    req.flash('error', `Some error happen ${err}`);
+  });
+  // aborted control
+  form.on('aborted', () => {
+    console.log('user aborted upload');
+  });
+});
+
+//Get to avatar band edit page
+router.get('/profile/edit-band-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id).populate(
+    'band establishment',
+  );
+  const userBandId = await User.findById(user);
+  const bandId = userBandId.band;
+
+  req.flash('info', 'photo uploaded');
+  res.render('user/profile/edit-band-avatar', {
+    user,
+    bandId,
+  });
+});
+
+// UPLOAD ESTABLISHMENT AVATAR
+router.post('/profile/edit-establishment-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id);
+  const userEstablishmentId = await User.findById(user);
+  const establishmentId = userEstablishmentId.establishment;
+  const form = new formidable.IncomingForm();
+
+  form.parse(req);
+  form.on('fileBegin', (name, file) => {
+    file.path = `${__dirname}/../public/images/avatar/establishments/${establishmentId}_avatar`; // __dirname now is the router path
+  });
+
+  form.on('file', async (name, file) => {
+    req.flash('info', 'upload ');
+    const avatar = `/images/avatar/establishments/${establishmentId}_avatar`;
+    await Establishment.findByIdAndUpdate(establishmentId, {
+      avatar,
+    });
+    res.redirect('/user/profile/edit-establishment-avatar');
+  });
+  form.on('error', err => {
+    req.resume();
+    req.flash('error', `Some error happen ${err}`);
+  });
+  form.on('aborted', () => {
+    console.log('user aborted upload');
+  });
+});
+
+//Get to avatar establishment edit page
+router.get('/profile/edit-establishment-avatar', async (req, res) => {
+  const user = await User.findById(req.session.currentUser._id).populate(
+    'band establishment',
+  );
+  const userEstablishmentId = await User.findById(user);
+  const establishmentId = userEstablishmentId.establishment;
+  // console.log('userEstablishmentId ', userEstablishmentId);
+  // console.log('establishmentId ', establishmentId);
+
+  req.flash('info', 'photo uploaded');
+  res.render('user/profile/edit-establishment-avatar', {
+    user,
+    establishmentId,
+  });
+});
+// GET to delete picture.
+router.get(
+  '/profile/delete/establishment-avatar',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const user = await User.findById(req.session.currentUser._id).populate(
+      'band establishment',
+    );
+    const userEstablishmentId = await User.findById(user);
+    const establishmentId = userEstablishmentId.establishment;
+    try {
+      // const deletedAvatar = await Establishment.findByIdAndDelete(
+      //   establishmentId,
+      //   { avatar },
+      // );
+      res.render('/profile/delete/establishment-avatar');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+router.post(
+  '/profile/delete/establishment-avatar',
+  checkIfLoggedIn,
+  checkIfEstablishment,
+  async (req, res, next) => {
+    const user = await User.findById(req.session.currentUser._id).populate(
+      'band establishment',
+    );
+    const userEstablishmentId = await User.findById(user);
+    const establishmentId = userEstablishmentId.establishment;
+    try {
+      const deletedAvatar = await Establishment.findByIdAndDelete(
+        establishmentId.avatar,
+      );
+      console.log('deletedAvatar:', deletedAvatar);
+
+      res.redirect('/profile/delete/establishment-avatar');
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 module.exports = router;

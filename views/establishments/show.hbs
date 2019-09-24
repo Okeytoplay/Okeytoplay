@@ -1,18 +1,13 @@
-<div class="container">
-
-    <div class="cont-title">
-        <h2>Details of Establishment</h2>
-    </div>
-
-    <div class="details-info">
-        <p>Name: {{establishments.name}}</p>
-        <p>Description: {{establishments.description}}</p>
-        <p>Website: <a href="{{establishments.website}}">{{establishments.website}}</a></p>
-        <p>Instagram: <a href="{{establishments.website}}">{{establishments.instagramProfile}}</a></p>
-        <p>Facebook: <a href="{{establishments.website}}">{{establishments.facebookProfile}}</a></p>
-        <p>Adress: {{establishments.street}}</p>
-        <p>City: {{establishments.city}}</p>
-        <p>Zip Code: {{establishments.zip}}</p>
-        <p>Establishment Capacity: {{establishments.capacity}}</p>
-    </div>
-</div>
+<h2>Details of the Establishment:</h2>
+<ul>
+    <p>Name of the Establishment: {{establishments.name}}</p>
+    <p>Description: {{establishments.description}}</p>
+    <p>Website: <a href="{{establishments.website}}">{{establishments.website}}</a></p>
+    <p>Instagram Profile: <a href="{{establishments.website}}">{{establishments.instagramProfile}}</a></p>
+    <p>Facebook Profile: <a href="{{establishments.website}}">{{establishments.facebookProfile}}</a></p>
+    <p>Adress: {{establishments.street}}</p>
+    <p>City: {{establishments.city}}</p>
+    <p>Zip Code: {{establishments.zip}}</p>
+    <p>Establishment Capacity: {{establishments.capacity}}</p>
+</ul>
+<img src="{{establishments.avatar}}" alt="" width="300px" height="150px" class="circle center-align">

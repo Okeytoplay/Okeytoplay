@@ -45,24 +45,13 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
 /* GET Renders available establishments */
 router.get('/', async (req, res, next) => {
   try {
-    const establishments = await Establishment.find()
+    const establishments = await Establishment.find();
     console.log('establishments ', establishments);
     res.render('establishments', { establishments });
   } catch (error) {
     next(error);
   }
 });
-
-// /* GET Renders available establishments */
-// router.get('/', async (req, res, next) => {
-//   const searchAllEstablishments = await Establishment.find();
-//   console.log('establishments ', establishments);
-//   try {
-//     res.render('establishments', { searchAllEstablishments });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 /* GET Renders new establishment */
 router.get('/new', (req, res, next) => {
@@ -84,6 +73,10 @@ router.post('/new', async (req, res, next) => {
     avatar,
   } = req.body;
   const actualUserEmail = req.session.currentUser.email;
+  if (name === '' || street === '' || city === '') {
+    req.flash('error', 'No empty fields allowed.');
+    res.redirect('/establishments/new');
+  }
   try {
     let newEstablishment;
     let updatedUser;
@@ -138,6 +131,7 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
 // View one establishment detail
 router.get('/:establishmentID', async (req, res, next) => {
   const { establishmentID } = req.params;
@@ -148,6 +142,7 @@ router.get('/:establishmentID', async (req, res, next) => {
     next(error);
   }
 });
+
 /* POST Renders establishment information */
 router.post('/:establishmentID', async (req, res, next) => {
   const { establishmentID } = req.params;

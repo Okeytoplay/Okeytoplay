@@ -1,17 +1,24 @@
 <div class="container">
 
-  <div class="cont-title">
-    <h2>Welcome {{user.username}}</h2>
-    <button onclick="location.href='/user/profile/edit-user'" class="bttn2">Edit Profile</button>
-  </div>
+{{#if user.establishment.name}}
+<h3>Your Establishment is: {{user.establishment.name}}</h3>
+<p>Update my establishment profile </p><button><a href="/user/profile/edit-establishment">Update
+    Establishment</a></button>
+<p>Update my establishment profile picture </p><button><a href="/user/profile/edit-establishment-avatar">Update
+    avatar</a></button>
+<p>Delete my establishment profile </p><button><a href="/user/profile/delete-establishment">Delete
+    {{user.establishment.name}}</a></button>
+{{/if}}
 
-  {{!-- {{#if user.establishment.name}}
-  <h3>Your Establishment is: {{user.establishment.name}}</h3>
-  <p>Update my establishment profile </p><button><a href="/user/profile/edit-establishment">Update
-      {{user.establishment.name}}</a></button>
-  <p>Delete my establishment profile </p><button><a href="/user/profile/delete-establishment">Delete
-      {{user.establishment.name}}</a></button>
-  {{/if}} --}}
+{{#if user.band.name}}
+<h3>Your band is: {{user.band.name}}</h3>
+<p>Update my band profile </p><button><a href="/user/profile/edit-band">Update
+    band</a></button>
+<p>Update my band profile picture </p><button><a href="/user/profile/edit-band-avatar">Update
+    avatar</a></button>
+<p>Delete my band profile </p><button><a href="/user/profile/delete-band">Delete
+    {{user.band.name}}</a></button>
+{{/if}}
 
   {{#if user.establishment.name}}
   <div>
