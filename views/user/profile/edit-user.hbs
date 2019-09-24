@@ -1,14 +1,23 @@
-<form id='form' action='/user/profile/edit-user' method='POST'>
-    <label for='username'>Username:</label><br>
-    <input type='text' name='username' value='{{user.username}}' required><br>
-    <label for='email'>Email:</label><br>
-    <input type='email' name='email' id='email_id' value='{{user.email}}' required><br>
-    <button type='submit'>Update account</button>
-</form>
+<div class="container">
+    <div class="form-style">
+        <form id='profile-form' action='/user/profile/edit-user' method='POST'>
+            <label for='username'>Username:</label><br>
+            <input type='text' name='username' value='{{user.username}}' required><br>
+            <label for='email'>Email:</label><br>
+            <input type='email' name='email' id='email_id' value='{{user.email}}' required><br>
+            <button type='submit'>Update account</button>
+        </form>
 
-<button class='btn-delete-account' onclick="location.href='/user/profile/edit-user/{{user._id}}/delete'" type="button">
-    DELETE ACCOUNT</button>
+        <button class='btn-delete-account' onclick="location.href='/user/profile/edit-user/{{user._id}}/delete'"
+            type="button">
+            DELETE ACCOUNT</button>
 
-{{#if errorMessage}}
-<div class='error-message'>{{ errorMessage }}</div>
-{{/if}}
+        {{#if errorMessage}}
+        <div class='error-message'>{{ errorMessage }}</div>
+        {{/if}}
+
+
+    </div>
+
+
+</div>

@@ -9,10 +9,14 @@
     </div>
   </div>
 </div> --}}
+<div class="cards-container">
+  <div class="card2">
+    <h3>{{this.name}}</h3>
+    {{#if userFound.band.name}}
+    <a href="/bands/{{this._id}}">Join</a>
+    {{else}}
+    <a href="/bands/{{this._id}}" class="bttn3">detail</a>
+    {{/if}}
 
-<h3>{{this.name}}</h3>
-{{#if userFound.band.name}}
-<a href="/bands/{{this._id}}">Join</a>
-{{else}}
-<a href="/bands/{{this._id}}">See band details</a>
-{{/if}}
+  </div>
+</div>
