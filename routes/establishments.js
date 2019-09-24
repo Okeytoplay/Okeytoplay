@@ -73,6 +73,10 @@ router.post('/new', async (req, res, next) => {
     avatar,
   } = req.body;
   const actualUserEmail = req.session.currentUser.email;
+  if (name === '' || street === '' || city === '') {
+    req.flash('error', 'No empty fields allowed.');
+    res.redirect('/establishments/new');
+  }
   try {
     let newEstablishment;
     let updatedUser;

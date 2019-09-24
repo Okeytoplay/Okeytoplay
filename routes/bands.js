@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Band = require('../models/Band');
 const User = require('../models/User');
-const formidable = require('formidable');
 
 const {
   checkFields,
@@ -60,6 +59,10 @@ router.post('/new', async (req, res, next) => {
     facebookProfile,
   } = req.body;
   const actualUserEmail = req.session.currentUser.email;
+  if (name === '') {
+    req.flash('error', 'No empty fields allowed.');
+    res.redirect('/bands/new');
+  }
   try {
     let newBand;
     let updatedUser;
