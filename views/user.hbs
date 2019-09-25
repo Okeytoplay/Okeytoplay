@@ -24,6 +24,7 @@
   <p class="title-mng">Manage Your Establishment</p>
   <div class="bttn-card">
     {{#if userFound.establishment.name}}
+
     <div class="user-establishment">
       <a href="/user/profile/edit-establishment">
         <div class="img-wrapper-establishment">
@@ -36,6 +37,16 @@
         <h3>{{userFound.establishment.name}}</h3>
       </a>
     </div>
+
+    <div class="user-establishment">
+      <a href="/user/events/new">
+        <div class="img-wrapper-establishment">
+          <img class="user-establishment-img" src="../images/crear-evento.png" alt="">
+        </div>
+        <h3>Create Event</h3>
+      </a>
+    </div>
+
     {{else}}
     {{!-- <button class="btn-lnk"><a href="/establishments/new" class="card">Create Pub</a></button> --}}
     <a class="btn-lnk est" href="/establishments/new">Create Establishment</a>

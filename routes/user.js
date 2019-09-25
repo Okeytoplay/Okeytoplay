@@ -381,14 +381,16 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
         req.session.currentUser._id,
       ).populate('establishment');
       const fechaActual = fechaDeHoy();
+      const fecha = fechaActual.split('-').reverse().join('/');
       const events = await Event.find({
         establishment: userFound.establishment._id,
       })
         .sort('schedule')
-        .populate('registeredUsers');
+        .populate('registeredUsers establishment');
+      console.log('Los eventos del USER con los datos: ', events);
       if (events.length > 0) {
         // res.render('user/events', { events, fechaActual, userFound });
-        res.render('user/eventsX', { events, fechaActual, userFound });
+        res.render('user/eventsX', { events, fecha, userFound });
       } else {
         req.flash('info', 'You don`t have events in your establishment yet.');
         res.redirect('/user');
@@ -421,15 +423,24 @@ router.post(
   checkIfLoggedIn,
   checkIfEstablishment,
   async (req, res, next) => {
-    const { name, description, price, durationMins, schedule } = req.body;
-    const actualUserId = req.session.currentUser._id;
+    const {
+      name, description, price, durationMins, schedule, startTimeHour, startTimeMinutes
+    } = req.body;
+    const actualUser = req.session.currentUser;
     // const userFound = await User.findOne({ email: actualUserEmail }).populate(
     //   'establishment',
     // ); // THIS IS THE CORRECT!!!
     // ONLY FOR TEST
     // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
+
+    console.log('Lo qu eme viene de startTimeHour y Mínutes: ', startTimeHour, startTimeMinutes);
+    console.log('Lo que viene en Schedule: ', schedule);
+    const minutes = startTimeMinutes.toString();
+    const hours = startTimeHour.toString();
+    const startTime = hours.concat(':').concat(minutes);
+    console.log('La hora introducida: ', startTime);
     try {
-      const userFound = await User.findById(actualUserId);
+      // const userFound = await User.findById(actualUserId);
 
       const eventNew = await Event.create({
         name,
@@ -437,7 +448,8 @@ router.post(
         price,
         durationMins,
         schedule,
-        establishment: userFound.establishment,
+        startTime,
+        establishment: actualUser.establishment,
       });
       // Poner FLASH notification
       req.flash(

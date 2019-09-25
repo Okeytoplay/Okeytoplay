@@ -8,16 +8,49 @@
 
       <label for="schedule"></label>
       <input type="date" name="schedule" step='1' min='{{fechaActual}}' value='{{fechaActual}}'>
+      <label for="startTime">Select Start Time</label>
+      <select class="time-selector" name="startTimeHour">
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18" selected>18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="00">00</option>
+      </select>
+      <select class="time-selector" name="startTimeMinutes">
+        <option value="00">00</option>
+        <option value="15">15</option>
+        <option value="30" selected>30</option>
+        <option value="45">45</option>
+      </select>
       <label for="name"></label>
       <input type="text" name='name' placeholder="Name" required>
       <label for="description"></label>
-      {{!-- <input type="text" name='description' placeholder="Description" required> --}}
+      <input type="text" name='description' placeholder="Description" required>
       <label for="price"></label>
-      <input type="text" name='price' placeholder="Price €€€">
-      <label for="startTime"></label>
-      <input type="text" name='startTime' placeholder="Start Time">
+      <input type="text" name='price' placeholder="Price €€€ (insert 0 if free)">
+
+      {{!-- <input type="text" name='startTime' placeholder="Start Time"> --}}
       <label for="durationMins"></label>
-      <input type="text" name='durationMins' placeholder="Duration">
+      <input type="text" name='durationMins' placeholder="Duration (in minutes)">
 
       <button type="submit">Create event</button>
     </form>
