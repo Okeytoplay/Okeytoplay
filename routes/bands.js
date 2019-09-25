@@ -59,7 +59,7 @@ router.post('/new', async (req, res, next) => {
     instagramProfile,
     facebookProfile,
   } = req.body;
-  const actualUserEmail = req.session.currentUser.email;
+  const actualUser = req.session.currentUser;
   if (name === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/bands/new');
@@ -75,9 +75,9 @@ router.post('/new', async (req, res, next) => {
       instagramProfile,
       facebookProfile,
     });
-    const userFound = await User.findOne({ email: actualUserEmail });
+    // const userFound = await User.findOne({ email: actualUserEmail });
     updatedUser = await User.updateOne(
-      { _id: userFound._id },
+      { _id: actualUser._id },
       {
         $set: {
           'role.band': true,
@@ -88,6 +88,7 @@ router.post('/new', async (req, res, next) => {
         new: true,
       },
     );
+    req.session.currentUser = updatedUser;
     const push = await Band.findByIdAndUpdate(newBand._id, {
       $push: { bandmembers: userFound._id },
     });
