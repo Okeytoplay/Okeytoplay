@@ -14,11 +14,9 @@
     <div class="bandslist">
         <h2>List of registered bands:</h2>
         <section class="bands-section">
-            <div class="band-cards">
-                {{#each bands}}
-                {{> bandJoin this}}
-                {{/each}}
-            </div>
+            {{#each bands}}
+            {{> bandJoin this}}
+            {{/each}}
         </section>
     </div>
 </div>

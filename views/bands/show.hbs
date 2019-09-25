@@ -1,27 +1,46 @@
 <img src="{{bands.avatar}}" alt="" width="300px" height="150px">
-<h1>{{ bands.name }}</h1>
-<p class="band-description">{{ bands.description }}</p>
-<p class="band-genre">{{ bands.description }}</p>
-<div class="external-icons">
-    <a href="http://{{bands.website}}" class="sm-img" target="_blank">
-        <img src="/images/www.png" alt="{{ bands.name }} Website" id="website" />
-    </a>
-    <a href="http://{{bands.instagramProfile}}" class="sm-img" target="_blank">
-        <img src="/images/instagram.png" alt="{{ bands.name }} Instagram" id="Instagram" />
-    </a>
-    <a href="http://{{bands.facebookProfile}}" class="sm-img" target="_blank">
-        <img src="/images/facebook.png" alt="{{ bands.name }} Facebook" id="Facebook" />
-    </a>
+<div class="band-info">
+    <h1 class="band-title">{{ bands.name }}</h1>
+    <p class="band-description">{{ bands.description }}</p>
+    <p class="band-genre">Genre: <span>{{ bands.genre }}</span></p>
+    <div class="external-icons">
+        <a href="http://{{bands.website}}" class="sm-img" target="_blank">
+            <img src="/images/www.png" alt="{{ bands.name }} Website" id="website" />
+        </a>
+        <a href="http://{{bands.instagramProfile}}" class="sm-img" target="_blank">
+            <img src="/images/instagram.png" alt="{{ bands.name }} Instagram" id="Instagram" />
+        </a>
+        <a href="http://{{bands.facebookProfile}}" class="sm-img" target="_blank">
+            <img src="/images/facebook.png" alt="{{ bands.name }} Facebook" id="Facebook" />
+        </a>
+    </div>
+    <div class="bandmembers">
+        <p>Bandmembers of {{ bands.name }}:</p>
+        <ul>
+            {{#each bands.bandmembers}}
+            <li>{{this.username}}</li>
+            {{/each}}
+        </ul>
+    </div>
+
 </div>
 
-{{#if user.band}}
+
+{{!-- {{#if user.band}}
 Manage Your band petitions here:
 <a href="/user/profile/petitions">Petitions</a>
-{{else}}
+{{else}} --}}
 {{#if checkIfpetition.petitions}}
-You already sent a petition.
+<p class="sent-petition">You already sent a petition... Keep calm the {{ bands.name }} Admin will answer your petition
+    soon.</p>
+
 {{else}}
-Send a petition to join {{ ../bands.name }}
-<a href="/bands/{{bands._id}}/join">Send</a>
+<section class="petition">
+    <p class="send-petition">Send a petition to join {{ ../bands.name }}
+    </p>
+    <a class="petition-button" href="/bands/{{bands._id}}/join">Send petition</a>
+</section>
 {{/if}}
-{{/if}}
+{{!-- {{/if}} --}}
+<BR></BR>
+{{!-- INSERT BAND EVENTS --}}
