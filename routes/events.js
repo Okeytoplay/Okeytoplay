@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Event = require('../models/Event');
 const User = require('../models/User');
 const { checkIfLoggedIn } = require('../middlewares/auth');
+const { checkIfBand } = require('../middlewares/user');
 const { fechaDeHoy } = require('../public/javascripts/fecha');
 
 const router = express.Router();
@@ -12,7 +13,7 @@ router.get('/', async (req, res, next) => {
   try {
     const fechaActual = fechaDeHoy();
     const fecha = fechaActual
-      .split('/')
+      .split('-')
       .reverse()
       .join('/');
     const events = await Event.find({ schedule: { $gte: fechaActual } })
@@ -23,6 +24,40 @@ router.get('/', async (req, res, next) => {
     console.log('FECHA ', fechaActual);
     console.log('events ', events);
     res.render('events', { events, fechaActual, fecha });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/* GET Renders available events, only with BAND JOINED */
+router.get('/bookedevents', async (req, res, next) => {
+  try {
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual
+      .split('-')
+      .reverse()
+      .join('/');
+
+    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exist: true } }).sort('schedule').populate('establishment band');
+    console.log('Eventos CON banda adjudicada: ', events);
+    res.render('events/bookedevents', { events });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/* GET Renders available events, only with BAND JOINED */
+router.get('/bookingevents', checkIfLoggedIn, checkIfBand, async (req, res, next) => {
+  try {
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual
+      .split('-')
+      .reverse()
+      .join('/');
+
+    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exist: false } }).sort('schedule').populate('establishment');
+    console.log('Eventos SIN banda adjudicada: ', events);
+    res.render('events/bookedevents', { events });
   } catch (error) {
     next(error);
   }
