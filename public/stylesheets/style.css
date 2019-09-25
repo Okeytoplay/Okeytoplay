@@ -319,6 +319,37 @@ img.user-establishment-img {
   margin: auto;
   margin-bottom: 10px; }
 
+.bttn-card {
+  display: flex;
+  justify-content: space-evenly; }
+
+a.card {
+  text-decoration: none;
+  color: black;
+  background-color: aqua; }
+
+.bttn-card {
+  width: 100%; }
+
+a.btn-lnk {
+  width: 78px;
+  text-align: center;
+  padding: 5px 15px;
+  margin: 5px 15px;
+  text-decoration: none;
+  border: 1px solid black;
+  color: black; }
+
+a.btn-lnk.est {
+  width: 100px; }
+
+a.btn-lnk:visited {
+  color: black; }
+
+.user-establishment a {
+  text-decoration: none;
+  color: blue; }
+
 * body {
   margin: 0;
   height: 100%;
