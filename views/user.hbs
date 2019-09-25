@@ -1,79 +1,140 @@
-<div class="container">
+<div class="cards-container-user">
+  <p class="fecha">{{fecha}}</p>
+  <h3>Hi!! {{userFound.username}}</h3>
 
-  <div class="cards-container-user">
-    <h2>Hi!! {{userFound.username}}</h2>
-
-    <div class="card">
-      <div class="bttn-card">
-        <button class=""><a href="/user/events">My Events</a></button>
-        <button class=""><a href="/events">Available events</a></button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="cards-container">
-    <div class="card">
-      <div>
-        {{#if userFound.band.name}}
-        <h3><img src="../images/band.png" alt="" style="height: 25px"> {{userFound.band.name}}</h3>
-        {{else}}
-        <button><a href="/bands/new" class="card">Create Band</a></button>
-        {{/if}}
-      </div>
-      <div>
-        {{!-- Band options --}}
-        {{#if userFound.band.name}}
-        <button class=""><a href="/user/events/bookings" class="card"> <img src="../images/bookings.png" alt=""
-              style="height: 22px"> Bookings</a></button>
-        {{!-- <p><a href="/user/events/bookings">Bookings</a></p> --}}
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="card">
-      <div>
-        {{#if userFound.establishment.name}}
-        <h3><img src="../images/local.png" alt="" style="height: 29px">{{userFound.establishment.name}}</h3>
-        {{else}}
-        <button><a href="/establishments/new" class="card">Create Pub</a></button>
-        {{/if}}
-      </div>
-      <div>
-        {{!-- Establishment options --}}
-        {{#if userFound.establishment.name}}
-        <button class=""><a href="/user/events/new" class="card"> <img src="../images/crear-evento.png" alt=""
-              style="height: 22px"> Create Event</a></button>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-
-
-  <div class="cards-container">
-    <div class="card">
-      <div>
-        <button class=""><a href="/user/events/bookedevents" class=""> <img src="../images/nav-burguer.png" alt=""
-              style="height: 24px"> Booked Events</a></button>
-
-      </div>
-      <div>
-        <button class=""><a href="/bands" class=""> <img src="../images/nav-burguer.png" alt="" style="height: 22px">
-            Bands Profile</a></button>
-      </div>
-      <div>
-        <button class=""><a href="/establishments" class=""> <img src="../images/nav-burguer.png" alt=""
-              style="height: 22px"> Pub's Profile</a></button>
-      </div>
+  <div class="card">
+    <p class="title-mng">Your life as GROUPIE:</p>
+    <div class="bttn-card">
+      <a class="btn-lnk" href="/user/events/bookedevents">My booked Events</a>
+      {{!-- <button class=""><a href="/user/events" class="card">My created Events</a></button> --}}
+      <a class="btn-lnk" href="/events">Available Events</a>
     </div>
   </div>
 
 </div>
 
+{{!-- <div class="card">
+  <div class="bttn-card">
+    <button class=""><a href="/user/events">My Events</a></button>
+    <button class=""><a href="/events">Available events</a></button>
+  </div>
+</div> --}}
+
+<div class="card">
+  <p class="title-mng">Manage Your Establishment</p>
+  <div class="bttn-card">
+    {{#if userFound.establishment.name}}
+
+    <div class="user-establishment">
+      <a href="/user/profile/edit-establishment">
+        <div class="img-wrapper-establishment">
+          {{#if userFound.establishment.avatar}}
+          <img class="img-avatar" src="{{user.establishment.avatar}}" alt="" width="300px">
+          {{else}}
+          <img class="user-establishment-img" src="../images/local.png" alt="">
+          {{/if}}
+        </div>
+        <h3>{{userFound.establishment.name}}</h3>
+      </a>
+    </div>
+
+    <div class="user-establishment">
+      <a href="/user/events/new">
+        <div class="img-wrapper-establishment">
+          <img class="user-establishment-img" src="../images/crear-evento.png" alt="">
+        </div>
+        <h3>Create Event</h3>
+      </a>
+    </div>
+
+    {{else}}
+    {{!-- <button class="btn-lnk"><a href="/establishments/new" class="card">Create Pub</a></button> --}}
+    <a class="btn-lnk est" href="/establishments/new">Create Establishment</a>
+    {{/if}}
+  </div>
+</div>
+
+<div class="card">
+  <p class="title-mng">Manage Your Band</p>
+  <div class="bttn-card">
+    {{#if userFound.band.name}}
+    <div class="user-establishment">
+      <a href="/user/profile/edit-band">
+        <div class="img-wrapper-establishment">
+          {{#if userFound.band.avatar}}
+          <img class="img-avatar" src="{{user.band.avatar}}" alt="" width="300px">
+          {{else}}
+          <img class="user-establishment-img" src="../images/band.png" alt="">
+          {{/if}}
+        </div>
+        <h3>{{userFound.band.name}}</h3>
+      </a>
+    </div>
+    {{else}}
+    {{!-- <button class="btn-lnk"><a href="/establishments/new" class="card">Create Pub</a></button> --}}
+    <a class="btn-lnk" href="/bands/new">Create Band</a>
+    {{/if}}
+  </div>
+</div>
+
+{{!-- <div class="cards-container">
+  <div class="card">
+    <div class="bttn-card">
+      {{#if userFound.band.name}}
+      <h3><img src="../images/band.png" alt="" style="height: 25px"> {{userFound.band.name}}</h3>
+      {{else}}
+      <button><a href="/bands/new" class="card">Create Band</a></button>
+      {{/if}}
+    </div>
+    <div>
+      Band options
+      {{#if userFound.band.name}}
+      <button class=""><a href="/user/events/bookings" class="card"> <img src="../images/bookings.png" alt=""
+            style="height: 22px"> Bookings</a></button>
+      <p><a href="/user/events/bookings">Bookings</a></p>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="card">
+    <div>
+      {{#if userFound.establishment.name}}
+      <h3><img src="../images/local.png" alt="" style="height: 29px">{{userFound.establishment.name}}</h3>
+      {{else}}
+      <button><a href="/establishments/new" class="card">Create Pub</a></button>
+      {{/if}}
+    </div>
+    
+    <div>
+      Establishment options
+      {{#if userFound.establishment.name}}
+      <button class=""><a href="/user/events/new" class="card"> <img src="../images/crear-evento.png" alt=""
+            style="height: 22px"> Create Event</a></button>
+      {{/if}}
+    </div>
+    </div>
+
+  </div>
+</div> --}}
 
 
+{{!-- <div class="cards-container">
+  <div class="card">
+    <div>
+      <button class=""><a href="/user/events/bookedevents" class=""> <img src="../images/nav-burguer.png" alt=""
+            style="height: 24px"> Booked Events</a></button>
 
-
+    </div>
+    <div>
+      <button class=""><a href="/bands" class=""> <img src="../images/nav-burguer.png" alt="" style="height: 22px">
+          Bands Profile</a></button>
+    </div>
+    <div>
+      <button class=""><a href="/establishments" class=""> <img src="../images/nav-burguer.png" alt=""
+            style="height: 22px"> Pub's Profile</a></button>
+    </div>
+  </div>
+</div> --}}
 
 
 

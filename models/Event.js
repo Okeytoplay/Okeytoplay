@@ -22,7 +22,7 @@ const eventSchema = new Schema({
   },
   durationMins: {
     type: Number,
-    min: 60,
+    min: 0,
   },
   registeredUsers: [{ type: ObjectId, ref: 'User' }],
 });

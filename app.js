@@ -11,6 +11,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
+// const moment = require('moment');
 const { notifications } = require('./middlewares/auth');
 
 const indexRouter = require('./routes/index');
@@ -74,6 +75,8 @@ app.use(
 );
 
 app.use(flash());
+
+// app.use(moment());
 
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
