@@ -25,7 +25,7 @@ const eventSchema = new Schema({
     min: 0,
   },
   registeredUsers: [{ type: ObjectId, ref: 'User' }],
-  petitions: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  petitions: [{ type: Schema.Types.ObjectId, ref: 'Band' }],
   requestOpened: { type: Boolean, default: true },
 });
 

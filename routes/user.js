@@ -547,13 +547,33 @@ router.get(
 // GETS the band petitions landing page
 router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
+  let eventPetitions = false;
   try {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
+    const userFound = await User.findById(
+      req.session.currentUser._id,
+    ).populate('establishment');
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual.split('-').reverse().join('/');
+    // Eventos con peticion abierta 
+    const events = await Event.find({ $and: [{ establishment: userFound.establishment._id }, { requestOpened: true }, { 'petitions.0': { $exists: true } }] }).populate('petitions establishment band');
+    if (events.length > 0) {
+      eventPetitions = true;
+    }
+    console.log('eventPetitions: ', eventPetitions);
+    console.log('events: ', events);
     console.log('userBand ', user);
 
-    res.render('user/profile/petitions', { user, userBand });
+
+    res.render('user/profile/petitions',
+      {
+        user,
+        userBand,
+        events,
+        eventPetitions,
+      });
   } catch (error) {
     next(error);
   }
