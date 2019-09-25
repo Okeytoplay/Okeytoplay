@@ -322,6 +322,18 @@ input[type='date'] {
   font-size: 10px;
   margin: 5px; }
 
+.create-band {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.create-band p {
+  width: 50%;
+  margin-left: 5%; }
+
+.create-band span {
+  text-transform: capitalize; }
+
 /*BANDS SHOW*/
 .band-avatar {
   max-width: 85%;
