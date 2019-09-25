@@ -1,8 +1,8 @@
 /*JUMBOTRON*/
 .jumbotron {
-  background: linear-gradient(54deg, rgba(184, 35, 35, 0.938) 34%, rgba(228, 156, 63, 0.95));
-  padding-bottom: 10%;
-  padding-top: 25%; }
+  padding-bottom: 45%;
+  padding-top: 25%;
+  background: url(/images/guitar-black.png); }
 
 .logo-picture {
   display: flex;
@@ -21,8 +21,10 @@
 
 .brand-info {
   color: white;
-  margin-top: 10px;
-  text-align: center; }
+  margin-top: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold; }
 
 .logo-img {
   width: 100%; }
@@ -38,23 +40,21 @@ h4 {
 
 /*Login/Signup Buttons 1*/
 .register {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center; }
 
 .register-button {
-  box-shadow: 3px 3px 3px gray;
-  width: 60%;
-  margin: 10px;
-  border: none;
+  border: 3px solid #28b8dc;
+  width: 85%;
+  margin-top: 10px;
+  margin-bottom: 0px;
   text-transform: uppercase;
-  color: #007e71;
+  color: #67676f;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  text-decoration: none;
-  font-size: 14px; }
+  text-decoration: none; }
 
 /* Style the navigation bar */
 .navbar {
@@ -347,7 +347,8 @@ input[type='date'] {
   margin: 0;
   height: 100%;
   color: #412e2a;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
+  font-family: 'Rubik', sans-serif;
+  font: 14px; }
 
 .container {
   padding: 0 5px; }
@@ -375,5 +376,11 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%; }
+
+h1 {
+  font-size: 45px; }
+
+h2 {
+  font-size: 20px; }
 
 /*# sourceMappingURL=style.css.map */

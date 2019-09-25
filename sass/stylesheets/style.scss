@@ -14,7 +14,8 @@
   height: 100%;
   color: #412e2a;
   // background-color: #f9f9f9;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font-family: 'Rubik', sans-serif;
+  font: 14px;
 }
 .container {
   padding: 0 5px;
@@ -46,4 +47,10 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+h1 {
+  font-size: 45px;
+}
+h2 {
+  font-size: 20px;
 }
