@@ -557,7 +557,7 @@ router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
     ).populate('establishment');
     const fechaActual = fechaDeHoy();
     const fecha = fechaActual.split('-').reverse().join('/');
-    // Eventos con peticion abierta 
+    // Eventos con peticion abierta y que tienen alguna petition en cola!!
     const events = await Event.find({ $and: [{ establishment: userFound.establishment._id }, { requestOpened: true }, { 'petitions.0': { $exists: true } }] }).populate('petitions establishment band');
     if (events.length > 0) {
       eventPetitions = true;
