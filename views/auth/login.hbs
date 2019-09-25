@@ -1,11 +1,11 @@
 <div class="container">
   <div class="form-style">
-    <form id="profile-form" action="/auth/login" method="POST">
-      <label for="email"></label><br>
-      <input type="email" name="email" placeholder="Your email" required><br>
+    <form class="auth" action="/auth/login" method="POST">
+      <label for="email"></label>
+      <input type="email" name="email" placeholder="Your email" required>
 
-      <label for="password"></label><br>
-      <input type="password" name="password" placeholder="********" required><br>
+      <label for="password"></label>
+      <input type="password" name="password" placeholder="********" required>
 
       <button type="submit">log in</button>
       {{#if error }}

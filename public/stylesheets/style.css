@@ -179,119 +179,56 @@ img.card-Band-img-top {
   /* width: 200px; */
   display: inline; }
 
-.footer {
-  background-color: #412e2a;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  text-align: left;
-  position: fixed; }
-
-.footer p {
-  padding-left: 10px; }
-
-#form {
-  margin-top: 20%;
-  width: 380px; }
-
-#form label {
-  color: grey;
-  display: inline-block;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%; }
-
-#form input,
-#form button {
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: 0;
-  margin-left: 15px;
-  padding: 10px;
-  width: 90%; }
-
-#form button {
-  width: 70%;
-  margin: 15px 10px 20px 30px;
-  box-shadow: 3px 3px 3px gray;
-  border: none;
-  text-transform: uppercase;
-  color: #fff;
-  padding: 10px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px; }
-
-#form button:hover {
-  background: #fff;
-  color: #53cace;
-  transition: 0.3s ease background; }
-
-.register {
-  height: auto;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-.form-style .signup {
-  float: left;
-  width: 300px;
-  padding: 30px 20px;
-  text-align: center;
-  border-radius: 5px 0 0 5px; }
+.form-style .auth {
+  margin-top: 25%; }
 
 .form-style [type='text'] {
   display: block;
   margin: 0 auto;
-  padding-left: 20px;
-  width: 80%;
+  padding-left: 25px;
+  width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  height: 45px;
-  line-height: 45px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
-  color: #15242e; }
-
-.form-style [type='submit'] {
-  margin: 0 auto;
-  display: block;
-  border: 0;
-  background-color: #53cace;
-  border-radius: 5px;
-  padding: 20px;
-  text-transform: uppercase;
-  color: white;
-  font-weight: 400;
-  font-size: 1em; }
+  color: #67676f; }
 
 .form-style [type='email'] {
   display: block;
   margin: 0 auto;
-  padding-left: 20px;
+  padding-left: 25px;
   width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  height: 45px;
-  line-height: 45px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
-  color: #15242e; }
+  color: #67676f; }
 
 .form-style [type='password'] {
   display: block;
   margin: 0 auto;
-  padding-left: 20px;
+  padding-left: 25px;
   width: 70%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  height: 45px;
-  line-height: 45px;
-  margin-bottom: 10px;
+  line-height: 21px;
+  margin-bottom: 15px;
   font-size: 1em;
-  color: #15242e; }
+  color: #67676f; }
+
+.form-style [type='submit'] {
+  margin: 0 auto;
+  margin-bottom: 20%;
+  display: block;
+  border: 0;
+  background-color: #28b8dc;
+  border-radius: 5px;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1em; }
 
 .form-style [type='datetime-local'] {
   margin: 10%;
@@ -303,15 +240,15 @@ img.card-Band-img-top {
 
 .form-style [type='text']:focus {
   outline: none;
-  border-color: #53cace; }
+  border-color: #28b8dc; }
 
 .form-style [type='email']:focus {
   outline: none;
-  border-color: #53cace; }
+  border-color: #28b8dc; }
 
 .form-style [type='password']:focus {
   outline: none;
-  border-color: #53cace; }
+  border-color: #28b8dc; }
 
 .form-style p {
   color: rgba(15, 255, 175, 0.6);
@@ -319,21 +256,20 @@ img.card-Band-img-top {
   margin: 50px 0 50px 0; }
 
 .form-style span:hover {
-  color: #53cace; }
+  color: #28b8dc; }
 
 button.btn-delete-account {
+  margin: 8%;
   width: 80%;
-  margin: 15px 30px 20px 30px;
   background-color: #e35858;
   border: none;
   text-transform: uppercase;
   color: white;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 5px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: bold; }
+  font-size: 14px; }
 
 .cont-title {
   padding-bottom: 15px; }
@@ -345,16 +281,14 @@ button.btn-delete-account {
 input[type='date'] {
   display: block;
   margin: 0 auto;
-  /* padding-left: 20px; */
   width: 80%;
   border: 0;
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
   height: 45px;
   line-height: 45px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 30px;
   font-size: 1em;
-  color: blue;
-  border: 1px solid powderblue;
+  color: #67676f;
+  border: 1px solid #28b8dc;
   text-align: center; }
 
 * body {
@@ -391,12 +325,10 @@ input[type='date'] {
   color: white; }
 
 footer {
-  background: black;
-  color: white;
-  text-align: center;
-  position: absolute;
   bottom: 0;
-  left: 0;
+  position: fixed;
+  background-color: #67676f;
+  color: white;
   width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
