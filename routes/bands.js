@@ -34,9 +34,10 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
   try {
     const userFound = await User.findOne({ email: actualUserEmail }).populate(
-      'band establishment',
+      'band',
     );
-    const bands = await Band.find();
+    const bands = await Band.find().populate('user');
+    console.log('baaaands', userFound);
     res.render('bands', { userFound, bands });
   } catch (error) {
     next(error);
