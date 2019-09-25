@@ -418,7 +418,8 @@ input[type='date'] {
 .error {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  width: 100%; }
 
 .error-message {
   font-size: 24px;
@@ -481,6 +482,28 @@ a.btn-lnk:visited {
 .user-establishment a {
   text-decoration: none;
   color: blue; }
+
+/*BANDS*/
+.note-establishments {
+  font-size: 10px;
+  margin: 5px; }
+
+.create-establishment {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.create-establishment p {
+  width: 50%;
+  margin-left: 5%; }
+
+.create-establishment span {
+  text-transform: capitalize; }
+
+.establishmentslist {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 * body {
   margin: 0;
