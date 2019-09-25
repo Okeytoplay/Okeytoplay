@@ -424,7 +424,7 @@ router.post(
   checkIfEstablishment,
   async (req, res, next) => {
     const {
-      name, description, price, durationMins, schedule, startTimeHour, startTimeMinutes
+      name, description, price, durationMins, schedule, startTimeHour, startTimeMinutes,
     } = req.body;
     const actualUser = req.session.currentUser;
     // const userFound = await User.findOne({ email: actualUserEmail }).populate(

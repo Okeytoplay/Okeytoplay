@@ -26,6 +26,7 @@ const eventSchema = new Schema({
   },
   registeredUsers: [{ type: ObjectId, ref: 'User' }],
   petitions: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  requestOpened: { type: Boolean, default: true },
 });
 
 module.exports = mongoose.model('Event', eventSchema);
