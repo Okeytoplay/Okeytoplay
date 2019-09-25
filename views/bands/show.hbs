@@ -5,13 +5,16 @@
 <h3>Website of the band: <a href="{{bands.website}}">{{bands.website}}</a></h3>
 <h3>InstagramProfile of the band: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></h3>
 <h3>FacebookProfile of the band:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></h3>
-<h3>Avatar of the band: {{ bands.avatar }}</h3>
+<img src="{{bands.avatar}}" alt="" width="300px" height="150px" class="circle center-align">
 
-{{#if userFound.band.name}}
+{{#if user.band}}
+Manage Your band petitions here:
+<a href="/user/profile/petitions">Petitions</a>
 {{else}}
-Esta dins:
-<a href="/bands/{{bands._id}}/join">join</a>
+{{#if checkIfpetition.petitions}}
+You already sent a petition.
+{{else}}
+Send a petition to join {{ ../bands.name }}
+<a href="/bands/{{bands._id}}/join">Send</a>
 {{/if}}
-Aixo no:
-<a href="/bands/{{bands._id}}/join">join</a>
-<a href="/bands/{{bands._id}}/check">check</a>
+{{/if}}

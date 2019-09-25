@@ -1,29 +1,46 @@
-<div class="cards-container">
-    {{#if userFound.establishment.name}}
-    <h3>If you want to modify your establishment before you should leave the current one</h3>
-    <a href="/user/profile">Profile</a>
-    {{else}}
-    <h3>If you haven't created your establishment, click below</h3>
-    <a href="/establishments/new">Create establishment</a>
-    {{/if}}
-    <form action="/establishments/:id" method="get" class="form-inline">
-        <div class="form-group">
-            <input type="text" name="search" placeholder="Establishments search..." class="form-control">
-            <input type="submit" value="Search" class="btn btn-default">
-        </div>
-    </form>
-    <h3>Basic View</h3>
-    <h4>Establishments LIST</h4>
+<div class="container">
 
-    <div class="card">
-        <section class="events-section">
-            <div class="event-cards">
+    <div class="cards-container">
+        <div class="establishment-option">
+            {{#if userFound.establishment.name}}
+            <i>If you want to modify your establishment before you should leave the current one</i>
+            <a href="/user/profile">Profile</a>
+            {{else}}
+            <i>If you haven't created your establishment, click below</i>
+            <a href="/establishments/new">Create establishment</a>
+            {{/if}}
+        </div>
+
+        <div class="search-option">
+            <form action="/establishments/:id" method="get" class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="search" placeholder="Establishments search..." class="form-control">
+                    <input type="submit" value="Search" class="btn btn-default">
+                </div>
+            </form>
+        </div>
+
+
+        {{!-- <h3>Basic View</h3> --}}
+
+        <div class="cont-title">
+            <h3>ESTABLISHMENTS LIST</h3>
+        </div>
+
+        <div class="cards-container">
+            <ul>
                 {{#each establishments}}
-                <p>{{this.name}}</p>
-                <a href="/establishments/{{this._id}}">See establishment details</a>
+
+                <div class="card2">
+                    <p>{{this.name}}</p>
+                    <a href="/establishments/{{this._id}}" class="bttn3">detail</a>
+                </div>
                 {{/each}}
-            </div>
-        </section>
+            </ul>
+
+        </div>
 
     </div>
+</div>
+
 </div>

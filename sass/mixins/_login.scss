@@ -2,110 +2,117 @@
   margin-top: 20%;
   width: 100%;
 }
+// #form {
+//   margin-top: 20%;
+//   width: 380px;
+// }
 
-#form label {
-  color: grey;
-  display: inline-block;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
-}
+// #form label {
+//   color: grey;
+//   display: inline-block;
+//   margin-bottom: 10px;
+//   text-align: center;
+//   width: 100%;
+// }
 
-#form input,
-#form button {
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: 0;
-  margin-left: 15px;
-  padding: 10px;
-  width: 90%;
-}
+// #form input,
+// #form button {
+//   box-sizing: border-box;
+//   font-size: 14px;
+//   outline: 0;
+//   margin-left: 15px;
+//   padding: 10px;
+//   width: 90%;
+// }
 
-#form button {
-  width: 70%;
-  margin: 15px 10px 20px 30px;
-  box-shadow: 3px 3px 3px gray;
-  border: none;
-  text-transform: uppercase;
-  color: #fff;
-  padding: 10px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-}
-// #43a3e6; primer color azul
-#form button:hover {
-  background: #fff;
-  color: #53cace;
-  transition: 0.3s ease background;
-}
-.register {
-  height: auto;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+// #form button {
+//   width: 70%;
+//   margin: 15px 10px 20px 30px;
+//   box-shadow: 3px 3px 3px gray;
+//   border: none;
+//   text-transform: uppercase;
+//   color: #fff;
+//   padding: 10px;
+//   border-radius: 12px;
+//   text-align: center;
+//   text-decoration: none;
+//   font-size: 14px;
+// }
+// // #43a3e6; primer color azul
+// #form button:hover {
+//   background: #fff;
+//   color: #53cace;
+//   transition: 0.3s ease background;
+// }
+// .register {
+//   height: auto;
+//   width: auto;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
 
 .form-style {
   .signup {
-    float: left;
-    width: 300px;
-    padding: 30px 20px;
-    text-align: center;
-    border-radius: 5px 0 0 5px;
+    // float: left;
+    // width: 300px;
+    // padding: 30px 20px;
+    // text-align: center;
+    // border-radius: 5px 0 0 5px;
   }
 
+  .auth {
+    margin-top: 25%;
+  }
   [type='text'] {
     display: block;
     margin: 0 auto;
-    padding-left: 20px;
-    width: 80%;
+    padding-left: 25px;
+    width: 70%;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    line-height: 45px;
+    line-height: 21px;
+    margin-bottom: 15px;
     font-size: 1em;
-    color: rgb(21, 36, 46);
+    color: #67676f;
   }
 
-  .btn-submit {
-    margin: 0 auto;
-    display: block;
-    border: 0;
-    background-color: #53cace;
-    border-radius: 5px;
-    padding: 20px;
-    text-transform: uppercase;
-    color: white;
-    font-weight: 400;
-    font-size: 1em;
-  }
   [type='email'] {
     display: block;
     margin: 0 auto;
-    padding-left: 20px;
+    padding-left: 25px;
     width: 70%;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    height: 45px;
-    line-height: 45px;
-    margin-bottom: 10px;
+    line-height: 21px;
+    margin-bottom: 15px;
     font-size: 1em;
-    color: rgb(21, 36, 46);
+    color: #67676f;
   }
+
   [type='password'] {
     display: block;
     margin: 0 auto;
-    padding-left: 20px;
+    padding-left: 25px;
     width: 70%;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    height: 45px;
-    line-height: 45px;
-    margin-bottom: 10px;
+    line-height: 21px;
+    margin-bottom: 15px;
     font-size: 1em;
-    color: rgb(21, 36, 46);
+    color: #67676f;
+  }
+  [type='submit'] {
+    margin: 0 auto;
+    margin-bottom: 20%;
+    display: block;
+    border: 0;
+    background-color: #28b8dc;
+    border-radius: 5px;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1em;
   }
 
   [type='datetime-local'] {
@@ -119,15 +126,15 @@
 
   [type='text']:focus {
     outline: none;
-    border-color: #53cace;
+    border-color: #28b8dc;
   }
   [type='email']:focus {
     outline: none;
-    border-color: #53cace;
+    border-color: #28b8dc;
   }
   [type='password']:focus {
     outline: none;
-    border-color: #53cace;
+    border-color: #28b8dc;
   }
   p {
     color: rgba(15, 255, 175, 0.6);
@@ -135,6 +142,6 @@
     margin: 50px 0 50px 0;
   }
   span:hover {
-    color: #53cace;
+    color: #28b8dc;
   }
 }

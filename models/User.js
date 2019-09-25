@@ -16,6 +16,7 @@ const userSchema = new Schema(
     telephone: { type: Number },
     band: { type: ObjectId, ref: 'Band' },
     establishment: { type: ObjectId, ref: 'Establishment' },
+    avatar: String,
   },
   {
     timestamps: {

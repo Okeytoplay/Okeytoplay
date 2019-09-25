@@ -1,25 +1,34 @@
-<form id='form' action='/user/profile/edit-band' method='POST'>
-    <div id='Band-form-profile'>
-        <label for='band'>Band Name:</label><br>
-        <input type='text' name='name' value="{{userBand.name}}"><br>
-        <label for='band'>Musical Genre:</label><br>
-        <input type='text' name='genre' value='{{userBand.genre}}'><br>
-        <label for='band'>Description:</label><br>
-        <input type='text' name='description' value='{{userBand.description}}'><br>
-        <label for='band'>Website</label><br>
-        <input type='text' name='website' value='{{userBand.website}}'><br>
-        <label for='band'>Instagram:</label><br>
-        <input type='text' name='instagramProfile' value='{{userBand.instagramProfile}}'><br>
-        <label for='Instagram'>Facebook:</label><br>
-        <input type='text' name='facebookProfile' value='{{userBand.facebookProfile}}'><br>
-        <label for='band'>Avatar:</label><br>
-        <input type='text' name='avatar' value='{{userBand.avatar}}'><br>
+<div class="container">
+    <div class="cont-title">
+        <h2>Edit Band</h2>
     </div>
+
+    <div class="form-style">
+        <form action='/user/profile/edit-band' method='POST'>
+            {{!-- <div id='Band-form-profile'> --}}
+            <label for='band'>Band Name:</label>
+            <input type='text' name='name' value="{{userBand.name}}" <label for='band'>Musical Genre:</label>
+            <input type='text' name='genre' value='{{userBand.genre}}'>
+            <label for='band'>Description:</label>
+            <input type='text' name='description' value='{{userBand.description}}'>
+            <label for='band'>Website</label>
+            <input type='text' name='website' value='{{userBand.website}}'>
+            <label for='band'>Instagram:</label>
+            <input type='text' name='instagramProfile' value='{{userBand.instagramProfile}}'>
+            <label for='Instagram'>Facebook:</label>
+            <input type='text' name='facebookProfile' value='{{userBand.facebookProfile}}'>
+            <label for='band'>Avatar:</label>
+            <input type='text' name='avatar' value='{{userBand.avatar}}'>
+            {{!-- </div> --}}
+            <button type='submit'>Update Band</button>
+        </form>
+
     </div>
-    <button type='submit'>Update Band</button>
-</form>
+
 
 </div>
+
+
 {{#if errorMessage}}
 <div class='error-message'>{{ errorMessage }}</div>
 {{/if}}
