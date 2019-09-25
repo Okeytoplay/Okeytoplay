@@ -1,0 +1,81 @@
+/*BANDS*/
+.note-bandmembers {
+  background-color: rgba(0, 0, 0, 0.055);
+  font-size: 10px;
+}
+
+/*BANDS SHOW*/
+.band-avatar {
+  max-width: 85%;
+  max-height: 250px;
+  margin-bottom: 20px;
+}
+.band-avatar img {
+  width: 100%;
+  height: auto;
+}
+.band-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.band-title {
+  font-size: 35px;
+  width: 80%;
+  text-align: center;
+  margin: 0;
+}
+.band-description {
+  color: #67676f;
+  width: 80%;
+  text-align: center;
+}
+.band-genre {
+  color: #8d8d8d;
+}
+.band-genre span {
+  color: #28b8dc;
+}
+.external-icons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.bandmembers {
+  color: #67676f;
+  width: 80%;
+  text-align: left;
+}
+.bandmembers li {
+  list-style-type: none;
+  text-align: center;
+}
+/*BANDS PETITIONS*/
+.sent-petition {
+  background-color: rgba(0, 0, 0, 0.055);
+  font-size: 10px;
+}
+.send-petition {
+  color: #67676f;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.petition {
+  background-color: rgba(0, 0, 0, 0.055);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.petition-button {
+  border: 2px solid #28b8dc;
+  width: 85%;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #67676f;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+}

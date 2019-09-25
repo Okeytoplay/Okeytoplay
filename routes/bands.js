@@ -122,7 +122,8 @@ router.get('/:bandID', async (req, res, next) => {
   console.log('checkIfpetition: ', checkIfpetition);
 
   try {
-    const bands = await Band.findById(bandID);
+    const bands = await Band.findById(bandID).populate('bandmembers');
+    console.log('bands  ', bands);
     res.render('bands/show', { bands, user, checkIfpetition });
   } catch (error) {
     next(error);

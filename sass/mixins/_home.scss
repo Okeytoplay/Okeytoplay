@@ -1,93 +1,103 @@
 /*JUMBOTRON*/
 .jumbotron {
-  background: linear-gradient(
-    54deg,
-    rgba(184, 35, 35, 0.938) 34%,
-    hsla(34, 75%, 57%, 0.95)
-  );
-  padding-bottom: 10%;
+  padding-bottom: 45%;
   padding-top: 25%;
+  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent;
+  // background: linear-gradient(
+  //   54deg,
+  //   rgba(184, 35, 35, 0.938) 34%,
+  //   hsla(34, 75%, 57%, 0.95)
+  // );
 }
-.logo-picture {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-}
+// .logo-picture {
+//   display: flex;
+//   justify-content: center;
+//   padding-top: 10px;
+// }
 .textarea-jumbotron {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-.headline {
+.headline-home {
   display: inline;
   margin-top: 50px;
   color: white;
 }
+.headline-home h1 {
+  margin: 0;
+  text-align: center;
+}
 .brand-info {
   color: white;
-  margin-top: 10px;
+  margin-top: 40px;
   text-align: center;
-}
-.logo-img {
-  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-h1 {
-  margin: 0;
-  text-align: center;
-}
-h4 {
-  margin: 0;
-  text-align: center;
-  margin-top: 5px;
-}
-
-/*Login/Signup Buttons 1*/
+/*LOGIN/SIGNUP*/
 .register {
-  margin-top: 20px;
+  // margin-top: 20px;
   // width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .register-button {
-  box-shadow: 3px 3px 3px gray;
-  width: 60%;
-  margin: 10px;
-  border: none;
+  // box-shadow: 3px 3px 3px gray;
+  border: 3px solid #28b8dc;
+  width: 85%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  // border: none;
   text-transform: uppercase;
-  color: rgb(0, 126, 113);
+  color: #67676f;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
 }
-// .register-button a {
-//   color: rgb(175, 5, 5);
-// }
-// rgb(0, 126, 113)verde;(0, 86, 126)azul;
-.bttn2 {
-  background-color: #3d5556;
-  border: none;
-  color: white;
-  // text-transform: uppercase;
-  padding: 10px;
-  border-radius: 12px;
+
+/*HOMEPAGE ROLES DESCRIPTION*/
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
   text-align: center;
-  text-decoration: none;
-  font-size: 12px;
-  box-shadow: 3px 3px 3px gray;
+  color: #67676f;
 }
-.bttn3 {
-  background-color: #53cace;
-  border: none;
-  color: white;
-  text-transform: uppercase;
-  padding: 15px;
-  border-radius: 12px;
+.home-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  text-decoration: none;
-  font-size: 12px;
-  box-shadow: 3px 3px 3px gray;
+}
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px;
+}
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.intro-text h2 {
+  color: black;
+  font-size: 22px;
+}
+/*UPCOMING EVENTS*/
+.home-upcoming-events {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
 }

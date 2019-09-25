@@ -1,41 +1,23 @@
-<div class="container">
-
-    <div class="cards-container">
-        <div class="band-option">
-            {{#if userFound.band.name}}
-            <i>If you want to join another band before you should leave the current one</i></br>
-            <a href="/user/profile">Profile</a>
-            {{else}}
-            <i>If you haven't created your band, click below</i>
-            <a href="/bands/new">Create Band</a>
-            {{/if}}
-
-            <a href="/bands/avatar/avatar-upload">Avatar Upload</a>
-        </div>
-
-        <div class="search-option">
-            <form action="/bands/:id" method="get" class="form-inline">
-                <div class="form-group">
-                    <input type="text" name="search" placeholder="Band search..." class="form-control">
-                    <input type="submit" value="Search" class="btn btn-default">
-                </div>
-            </form>
-        </div>
-
-
-
-        {{!-- <h3>Basic View</h3> --}}
-
-
-        <div class="cont-title">
-            <h3>BAND LIST</h3>
-        </div>
-
-        <div class="cards-container">
+<div class="bands-container">
+    {{#if userFound.band.name}}
+    <div class="note-bandmembers">
+        <p>*If you want to join another band, you should abandon the current one <a href="/user/profile">here</a></p>
+    </div>
+    {{else}}
+    <div class="create-band">
+        <p>{{userFound.username}}, do you want to register your band?:</p>
+        <a class="create-band-btn" href="/bands/new">Create Band</a>
+        <p>Is your band already registered? <br>
+            Send them a petition!</p>
+    </div>
+    {{/if}}
+    <div class="bandslist">
+        <h2>List of registered bands:</h2>
+        <section class="bands-section">
             {{#each bands}}
             {{> bandJoin this}}
             {{/each}}
-        </div>
+        </section>
     </div>
 
 

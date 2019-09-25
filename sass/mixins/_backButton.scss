@@ -1,0 +1,12 @@
+.backbutton {
+  bottom: 45px;
+  position: sticky;
+  //   background: rgba(0, 0, 0, 0.5);
+  //   background-color: transparent;
+  background: url(/images/back-arrow-24.png);
+  background-repeat: no-repeat;
+  //   border: 1px solid #28b8dc;
+  border-radius: 50%;
+  padding: 13px;
+  float: left;
+}

@@ -1,59 +1,61 @@
 <div class="jumbotron">
     <div class="textarea-jumbotron">
-        <div class="logo-picture">
+        {{!-- <div class="logo-picture">
 
             <img class="logo-img" src="/images/banner.png" alt="Logo Picture" />
 
-        </div>
-        <div class="headline">
-            <h4>The App Made for Music Lovers</h4>
+        </div> --}}
+        <div class="headline-home">
+            <h1>An App Made for Music Lovers</h1>
         </div>
         <div class="brand-info">
-            <p> Get to know all the events in Town</p>
+            <p>Join in the community and enjoy the upcoming live music events in town</p>
+            {{!-- <p> Get to know all the events in Town</p>
             <p>Signup as a Band and you will be the next on stage</p>
-            <p>Create Events as an establishment and get ready for live music</p>
+            <p>Create Events as an establishment and get ready for live music</p> --}}
         </div>
     </div>
 </div>
 
-<div>
-    {{#if currentUser }}
-    {{else}}
-    <section class="register">
-        <a class="register-button" href="/auth/login">Login</a>
-        <a class="register-button" href="/auth/signup">Signup</a>
-    </section>
-    {{/if}}
-
-</div>
-
+{{#if currentUser }}
+{{else}}
+<section class="register">
+    <a class="register-button" href="/auth/login">Login</a>
+    <a class="register-button" href="/auth/signup">Signup</a>
+</section>
+{{/if}}
 <div class="container">
+    <div class="home-description">
+        <div class="intro-text">
+            <h2>What can you do in OkeytoPlay?</h2>
+            <span>Depending on your role in the app you will get access to special features:</span>
+        </div>
 
+        <div class="home-features">
+            <img class="role-img-home" src="/images/user-app.png" alt="">
+            <h3>User</h3>
+            <p>All users can planify, search and discover the upcoming live music events.</p>
+        </div>
+        <div class="home-features">
+            <img class="role-img-home" src="/images/band-home.png" alt="">
+            <h3>Band</h3>
+            <p>Add all your band members onboard and book your next performance.</p>
+        </div>
+        <div class="home-features">
+            <img class="role-img-home" src="/images/stage.png" alt="">
+            <h3>Establishment</h3>
+            <p>Create events and we will take care to get your establishment fully booked.</p>
+        </div>
+    </div>
     <div class="home-upcoming-events">
         <h2>Upcoming Events</h2>
         {{!-- {{fecha}}   Si no se pasa a la vista no se puede utilizar --}}
-    </div>
-    {{!-- <div class="eventcard">
-        <div class="places">
-            <div class="boxplaces">
-                <div class="placeinfo">
-                    <div class="boxdate">
-                        <div class="dateevent"></div>
-                        <div class="datetime"></div>
-                    </div>
-                </div>
-                <div class="placedetails">
-                    <span class="adress"></span>
-                    <span class="telephone"></span>
-                </div>
+        <div class="cards-container">
+            {{#each events}}
+            <div class="card2">
+                {{> eventcard this}}
             </div>
+            {{/each}}
         </div>
-    </div> --}}
-    <div class="cards-container">
-        {{#each events}}
-        <div class="card2">
-            {{> eventcard this}}
-        </div>
-        {{/each}}
     </div>
 </div>

@@ -112,7 +112,7 @@ router.post('/:eventId', async (req, res, next) => {
 /* Join al event */
 router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
   const fechaActual = fechaDeHoy();
-  const fecha = fechaActual.split('/').reverse().join('/');
+  const fecha = fechaActual.split('-').reverse().join('/');
   const { eventId } = req.params;
   const userFound = req.session.currentUser;
 

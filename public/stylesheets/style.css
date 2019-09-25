@@ -1,61 +1,87 @@
 @charset "UTF-8";
 /*JUMBOTRON*/
 .jumbotron {
-  background: linear-gradient(54deg, rgba(184, 35, 35, 0.938) 34%, rgba(228, 156, 63, 0.95));
-  padding-bottom: 10%;
-  padding-top: 25%; }
-
-.logo-picture {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px; }
+  padding-bottom: 45%;
+  padding-top: 25%;
+  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent; }
 
 .textarea-jumbotron {
   margin-left: auto;
   margin-right: auto;
   width: 100%; }
 
-.headline {
+.headline-home {
   display: inline;
   margin-top: 50px;
   color: white; }
 
+.headline-home h1 {
+  margin: 0;
+  text-align: center; }
+
 .brand-info {
   color: white;
-  margin-top: 10px;
-  text-align: center; }
-
-.logo-img {
-  width: 100%; }
-
-h1 {
-  margin: 0;
-  text-align: center; }
-
-h4 {
-  margin: 0;
+  margin-top: 40px;
   text-align: center;
-  margin-top: 5px; }
+  font-size: 18px;
+  font-weight: bold; }
 
-/*Login/Signup Buttons 1*/
+/*LOGIN/SIGNUP*/
 .register {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center; }
 
 .register-button {
-  box-shadow: 3px 3px 3px gray;
-  width: 60%;
-  margin: 10px;
-  border: none;
+  border: 3px solid #28b8dc;
+  width: 85%;
+  margin-top: 10px;
+  margin-bottom: 0px;
   text-transform: uppercase;
-  color: #007e71;
+  color: #67676f;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  text-decoration: none;
-  font-size: 14px; }
+  text-decoration: none; }
+
+/*HOMEPAGE ROLES DESCRIPTION*/
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #67676f; }
+
+.home-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
+
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px; }
+
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px; }
+
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px; }
+
+.intro-text h2 {
+  color: black;
+  font-size: 22px; }
+
+/*UPCOMING EVENTS*/
+.home-upcoming-events {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .bttn2 {
   background-color: #3d5556;
@@ -199,6 +225,7 @@ ul.nav-items li a span {
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.055);
   display: flex;
+  flex-wrap: wrap;
   align-items: center; }
 
 .card2 {
@@ -261,6 +288,10 @@ img.card-Band-img-top {
   box-sizing: border-box;
   /* width: 200px; */
   display: inline; }
+
+#form {
+  margin-top: 20%;
+  width: 100%; }
 
 .form-style .auth {
   margin-top: 25%; }
@@ -374,11 +405,154 @@ input[type='date'] {
   border: 1px solid #28b8dc;
   text-align: center; }
 
+.backbutton {
+  bottom: 45px;
+  position: sticky;
+  background: url(/images/back-arrow-24.png);
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  padding: 13px;
+  float: left; }
+
+/*BANDS*/
+.note-bandmembers {
+  background-color: rgba(0, 0, 0, 0.055);
+  font-size: 10px; }
+
+/*BANDS SHOW*/
+.band-avatar {
+  max-width: 85%;
+  max-height: 250px;
+  margin-bottom: 20px; }
+
+.band-avatar img {
+  width: 100%;
+  height: auto; }
+
+.band-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.band-title {
+  font-size: 35px;
+  width: 80%;
+  text-align: center;
+  margin: 0; }
+
+.band-description {
+  color: #67676f;
+  width: 80%;
+  text-align: center; }
+
+.band-genre {
+  color: #8d8d8d; }
+
+.band-genre span {
+  color: #28b8dc; }
+
+.external-icons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between; }
+
+.bandmembers {
+  color: #67676f;
+  width: 80%;
+  text-align: left; }
+
+.bandmembers li {
+  list-style-type: none;
+  text-align: center; }
+
+/*BANDS PETITIONS*/
+.sent-petition {
+  background-color: rgba(0, 0, 0, 0.055);
+  font-size: 10px; }
+
+.send-petition {
+  color: #67676f;
+  width: 80%;
+  display: flex;
+  justify-content: center; }
+
+.petition {
+  background-color: rgba(0, 0, 0, 0.055);
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.petition-button {
+  border: 2px solid #28b8dc;
+  width: 85%;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #67676f;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  background-color: white; }
+.fecha {
+  margin: 0 auto;
+  padding-right: 20px;
+  display: inline-block;
+  float: right; }
+
+.cards-container-user h3 {
+  margin: 0;
+  padding-left: 20px; }
+
+.img-wrapper-establishment {
+  text-align: center; }
+
+img.user-establishment-img {
+  width: 35px; }
+
+.user-establishment h3 {
+  margin: 0; }
+
+.title-mng {
+  margin: auto;
+  margin-bottom: 10px; }
+
+.bttn-card {
+  display: flex;
+  justify-content: space-evenly; }
+
+a.card {
+  text-decoration: none;
+  color: black;
+  background-color: aqua; }
+
+.bttn-card {
+  width: 100%; }
+
+a.btn-lnk {
+  width: 78px;
+  text-align: center;
+  padding: 5px 15px;
+  margin: 5px 15px;
+  text-decoration: none;
+  border: 1px solid black;
+  color: black; }
+
+a.btn-lnk.est {
+  width: 100px; }
+
+a.btn-lnk:visited {
+  color: black; }
+
+.user-establishment a {
+  text-decoration: none;
+  color: blue; }
+
 * body {
   margin: 0;
   height: 100%;
   color: #412e2a;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px; }
 
 .container {
   padding: 5%; }
@@ -388,15 +562,6 @@ input[type='date'] {
 
 .mobile-container {
   box-sizing: border-box; }
-
-.backbutton {
-  bottom: 45px;
-  position: sticky;
-  background-color: purple;
-  border-radius: 20%;
-  padding: 5px;
-  color: white;
-  float: left; }
 
 .bbtn {
   margin: 10%;
@@ -413,5 +578,12 @@ footer {
   background-color: #67676f;
   color: white;
   width: 100%; }
+
+h1 {
+  font-size: 45px; }
+
+h2 {
+  font-size: 22px;
+  font-family: 'Quicksand', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
