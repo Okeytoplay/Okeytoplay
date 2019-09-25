@@ -1,29 +1,24 @@
-<div class="cards-container">
+<div class="bands-container">
     {{#if userFound.band.name}}
-    <h3>If you want to join another band before you should leave the current one</h3>
-    <a href="/user/profile">Profile</a>
+    <div class="note-bandmembers">
+        <p>*If you want to join another band, you should abandon the current one <a href="/user/profile">here</a></p>
+    </div>
     {{else}}
-    <h3>If you haven't created your band, click below</h3>
-    <a href="/bands/new">Create Band</a>
+    <div class="create-band">
+        <p>{{userFound.username}}, do you want to register your band?:</p>
+        <a class="create-band-btn" href="/bands/new">Create Band</a>
+        <p>Is your band already registered? <br>
+            Send them a petition!</p>
+    </div>
     {{/if}}
-    <form action="/bands/:id" method="get" class="form-inline">
-        <div class="form-group">
-            <input type="text" name="search" placeholder="Band search..." class="form-control">
-            <input type="submit" value="Search" class="btn btn-default">
-        </div>
-    </form>
-    <a href="/bands/avatar/avatar-upload">Avatar Upload</a>
-    <h3>Basic View</h3>
-    <h4>BAND LIST</h4>
-
-    <div class="card">
-        <section class="events-section">
-            <div class="event-cards">
+    <div class="bandslist">
+        <h2>List of registered bands:</h2>
+        <section class="bands-section">
+            <div class="band-cards">
                 {{#each bands}}
                 {{> bandJoin this}}
                 {{/each}}
             </div>
         </section>
-
     </div>
 </div>

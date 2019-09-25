@@ -4,20 +4,19 @@
   padding-top: 25%;
   background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent; }
 
-.logo-picture {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px; }
-
 .textarea-jumbotron {
   margin-left: auto;
   margin-right: auto;
   width: 100%; }
 
-.headline {
+.headline-home {
   display: inline;
   margin-top: 50px;
   color: white; }
+
+.headline-home h1 {
+  margin: 0;
+  text-align: center; }
 
 .brand-info {
   color: white;
@@ -26,35 +25,7 @@
   font-size: 18px;
   font-weight: bold; }
 
-.logo-img {
-  width: 100%; }
-
-h1 {
-  margin: 0;
-  text-align: center; }
-
-h4 {
-  margin: 0;
-  text-align: center;
-  margin-top: 5px; }
-
-.home-features {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center; }
-
-.home-features p {
-  color: #8d8d8d;
-  margin: 0;
-  width: 70%;
-  margin: 5px; }
-
-.home-features h3 {
-  margin-top: 5px;
-  margin-bottom: 0px; }
-
-/*Login/Signup Buttons 1*/
+/*LOGIN/SIGNUP*/
 .register {
   display: flex;
   flex-direction: column;
@@ -72,11 +43,7 @@ h4 {
   text-align: center;
   text-decoration: none; }
 
-.role-img-home {
-  width: 80px;
-  height: auto;
-  margin-top: 20px; }
-
+/*HOMEPAGE ROLES DESCRIPTION*/
 .intro-text {
   display: flex;
   flex-direction: column;
@@ -84,10 +51,32 @@ h4 {
   text-align: center;
   color: #67676f; }
 
+.home-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
+
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px; }
+
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px; }
+
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px; }
+
 .intro-text h2 {
   color: black;
   font-size: 22px; }
 
+/*UPCOMING EVENTS*/
 .home-upcoming-events {
   display: flex;
   flex-direction: column;
@@ -379,6 +368,11 @@ input[type='date'] {
   border-radius: 50%;
   padding: 13px;
   float: left; }
+
+/*BANDS*/
+.note-bandmembers {
+  background-color: rgba(0, 0, 0, 0.055);
+  font-size: 10px; }
 
 * body {
   margin: 0;

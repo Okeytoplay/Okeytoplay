@@ -1,11 +1,18 @@
-<h3>Detalles de la Banda</h3>
-<h3>Name of the band: {{ bands.name }}</h3>
-<h3>Genre of the band: {{ bands.genre }}</h3>
-<h3>Description of the band: {{ bands.description }}</h3>
-<h3>Website of the band: <a href="{{bands.website}}">{{bands.website}}</a></h3>
-<h3>InstagramProfile of the band: <a href="{{bands.instagramProfile}}">{{bands.instagramProfile}}</a></h3>
-<h3>FacebookProfile of the band:<a href="{{bands.facebookProfile}}">{{bands.facebookProfile}}</a></h3>
-<img src="{{bands.avatar}}" alt="" width="300px" height="150px" class="circle center-align">
+<img src="{{bands.avatar}}" alt="" width="300px" height="150px">
+<h1>{{ bands.name }}</h1>
+<p class="band-description">{{ bands.description }}</p>
+<p class="band-genre">{{ bands.description }}</p>
+<div class="external-icons">
+    <a href="http://{{bands.website}}" class="sm-img" target="_blank">
+        <img src="/images/www.png" alt="{{ bands.name }} Website" id="website" />
+    </a>
+    <a href="http://{{bands.instagramProfile}}" class="sm-img" target="_blank">
+        <img src="/images/instagram.png" alt="{{ bands.name }} Instagram" id="Instagram" />
+    </a>
+    <a href="http://{{bands.facebookProfile}}" class="sm-img" target="_blank">
+        <img src="/images/facebook.png" alt="{{ bands.name }} Facebook" id="Facebook" />
+    </a>
+</div>
 
 {{#if user.band}}
 Manage Your band petitions here:

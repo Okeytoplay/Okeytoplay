@@ -1,28 +1,32 @@
 /*JUMBOTRON*/
 .jumbotron {
+  padding-bottom: 45%;
+  padding-top: 25%;
+  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent;
   // background: linear-gradient(
   //   54deg,
   //   rgba(184, 35, 35, 0.938) 34%,
   //   hsla(34, 75%, 57%, 0.95)
   // );
-  padding-bottom: 45%;
-  padding-top: 25%;
-  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent;
 }
-.logo-picture {
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-}
+// .logo-picture {
+//   display: flex;
+//   justify-content: center;
+//   padding-top: 10px;
+// }
 .textarea-jumbotron {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-.headline {
+.headline-home {
   display: inline;
   margin-top: 50px;
   color: white;
+}
+.headline-home h1 {
+  margin: 0;
+  text-align: center;
 }
 .brand-info {
   color: white;
@@ -31,47 +35,8 @@
   font-size: 18px;
   font-weight: bold;
 }
-.logo-img {
-  width: 100%;
-}
 
-h1 {
-  margin: 0;
-  text-align: center;
-}
-h4 {
-  margin: 0;
-  text-align: center;
-  margin-top: 5px;
-}
-
-.home-features {
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.home-features p {
-  color: #8d8d8d;
-  margin: 0;
-  width: 70%;
-  margin: 5px;
-}
-.home-features h3 {
-  margin-top: 5px;
-  margin-bottom: 0px;
-}
-// span {
-//   display: flex;
-//   flex-direction: column;
-//   // justify-content: center;
-//   align-items: center;
-//   color: #8d8d8d;
-//   text-align: center;
-// }
-
-/*Login/Signup Buttons 1*/
+/*LOGIN/SIGNUP*/
 .register {
   // margin-top: 20px;
   // width: 100%;
@@ -93,15 +58,8 @@ h4 {
   text-align: center;
   text-decoration: none;
 }
-// .register-button a {
-//   color: rgb(175, 5, 5);
-// }
-// rgb(0, 126, 113)verde;(0, 86, 126)azul;
-.role-img-home {
-  width: 80px;
-  height: auto;
-  margin-top: 20px;
-}
+
+/*HOMEPAGE ROLES DESCRIPTION*/
 .intro-text {
   display: flex;
   flex-direction: column;
@@ -110,10 +68,33 @@ h4 {
   text-align: center;
   color: #67676f;
 }
+.home-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px;
+}
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px;
+}
+
 .intro-text h2 {
   color: black;
   font-size: 22px;
 }
+/*UPCOMING EVENTS*/
 .home-upcoming-events {
   display: flex;
   flex-direction: column;
