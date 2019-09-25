@@ -1,9 +1,10 @@
 <div class="cards-container-user">
+  <p class="fecha">{{fecha}}</p>
   <h3>Hi!! {{userFound.username}}</h3>
 
   <div class="card">
     <div class="bttn-card">
-      <button class=""><a href="/user/events" class="card">My E</a></button>
+      <button class=""><a href="/user/events" class="card">My created Events</a></button>
       <button class=""><a href="/events" class="card">Eventos disponibles</a></button>
     </div>
   </div>
@@ -30,9 +31,17 @@
   </div>
 
   <div class="card">
+    <p class="title-mng">Manage Your Establishment</p>
     <div>
       {{#if userFound.establishment.name}}
-      <h3><img src="../images/local.png" alt="" style="height: 29px">{{userFound.establishment.name}}</h3>
+      <div class="user-establishment">
+        <a href="/user/profile/edit-establishment">
+          <div class="img-wrapper-establishment">
+            <img class="user-establishment-img" src="../images/local.png" alt="">
+          </div>
+          <h3>{{userFound.establishment.name}}</h3>
+        </a>
+      </div>
       {{else}}
       <button><a href="/establishments/new" class="card">Create Pub</a></button>
       {{/if}}

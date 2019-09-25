@@ -17,6 +17,9 @@ const router = express.Router();
 router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
   // console.log(actualUserEmail);
+  const fechaActual = fechaDeHoy();
+  const fecha = fechaActual.split('-').reverse().join('/');
+  console.log('Fecha: ', fecha);
   try {
     const userFound = await User.findById(actualUserId).populate(
       'band establishment',
@@ -32,7 +35,7 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
       role.push('Establishment');
     }
     // res.render('user/profile', userFound, role);
-    res.render('user', { userFound, role });
+    res.render('user', { userFound, role, fecha });
   } catch (error) {
     next(error);
   }
@@ -41,6 +44,9 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
+  const fechaActual = fechaDeHoy();
+  const fecha = fechaActual.split('-').reverse().join('/');
+  // console.log('Fecha: ', fecha);
   // console.log(actualUserEmail);
   try {
     const userFound = await User.findById(actualUserId).populate(
@@ -51,7 +57,7 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
     // res.render('user/profile', { userFound, title: 'Profile' });
     // res.render('user/profile', userFound, role);
     // res.render('user/profile', { userFound });
-    res.render('user', { userFound });
+    res.render('user', { userFound, fecha });
   } catch (error) {
     next(error);
   }
