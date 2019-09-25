@@ -55,6 +55,9 @@
 // }
 
 // prueba menu hamburguesa
+.nav-burguer {
+  padding: 5%;
+}
 
 a {
   color: #222;
@@ -73,11 +76,12 @@ header,
   width: 100%;
 }
 header {
-  padding: 0.8em 0 0;
+  // margin: 5%;
+  // padding: 0.8em 0 0;
 }
 header h1 {
   float: left;
-  padding: 0 0 0.2em;
+  // padding: 0 0 0.2em;
 }
 header h1#logo img {
   height: 40px;
