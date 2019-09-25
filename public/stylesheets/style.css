@@ -2,7 +2,7 @@
 .jumbotron {
   padding-bottom: 45%;
   padding-top: 25%;
-  background: url(/images/guitar-black.png); }
+  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent; }
 
 .logo-picture {
   display: flex;
@@ -38,6 +38,22 @@ h4 {
   text-align: center;
   margin-top: 5px; }
 
+.home-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
+
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px; }
+
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px; }
+
 /*Login/Signup Buttons 1*/
 .register {
   display: flex;
@@ -55,6 +71,27 @@ h4 {
   border-radius: 10px;
   text-align: center;
   text-decoration: none; }
+
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px; }
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #67676f; }
+
+.intro-text h2 {
+  color: black;
+  font-size: 22px; }
+
+.home-upcoming-events {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 /* Style the navigation bar */
 .navbar {
@@ -348,7 +385,7 @@ input[type='date'] {
   height: 100%;
   color: #412e2a;
   font-family: 'Rubik', sans-serif;
-  font: 14px; }
+  font-size: 14px; }
 
 .container {
   padding: 0 5px; }
@@ -381,6 +418,7 @@ h1 {
   font-size: 45px; }
 
 h2 {
-  font-size: 20px; }
+  font-size: 22px;
+  font-family: 'Quicksand', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */

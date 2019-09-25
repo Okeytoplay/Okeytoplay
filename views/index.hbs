@@ -18,37 +18,35 @@
     </div>
 </div>
 
-<div>
-    {{#if currentUser }}
-    {{else}}
-    <section class="register">
-        <a class="register-button" href="/auth/login">Login</a>
-        <a class="register-button" href="/auth/signup">Signup</a>
-    </section>
-    {{/if}}
-
-</div>
-
+{{#if currentUser }}
+{{else}}
+<section class="register">
+    <a class="register-button" href="/auth/login">Login</a>
+    <a class="register-button" href="/auth/signup">Signup</a>
+</section>
+{{/if}}
 <div class="container">
     <div class="home-description">
-        <h2>What can you do in OkeytoPlay?</h2>
-        <p>All users can planify, search and discover the upcoming live music events.</p>
-        <p>Depending on your role in the app you will get access to special features:</p>
-        <img src="/images/user-app.png" alt="">
-        <h3>User</h3>
-        <p>Depending on your role in the app you will get access to special features:</p>
-        <img src="/images/band-home.png" alt="">
+        <div class="intro-text">
+            <h2>What can you do in OkeytoPlay?</h2>
+            <span>Depending on your role in the app you will get access to special features:</span>
+        </div>
 
-        <h3>Band</h3>
-        <p>Depending on your role in the app you will get access to special features:</p>
-        <img src="/images/stage.png" alt="">
-
-        <h3>Establishment</h3>
-        <p>Depending on your role in the app you will get access to special features:</p>
-
-
-
-
+        <div class="home-features">
+            <img class="role-img-home" src="/images/user-app.png" alt="">
+            <h3>User</h3>
+            <p>All users can planify, search and discover the upcoming live music events.</p>
+        </div>
+        <div class="home-features">
+            <img class="role-img-home" src="/images/band-home.png" alt="">
+            <h3>Band</h3>
+            <p>Add all your band members onboard and book your next performance.</p>
+        </div>
+        <div class="home-features">
+            <img class="role-img-home" src="/images/stage.png" alt="">
+            <h3>Establishment</h3>
+            <p>Create events and we will take care to get your establishment fully booked.</p>
+        </div>
     </div>
     <div class="home-upcoming-events">
         <h2>Upcoming Events</h2>

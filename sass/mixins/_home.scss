@@ -7,7 +7,7 @@
   // );
   padding-bottom: 45%;
   padding-top: 25%;
-  background: url(/images/guitar-black.png);
+  background: url(/images/guitar-black.png) repeat scroll 50% 550px transparent;
 }
 .logo-picture {
   display: flex;
@@ -45,6 +45,32 @@ h4 {
   margin-top: 5px;
 }
 
+.home-features {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.home-features p {
+  color: #8d8d8d;
+  margin: 0;
+  width: 70%;
+  margin: 5px;
+}
+.home-features h3 {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+// span {
+//   display: flex;
+//   flex-direction: column;
+//   // justify-content: center;
+//   align-items: center;
+//   color: #8d8d8d;
+//   text-align: center;
+// }
+
 /*Login/Signup Buttons 1*/
 .register {
   // margin-top: 20px;
@@ -71,3 +97,26 @@ h4 {
 //   color: rgb(175, 5, 5);
 // }
 // rgb(0, 126, 113)verde;(0, 86, 126)azul;
+.role-img-home {
+  width: 80px;
+  height: auto;
+  margin-top: 20px;
+}
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #67676f;
+}
+.intro-text h2 {
+  color: black;
+  font-size: 22px;
+}
+.home-upcoming-events {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+}
