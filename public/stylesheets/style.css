@@ -375,6 +375,15 @@ input[type='date'] {
   font-size: 10px; }
 
 /*BANDS SHOW*/
+.band-avatar {
+  max-width: 85%;
+  max-height: 250px;
+  margin-bottom: 20px; }
+
+.band-avatar img {
+  width: 100%;
+  height: auto; }
+
 .band-info {
   display: flex;
   flex-direction: column;

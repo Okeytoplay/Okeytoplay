@@ -1,5 +1,7 @@
-<img src="{{bands.avatar}}" alt="" width="300px" height="150px">
 <div class="band-info">
+    <div class="band-avatar">
+        <img src="{{bands.avatar}}" alt="">
+    </div>
     <h1 class="band-title">{{ bands.name }}</h1>
     <p class="band-description">{{ bands.description }}</p>
     <p class="band-genre">Genre: <span>{{ bands.genre }}</span></p>
@@ -25,11 +27,8 @@
 
 </div>
 
-
-{{!-- {{#if user.band}}
-Manage Your band petitions here:
-<a href="/user/profile/petitions">Petitions</a>
-{{else}} --}}
+{{#if user.band}}
+{{else}}
 {{#if checkIfpetition.petitions}}
 <p class="sent-petition">You already sent a petition... Keep calm the {{ bands.name }} Admin will answer your petition
     soon.</p>
@@ -41,6 +40,6 @@ Manage Your band petitions here:
     <a class="petition-button" href="/bands/{{bands._id}}/join">Send petition</a>
 </section>
 {{/if}}
-{{!-- {{/if}} --}}
+{{/if}}
 <BR></BR>
 {{!-- INSERT BAND EVENTS --}}
