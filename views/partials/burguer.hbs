@@ -1,11 +1,44 @@
-<button id="menu">menu</button>
-<nav id="superior">
-  <ul>
-    <li><a href="#">Lorem</a></li>
-    <li><a href="#">Lorem</a></li>
-    <li><a href="#">Consectetur.</a></li>
-    <li><a href="#">Elit</a></li>
-    <li><a href="#">Elit.</a></li>
-  </ul>
-</nav>
+<header>
+  <h1 id="logo"><a href="/"><img src="/images/logo.png" /></a></h1>
 
+
+  {{!-- <a id="navbar-logo" href="/"></a> --}}
+
+  <nav id="navigation">
+    {{!-- <a href="/"><img src="/images/logo.png" alt="" style="height: 29px"></a> --}}
+    {{!-- <a href="/user"><img src="/images/perfil.png" alt="" style="height: 29px"></a> --}}
+    {{!-- <a href="/user/profile"><img src="/images/edit.png" alt="" style="height: 29px"></a> --}}
+
+    <div class="control-menu">
+      <a href="#navigation" class="open"><span>MENU</span></a>
+      <a href="#" class="close"><span>CERRAR</span></a>
+    </div>
+
+    <ul class="nav-items">
+
+      <li id="Mobile">
+        <a href="/user"><span>User</span></a>
+      </li>
+
+      <li>
+        <a href="/user/profile"><span>Edit Profile</span></a>
+      </li>
+
+      <li id="Mobile">
+        <a href="/user/events/bookedevents"> <span>Booked Events</span></a>
+      </li>
+
+      <li>
+        <a href="/bands"><span>Bands Profile</span></a>
+      </li>
+
+      <li id="Mobile">
+        <a href="/establishments"><span>Pub's Profile</span></a>
+      </li>
+
+      <li>
+        <a href="/logout"><span>LOGOUT</span></a>
+      </li>
+    </ul>
+  </nav>
+</header>
