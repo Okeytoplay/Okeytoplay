@@ -259,18 +259,17 @@ img.card-Band-img-top {
   color: #28b8dc; }
 
 button.btn-delete-account {
+  margin: 8%;
   width: 80%;
-  margin: 15px 30px 20px 30px;
   background-color: #e35858;
   border: none;
   text-transform: uppercase;
   color: white;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 5px;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: bold; }
+  font-size: 14px; }
 
 .cont-title {
   padding-bottom: 15px; }
@@ -326,10 +325,9 @@ input[type='date'] {
   color: white; }
 
 footer {
-  margin-top: 10%;
   bottom: 0;
   position: fixed;
-  background-color: #412e2a;
+  background-color: #67676f;
   color: white;
   width: 100%; }
 
