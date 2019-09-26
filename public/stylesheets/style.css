@@ -83,9 +83,9 @@
   flex-direction: column;
   align-items: center; }
 
-/* Style the navigation bar menu burguer */
-.nav-burguer {
-  padding: 5%; }
+* {
+  margin: 0;
+  padding: 0; }
 
 a {
   color: #222;
@@ -96,25 +96,22 @@ ol,
 li {
   list-style: outside none none; }
 
-header,
-#central-content {
-  box-sizing: border-box;
-  margin: 0 auto;
-  max-width: 500px;
-  width: 100%; }
-
 header {
-  display: flex;
-  justify-content: space-between; }
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #353535 0%, #060708 100%) repeat scroll 0 0;
+  box-shadow: 0 0 10px 0 #28b8dc; }
+
+header h6 {
+  float: left;
+  padding: 0 0 0.2em; }
 
 header h6#logo img {
-  width: 20%; }
+  height: 40px;
+  margin-left: 0.5em; }
 
 .control-menu {
   background-color: transparent;
   background-position: center center;
-  border: 1px solid #fff;
-  display: inline;
+  display: block;
   float: right;
   height: 40px;
   margin-right: 1.3em;
@@ -127,19 +124,18 @@ header h6#logo img {
   width: 40px; }
 
 .control-menu .close {
-  background-image: url("../images/menu-cerrar.png");
-  background-size: 80%;
+  background-image: url("/images/close-menu.png");
   background-position: center center;
   background-repeat: no-repeat;
   display: none; }
 
 .control-menu .open {
-  background-image: url("../images/menu-abrir.png");
-  background-size: 110%;
+  background-image: url("/images/open-menu.png");
   background-position: center center;
   background-repeat: no-repeat;
   display: block; }
 
+/* //trans. desplegable */
 ul.nav-items {
   clear: both;
   height: 0;
@@ -147,24 +143,18 @@ ul.nav-items {
   transition: height 0.4s ease-in-out 0s, background-color 2s ease 0s;
   /*El menú cambia su altura y su color de fondo mediante una transición suavizada al voover a su estado unicial*/ }
 
-navigation {
-  display: flex;
-  justify-content: space-between; }
-
 #navigation:target ul.nav-items {
   background: #f0f0f0 none repeat scroll 0 0;
-  height: 18.8em;
+  height: 15.8em;
   transition: height 0.4s ease-in-out 0s, background-color 0.9s ease 0s;
   /*El menú cambia su altura y su color de fondo mediante una transición suavizada al abrirse*/ }
 
-/*Al hacer clic sobre el enlace que abre el menú éste desaparece*/
 .close {
   display: none; }
 
 #navigation:target .open {
   display: none; }
 
-/* Al hacer clic sobre el enlace que abre el menú aparece el enlace .close que previamente estaba oculto*/
 #navigation:target .close {
   display: block; }
 
@@ -173,7 +163,7 @@ ul.nav-items li {
   display: block; }
 
 ul.nav-items a {
-  border-top: 2px dotted #dddbdb;
+  border-top: 2px groove #dddbdb;
   color: #333;
   display: block;
   height: 3em;
@@ -186,10 +176,8 @@ ul.nav-items li:first-child a {
 ul.nav-items li a span {
   border-left: 3px solid;
   height: 3.2em;
-  padding: 0.4em 0.5em; }
-
-#Mobile a span {
-  border-color: #53cace; }
+  padding: 0.4em 0.5em;
+  border-color: #28dc97; }
 
 .events-section {
   margin: 10px; }
