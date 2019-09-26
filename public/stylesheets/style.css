@@ -103,10 +103,10 @@ header,
   max-width: 500px;
   width: 100%; }
 
-header h1 {
+header h6 {
   float: left; }
 
-header h1#logo img {
+header h6#logo img {
   height: 40px;
   margin-left: 0.5em; }
 
