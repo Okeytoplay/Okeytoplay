@@ -7,18 +7,18 @@
     {{else}}
     <div class="create-establishment">
         <p><span>{{userFound.username}}</span>, do you want to add your establishment?</p>
-        <a class="btn-band-details" href="/establishments/new">Create Establishment</a>
+        <a class="btn-band-details" href="/establishments/new">CREATE </a>
     </div>
     {{/if}}
     <div class="establishmentslist">
         <h2>List of registered establishments:</h2>
-        <section class="bands-section">
+        <section class="establishments-section">
             {{#each establishments}}
-            <div class="band-cards-container">
-                <div class="band-cards">
+            <div class="establishment-cards-container">
+                <div class="establishment-cards">
                     <h3>{{this.name}}</h3>
                     <p>{{this.description}}</p>
-                    <a class="btn-band-details" href="/establishments/{{this._id}}">Establishments Details</a>
+                    <a class="btn-establishment-details" href="/establishments/{{this._id}}">Establishments Details</a>
                 </div>
             </div>
             {{/each}}

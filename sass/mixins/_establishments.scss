@@ -1,4 +1,4 @@
-/*BANDS*/
+/*ESTABLISHMENTS*/
 .note-establishments {
   // background-color: rgba(0, 0, 0, 0.055);
   font-size: 10px;
@@ -14,11 +14,99 @@
   width: 50%;
   margin: 14px 16px;
 }
+.create-establishment a {
+  padding: 5px;
+}
 .create-establishment span {
   text-transform: capitalize;
 }
 .establishmentslist {
-//   display: flex;
-//   flex-direction: column;
-//   align-content: center;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.establishment-cards-container a {
+  text-decoration-line: none;
+  padding: 5px;
+}
+.establishment-cards {
+  margin: 5px;
+  padding: 10px;
+  // background-color: rgba(0, 0, 0, 0.055);
+  border: 1px solid #e8ecec;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // flex-direction: column;
+  // text-align: center;
+}
+.establishment-cards h3 {
+  margin: 0px;
+}
+.establishment-cards p {
+  font-size: 12px;
+  color: #8d8d8d;
+}
+.btn-establishment-details {
+  border: 3px solid #28b8dc;
+  font-size: 12px;
+  width: 30%;
+  color: #67676f;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+}
+/*ESTABLISHMENT SHOW*/
+.establishment-avatar {
+  max-width: 85%;
+  max-height: 250px;
+  margin-bottom: 20px;
+}
+.establishment-avatar img {
+  width: 100%;
+  height: auto;
+}
+.establishment-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.establishment-title {
+  font-size: 35px;
+  width: 80%;
+  text-align: center;
+  margin: 0;
+}
+.establishment-description {
+  color: #67676f;
+  width: 80%;
+  text-align: center;
+}
+.external-icons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.establishment-capacity {
+  color: #8d8d8d;
+}
+.establishment-capacity span {
+  color: #28b8dc;
+}
+.establishment-adress {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  color: #8d8d8d;
+  border: 1px solid #e8ecec;
+  width: 90%;
+}
+.establishment-adress img {
+  width: 15%;
+  height: auto;
+  margin: 5px;
+}
+.establishment-adress p {
+  margin-left: 5px;
 }

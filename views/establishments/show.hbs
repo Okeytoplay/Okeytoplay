@@ -1,13 +1,23 @@
-<h2>Details of the Establishment:</h2>
-<ul>
-    <p>Name of the Establishment: {{establishments.name}}</p>
-    <p>Description: {{establishments.description}}</p>
-    <p>Website: <a href="{{establishments.website}}">{{establishments.website}}</a></p>
-    <p>Instagram Profile: <a href="{{establishments.website}}">{{establishments.instagramProfile}}</a></p>
-    <p>Facebook Profile: <a href="{{establishments.website}}">{{establishments.facebookProfile}}</a></p>
-    <p>Adress: {{establishments.street}}</p>
-    <p>City: {{establishments.city}}</p>
-    <p>Zip Code: {{establishments.zip}}</p>
-    <p>Establishment Capacity: {{establishments.capacity}}</p>
-</ul>
-<img src="{{establishments.avatar}}" alt="" width="300px" height="150px" class="circle center-align">
+<div class="establishment-info">
+    <div class="establishment-avatar">
+        <img src="{{establishments.avatar}}" alt="">
+    </div>
+    <h1 class="establishment-title">{{ establishments.name }}</h1>
+    <p class="establishment-description">{{ establishments.description }}</p>
+    <p class="establishment-capacity">Capacity: <span>{{ establishments.capacity }} People</span></p>
+    <div class="external-icons">
+        <a href="http://{{establishments.website}}" class="sm-img" target="_blank">
+            <img src="/images/www.png" alt="{{ establishments.name }} Website" id="website" />
+        </a>
+        <a href="http://{{establishments.instagramProfile}}" class="sm-img" target="_blank">
+            <img src="/images/instagram.png" alt="{{ establishments.name }} Instagram" id="Instagram" />
+        </a>
+        <a href="http://{{establishments.facebookProfile}}" class="sm-img" target="_blank">
+            <img src="/images/facebook.png" alt="{{ establishments.name }} Facebook" id="Facebook" />
+        </a>
+    </div>
+    <div class="establishment-adress">
+        <img src="/images/crear-evento.png" alt="">
+        <p>{{ establishments.street }}, {{ establishments.zip }}, {{ establishments.city }}</p>
+    </div>
+</div>
