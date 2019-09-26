@@ -8,6 +8,7 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
   <script src="/javascripts/backbutton.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 
@@ -17,23 +18,10 @@
 
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
-  {{#if successMessages}}
-  <p class="msg-success">{{successMessages}}</p>
-  {{/if}}
-  {{#if errorMessages }}
-  <p class="msg-error">{{ errorMessages }}</p>
-  {{/if }}
-  {{#if infoMessages }}
-  <p class="msg-info">{{ infoMessages }}</p>
-  {{/if }}
-  {{#if dangerMessages }}
-  <p class="msg-danger">{{ dangerMessages }}</p>
-  {{/if }}
-  {{#if warningMessages }}
-  <p class="msg-warning">{{ warningMessages }}</p>
-  {{/if }}
 
-  {{!-- {{> messages }} --}}
+  {{>messages }}
+
+
 
   {{!-- Navbar --}}
   {{#if currentUser }}
@@ -54,7 +42,7 @@
   <footer>
     <p>&copy; OkeyToPlay 2019</p>
   </footer>
-
+  <script src="/javascripts/notifications.js"></script>
 </body>
 
 </html>

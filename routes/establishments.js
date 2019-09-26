@@ -53,12 +53,12 @@ router.get('/', async (req, res, next) => {
 });
 
 /* GET Renders new establishment */
-router.get('/new', (req, res, next) => {
+router.get('/new', checkIfLoggedIn, (req, res, next) => {
   res.render('establishments/new');
 });
 
 /* POST for the new establishment */
-router.post('/new', async (req, res, next) => {
+router.post('/new', checkIfLoggedIn, async (req, res, next) => {
   const {
     name,
     description,
@@ -77,9 +77,9 @@ router.post('/new', async (req, res, next) => {
     res.redirect('/establishments/new');
   }
   try {
-    let newEstablishment;
-    let updatedUser;
-    newEstablishment = await Establishment.create({
+    // let newEstablishment;
+    // let updatedUser;
+    const newEstablishment = await Establishment.create({
       name,
       description,
       website,
@@ -93,7 +93,7 @@ router.post('/new', async (req, res, next) => {
     });
     // const userFound = await User.findOne({ email: actualUserEmail });
     console.log('Actuaal User: ', actualUser);
-    updatedUser = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       { _id: actualUser._id },
       {
         $set: {
@@ -137,7 +137,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // View one establishment detail
-router.get('/:establishmentID', async (req, res, next) => {
+router.get('/:establishmentID', checkIfLoggedIn, async (req, res, next) => {
   const { establishmentID } = req.params;
   try {
     const establishments = await Establishment.findById(establishmentID);
@@ -148,11 +148,11 @@ router.get('/:establishmentID', async (req, res, next) => {
 });
 
 /* POST Renders establishment information */
-router.post('/:establishmentID', async (req, res, next) => {
+router.post('/:establishmentID', checkIfLoggedIn, async (req, res, next) => {
   const { establishmentID } = req.params;
   try {
     const establishments = await Establishment.findById(establishmentID);
-    res.redirect(`/establishments/${establishmentId}`);
+    res.redirect(`/establishments/${establishmentID}`);
   } catch (error) {
     next(error);
   }
