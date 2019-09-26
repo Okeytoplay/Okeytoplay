@@ -38,15 +38,16 @@ router.get('/bookedevents', async (req, res, next) => {
       .reverse()
       .join('/');
 
-    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exist: true } }).sort('schedule').populate('establishment band');
+    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: true } }).sort('schedule').populate('establishment band');
     console.log('Eventos CON banda adjudicada: ', events);
-    res.render('events/bookedevents', { events });
+    // res.render('events/bookedevents', { events });
+    res.render('events/show', { events });
   } catch (error) {
     next(error);
   }
 });
 
-/* GET Renders available events, only with BAND JOINED */
+/* GET Renders available events, only with NO BAND JOINED */
 router.get('/bookingevents', checkIfLoggedIn, checkIfBand, async (req, res, next) => {
   try {
     const fechaActual = fechaDeHoy();
@@ -55,9 +56,10 @@ router.get('/bookingevents', checkIfLoggedIn, checkIfBand, async (req, res, next
       .reverse()
       .join('/');
 
-    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exist: false } }).sort('schedule').populate('establishment');
+    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: false } }).sort('schedule').populate('establishment');
     console.log('Eventos SIN banda adjudicada: ', events);
-    res.render('events/bookedevents', { events });
+    // res.render('events/bookingevents', { events });
+    res.render('events/show', { events });
   } catch (error) {
     next(error);
   }

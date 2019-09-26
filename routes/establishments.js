@@ -78,9 +78,9 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
     res.redirect('/establishments/new');
   }
   try {
-    let newEstablishment;
-    let updatedUser;
-    newEstablishment = await Establishment.create({
+    // let newEstablishment;
+    // let updatedUser;
+    const newEstablishment = await Establishment.create({
       name,
       description,
       website,
@@ -94,7 +94,7 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
     });
     // const userFound = await User.findOne({ email: actualUserEmail });
     console.log('Actuaal User: ', actualUser);
-    updatedUser = await User.findByIdAndUpdate(
+    const updatedUser = await User.findByIdAndUpdate(
       { _id: actualUser._id },
       {
         $set: {
