@@ -1,60 +1,5 @@
-/* Style the navigation bar */
-// .navbar {
-//   // overflow: auto;
-//   display: flex;
-//   justify-content: space-around;
-//   // background-color: aqua;
-//   padding: 15px 0;
-//   align-items: center;
-//   // position: sticky;
-//   // top: 0;
-//   background-color: white;
-// }
+/* Style the navigation bar menu burguer */
 
-// /* Navbar links */
-// // .navbar a {
-// //   float: left;
-// //   text-align: right;
-// //   padding: 20px;
-// //   text-transform: uppercase;
-// //   color: gray;
-// //   text-decoration: none;
-// //   font-size: 15px;
-// // }
-
-// /* Navbar links on mouse-over */
-// .navbar a:hover {
-//   background-color: rgb(255, 255, 255);
-//   color: rgb(234, 155, 35);
-// }
-
-// #navbar-logo {
-//   padding-right: 60px;
-//   margin-right: 60px;
-// }
-
-// #navbar-logo {
-//   background-image: url('/images/logo.png');
-//   background-repeat: no-repeat;
-//   background-size: contain;
-//   margin: 15px;
-// }
-
-// #navbar-logo {
-//   width: 35px;
-//   height: 35px;
-//   background-image: url('/images/logo.png');
-//   background-repeat: no-repeat;
-//   background-size: contain;
-// }
-
-// .logout {
-//   color: red;
-//   text-decoration: none;
-//   text-transform: uppercase;
-// }
-
-// prueba menu hamburguesa
 .nav-burguer {
   padding: 5%;
 }
@@ -63,11 +8,13 @@ a {
   color: #222;
   text-decoration: none;
 }
+
 ul,
 ol,
 li {
   list-style: outside none none;
 }
+
 header,
 #central-content {
   box-sizing: border-box;
@@ -76,16 +23,17 @@ header,
   width: 100%;
 }
 header {
+  display: flex;
+  justify-content: space-between;
   // margin: 5%;
   // padding: 0.8em 0 0;
 }
-header h1 {
-  float: left;
+header h6 {
+  // float: left;
   // padding: 0 0 0.2em;
 }
-header h1#logo img {
-  height: 40px;
-  margin-left: 0.5em;
+header h6#logo img {
+  width: 20%;
 }
 .control-menu {
   background-color: transparent;
