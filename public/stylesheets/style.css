@@ -83,13 +83,8 @@
   flex-direction: column;
   align-items: center; }
 
-/* Style the navigation bar */
-.nav-burguer {
-  padding: 5%; }
-
-a {
-  color: #222;
-  text-decoration: none; }
+.home-container h2 {
+  font-family: 'Quicksand', sans-serif; }
 
 ul,
 ol,
@@ -191,28 +186,7 @@ ul.nav-items li a span {
 #Mobile a span {
   border-color: #53cace; }
 
-.events-section {
-  margin: 10px; }
-
-.cards-container a {
-  text-decoration-line: none; }
-
-.card {
-  margin: 5px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.055);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center; }
-
-.card2 {
-  margin: 5px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.055);
-  display: flex;
-  justify-content: space-between;
-  align-items: center; }
-
+/*NOSE DE DONDE SALE*/
 .bttn {
   width: 50%;
   margin: 0 auto;
@@ -393,8 +367,20 @@ input[type='date'] {
 
 /*BANDS*/
 .note-bandmembers {
-  background-color: rgba(0, 0, 0, 0.055);
-  font-size: 10px; }
+  font-size: 10px;
+  margin: 5px; }
+
+.create-band {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.create-band p {
+  width: 50%;
+  margin-left: 5%; }
+
+.create-band span {
+  text-transform: capitalize; }
 
 /*BANDS SHOW*/
 .band-avatar {
@@ -471,6 +457,54 @@ input[type='date'] {
   text-decoration: none;
   background-color: white; }
 
+<<<<<<< HEAD
+=======
+/*BAND CARDS*/
+.bandslist {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.band-cards-container a {
+  text-decoration-line: none; }
+
+.band-cards {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #e8ecec; }
+
+.band-cards h3 {
+  margin: 0px; }
+
+.band-cards p {
+  font-size: 12px;
+  color: #8d8d8d; }
+
+.btn-band-details {
+  border: 3px solid #28b8dc;
+  font-size: 12px;
+  width: 30%;
+  color: #67676f;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none; }
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; }
+
+.error-message {
+  font-size: 24px;
+  color: red; }
+
+.error-img {
+  width: 90%;
+  height: auto; }
+
+>>>>>>> 4c99c59ee2839df93d61e2c6d9786fc6183e7b63
 .fecha {
   margin: 0 auto;
   padding-right: 20px;
@@ -525,6 +559,206 @@ a.btn-lnk:visited {
   text-decoration: none;
   color: blue; }
 
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.avatar-upload span {
+  color: #28b8dc;
+  text-transform: uppercase; }
+
+.avatar-upload a {
+  text-decoration: none; }
+
+.avatar-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: auto;
+  max-height: 200px;
+  border: 1px solid #e8ecec; }
+
+.avatar-img img {
+  max-height: 200px; }
+
+.file-upload {
+  width: 100%;
+  font-size: 8px;
+  height: auto; }
+
+.file-upload input {
+  width: 95%;
+  border: 3px solid #67676f; }
+
+.upload-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.upload-img-btn {
+  border: 3px solid #28b8dc;
+  width: 85%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  background: white; }
+
+.choose-files {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+/*ESTABLISHMENTS*/
+.note-establishments {
+  font-size: 10px;
+  margin: 5px; }
+
+.create-establishment {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.create-establishment p {
+  width: 50%;
+  margin: 14px 16px; }
+
+.create-establishment a {
+  padding: 5px; }
+
+.create-establishment span {
+  text-transform: capitalize; }
+
+.establishmentslist {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.establishment-cards-container a {
+  text-decoration-line: none;
+  padding: 5px; }
+
+.establishment-cards {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #e8ecec; }
+
+.establishment-cards h3 {
+  margin: 0px; }
+
+.establishment-cards p {
+  font-size: 12px;
+  color: #8d8d8d; }
+
+.btn-establishment-details {
+  border: 3px solid #28b8dc;
+  font-size: 12px;
+  width: 30%;
+  color: #67676f;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none; }
+
+/*ESTABLISHMENT SHOW*/
+.establishment-avatar {
+  max-width: 85%;
+  max-height: 250px;
+  margin-bottom: 20px; }
+
+.establishment-avatar img {
+  width: 100%;
+  height: auto; }
+
+.establishment-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.establishment-title {
+  font-size: 35px;
+  width: 80%;
+  text-align: center;
+  margin: 0; }
+
+.establishment-description {
+  color: #67676f;
+  width: 80%;
+  text-align: center; }
+
+.external-icons {
+  width: 40%;
+  display: flex;
+  justify-content: space-between; }
+
+.establishment-capacity {
+  color: #8d8d8d; }
+
+.establishment-capacity span {
+  color: #28b8dc; }
+
+.establishment-adress {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  color: #8d8d8d;
+  border: 1px solid #e8ecec;
+  width: 90%; }
+
+.establishment-adress img {
+  width: 15%;
+  height: auto;
+  margin: 5px; }
+
+.establishment-adress p {
+  margin-left: 5px; }
+
+.petitions {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.petitions span {
+  color: #28b8dc;
+  text-transform: capitalize; }
+
+.petition-user {
+  text-transform: capitalize; }
+
+.petitions p {
+  margin: 5px; }
+
+.petitions ol,
+ul {
+  margin: 0px;
+  padding: 0; }
+
+.petitions li {
+  text-align: left; }
+
+.decline-btn {
+  border: 1px solid white;
+  background: red;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none; }
+
+.accept-btn {
+  border: 1px solid white;
+  background: #b4c52c;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none; }
+
 * body {
   margin: 0;
   height: 100%;
@@ -561,7 +795,6 @@ h1 {
   font-size: 45px; }
 
 h2 {
-  font-size: 22px;
-  font-family: 'Quicksand', sans-serif; }
+  font-size: 22px; }
 
 /*# sourceMappingURL=style.css.map */

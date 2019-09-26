@@ -1,0 +1,41 @@
+.petitions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.petitions span {
+  color: #28b8dc;
+  text-transform: capitalize;
+}
+.petition-user {
+  text-transform: capitalize;
+}
+.petitions p {
+  margin: 5px;
+}
+.petitions ol,
+ul {
+  margin: 0px;
+  padding: 0;
+}
+.petitions li {
+  text-align: left;
+}
+.decline-btn {
+  border: 1px solid white;
+  background: red;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.accept-btn {
+  border: 1px solid white;
+  background: #b4c52c;
+  text-transform: uppercase;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+}

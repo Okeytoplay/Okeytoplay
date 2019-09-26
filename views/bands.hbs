@@ -5,10 +5,8 @@
     </div>
     {{else}}
     <div class="create-band">
-        <p>{{userFound.username}}, do you want to register your band?:</p>
-        <a class="create-band-btn" href="/bands/new">Create Band</a>
-        <p>Is your band already registered? <br>
-            Send them a petition!</p>
+        <p><span>{{userFound.username}}</span>, do you want to register your band?</p>
+        <a class="btn-band-details" href="/bands/new">Create Band</a>
     </div>
     {{/if}}
     <div class="bandslist">
