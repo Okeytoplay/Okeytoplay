@@ -10,6 +10,7 @@
 @import '../mixins/bands';
 @import '../mixins/errorPage';
 @import '../mixins/user';
+@import '../mixins/avatarUpload';
 @import '../mixins/establishments';
 
 // General Attributes
@@ -55,5 +56,5 @@ h1 {
 }
 h2 {
   font-size: 22px;
-  font-family: 'Quicksand', sans-serif;
+  // font-family: 'Quicksand', sans-serif;
 }

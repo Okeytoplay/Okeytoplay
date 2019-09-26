@@ -82,6 +82,9 @@
   flex-direction: column;
   align-items: center; }
 
+.home-container h2 {
+  font-family: 'Quicksand', sans-serif; }
+
 /* Style the navigation bar */
 .navbar {
   display: flex;
@@ -478,6 +481,61 @@ a.btn-lnk:visited {
   text-decoration: none;
   color: blue; }
 
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.avatar-upload span {
+  color: #28b8dc;
+  text-transform: uppercase; }
+
+.avatar-upload a {
+  text-decoration: none; }
+
+.avatar-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: auto;
+  max-height: 200px;
+  border: 1px solid #e8ecec; }
+
+.avatar-img img {
+  max-height: 200px; }
+
+.file-upload {
+  width: 100%;
+  font-size: 8px;
+  height: auto; }
+
+.file-upload input {
+  width: 95%;
+  border: 3px solid #67676f; }
+
+.upload-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.upload-img-btn {
+  border: 3px solid #28b8dc;
+  width: 85%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  background: white; }
+
+.choose-files {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 /*ESTABLISHMENTS*/
 .note-establishments {
   font-size: 10px;
@@ -618,7 +676,6 @@ h1 {
   font-size: 45px; }
 
 h2 {
-  font-size: 22px;
-  font-family: 'Quicksand', sans-serif; }
+  font-size: 22px; }
 
 /*# sourceMappingURL=style.css.map */

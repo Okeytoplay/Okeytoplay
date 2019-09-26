@@ -1,26 +1,21 @@
-<h2>AVATAR - UPLOAD PHOTO </h2>
-
-<img src="{{user.establishment.avatar}}" alt="" width="300px" height="150px" class="circle center-align">
-<p>{{user.establishment.name}}</p>
-avatar: {{user.establishment.avatar}}
-
-<form action="/user/profile/edit-establishment-avatar" enctype="multipart/form-data" method="post">
-    <!-- Field to choose the files to be uploaded -->
-    <div class="btn">
-        <span>File</span>
-        <input type="file" name="upload" for="establishment" multiple />
+<div class="avatar-upload">
+    <h2>UPLOAD <a href="/establishments/{{user.establishment.id}}"><span>{{user.establishment.name}}</span></a> AVATAR
+    </h2>
+    <div class="avatar-img">
+        <img src="{{user.establishment.avatar}}" alt="">
     </div>
-    <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Upload file">
-    </div>
-    <br>
-    <div class="col s12 m4 l4">
-        <button class="btn waves-effect waves-light" type="submit" name="avatar" for='establishment'>UPLOAD
-            IMAGE</button>
-    </div>
-
-</form>
-<a href="/user/profile/delete/establishment-avatar">Delete IMG</a>
-{{#if user.establishment.avatar}}
-<a href="/establishments/{{user.establishment.id}}">Whatch establishment card</a>
-{{/if}}
+    <form action="/user/profile/edit-establishment-avatar" enctype="multipart/form-data" method="post">
+        <!-- Field to choose the files to be uploaded -->
+        <div class="file-upload">
+            <p><span>File: </span>{{user.establishment.avatar}}</p>
+            <input type="file" name="upload" for="establishment" />
+        </div>
+        {{!-- <div class="choose-files">
+            <input class="" type="text">
+        </div> --}}
+        <br>
+        <div class="upload-img">
+            <button class="upload-img-btn" type="submit" name="avatar" for='establishment'>UPLOAD IMAGE</button>
+        </div>
+    </form>
+</div>
