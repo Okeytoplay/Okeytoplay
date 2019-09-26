@@ -103,12 +103,12 @@ header,
   max-width: 500px;
   width: 100%; }
 
-header h6 {
-  float: left; }
+header {
+  display: flex;
+  justify-content: space-between; }
 
 header h6#logo img {
-  height: 40px;
-  margin-left: 0.5em; }
+  width: 20%; }
 
 .control-menu {
   background-color: transparent;
