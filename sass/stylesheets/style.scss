@@ -55,3 +55,18 @@ h2 {
   font-size: 22px;
   font-family: 'Quicksand', sans-serif;
 }
+p.msg-success {
+  width: 100%;
+  background-color: red;
+  margin: 15px 0;
+}
+#notifications {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  opacity: 1;
+  background-color: red;
+  top: 0px;
+}
