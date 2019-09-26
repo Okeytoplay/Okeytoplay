@@ -60,12 +60,12 @@ router.post('/new', async (req, res, next) => {
     facebookProfile,
   } = req.body;
   const actualUser = req.session.currentUser;
-  console.log('Actual User 1: ', actualUser);
   if (name === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/bands/new');
   }
   try {
+    console.log('Actual User 1: ', actualUser);
     let newBand;
     let updatedUser;
     newBand = await Band.create({
@@ -76,8 +76,10 @@ router.post('/new', async (req, res, next) => {
       instagramProfile,
       facebookProfile,
     });
-    const userFound = await User.findOne({ actualUser });
-    updatedUser = await User.updateOne(
+    // const userFound = await User.find({ actualUser });
+    // console.log('UserFound ', userFound);
+
+    updatedUser = await User.findByIdAndUpdate(
       { _id: actualUser._id },
       {
         $set: {
