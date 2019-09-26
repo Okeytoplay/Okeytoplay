@@ -1,22 +1,8 @@
-{{!-- <div class="info-band-profile">
-  <div class="band-profile-image">
-    <img class="event-card-img" src="/images/default-img-events.png" alt="default Event Image">
-  </div>
-  <div class="band-profile-description">
-    {{this.name}}
-    <div class="bttn-join">
-      <button>JOIN</button>
-    </div>
-  </div>
-</div> --}}
-<div class="cards-container">
-  <div class="card2">
+<div class="band-cards-container">
+  <div class="band-cards">
+    {{!-- <img class="logo-band-min" src="{{this.avatar}}" alt="band-avatar"> --}}
     <h3>{{this.name}}</h3>
-    {{#if userFound.band.name}}
-    <a href="/bands/{{this._id}}">Join</a>
-    {{else}}
-    <a href="/bands/{{this._id}}" class="bttn3">detail</a>
-    {{/if}}
-
+    <p>{{this.description}}</p>
+    <a class="btn-band-details" href="/bands/{{this._id}}">Band Details</a>
   </div>
 </div>

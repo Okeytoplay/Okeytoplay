@@ -1,24 +1,28 @@
-<h3>My petitions Area: {{user.username}}</h3>
-{{!-- Poner condicional si tiene banda --}}
-<p>My Band:{{userBand.name}} </p>
-<p>Current band members of {{userBand.name}}:</p>
-<ul>
-    {{#each userBand.bandmembers}}
-    <li>{{this.username}}</li>
-    {{/each}}
-</ul>
-<p>My Band Petitions:</p>
-<ul>
+<div class="petitions">
+    <h2>My petitions Area:</h2>
+    <p>My Band: <span>{{userBand.name}}</span> </p>
+    <p>Current band members:</p>
+    <ol>
+        {{#each userBand.bandmembers}}
+        <li><span>{{this.username}}</span></li>
+        {{/each}}
+    </ol>
+    <p>My Band Petitions:</p>
     {{#each userBand.petitions}}
-    <li>{{this.username}}:
-        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/decline">decline</a>
-        <a href="/user/profile/petitions/{{../user.band}}/{{this._id}}/accept">accept</a>
-    </li>
+    <ul>
+        <li>
+            <p class="petition-user">Username: <span>{{this.username}}</span> <br> Email:<span> {{this.email}}</span>
+            </p>
+            <a class="decline-btn" href="/user/profile/petitions/{{../user.band}}/{{this._id}}/decline">decline</a>
+            <a class="accept-btn" href="/user/profile/petitions/{{../user.band}}/{{this._id}}/accept">accept</a>
+        </li>
+    </ul>
     {{/each}}
-</ul>
+    </ul>
 
-{{#if eventPetitions}}
+    {{#if eventPetitions}}
 
-<p>EVENTS PETITIIONS:</p>
+    <p>EVENTS PETITIIONS:</p>
 
-{{/if}}
+    {{/if}}
+</div>

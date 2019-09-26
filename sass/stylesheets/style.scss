@@ -8,8 +8,12 @@
 @import '../mixins/newevent';
 @import '../mixins/backButton';
 @import '../mixins/bands';
-
+@import '../mixins/errorPage';
 @import '../mixins/user';
+@import '../mixins/avatarUpload';
+@import '../mixins/establishments';
+@import '../mixins/petitions';
+
 // General Attributes
 * body {
   margin: 0;
@@ -53,7 +57,7 @@ h1 {
 }
 h2 {
   font-size: 22px;
-  font-family: 'Quicksand', sans-serif;
+  // font-family: 'Quicksand', sans-serif;
 }
 p.msg-success {
   width: 100%;

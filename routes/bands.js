@@ -34,9 +34,10 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserEmail = req.session.currentUser.email;
   try {
     const userFound = await User.findOne({ email: actualUserEmail }).populate(
-      'band establishment',
+      'band',
     );
-    const bands = await Band.find();
+    const bands = await Band.find().populate('user');
+    console.log('baaaands', userFound);
     res.render('bands', { userFound, bands });
   } catch (error) {
     next(error);
@@ -58,12 +59,13 @@ router.post('/new', async (req, res, next) => {
     instagramProfile,
     facebookProfile,
   } = req.body;
-  const actualUserEmail = req.session.currentUser.email;
+  const actualUser = req.session.currentUser;
   if (name === '') {
     req.flash('error', 'No empty fields allowed.');
     res.redirect('/bands/new');
   }
   try {
+    console.log('Actual User 1: ', actualUser);
     let newBand;
     let updatedUser;
     newBand = await Band.create({
@@ -74,9 +76,11 @@ router.post('/new', async (req, res, next) => {
       instagramProfile,
       facebookProfile,
     });
-    const userFound = await User.findOne({ email: actualUserEmail });
-    updatedUser = await User.updateOne(
-      { _id: userFound._id },
+    // const userFound = await User.find({ actualUser });
+    // console.log('UserFound ', userFound);
+
+    updatedUser = await User.findByIdAndUpdate(
+      { _id: actualUser._id },
       {
         $set: {
           'role.band': true,
@@ -87,8 +91,9 @@ router.post('/new', async (req, res, next) => {
         new: true,
       },
     );
+    req.session.currentUser = updatedUser;
     const push = await Band.findByIdAndUpdate(newBand._id, {
-      $push: { bandmembers: userFound._id },
+      $push: { bandmembers: actualUser._id },
     });
     res.redirect('/user');
   } catch (error) {

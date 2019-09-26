@@ -46,7 +46,6 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     const establishments = await Establishment.find();
-    console.log('establishments ', establishments);
     res.render('establishments', { establishments });
   } catch (error) {
     next(error);
