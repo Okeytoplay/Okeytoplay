@@ -86,6 +86,14 @@
 .home-container h2 {
   font-family: 'Quicksand', sans-serif; }
 
+/* Style the navigation bar */
+.nav-burguer {
+  padding: 5%; }
+
+a {
+  color: #222;
+  text-decoration: none; }
+
 ul,
 ol,
 li {
@@ -457,8 +465,6 @@ input[type='date'] {
   text-decoration: none;
   background-color: white; }
 
-<<<<<<< HEAD
-=======
 /*BAND CARDS*/
 .bandslist {
   display: flex;
@@ -504,7 +510,6 @@ input[type='date'] {
   width: 90%;
   height: auto; }
 
->>>>>>> 4c99c59ee2839df93d61e2c6d9786fc6183e7b63
 .fecha {
   margin: 0 auto;
   padding-right: 20px;
