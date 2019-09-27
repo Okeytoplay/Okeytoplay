@@ -1,0 +1,41 @@
+.profile-cont {
+  background-color: #5896a531;
+  margin: 5px;
+  padding: 5px;
+}
+.box-sup {
+  display: flex;
+  justify-content: space-between;
+}
+.img-profile img {
+  width: 70px;
+  text-align: center;
+}
+.box-info {
+  padding-top: 5px;
+}
+.box-inf {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px;
+}
+.box-inf a {
+  background: #28b8dc;
+  size: 0.5em;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.delete-profile a {
+  background: #dc2828bd;
+}
+.edit-petitions a {
+  background: #28dc64;
+  size: 0.5em;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: end;
+}
