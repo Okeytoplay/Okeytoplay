@@ -284,6 +284,34 @@ p.card-title-data-est {
 .card2 {
   margin-bottom: 10px; }
 
+.edit-event {
+  background-color: #28b8dc1c;
+  margin-bottom: 20px; }
+
+.head-title {
+  background-color: #53cace;
+  padding: 2px;
+  color: white; }
+
+.head-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3d999c;
+  text-align: center;
+  color: white;
+  padding: 2px; }
+
+.description-info {
+  padding: 2px; }
+
+.delete-event {
+  background-color: #28b8dc1c;
+  margin: 5px;
+  padding: 5px; }
+
+.delete-bttn button {
+  background: #dc2828bd; }
+
 #form {
   margin-top: 20%;
   width: 100%; }
@@ -822,8 +850,7 @@ ul {
   text-decoration: none; }
 
 .profile-cont {
-  background-color: #5896a531;
-  margin: 5px;
+  background-color: #5896a51c;
   padding: 5px; }
 
 .box-sup {
@@ -878,7 +905,7 @@ body {
   height: 100vh; }
 
 .container {
-  padding: 5%; }
+  padding: 10px; }
 
 .not-shown {
   display: none; }
