@@ -291,6 +291,14 @@ p.card-title-data-est {
 .description-info {
   padding: 2px; }
 
+.delete-event {
+  background-color: #28b8dc1c;
+  margin: 5px;
+  padding: 5px; }
+
+.delete-bttn button {
+  background: #dc2828bd; }
+
 #form {
   margin-top: 20%;
   width: 100%; }
