@@ -7,11 +7,10 @@
 
   <div class="cards-container">
     {{#each events}}
-    <div class="card2">
-      {{>book }}
-    </div>
-
+    {{> establishmentEventCard}}
     {{/each}}
+    <p>{{this.band.name}}</p>
+
   </div>
 </div>
 

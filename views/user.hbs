@@ -29,9 +29,9 @@
       <a href="/user/profile/">
         <div class="img-wrapper-establishment">
           {{#if userFound.establishment.avatar}}
-          <img class="img-avatar" src="{{user.establishment.avatar}}" alt="" width="300px">
+          <img class="user-establishment-img" src="{{userFound.establishment.avatar}}" alt="" width="300px">
           {{else}}
-          <img class="user-establishment-img" src="../images/local.png" alt="">
+          <img class="user-establishment-img" src="/images/local.png" alt="">
           {{/if}}
         </div>
         <h3>{{userFound.establishment.name}}</h3>
@@ -41,7 +41,7 @@
     <div class="user-establishment">
       <a href="/user/events/new">
         <div class="img-wrapper-establishment">
-          <img class="user-establishment-img" src="../images/crear-evento.png" alt="">
+          <img class="user-establishment-img" src="/images/crear-evento.png" alt="">
         </div>
         <h3>Create Event</h3>
       </a>
@@ -62,9 +62,9 @@
       <a href="/user/profile">
         <div class="img-wrapper-establishment">
           {{#if userFound.band.avatar}}
-          <img class="img-avatar" src="{{user.band.avatar}}" alt="" width="300px">
+          <img class="user-establishment-img" src="{{userFound.band.avatar}}" alt="" width="300px">
           {{else}}
-          <img class="user-establishment-img" src="../images/band.png" alt="">
+          <img class="user-establishment-img" src="/images/band.png" alt="">
           {{/if}}
         </div>
         <h3>{{userFound.band.name}}</h3>

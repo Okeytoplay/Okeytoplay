@@ -38,7 +38,7 @@
   margin-top: 10px;
   margin-bottom: 0px;
   text-transform: uppercase;
-  color: #67676f;
+  color: #000000;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
@@ -50,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: #67676f; }
+  color: #000000; }
 
 .home-features {
   display: flex;
@@ -59,7 +59,7 @@
   text-align: center; }
 
 .home-features p {
-  color: #8d8d8d;
+  color: #000000;
   margin: 0;
   width: 70%;
   margin: 5px; }
@@ -189,6 +189,14 @@ ul.nav-items li a span {
 #new-register a {
   color: #28b8dc; }
 
+/*BOOKINGID*/
+.event-img-establishment {
+  width: 100%;
+  height: auto; }
+
+.event-img-establishment img {
+  max-height: 100px; }
+
 /*NOSE DE DONDE SALE*/
 .bttn {
   width: 50%;
@@ -236,7 +244,7 @@ img.card-Band-img-top {
   font-size: 14px;
   box-sizing: border-box;
   font-weight: bold;
-  color: coral; }
+  color: #000000; }
 
 .card-title-data {
   font-size: 14px;
@@ -375,12 +383,27 @@ p.card-title-data-est {
   border-color: #28b8dc; }
 
 .form-style p {
-  color: rgba(15, 255, 175, 0.6);
+  color: black;
   font-size: 1.2em;
   margin: 50px 0 50px 0; }
 
+.form-style span {
+  color: #28b8dc; }
+
 .form-style span:hover {
   color: #28b8dc; }
+
+.form-style textarea {
+  display: block;
+  margin: 0 auto;
+  padding-left: 25px;
+  width: 70%;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  line-height: 21px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  color: #67676f; }
 
 button.btn-delete-account {
   margin: 8%;
@@ -463,12 +486,12 @@ input[type='date'] {
   margin: 0; }
 
 .band-description {
-  color: #67676f;
+  color: #000000;
   width: 80%;
   text-align: center; }
 
 .band-genre {
-  color: #8d8d8d; }
+  color: #000000; }
 
 .band-genre span {
   color: #28b8dc; }
@@ -493,7 +516,7 @@ input[type='date'] {
   font-size: 10px; }
 
 .send-petition {
-  color: #67676f;
+  color: #000000;
   width: 80%;
   display: flex;
   justify-content: center; }
@@ -536,13 +559,13 @@ input[type='date'] {
 
 .band-cards p {
   font-size: 12px;
-  color: #8d8d8d; }
+  color: #000000; }
 
 .btn-band-details {
   border: 3px solid #28b8dc;
   font-size: 12px;
   width: 30%;
-  color: #67676f;
+  color: #000000;
   border-radius: 10px;
   text-align: center;
   text-decoration: none; }
@@ -710,13 +733,13 @@ a.btn-lnk:visited {
 
 .establishment-cards p {
   font-size: 12px;
-  color: #8d8d8d; }
+  color: #000000; }
 
 .btn-establishment-details {
   border: 3px solid #28b8dc;
   font-size: 12px;
   width: 30%;
-  color: #67676f;
+  color: #000000;
   border-radius: 10px;
   text-align: center;
   text-decoration: none; }
@@ -743,7 +766,7 @@ a.btn-lnk:visited {
   margin: 0; }
 
 .establishment-description {
-  color: #67676f;
+  color: #000000;
   width: 80%;
   text-align: center; }
 
@@ -753,7 +776,7 @@ a.btn-lnk:visited {
   justify-content: space-between; }
 
 .establishment-capacity {
-  color: #8d8d8d; }
+  color: #000000; }
 
 .establishment-capacity span {
   color: #28b8dc; }
@@ -762,7 +785,7 @@ a.btn-lnk:visited {
   display: flex;
   flex-direction: row;
   align-content: center;
-  color: #8d8d8d;
+  color: #000000;
   border: 1px solid #e8ecec;
   width: 90%; }
 
@@ -855,9 +878,17 @@ ul {
   text-decoration: none;
   text-align: end; }
 
+.booked-events {
+  border: 1px solid #e8ecec; }
+
+.establishment-logo {
+  width: 60%;
+  height: auto;
+  max-width: 100px; }
+
 body {
   margin: 0;
-  color: #412e2a;
+  color: #000000;
   font-family: 'Rubik', sans-serif;
   font-size: 14px;
   height: 100vh; }

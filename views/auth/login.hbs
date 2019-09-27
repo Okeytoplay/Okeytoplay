@@ -6,11 +6,8 @@
 
       <label for="password"></label>
       <input type="password" name="password" placeholder="********" required>
-      <div id="new-register">
-        <p> ¿New to OkeyTo Play? <a href="/auth/signup"> &nbsp Register Now >></a></p>
-      </div>
       <button type="submit">log in</button>
-
+      <p>Don't have an account? <a href="/auth/signup"><span>Sign up</span></a></p>
       {{#if error }}
       {{ error }}
       {{/if }}
