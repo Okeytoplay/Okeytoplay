@@ -1,4 +1,6 @@
 <div class="establishments-container">
+
+
     {{#if userFound.establishment.name}}
     <div class="note-establishments">
         <p>*If you want to modify your establishment before you should leave the current one<a
@@ -10,18 +12,26 @@
         <a class="btn-band-details" href="/establishments/new">CREATE </a>
     </div>
     {{/if}}
+
+
     <div class="establishmentslist">
         <h2>List of registered establishments:</h2>
         <section class="establishments-section">
             {{#each establishments}}
-            <div class="establishment-cards-container">
+            {{!-- partial establishment-card --}}
+            {{>establishmentcard}}
+
+
+            {{!-- <div class="establishment-cards-container">
                 <div class="establishment-cards">
                     <h3>{{this.name}}</h3>
                     <p>{{this.description}}</p>
                     <a class="btn-establishment-details" href="/establishments/{{this._id}}">Establishments Details</a>
                 </div>
-            </div>
+            </div> --}}
             {{/each}}
         </section>
     </div>
+
+
 </div>
