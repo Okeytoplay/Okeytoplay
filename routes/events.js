@@ -53,14 +53,14 @@ router.get('/bookedevents', async (req, res, next) => {
       .join('/');
 
     const events = await Event.find({
-      schedule: { $gte: fechaActual },
+      // schedule: { $gte: fechaActual },
       band: { $exists: true },
     })
       .sort('schedule')
       .populate('establishment band');
     console.log('Eventos CON banda adjudicada: ', events);
     // res.render('events/bookedevents', { events });
-    res.render('events/show', { events });
+    res.render('events', { events });
   } catch (error) {
     next(error);
   }
@@ -249,9 +249,11 @@ router.get('/bookingevents/:eventId/join', checkIfLoggedIn, async (req, res, nex
   const fecha = fechaActual.split('-').reverse().join('/');
   const { eventId } = req.params;
   const userFound = req.session.currentUser;
-
+  console.log('User:', userFound);
   try {
-    const updatedEvent = await Event.findByIdAndUpdate(eventId, { band: userFound }, { new: true });
+    const user = await User.findById(userFound._id).populate('band establishment');
+    console.log('User Actualizado: ', user);
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, { band: user.band._id }, { new: true });
     console.log('Updated Event: ', updatedEvent);
 
     res.redirect('/events');

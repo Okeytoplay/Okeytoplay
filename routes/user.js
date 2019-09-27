@@ -540,46 +540,58 @@ router.get(
   },
 );
 
-router.get(
-  '/events/bookedevents',
-  checkIfLoggedIn,
-  checkIfEstablishment,
-  async (req, res, next) => {
-    const fechaActual = fechaDeHoy();
-    const fecha = fechaActual
-      .split('/')
-      .reverse()
-      .join('/');
-    const actualUserId = req.session.currentUser._id;
+router.get('/events/bookedevents', checkIfLoggedIn, async (req, res, next) => {
+  const actualUser = req.session.currentUser;
+  try {
+    console.log('User3 :', actualUser);
+    const events = await Event.find({ 'registeredUsers._id': actualUser._id });
+    console.log('Eventos del usuario donde está registrado: ', events);
+    res.render('events');
+  } catch (error) {
+    next(error);
+  }
+});
 
-    try {
-      const userFound = await User.findById(actualUserId).populate(
-        'establishment',
-      );
-      console.log('UserFound', userFound);
-      if (userFound.role.establishment === false) {
-        req.flash(
-          'error',
-          'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
-        );
-        // res.redirect('/profile');
-        res.redirect('/user/events');
-      } else {
-        const userEstablishmentID = userFound.establishment._id;
-        const events = await Event.find({
-          establishment: userEstablishmentID,
-          band: { $exists: true },
-        }).sort('schedule');
-        console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-        console.log('FECHA ', fechaActual);
-        console.log('events ', events);
-        res.render('user/events/bookedevents', { events, fecha, userFound });
-      }
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+// router.get(
+//   '/events/bookedevents',
+//   checkIfLoggedIn,
+//   checkIfEstablishment,
+//   async (req, res, next) => {
+//     const fechaActual = fechaDeHoy();
+//     const fecha = fechaActual
+//       .split('/')
+//       .reverse()
+//       .join('/');
+//     const actualUserId = req.session.currentUser._id;
+
+//     try {
+//       const userFound = await User.findById(actualUserId).populate(
+//         'establishment',
+//       );
+//       console.log('UserFound', userFound);
+//       if (userFound.role.establishment === false) {
+//         req.flash(
+//           'error',
+//           'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
+//         );
+//         // res.redirect('/profile');
+//         res.redirect('/user/events');
+//       } else {
+//         const userEstablishmentID = userFound.establishment._id;
+//         const events = await Event.find({
+//           establishment: userEstablishmentID,
+//           band: { $exists: true },
+//         }).sort('schedule');
+//         console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+//         console.log('FECHA ', fechaActual);
+//         console.log('events ', events);
+//         res.render('user/events/bookedevents', { events, fecha, userFound });
+//       }
+//     } catch (error) {
+//       next(error);
+//     }
+//   },
+// );
 
 // GETS the band petitions landing page
 router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
