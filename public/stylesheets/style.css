@@ -189,6 +189,14 @@ ul.nav-items li a span {
 #new-register a {
   color: #28b8dc; }
 
+/*BOOKINGID*/
+.event-img-establishment {
+  width: 100%;
+  height: auto; }
+
+.event-img-establishment img {
+  max-height: 100px; }
+
 /*NOSE DE DONDE SALE*/
 .bttn {
   width: 50%;

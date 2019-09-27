@@ -60,6 +60,8 @@ router.get('/', checkIfLoggedIn, async (req, res, next) => {
     const userFound = await User.findById(actualUserId).populate(
       'band establishment',
     );
+    console.log('USERFOUND:', userFound);
+
     // const userID = userFound._id;
     // const user = await User.findById(userID);
     // res.render('user/profile', { userFound, title: 'Profile' });
