@@ -58,8 +58,8 @@ router.get('/bookingevents', checkIfLoggedIn, checkIfBand, async (req, res, next
 
     const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: false } }).sort('schedule').populate('establishment');
     console.log('Eventos SIN banda adjudicada: ', events);
-    // res.render('events/bookingevents', { events });
-    res.render('events/show', { events });
+    res.render('events/bookings', { events });
+    // res.render('events/show', { events });
   } catch (error) {
     next(error);
   }

@@ -122,14 +122,25 @@ router.post('/', async (req, res, next) => {
 router.get('/:bandID', async (req, res, next) => {
   const { bandID } = req.params;
   const user = req.session.currentUser;
-  const checkIfpetition = await Band.findById(bandID);
-
-  console.log('checkIfpetition: ', checkIfpetition);
-
+  let checkIfPetition;
+  const userID = user._id;
   try {
-    const bands = await Band.findById(bandID).populate('bandmembers');
+    // const checkIfpetition = await Band.findById(bandID);
+    // console.log('checkIfpetition: ', checkIfpetition);
+    const bands = await Band.findById(bandID).populate('bandmembers petitions');
     console.log('bands  ', bands);
-    res.render('bands/show', { bands, user, checkIfpetition });
+    let obj = bands.petitions.find((obje) => obje.id == userID);
+    // db.posts.find( { _id:"hT3ezqEyTaiihoh6Z", already_voted: { $in : ["AyJo5nf2Lkdqd6aRh"]} }).count()
+    console.log('Busqueda : ', obj);
+    console.log('Bands Petitons: ', bands.petitions);
+    // if (bands.petitions.includes(`${userID}`)) {
+    if (obj) {
+      checkIfPetition = true;
+    } else {
+      checkIfPetition = false;
+    }
+    console.log('Tengo petition? ', checkIfPetition);
+    res.render('bands/show', { bands, user, checkIfPetition });
   } catch (error) {
     next(error);
   }
@@ -149,13 +160,15 @@ router.post('/:bandID', async (req, res, next) => {
 // Join one band
 router.get('/:bandID/join', async (req, res, next) => {
   const { bandID } = req.params;
-  const userID = req.session.currentUser.id;
+  const userID = req.session.currentUser._id;
+  console.log('UserID : ', userID);
   try {
     const band = await Band.findByIdAndUpdate(bandID, {
       $push: { petitions: userID },
     });
     req.flash('info', 'La peticion ha sido enviada a la banda');
-    res.redirect('/user/profile/petitions');
+    // res.redirect('/user/profile/petitions');
+    res.redirect(`/bands/${bandID}`);
   } catch (error) {
     next(error);
   }

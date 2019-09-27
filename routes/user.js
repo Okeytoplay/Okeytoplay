@@ -194,16 +194,32 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
 
     const bandDelete = await Band.findByIdAndDelete(bandId);
     // After Deleting the Band, update USER INFO
-    await User.updateOne(
+    const updatedUser = await User.findOneAndUpdate(
       { _id: user },
       { $unset: { band: 1 }, 'role.band': false },
+      { new: true },
     );
+    const responseUpdatedUsers = await User.updateMany(
+      { band: bandId },
+      { $unset: { band: 1 }, 'role.band': false },
+      { multi: true },
+    );
+    // const updatedUser = await User.findAndModify({
+    //   query: { _id: user },
+    //   // sort: { rating: 1 },
+    //   update: { $unset: { band: 1 }, 'role.band': false },
+    //   upsert: true,
+    //   new: true,
+    // });
+    // console.log('UpdatedUser:', updatedUser);
     // After deleting Band, Update EVENTS with the BAND JOINED to the EVENT
     const responseDeletedEvents = await Event.updateMany(
       { band: bandId },
       { $unset: { band: 1 } },
       { multi: true },
     );
+
+    req.session.currentUser = updatedUser;
     req.flash('info', 'Banda eliminada correctamente');
     res.redirect('/user');
   } catch (error) {
@@ -570,7 +586,8 @@ router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    console.log('Useer', user);
+    console.log('Useer PEtitions', userBand);
+    // console.log('Useer', user);
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
     next(error);

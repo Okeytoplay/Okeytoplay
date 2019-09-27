@@ -12,7 +12,7 @@ const router = express.Router();
 const bcryptSalt = 10; // bcrypt.
 
 /* GET SignUp page. */
-router.get('/signup', checkIfLoggedIn, (req, res, next) => {
+router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 
@@ -45,7 +45,7 @@ router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, r
 });
 
 /* GET Log In page. */
-router.get('/login', checkIfLoggedIn, (req, res, next) => {
+router.get('/login', (req, res, next) => {
   res.render('auth/login');
 }); // Recoger los datos del formulario
 
