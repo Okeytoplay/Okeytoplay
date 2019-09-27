@@ -861,7 +861,8 @@ ul {
   text-align: center; }
 
 .box-info {
-  padding-top: 5px; }
+  padding-top: 5px;
+  text-transform: capitalize; }
 
 .box-inf {
   display: flex;
