@@ -11,10 +11,18 @@
     {{#each userBand.petitions}}
     <ul>
         <li>
-            <p class="petition-user">Username: <span>{{this.username}}</span> <br> Email:<span> {{this.email}}</span></p>
+            <p class="petition-user">Username: <span>{{this.username}}</span> <br> Email:<span> {{this.email}}</span>
+            </p>
             <a class="decline-btn" href="/user/profile/petitions/{{../user.band}}/{{this._id}}/decline">decline</a>
             <a class="accept-btn" href="/user/profile/petitions/{{../user.band}}/{{this._id}}/accept">accept</a>
         </li>
     </ul>
     {{/each}}
+    </ul>
+
+    {{#if eventPetitions}}
+
+    <p>EVENTS PETITIIONS:</p>
+
+    {{/if}}
 </div>

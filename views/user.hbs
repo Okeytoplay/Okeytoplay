@@ -26,7 +26,7 @@
     {{#if userFound.establishment.name}}
 
     <div class="user-establishment">
-      <a href="/user/profile/edit-establishment">
+      <a href="/user/profile/">
         <div class="img-wrapper-establishment">
           {{#if userFound.establishment.avatar}}
           <img class="img-avatar" src="{{user.establishment.avatar}}" alt="" width="300px">
@@ -59,7 +59,7 @@
   <div class="bttn-card">
     {{#if userFound.band.name}}
     <div class="user-establishment">
-      <a href="/user/profile/edit-band">
+      <a href="/user/profile">
         <div class="img-wrapper-establishment">
           {{#if userFound.band.avatar}}
           <img class="img-avatar" src="{{user.band.avatar}}" alt="" width="300px">
@@ -68,6 +68,15 @@
           {{/if}}
         </div>
         <h3>{{userFound.band.name}}</h3>
+      </a>
+    </div>
+
+    <div class="user-establishment">
+      <a href="/user/events/new">
+        <div class="img-wrapper-establishment">
+          <img class="user-establishment-img" src="../images/crear-evento.png" alt="">
+        </div>
+        <h3>JOIN to Event</h3>
       </a>
     </div>
     {{else}}

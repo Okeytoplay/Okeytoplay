@@ -78,7 +78,7 @@ router.post('/login', checkEmailAndPasswordNotEmpty, async (req, res, next) => {
     }
   } catch (error) {
     req.flash('error', 'try again');
-    res.redirect('/signup'); // Revisar ruta a donde redirigir
+    res.redirect('/auth/signup'); // Revisar ruta a donde redirigir
   }
 });
 

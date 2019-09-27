@@ -140,7 +140,7 @@ router.post('/:bandID', async (req, res, next) => {
   const { bandID } = req.params;
   try {
     const bands = await Band.findById(bandID);
-    res.redirect(`/bands/${bandId}`);
+    res.redirect(`/bands/${bandID}`);
   } catch (error) {
     next(error);
   }
