@@ -199,6 +199,11 @@ router.get('/profile/delete-band', checkIfLoggedIn, async (req, res, next) => {
       { $unset: { band: 1 }, 'role.band': false },
       { new: true },
     );
+    const responseUpdatedUsers = await User.updateMany(
+      { band: bandId },
+      { $unset: { band: 1 }, 'role.band': false },
+      { multi: true },
+    );
     // const updatedUser = await User.findAndModify({
     //   query: { _id: user },
     //   // sort: { rating: 1 },
@@ -581,7 +586,8 @@ router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    console.log('Useer', user);
+    console.log('Useer PEtitions', userBand);
+    // console.log('Useer', user);
     res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
     next(error);
