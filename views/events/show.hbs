@@ -7,23 +7,23 @@
     <div class="cards-container">
         <div class="card2">
             <div>
-                <img class="card-Band-img-top" src="../images/default-img-events.png" alt="Card image cap">
+                <img class="card-Band-img-top" src="/images/default-img-events.png" alt="Card image cap">
 
             </div>
             <div>
-                <h3>{{name}}</h3> {{!--nombre del evento --}}
-                <p>Description: {{description}}</p>
-                <p>Date: {{schedule}}</p>
-                <p>Price: {{price}} €</p>
-                <p>Starting Time: {{startTime}}</p>
-                <p>Duration: {{duration}}</p>
+                <h3>{{event.name}}</h3> {{!--nombre del evento --}}
+                <p>Description: {{event.description}}</p>
+                <p>Date: {{event.schedule}}</p>
+                <p>Price: {{event.price}} €</p>
+                <p>Starting Time: {{event.startTime}}</p>
+                <p>Duration: {{event.duration}}</p>
             </div>
         </div>
 
     </div>
 
     {{!-- establecimiento detalle --}}
-    {{#if establishment}}
+    {{#if event.establishment}}
 
     <div class="cont-title">
         <h2>ESTABLISHMENT DETAIL:</h2>
@@ -32,28 +32,28 @@
     <div class="cards-container">
         <div class="card2">
             <div>
-                <img class="card-Band-img-top" src="../images/local.png" alt="Card image cap">
+                <img class="card-Band-img-top" src="/images/local.png" alt="Card image cap">
             </div>
             <div>
-                <p>Name: {{establishment.name}}</p>
-                <p>Description: {{establishment.description}}</p>
-                <p>Website: <a href="{{establishment.website}}"></a>Website {{website}}</p>
-                <p>Instagram: {{establishment.instagramProfile}}</p>
-                <p>Facebook: {{establishment.facebookProfile}}</p>
+                <p>Name: {{event.establishment.name}}</p>
+                <p>Description: {{event.establishment.description}}</p>
+                <p>Website: <a href="{{event.establishment.website}}"></a>Website {{website}}</p>
+                <p>Instagram: {{event.establishment.instagramProfile}}</p>
+                <p>Facebook: {{event.establishment.facebookProfile}}</p>
                 <ul>Adress
-                    <p>Street: {{establishment.street}}</p>
-                    <p>City: {{establishment.city}}</p>
-                    <p>Zip: {{establishment.zip}}</p>
+                    <p>Street: {{event.establishment.street}}</p>
+                    <p>City: {{event.establishment.city}}</p>
+                    <p>Zip: {{event.establishment.zip}}</p>
                 </ul>
-                <p>Capacity: {{establishment.capacity}}</p>
-                <p>Avatar: {{establishment.avatar}}</p>
+                <p>Capacity: {{event.establishment.capacity}}</p>
+                <p>Avatar: {{event.establishment.avatar}}</p>
             </div>
         </div>
     </div>
     {{/if}}
 
     {{!-- banda detalle --}}
-    {{#if band}}
+    {{#if event.band}}
     <div class="cont-title">
         <h2>BAND DETAIL:</h2>
     </div>
@@ -61,24 +61,30 @@
     <div class="cards-container">
         <div class="card2">
             <div>
-                <img class="card-Band-img-top" src="../images/band.png" alt="Card image cap">
+                <img class="card-Band-img-top" src="/images/band.png" alt="Card image cap">
             </div>
             <div>
-                <p>Name: {{band.name}}</p>
-                <p>Musical Genre: {{band.genre}}</p>
-                <p>Description: {{band.description}}</p>
-                <p>Website: <a href="{{band.website}}"></a>Website {{website}}</p>
-                <p>Instagram: {{band.instagramProfile}}</p>
-                <p>Facebook: {{band.facebookProfile}}</p>
-                <p>Avatar: {{band.avatar}}</p>
+                <p>Name: {{event.band.name}}</p>
+                <p>Musical Genre: {{event.band.genre}}</p>
+                <p>Description: {{event.band.description}}</p>
+                <p>Website: <a href="{{event.band.website}}"></a>Website {{website}}</p>
+                <p>Instagram: {{event.band.instagramProfile}}</p>
+                <p>Facebook: {{event.band.facebookProfile}}</p>
+                <p>Avatar: {{event.band.avatar}}</p>
             </div>
         </div>
-        
+
     </div>
 
     {{/if}}
 
+    {{#if bandAction }}
+
+    <button onclick="location.href='/events/bookingevents/{{id}}/join'" type="button" class="register-button">Join to
+        Play</button>
+    {{else}}
     <button onclick="location.href='/events/{{id}}/join'" type="button" class="register-button">Join *</button>
+    {{/if}}
 
 
 </div>
