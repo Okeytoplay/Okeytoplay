@@ -12,7 +12,7 @@ const router = express.Router();
 const bcryptSalt = 10; // bcrypt.
 
 /* GET SignUp page. */
-router.get('/signup', checkIfLoggedIn, (req, res, next) => {
+router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 });
 

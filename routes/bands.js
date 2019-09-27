@@ -155,7 +155,8 @@ router.get('/:bandID/join', async (req, res, next) => {
       $push: { petitions: userID },
     });
     req.flash('info', 'La peticion ha sido enviada a la banda');
-    res.redirect('/user/profile/petitions');
+    // res.redirect('/user/profile/petitions');
+    res.redirect(`/bands/${bandID}`);
   } catch (error) {
     next(error);
   }
