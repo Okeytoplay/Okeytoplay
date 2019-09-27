@@ -2,6 +2,7 @@ const express = require('express');
 const Event = require('../models/Event');
 const Establishment = require('../models/Establishment');
 const Band = require('../models/Band');
+const { fechaDeHoy } = require('../public/javascripts/fecha');
 
 const router = express.Router();
 
@@ -18,9 +19,16 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   // const actualUserEmail = req.session.currentUser.email;
   try {
-    const events = await Event.find().populate('establishment band');
+    const fechaActual = fechaDeHoy();
+    const fecha = fechaActual
+      .split('-')
+      .reverse()
+      .join('/');
+    // const events = await Event.find().populate('establishment band');
+    // TODO: filtrar eventos cerrados con banda
+    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: true } }).sort('schedule').populate('establishment band');
     console.log('eveeeents: ', events);
-    res.render('index', { events });
+    res.render('index', { events, fecha });
   } catch (error) {
     next(error);
   }
