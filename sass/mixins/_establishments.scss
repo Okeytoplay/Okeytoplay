@@ -46,13 +46,13 @@
 }
 .establishment-cards p {
   font-size: 12px;
-  color: #8d8d8d;
+  color: #000000;
 }
 .btn-establishment-details {
   border: 3px solid #28b8dc;
   font-size: 12px;
   width: 30%;
-  color: #67676f;
+  color: #000000;
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
@@ -79,7 +79,7 @@
   margin: 0;
 }
 .establishment-description {
-  color: #67676f;
+  color: #000000;
   width: 80%;
   text-align: center;
 }
@@ -89,7 +89,7 @@
   justify-content: space-between;
 }
 .establishment-capacity {
-  color: #8d8d8d;
+  color: #000000;
 }
 .establishment-capacity span {
   color: #28b8dc;
@@ -98,7 +98,7 @@
   display: flex;
   flex-direction: row;
   align-content: center;
-  color: #8d8d8d;
+  color: #000000;
   border: 1px solid #e8ecec;
   width: 90%;
 }
