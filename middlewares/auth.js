@@ -40,10 +40,10 @@ const checkIfLoggedIn = (req, res, next) => {
   // console.log('Req Session despues borrar: ', req.session);
   // console.log('Session Current User: ', req.session.currentUser);
   // console.log('URL Original:', req.originalUrl);
-  if ((req.originalUrl === '/auth/login') || (req.originalUrl === '/auth/signup')) {
-    res.redirect('/user');
-  }
   if (req.session.currentUser) {
+    // if ((req.originalUrl === '/auth/login') || (req.originalUrl === '/auth/signup')) {
+    //   res.redirect('/user');
+    // }
     next();
   } else {
     req.session.returnTo = req.originalUrl;

@@ -40,10 +40,13 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  border: 1px solid lightblue;
 }
 
 .cont-block-img {
   width: 25%;
+  text-align: center;
+  margin: auto;
 }
 
 img.card-Band-img-top {
@@ -71,5 +74,33 @@ img.card-Band-img-top {
   /* width: 198px; */
   box-sizing: border-box;
   /* width: 200px; */
+  // display: inline;
+  display: block;
+  margin: auto;
+  line-height: 21px;
+}
+
+h2.card-title-data {
+  font-weight: 800;
+  font-size: 20px;
+  padding: 5px 0;
+}
+p.card-title-data-est span {
+  color: #28b8dc;
+  font-size: 20px;
+}
+p.card-title-data-address {
   display: inline;
+}
+p.card-title-data-est {
+  margin: 10px 0;
+}
+.btn-link {
+  width: 100%;
+  text-align: center;
+  margin: 0px 0 15px 0;
+}
+
+.card2 {
+  margin-bottom: 10px;
 }
