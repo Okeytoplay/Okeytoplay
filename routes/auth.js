@@ -45,7 +45,7 @@ router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, r
 });
 
 /* GET Log In page. */
-router.get('/login', checkIfLoggedIn, (req, res, next) => {
+router.get('/login', (req, res, next) => {
   res.render('auth/login');
 }); // Recoger los datos del formulario
 
