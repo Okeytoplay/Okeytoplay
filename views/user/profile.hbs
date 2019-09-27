@@ -1,5 +1,9 @@
 <div class="cont">
 
+  {{#if user}}
+  {{>profileUser}}
+  {{/if}}
+
   {{#if user.establishment.name}}
   {{>profileestablishment}}
   {{/if}}
