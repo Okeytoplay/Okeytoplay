@@ -52,7 +52,12 @@ router.get('/bookedevents', async (req, res, next) => {
       .reverse()
       .join('/');
 
-    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: true } }).sort('schedule').populate('establishment band');
+    const events = await Event.find({
+      schedule: { $gte: fechaActual },
+      band: { $exists: true },
+    })
+      .sort('schedule')
+      .populate('establishment band');
     console.log('Eventos CON banda adjudicada: ', events);
     // res.render('events/bookedevents', { events });
     res.render('events/show', { events });
@@ -62,22 +67,32 @@ router.get('/bookedevents', async (req, res, next) => {
 });
 
 /* GET Renders available events, only with NO BAND JOINED */
-router.get('/bookingevents', checkIfLoggedIn, checkIfBand, async (req, res, next) => {
-  try {
-    const fechaActual = fechaDeHoy();
-    const fecha = fechaActual
-      .split('-')
-      .reverse()
-      .join('/');
+router.get(
+  '/bookingevents',
+  checkIfLoggedIn,
+  checkIfBand,
+  async (req, res, next) => {
+    try {
+      const fechaActual = fechaDeHoy();
+      const fecha = fechaActual
+        .split('-')
+        .reverse()
+        .join('/');
 
-    const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: false } }).sort('schedule').populate('establishment');
-    console.log('Eventos SIN banda adjudicada: ', events);
-    res.render('events/bookings', { events });
-    // res.render('events/show', { events });
-  } catch (error) {
-    next(error);
-  }
-});
+      const events = await Event.find({
+        schedule: { $gte: fechaActual },
+        band: { $exists: false },
+      })
+        .sort('schedule')
+        .populate('establishment');
+      console.log('Eventos SIN banda adjudicada: ', events);
+      res.render('events/bookings', { events });
+      // res.render('events/show', { events });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 /**     ELIMINAR RUTA EVENTS/NEW */
 
@@ -163,22 +178,31 @@ router.get('/:eventId', async (req, res, next) => {
 /* Join al event */
 router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
   const fechaActual = fechaDeHoy();
-  const fecha = fechaActual.split('-').reverse().join('/');
+  const fecha = fechaActual
+    .split('-')
+    .reverse()
+    .join('/');
   const { eventId } = req.params;
   const userFound = req.session.currentUser;
 
   try {
-    const event = await Event.findById(eventId).populate('registeredUsers');
+    const event = await Event.findById(eventId).populate(
+      'registeredUsers band',
+    );
     if (event.registeredUsers) {
       // Comprobar que él no esté ya registrado
       let booked = false;
-      event.registeredUsers.forEach((user) => {
+      event.registeredUsers.forEach(user => {
         if (user.email === userFound.email) {
           booked = true;
         }
       });
       if (!booked) {
-        const updatedEvent = await Event.findByIdAndUpdate(eventId, { $push: { registeredUsers: userFound } }, { new: true });
+        const updatedEvent = await Event.findByIdAndUpdate(
+          eventId,
+          { $push: { registeredUsers: userFound } },
+          { new: true },
+        );
         console.log('El evento despues de hacer update: ', updatedEvent);
         req.flash('success', 'Registered ok!');
       } else {
@@ -193,8 +217,12 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
       // const updatedEvent = await Event.findByIdAndUpdate(eventId, { $push: { registeredUsers: userFound._id } });
       // console.log('El usuario metido en el array del evento: ', updatedEvent);
     }
-    const events = await Event.find({ registeredUsers: userFound });
+    const events = await Event.find({ registeredUsers: userFound }).populate(
+      'establishment band',
+    );
     console.log('Los eventos a los que me he unido: ', events);
+    console.log('USERFOUND: ', userFound);
+
     res.render('user/events/bookedevents', { events, fecha, userFound });
   } catch (error) {
     next(error);
