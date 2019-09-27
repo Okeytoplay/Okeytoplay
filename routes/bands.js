@@ -149,7 +149,7 @@ router.post('/:bandID', async (req, res, next) => {
 // Join one band
 router.get('/:bandID/join', async (req, res, next) => {
   const { bandID } = req.params;
-  const userID = req.session.currentUser._id;
+  const userID = req.session.currentUser.id;
   try {
     const band = await Band.findByIdAndUpdate(bandID, {
       $push: { petitions: userID },

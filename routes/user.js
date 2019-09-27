@@ -20,7 +20,10 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
   // console.log(actualUserEmail);
   const fechaActual = fechaDeHoy();
-  const fecha = fechaActual.split('-').reverse().join('/');
+  const fecha = fechaActual
+    .split('-')
+    .reverse()
+    .join('/');
   console.log('Fecha: ', fecha);
   try {
     const userFound = await User.findById(actualUserId).populate(
@@ -47,7 +50,10 @@ router.post('/', checkIfLoggedIn, async (req, res, next) => {
 router.get('/', checkIfLoggedIn, async (req, res, next) => {
   const actualUserId = req.session.currentUser._id;
   const fechaActual = fechaDeHoy();
-  const fecha = fechaActual.split('-').reverse().join('/');
+  const fecha = fechaActual
+    .split('-')
+    .reverse()
+    .join('/');
   // console.log('Fecha: ', fecha);
   // console.log(actualUserEmail);
   try {
@@ -381,7 +387,10 @@ router.get('/events', checkIfLoggedIn, async (req, res, next) => {
         req.session.currentUser._id,
       ).populate('establishment');
       const fechaActual = fechaDeHoy();
-      const fecha = fechaActual.split('-').reverse().join('/');
+      const fecha = fechaActual
+        .split('-')
+        .reverse()
+        .join('/');
       const events = await Event.find({
         establishment: userFound.establishment._id,
       })
@@ -424,7 +433,13 @@ router.post(
   checkIfEstablishment,
   async (req, res, next) => {
     const {
-      name, description, price, durationMins, schedule, startTimeHour, startTimeMinutes,
+      name,
+      description,
+      price,
+      durationMins,
+      schedule,
+      startTimeHour,
+      startTimeMinutes,
     } = req.body;
     const actualUser = req.session.currentUser;
     // const userFound = await User.findOne({ email: actualUserEmail }).populate(
@@ -433,7 +448,11 @@ router.post(
     // ONLY FOR TEST
     // ONLY FOR TEST Allow to insert Event without ESTABLISHMENT
 
-    console.log('Lo qu eme viene de startTimeHour y Mínutes: ', startTimeHour, startTimeMinutes);
+    console.log(
+      'Lo qu eme viene de startTimeHour y Mínutes: ',
+      startTimeHour,
+      startTimeMinutes,
+    );
     console.log('Lo que viene en Schedule: ', schedule);
     const minutes = startTimeMinutes.toString();
     const hours = startTimeHour.toString();
@@ -547,37 +566,56 @@ router.get(
 // GETS the band petitions landing page
 router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  let eventPetitions = false;
   try {
     const userBand = await Band.findById(user.band).populate(
       'bandmembers petitions',
     );
-    const userFound = await User.findById(
-      req.session.currentUser._id,
-    ).populate('establishment');
-    const fechaActual = fechaDeHoy();
-    const fecha = fechaActual.split('-').reverse().join('/');
-    // Eventos con peticion abierta y que tienen alguna petition en cola!!
-    const events = await Event.find({ $and: [{ establishment: userFound.establishment._id }, { requestOpened: true }, { 'petitions.0': { $exists: true } }] }).populate('petitions establishment band');
-    if (events.length > 0) {
-      eventPetitions = true;
-    }
-    console.log('eventPetitions: ', eventPetitions);
-    console.log('events: ', events);
-    console.log('userBand ', user);
-
-
-    res.render('user/profile/petitions',
-      {
-        user,
-        userBand,
-        events,
-        eventPetitions,
-      });
+    console.log('Useer', user);
+    res.render('user/profile/petitions', { user, userBand });
   } catch (error) {
     next(error);
   }
 });
+// router.get('/profile/petitions', checkIfLoggedIn, async (req, res, next) => {
+//   const user = req.session.currentUser;
+//   const userID = user._id;
+//   let eventPetitions = false;
+//   try {
+//     const userBand = await Band.findById(user.band).populate(
+//       'bandmembers petitions',
+//     );
+//     const userFound = await User.findById(userID).populate('establishment');
+//     console.log('USERFOUND', userFound);
+//     const fechaActual = fechaDeHoy();
+//     const fecha = fechaActual
+//       .split('-')
+//       .reverse()
+//       .join('/');
+//     // Eventos con peticion abierta y que tienen alguna petition en cola!!
+//     const events = await Event.find({
+//       $and: [
+//         // { establishment: userFound.establishment._id },
+//         { requestOpened: true },
+//         { 'petitions.0': { $exists: true } },
+//       ],
+//     }).populate('petitions establishment band');
+//     if (events.length > 0) {
+//       eventPetitions = true;
+//     }
+//     console.log('eventPetitions: ', eventPetitions);
+//     console.log('events: ', events);
+//     console.log('userBand ', userBand);
+
+//     res.render('user/profile/petitions', {
+//       user,
+//       userBand,
+//       events,
+//       eventPetitions,
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 router.get(
   '/profile/petitions/:bandId/:petitionUserId/decline',

@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
 
@@ -28,17 +27,22 @@
   {{>burguer}}
   {{/if}}
 
-  <div class="mobile-container">
+  <div class="mobile-container" id="mobile-container">
     {{{body}}}
 
-    <button class="backbutton" onclick="goBack()"></button>
+    {{!-- <button class="backbutton"></button> --}}
+
+
   </div>
-
-
-
   {{!-- footer  --}}
-  <footer>
-    <p>&copy; OkeyToPlay 2019</p>
+  <footer id="footer">
+    <div class="footer-icons">
+      <a onclick="goBack()"><img src="/images/rewind-video.png" alt=""></a>
+      <a href="/user"><img src="/images/user-white.png" alt=""></a>
+      <a href="/bands"><img src="/images/band-white.png" alt=""></a>
+      <a href="/establishments"><img src="/images/stage-white.png" alt=""></a>
+      <a href="/user/profile"><img src="/images/settings.png" alt=""></a>
+    </div>
   </footer>
   <script src="/javascripts/notifications.js"></script>
 </body>
