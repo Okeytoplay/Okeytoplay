@@ -308,9 +308,12 @@ img.card-Band-img-top {
   border-color: #28b8dc; }
 
 .form-style p {
-  color: rgba(15, 255, 175, 0.6);
+  color: black;
   font-size: 1.2em;
   margin: 50px 0 50px 0; }
+
+.form-style span {
+  color: #28b8dc; }
 
 .form-style span:hover {
   color: #28b8dc; }

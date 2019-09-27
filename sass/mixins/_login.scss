@@ -137,9 +137,12 @@
     border-color: #28b8dc;
   }
   p {
-    color: rgba(15, 255, 175, 0.6);
+    color: black;
     font-size: 1.2em;
     margin: 50px 0 50px 0;
+  }
+  span {
+    color: #28b8dc;
   }
   span:hover {
     color: #28b8dc;
