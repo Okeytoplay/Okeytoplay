@@ -74,6 +74,10 @@
 
     {{#if bandAction }}
     <section class="petition">
+        <a class="petition-button" href="/events/bookingevents/{{event._id}}/join">Join</a>
+    </section>
+    {{else}}
+    <section class="petition">
         <a class="petition-button" href="/events/bookingevents/{{event._id}}/join">Join to Play</a>
     </section>
     {{/if}}
