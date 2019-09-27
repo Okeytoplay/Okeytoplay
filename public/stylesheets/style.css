@@ -748,7 +748,6 @@ ul {
   border-radius: 10px;
   text-decoration: none; }
 
-body {
 .profile-cont {
   background-color: #5896a531;
   margin: 5px;
@@ -790,11 +789,12 @@ body {
   text-decoration: none;
   text-align: end; }
 
-* body {
+body {
   margin: 0;
   color: #412e2a;
   font-family: 'Rubik', sans-serif;
-  font-size: 14px; }
+  font-size: 14px;
+  height: 100vh; }
 
 .container {
   padding: 5%; }
@@ -815,10 +815,6 @@ body {
   text-transform: uppercase;
   color: white; }
 
-footer {
-  background-color: #67676f;
-  color: white; }
-
 h1 {
   font-size: 45px; }
 
@@ -826,10 +822,23 @@ h2 {
   font-size: 22px; }
 
 #footer {
-  position: absolute;
+  background-color: #191919;
+  position: sticky;
   bottom: 0;
   width: 100%;
-  height: 2.5rem; }
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-content: center; }
+
+.footer-icons {
+  padding: 2px;
+  display: flex;
+  align-items: center; }
+
+.footer-icons a {
+  margin: 0 15px; }
+
 p.msg-success {
   width: 100%;
   background-color: red;
