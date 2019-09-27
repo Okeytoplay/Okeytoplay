@@ -843,6 +843,14 @@ ul {
   text-decoration: none;
   text-align: end; }
 
+.booked-events {
+  border: 1px solid #e8ecec; }
+
+.establishment-logo {
+  width: 60%;
+  height: auto;
+  max-width: 100px; }
+
 body {
   margin: 0;
   color: #000000;

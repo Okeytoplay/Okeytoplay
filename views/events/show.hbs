@@ -80,10 +80,10 @@
 
     {{#if bandAction }}
 
-    <button onclick="location.href='/events/bookingevents/{{id}}/join'" type="button" class="register-button">Join to
-        Play</button>
+    <button onclick="location.href='/events/bookingevents/{{event._id}}/join'" type="button"
+        class="register-button">Join to Play</button>
     {{else}}
-    <button onclick="location.href='/events/{{id}}/join'" type="button" class="register-button">Join *</button>
+    <button onclick="location.href='/events/{{event._id}}/join'" type="button" class="register-button">Join *</button>
     {{/if}}
 
 
