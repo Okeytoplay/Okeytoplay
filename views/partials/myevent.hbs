@@ -1,19 +1,18 @@
-<div>
-  <div>
-    {{!-- <p>Date: {{moment this.schedule format="DD/MMMM/YYYY"}}</p> --}}
+<div class="myevent-container">
+  <div class="myevent">
+    <img class="establishment-logo" src="{{this.establishment.avatar}}" alt="">
+    <h2>{{this.name}}</h2>
     <p>Date: {{this.schedule}}</p>
-    <p>Event: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
     <p>Starting Time: {{this.startTime}}</p>
     <p>Establishment: {{this.establishment.name}}</p>
-    <p>Band: {{this.band}}</p>
     <p>Price: {{this.price}}€</p>
-    <p>Duration: {{this.durationMins}}</p>
-    <p>GrupiesOKtoPlay: {{this.registeredUsers}}</p>
+    <p>Duration: {{this.durationMins}} min</p>
+    <div class="cont-bttn">
+      <a class="accept-btn" href="/user/events/{{this._id}}/edit">EDIT EVENT</a>
+      <a class="decline-btn" href="/user/events/{{this._id}}/delete">DELETE EVENT</a>
+    </div>
   </div>
 
-  <div class="cont-bttn">
-    <button><a href="/user/events/{{this._id}}/edit">EDIT EVENT</a></button><br>
-    <button><a href="/user/events/{{this._id}}/delete">DELETE EVENT</a></button><br>
-  </div>
+
 </div>

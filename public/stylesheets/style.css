@@ -189,6 +189,11 @@ ul.nav-items li a span {
 #new-register a {
   color: #28b8dc; }
 
+/*MYEVENT*/
+.myevent {
+  border: 1px solid lightblue;
+  padding: 10px; }
+
 /*BOOKINGID*/
 .event-img-establishment {
   width: 100%;
@@ -540,7 +545,13 @@ input[type='date'] {
   color: #000000;
   border-radius: 10px;
   text-align: center;
-  text-decoration: none; }
+  text-decoration: none;
+  padding: 5px 7px; }
+
+.logo-band-min {
+  width: 60%;
+  height: auto;
+  max-width: 100px; }
 
 .error {
   display: flex;
