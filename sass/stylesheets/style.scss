@@ -15,9 +15,10 @@
 @import '../mixins/petitions';
 
 // General Attributes
-* body {
+
+body {
   margin: 0;
-  height: 100%;
+  // height: 100%;
   color: #412e2a;
   // background-color: #f9f9f9;
   font-family: 'Rubik', sans-serif;
@@ -29,11 +30,12 @@
 .not-shown {
   display: none;
 }
-// img {
-//   height: 250px;
-// }
-.mobile-container {
-  box-sizing: border-box;
+
+#mobile-container {
+  // box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
+  // min-height: 100%;
 }
 
 .bbtn {
@@ -46,11 +48,11 @@
   color: white;
 }
 footer {
-  bottom: 0;
-  position: fixed;
+  // bottom: 0;
+  // position: fixed;
   background-color: #67676f;
   color: white;
-  width: 100%;
+  // width: 100%;
 }
 h1 {
   font-size: 45px;
@@ -58,4 +60,10 @@ h1 {
 h2 {
   font-size: 22px;
   // font-family: 'Quicksand', sans-serif;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }

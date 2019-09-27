@@ -11,9 +11,7 @@
   <script src="/javascripts/backbutton.js"></script>
 
 </head>
-
 <body>
-
   <!-- Simulate a smartphone / tablet look -->
   {{!-- flash notifications --}}
   {{#if successMessages}}
@@ -44,19 +42,18 @@
   </div>
   {{/if}}
 
-  <div class="mobile-container">
+  <div class="mobile-container" id="mobile-container">
     {{{body}}}
 
     <button class="backbutton" onclick="goBack()"></button>
+
+
+
+    {{!-- footer  --}}
+    <footer id="footer">
+      <p>&copy; OkeyToPlay 2019</p>
+    </footer>
   </div>
-
-
-
-  {{!-- footer  --}}
-  <footer>
-    <p>&copy; OkeyToPlay 2019</p>
-  </footer>
-
 </body>
 
 </html>
