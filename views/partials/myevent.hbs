@@ -1,19 +1,29 @@
-<div>
-  <div>
+<div class="edit-event">
+
+  <div class="head-title">
+    <h2> {{this.name}}</h2>
+  </div>
+  <div class="head-info">
     {{!-- <p>Date: {{moment this.schedule format="DD/MMMM/YYYY"}}</p> --}}
-    <p>Date: {{this.schedule}}</p>
-    <p>Event: {{this.name}}</p>
-    <p>Description: {{this.description}}</p>
-    <p>Starting Time: {{this.startTime}}</p>
-    <p>Establishment: {{this.establishment}}</p>
-    <p>Band: {{this.band}}</p>
-    <p>Price: {{this.price}}€</p>
-    <p>Duration: {{this.durationMins}}</p>
-    <p>GrupiesOKtoPlay: {{this.registeredUsers}}</p>
+    <i>Date: {{this.schedule}}</i>
+    <i>{{this.startTime}} Hrs.</i>
   </div>
 
-  <div class="cont-bttn">
-    <button><a href="/user/events/{{this._id}}/edit">EDIT EVENT</a></button><br>
-    <button><a href="/user/events/{{this._id}}/delete">DELETE EVENT</a></button><br>
+  <div class="description-info"> 
+    <b>{{this.description}}</b>
+    {{!-- <p>Establishment: {{this.establishment}}</p> --}}
+    <p>Band: {{this.band}}</p>
+    <p>Price: {{this.price}}€</p>
+    <p>Duration: {{this.durationMins}} minutes</p>
+    <p>GrupiesOKtoPlay: {{this.registeredUsers}}</p>
   </div>
+  <div class="box-inf">
+    <div>
+      <a href="/user/events/{{this._id}}/edit">EDIT EVENT</a>
+    </div>
+    <div class="delete-profile">
+      <a href="/user/events/{{this._id}}/delete">DELETE EVENT</a>
+    </div>
+  </div>
+
 </div>

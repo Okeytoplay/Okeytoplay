@@ -104,3 +104,26 @@ p.card-title-data-est {
 .card2 {
   margin-bottom: 10px;
 }
+
+// styles de partial de edit event
+.edit-event {
+  background-color: #28b8dc1c;
+  margin-bottom: 20px;
+}
+
+.head-title {
+  background-color: #53cace;
+  padding: 2px;
+  color: white;
+}
+.head-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3d999c;
+  text-align: center;
+  color: white;
+  padding: 2px;
+}
+.description-info {
+  padding: 2px;
+}
