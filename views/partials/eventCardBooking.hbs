@@ -1,0 +1,28 @@
+<div class="cont-block">
+  <div class="cont-block-img">
+    {{#if establishment.avatar}}
+    <img class="card-Band-img-top" src='/images/avatar/establishment/{{establishment.id}}_avatar' alt="Card image cap">
+    {{else}}
+    <img class="user-establishment-img" src="../images/local.png" alt="">
+    {{/if}}
+  </div>
+  <div class="cont-block-data">
+    <div class="cont-block-data-event">
+      <h2 class="card-title-data">{{this.name}}</h2>
+      <h3 class="card-title-data">{{this.description}}</h3>
+    </div>
+    <div class="cont-block-data-est">
+      {{!-- <p class="card-title">Establishment:</p> --}}
+      <p class="card-title-data-est">At: <a href="/establishments/{{establishment._id}}">
+          <span>{{establishment.name}}</span></a></p>
+      <p class="card-title-data-address">{{establishment.street}}, </p>
+      <p class="card-title-data-address">{{establishment.city}}</p>
+    </div>
+    <div class="date">
+      <p class="card-title-data-date">{{this.schedule}}</p>
+    </div>
+  </div>
+  <div class="btn-link">
+    <a href="/events/{{_id}}" class="bttn">More Details</a>
+  </div>
+</div>
