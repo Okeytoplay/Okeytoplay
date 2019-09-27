@@ -22,7 +22,21 @@ router.get('/', async (req, res, next) => {
     console.log('EVENTOS ORDENADOS y NO PASADOS DE FECHA: ', events);
     // const fechaActual = fechaDeHoy();
     console.log('FECHA ', fechaActual);
-    console.log('events ', events);
+
+    // const events2 = events.map((event) => ({
+    //   schedule: event.schedule.toDateString(),
+    // }));
+    // events.forEach((event) => {
+    //   console.log('ALGO: ', event);
+    //   event.schedule2 = event.schedule.toDateString();
+    // });
+
+    // var result = arr.map(person => ({ value: person.id, text: person.name }));
+
+    // const events2 = events.flatMap((event) => {
+    //   event.schedule = event.schedule.toDateString();
+    // });
+    console.log('events Modificado', events);
     res.render('events', { events, fechaActual, fecha });
   } catch (error) {
     next(error);
@@ -197,6 +211,22 @@ router.get('/bookingevents/:eventId', async (req, res, next) => {
     const bandAction = true;
     res.render('events/show', { event, bandAction });
     // res.render('events/show', event);
+  } catch (error) {
+    next(error);
+  }
+});
+/* Join al event */
+router.get('/bookingevents/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
+  const fechaActual = fechaDeHoy();
+  const fecha = fechaActual.split('-').reverse().join('/');
+  const { eventId } = req.params;
+  const userFound = req.session.currentUser;
+
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, { band: userFound }, { new: true });
+    console.log('Updated Event: ', updatedEvent);
+
+    res.redirect('/events');
   } catch (error) {
     next(error);
   }
