@@ -178,6 +178,17 @@ ul.nav-items li a span {
   padding: 0.4em 0.5em;
   border-color: #28dc97; }
 
+#new-register p {
+  background-color: #28b8dc18;
+  text-align: center;
+  padding: 3px;
+  margin: -10px 0 11px 0;
+  font-size: 11px;
+  color: gray; }
+
+#new-register a {
+  color: #28b8dc; }
+
 /*NOSE DE DONDE SALE*/
 .bttn {
   width: 50%;

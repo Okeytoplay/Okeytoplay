@@ -128,23 +128,23 @@ router.get('/:eventId', async (req, res, next) => {
   try {
     const event = await Event.findById(eventId).populate('establishment band');
     console.log('el evento encontrado', event);
-    res.render('events/show', event);
+    res.render('events/show', { event });
   } catch (error) {
     next(error);
   }
 });
 
 /* POST Renders event information */
-router.post('/:eventId', async (req, res, next) => {
-  const { eventId } = req.params;
-  try {
-    const events = await Event.find({ _id: eventId });
-    console.log('events ', events);
-    res.redirect(`/events/${eventId}`);
-  } catch (error) {
-    next(error);
-  }
-});
+// router.post('/:eventId', async (req, res, next) => {
+//   const { eventId } = req.params;
+//   try {
+//     const events = await Event.find({ _id: eventId });
+//     console.log('events ', events);
+//     res.redirect(`/events/${eventId}`);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 /* Join al event */
 router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
@@ -182,6 +182,21 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
     const events = await Event.find({ registeredUsers: userFound });
     console.log('Los eventos a los que me he unido: ', events);
     res.render('user/events/bookedevents', { events, fecha, userFound });
+  } catch (error) {
+    next(error);
+  }
+});
+
+/* GET Renders event information */
+router.get('/bookingevents/:eventId', async (req, res, next) => {
+  const { eventId } = req.params;
+
+  try {
+    const event = await Event.findById(eventId).populate('establishment band');
+    console.log('el evento encontrado', event);
+    const bandAction = true;
+    res.render('events/show', { event, bandAction });
+    // res.render('events/show', event);
   } catch (error) {
     next(error);
   }
