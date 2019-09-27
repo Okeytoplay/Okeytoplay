@@ -9,7 +9,7 @@
         <ul>
             {{#each events}}
             <div class="card2">
-                <div>
+                {{!-- <div>
 
                     <h3>{{name}}</h3>
                     <i>Description: {{description}}</i></br>
@@ -17,8 +17,9 @@
                 </div>
 
                 <div>
-                    <button onclick="location.href='events/{{_id}}'" type="button" class="bttn">Detail</button>
-                </div>
+                    <button onclick="location.href='/events/{{_id}}'" type="button" class="bttn">Detail</button>
+                </div> --}}
+                {{> eventcardBooking}}
             </div>
             {{/each}}
         </ul>
