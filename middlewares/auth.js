@@ -35,15 +35,19 @@ const checkEmailAndPasswordNotEmpty = (req, res, next) => {
 };
 
 const checkIfLoggedIn = (req, res, next) => {
-  console.log('Req Session antes borrar: ', req.session);
+  // console.log('Req Session antes borrar: ', req.session);
   delete req.session.returnTo;
-  console.log('Req Session despues borrar: ', req.session);
-  console.log('Session Current User: ', req.session.currentUser);
+  // console.log('Req Session despues borrar: ', req.session);
+  // console.log('Session Current User: ', req.session.currentUser);
+  // console.log('URL Original:', req.originalUrl);
+  if ((req.originalUrl === '/auth/login') || (req.originalUrl === '/auth/signup')) {
+    res.redirect('/user');
+  }
   if (req.session.currentUser) {
     next();
   } else {
     req.session.returnTo = req.originalUrl;
-    console.log('Direccion original: ', req.session.returnTo);
+    // console.log('Direccion original: ', req.session.returnTo);
     res.redirect('/auth/login');
   }
 };

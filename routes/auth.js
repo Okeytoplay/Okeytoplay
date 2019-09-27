@@ -4,6 +4,7 @@ const User = require('../models/User'); // User Model
 const {
   checkFields,
   checkEmailAndPasswordNotEmpty,
+  checkIfLoggedIn,
 } = require('../middlewares/auth');
 
 const router = express.Router();
@@ -11,7 +12,7 @@ const router = express.Router();
 const bcryptSalt = 10; // bcrypt.
 
 /* GET SignUp page. */
-router.get('/signup', (req, res, next) => {
+router.get('/signup', checkIfLoggedIn, (req, res, next) => {
   res.render('auth/signup');
 });
 
@@ -44,7 +45,7 @@ router.post('/signup', checkFields, checkEmailAndPasswordNotEmpty, async (req, r
 });
 
 /* GET Log In page. */
-router.get('/login', (req, res, next) => {
+router.get('/login', checkIfLoggedIn, (req, res, next) => {
   res.render('auth/login');
 }); // Recoger los datos del formulario
 
