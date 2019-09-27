@@ -816,7 +816,8 @@ ul {
   text-decoration: none; }
 
 .profile-cont {
-  background-color: #5896a51c; }
+  background-color: #5896a51c;
+  padding: 5px; }
 
 .box-sup {
   display: flex;
