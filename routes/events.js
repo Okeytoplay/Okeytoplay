@@ -60,6 +60,7 @@ router.get('/bookedevents', async (req, res, next) => {
       .populate('establishment band');
     console.log('Eventos CON banda adjudicada: ', events);
     // res.render('events/bookedevents', { events });
+    req.session.Aux = true;
     res.render('events', { events });
   } catch (error) {
     next(error);
@@ -86,6 +87,7 @@ router.get(
         .sort('schedule')
         .populate('establishment');
       console.log('Eventos SIN banda adjudicada: ', events);
+      req.session.Aux = false;
       res.render('events/bookings', { events });
       // res.render('events/show', { events });
     } catch (error) {
@@ -192,7 +194,7 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
     if (event.registeredUsers) {
       // Comprobar que él no esté ya registrado
       let booked = false;
-      event.registeredUsers.forEach(user => {
+      event.registeredUsers.forEach((user) => {
         if (user.email === userFound.email) {
           booked = true;
         }
@@ -232,11 +234,17 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
 /* GET Renders event information */
 router.get('/bookingevents/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
-
+  let bandAction = false;
   try {
     const event = await Event.findById(eventId).populate('establishment band');
     console.log('el evento encontrado', event);
-    const bandAction = true;
+    // const bandAction = true;
+    console.log('URL de donde vengo?: ', req.originalUrl);
+    if (req.session.Aux) {
+      bandAction = true;
+    } else {
+      req.session.Aux = false;
+    }
     res.render('events/show', { event, bandAction });
     // res.render('events/show', event);
   } catch (error) {
@@ -256,7 +264,7 @@ router.get('/bookingevents/:eventId/join', checkIfLoggedIn, async (req, res, nex
     const updatedEvent = await Event.findByIdAndUpdate(eventId, { band: user.band._id }, { new: true });
     console.log('Updated Event: ', updatedEvent);
 
-    res.redirect('/events');
+    res.redirect('/user');
   } catch (error) {
     next(error);
   }
