@@ -99,8 +99,9 @@
 .home-upcoming-events {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
+  justify-content: center;
   align-items: center;
+  // width: 90%;
 }
 .home-container h2 {
   font-family: 'Quicksand', sans-serif;
