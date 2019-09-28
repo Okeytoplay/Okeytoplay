@@ -493,60 +493,61 @@ router.post(
         'success',
         ` The event ${name} has been created successfully!!`,
       );
-      res.redirect('/user/events'); // A donde vamos?
+      res.redirect('/user');
     } catch (error) {
       next(error);
     }
   },
 );
 
-router.get(
-  '/events/bookings',
-  checkIfLoggedIn,
-  checkIfEstablishment,
-  async (req, res, next) => {
-    try {
-      const fechaActual = fechaDeHoy();
-      const fecha = fechaActual
-        .split('/')
-        .reverse()
-        .join('/');
-      const actualUserId = req.session.currentUser._id;
-      const userFound = await User.findById(actualUserId).populate(
-        'establishment',
-      );
-      console.log('UserFound', userFound);
-      if (userFound.role.establishment === false) {
-        req.flash(
-          'error',
-          'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
-        );
-        // res.redirect('/profile');
-        res.redirect('/user/events');
-      } else {
-        const userEstablishmentID = userFound.establishment._id;
-        const events = await Event.find({
-          establishment: userEstablishmentID,
-          band: { $exists: false },
-        }).sort('schedule');
-        console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
-        console.log('FECHA ', fechaActual);
-        console.log('events ', events);
-        res.render('user/events/bookings', { events, fecha, userFound });
-      }
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+// router.get(
+//   '/events/bookings',
+//   checkIfLoggedIn,
+//   checkIfEstablishment,
+//   async (req, res, next) => {
+//     try {
+//       const fechaActual = fechaDeHoy();
+//       const fecha = fechaActual
+//         .split('/')
+//         .reverse()
+//         .join('/');
+//       const actualUserId = req.session.currentUser._id;
+//       const userFound = await User.findById(actualUserId).populate(
+//         'establishment',
+//       );
+//       console.log('UserFound', userFound);
+//       if (userFound.role.establishment === false) {
+//         req.flash(
+//           'error',
+//           'Sorry, seems your are not a Establishment owner, FIRST CREATE ONE!!',
+//         );
+//         // res.redirect('/profile');
+//         res.redirect('/user/events');
+//       } else {
+//         const userEstablishmentID = userFound.establishment._id;
+//         const events = await Event.find({
+//           establishment: userEstablishmentID,
+//           band: { $exists: false },
+//         }).sort('schedule');
+//         console.log('EVENTOS ORDENADOS por fecha del ESTABLISHMENT: ', events);
+//         console.log('FECHA ', fechaActual);
+//         console.log('events ', events);
+//         res.render('user/events/bookings', { events, fecha, userFound });
+//       }
+//     } catch (error) {
+//       next(error);
+//     }
+//   },
+// );
 
 router.get('/events/bookedevents', checkIfLoggedIn, async (req, res, next) => {
   const actualUser = req.session.currentUser;
   try {
     console.log('User3 :', actualUser);
-    const events = await Event.find({ 'registeredUsers._id': actualUser._id });
+    const events = await Event.find({ 'registeredUsers': actualUser }).populate('establishment band');
     console.log('Eventos del usuario donde está registrado: ', events);
-    res.render('events');
+    req.session.Aux = 'X';
+    res.render('events', { events });
   } catch (error) {
     next(error);
   }
@@ -822,7 +823,7 @@ router.post(
           'success',
           `The ${deletedEvent.name} has been deleted succesfully!!`,
         );
-        res.redirect('/user/events');
+        res.redirect('/user');
       } else {
         req.flash(
           'warning',
