@@ -866,7 +866,9 @@ ul {
   text-decoration: none; }
 
 .profile-cont {
-  padding: 0px 15px; }
+  padding: 10px 15px;
+  background-color: #53cace65;
+  margin: 5px; }
 
 .box-sup {
   display: flex;
@@ -981,7 +983,6 @@ h2 {
 
 p.msg-success {
   width: 100%;
-  background-color: red;
   margin: 15px 0; }
 
 #notifications {
@@ -991,7 +992,8 @@ p.msg-success {
   position: absolute;
   z-index: 10;
   opacity: 1;
-  background-color: red;
+  background-color: #53cace65;
+  color: white;
   top: 0px; }
 
 .container-events {
