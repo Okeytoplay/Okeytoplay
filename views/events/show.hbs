@@ -5,9 +5,11 @@
 
 
     <div class="cards-container">
-        <div class="card2">
+        <div class="card-events-home">
             <div class="event-img-establishment">
                 <img src="{{event.establishment.avatar}}" alt="">
+                <img src="{{event.band.avatar}}" alt="">
+
             </div>
             <div>
                 <h3>{{event.name}}</h3>
@@ -29,64 +31,66 @@
     </div>
 
     <div class="cards-container">
-        <div class="card2">
-            <div>
-                <p>{{event.establishment.name}}</p>
-                <p>{{event.establishment.description}}</p>
-                <p>Website: <a href="{{event.establishment.website}}"></a>Website {{website}}</p>
-                <p>Instagram: {{event.establishment.instagramProfile}}</p>
-                <p>Facebook: {{event.establishment.facebookProfile}}</p>
-                <ul>Adress:
-                    <li>Street: {{event.establishment.street}}</li>
-                    <li>City: {{event.establishment.city}}</li>
-                    <li>Zip: {{event.establishment.zip}}</li>
-                </ul>
-                <p>Capacity: {{event.establishment.capacity}} people</p>
+        <div class="card-events-home">
+            <div class="event-img-establishment">
+                <img src="{{event.establishment.avatar}}" alt="">
+                <div>
+                    <h3>{{event.establishment.name}}</h3>
+                    <p>{{event.establishment.description}}</p>
+                    {{!-- <p>Website: <a href="{{event.establishment.website}}"></a>Website {{website}}</p>
+                    <p>Instagram: {{event.establishment.instagramProfile}}</p>
+                    <p>Facebook: {{event.establishment.facebookProfile}}</p> --}}
+                    <ul>Address:
+                        <li>Street: {{event.establishment.street}}</li>
+                        <li>City: {{event.establishment.city}}</li>
+                        <li>Zip: {{event.establishment.zip}}</li>
+                    </ul>
+                    <p>Capacity: {{event.establishment.capacity}} people</p>
+                </div>
             </div>
         </div>
-    </div>
-    {{/if}}
+        {{/if}}
 
-    {{!-- banda detalle --}}
-    {{#if event.band}}
-    <div class="cont-title">
-        <h2>BAND DETAIL:</h2>
-    </div>
-
-    <div class="cards-container">
-        <div class="card2">
-            <div>
-                <img class="card-Band-img-top" src="/images/band.png" alt="Card image cap">
-            </div>
-            <div>
-                <p>Name: {{event.band.name}}</p>
-                <p>Musical Genre: {{event.band.genre}}</p>
-                <p>Description: {{event.band.description}}</p>
-                <p>Website: <a href="{{event.band.website}}"></a>Website {{website}}</p>
-                <p>Instagram: {{event.band.instagramProfile}}</p>
-                <p>Facebook: {{event.band.facebookProfile}}</p>
-            </div>
+        {{!-- banda detalle --}}
+        {{#if event.band}}
+        <div class="cont-title">
+            <h2>BAND DETAIL:</h2>
         </div>
 
+        <div class="cards-container">
+            <div class="card-events-home">
+                <div class="event-img-establishment">
+                    <img src="{{event.band.avatar}}" alt="">
+                </div>
+                <div>
+                    <h3>{{event.band.name}}</h3>
+                    <p>Musical Genre: {{event.band.genre}}</p>
+                    <p>Description: {{event.band.description}}</p>
+                    <p>Website: <a href="{{event.band.website}}"></a>Website {{website}}</p>
+                    <p>Instagram: {{event.band.instagramProfile}}</p>
+                    <p>Facebook: {{event.band.facebookProfile}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        {{/if}}
+
+        {{#if noAction }}
+
+        {{else}}
+
+
+        {{#if bandAction }}
+        <section class="petition">
+            <a class="petition-button" href="/events/{{event._id}}/join">Join</a>
+        </section>
+        {{else}}
+        <section class="petition">
+            <a class="petition-button" href="/events/bookingevents/{{event._id}}/join">Join to Play</a>
+        </section>
+        {{/if}}
+
+        {{/if}}
+
     </div>
-
-    {{/if}}
-
-    {{#if noAction }}
-
-    {{else}}
-
-
-    {{#if bandAction }}
-    <section class="petition">
-        <a class="petition-button" href="/events/{{event._id}}/join">Join</a>
-    </section>
-    {{else}}
-    <section class="petition">
-        <a class="petition-button" href="/events/bookingevents/{{event._id}}/join">Join to Play</a>
-    </section>
-    {{/if}}
-
-    {{/if}}
-
-</div>
