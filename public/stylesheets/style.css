@@ -6,7 +6,8 @@
   background: url(/images/guitar-black-XL.png) scroll 50% 550px transparent;
   background-repeat: repeat;
   margin-left: -3px;
-  width: calc(100% + 6px); }
+  width: calc(100% + 6px);
+  height: 180px; }
 
 .textarea-jumbotron {
   margin-left: auto;
