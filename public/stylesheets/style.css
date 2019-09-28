@@ -615,11 +615,15 @@ img.user-establishment-img {
 
 .title-mng {
   margin: auto;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center; }
 
 .bttn-card {
   display: flex;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  margin: 15px 0; }
 
 a.card {
   text-decoration: none;
@@ -643,6 +647,10 @@ a.btn-lnk.est {
 
 a.btn-lnk:visited {
   color: black; }
+
+.user-establishment {
+  width: 40%;
+  text-align: center; }
 
 .user-establishment a {
   text-decoration: none;
@@ -849,15 +857,14 @@ ul {
   text-decoration: none; }
 
 .profile-cont {
-  background-color: #5896a51c;
-  padding: 5px; }
+  padding: 0px 15px; }
 
 .box-sup {
   display: flex;
   justify-content: space-between; }
 
 .img-profile img {
-  width: 70px;
+  width: 60px;
   text-align: center; }
 
 .box-info {
@@ -880,6 +887,9 @@ ul {
 .delete-profile a {
   background: #dc2828bd; }
 
+.edit-petitions {
+  text-align: center; }
+
 .edit-petitions a {
   background: #28dc64;
   size: 0.5em;
@@ -888,6 +898,16 @@ ul {
   border-radius: 5px;
   text-decoration: none;
   text-align: end; }
+
+.img-profile {
+  width: 50%;
+  text-align: center; }
+
+.wrapper-box {
+  margin: -30px 0 0 0; }
+
+.prrofile-btn {
+  margin: 20px 0; }
 
 .booked-events {
   border: 1px solid #e8ecec; }
@@ -912,7 +932,8 @@ body {
 
 #mobile-container {
   position: relative;
-  min-height: 100vh; }
+  min-height: 100vh;
+  margin-top: 15px; }
 
 .bbtn {
   margin: 10%;
@@ -942,7 +963,9 @@ h2 {
 .footer-icons {
   padding: 2px;
   display: flex;
-  align-items: center; }
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; }
 
 .footer-icons a {
   margin: 0 15px; }

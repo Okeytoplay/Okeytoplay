@@ -37,6 +37,7 @@ body {
   position: relative;
   min-height: 100vh;
   // min-height: 100%;
+  margin-top: 15px;
 }
 
 .bbtn {
@@ -75,7 +76,9 @@ h2 {
 .footer-icons {
   padding: 2px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .footer-icons a {
   margin: 0 15px;
