@@ -28,6 +28,7 @@ router.get('/', async (req, res, next) => {
     // TODO: filtrar eventos cerrados con banda
     const events = await Event.find({ schedule: { $gte: fechaActual }, band: { $exists: true } }).sort('schedule').populate('establishment band');
     console.log('eveeeents: ', events);
+    req.session.Aux = true;
     res.render('index', { events, fecha });
   } catch (error) {
     next(error);
