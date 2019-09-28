@@ -235,6 +235,7 @@ router.get('/:eventId/join', checkIfLoggedIn, async (req, res, next) => {
 router.get('/bookingevents/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
   let bandAction = false;
+  let noAction = false;
   try {
     const event = await Event.findById(eventId).populate('establishment band');
     console.log('el evento encontrado', event);
@@ -245,7 +246,10 @@ router.get('/bookingevents/:eventId', async (req, res, next) => {
     } else {
       req.session.Aux = false;
     }
-    res.render('events/show', { event, bandAction });
+    if (req.session.Aux === 'X') {
+      noAction = true;
+    }
+    res.render('events/show', { event, bandAction, noAction });
     // res.render('events/show', event);
   } catch (error) {
     next(error);

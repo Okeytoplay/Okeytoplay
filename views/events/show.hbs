@@ -72,6 +72,11 @@
 
     {{/if}}
 
+    {{#if noAction }}
+
+    {{else}}
+
+
     {{#if bandAction }}
     <section class="petition">
         <a class="petition-button" href="/events/{{event._id}}/join">Join</a>
@@ -82,5 +87,6 @@
     </section>
     {{/if}}
 
+    {{/if}}
 
 </div>

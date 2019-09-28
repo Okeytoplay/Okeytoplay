@@ -544,9 +544,10 @@ router.get('/events/bookedevents', checkIfLoggedIn, async (req, res, next) => {
   const actualUser = req.session.currentUser;
   try {
     console.log('User3 :', actualUser);
-    const events = await Event.find({ 'registeredUsers.email': actualUser.email });
+    const events = await Event.find({ 'registeredUsers': actualUser }).populate('establishment band');
     console.log('Eventos del usuario donde está registrado: ', events);
-    res.render('events');
+    req.session.Aux = 'X';
+    res.render('events', { events });
   } catch (error) {
     next(error);
   }
