@@ -4,7 +4,10 @@
   padding-bottom: 45%;
   padding-top: 25%;
   background: url(/images/guitar-black-XL.png) scroll 50% 550px transparent;
-  background-repeat: repeat; }
+  background-repeat: repeat;
+  margin-left: -3px;
+  width: calc(100% + 6px);
+  height: 180px; }
 
 .textarea-jumbotron {
   margin-left: auto;
@@ -863,8 +866,8 @@ ul {
   text-decoration: none; }
 
 .profile-cont {
-  padding: 10px 5px;
-  background-color: #28b8dc;
+  padding: 10px 15px;
+  background-color: #53cace65;
   margin: 5px; }
 
 .box-sup {
@@ -997,5 +1000,19 @@ p.msg-success {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.card-events-home {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-content: center; */
+  text-align: center; }
+
+.cont-title h2 {
+  text-align: center;
+  margin-top: 10px; }
+
+.container-events span {
+  color: #28b8dc; }
 
 /*# sourceMappingURL=style.css.map */
